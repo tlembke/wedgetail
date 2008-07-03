@@ -1,0 +1,37 @@
+<div id="patient-list">
+	<h1>Patients</h1>
+	<table cellpadding="5" cellspacing="0" border="0">
+		<% lastID="0"%>
+  	<% for patient in @patients %>
+		<% classType="list-line-new" %>
+		<% if lastID !=patient.wedgetail>
+			<tr valign="top" class="<%= classType %>">
+			<td width>
+				<%= "<span class='list-title'><b>" if classType=="list-line-new" %>
+				<%= patient.family_name+", "+patient.given_names%>
+					<%= " \""+patient.known_as+ "\""	if patient.known_as !="" %>
+					<%= "</b></span>"  if classType=="list-line-new" %>
+			</td>
+			<td width>
+				<%= patient.dob.day %>/<%= patient.dob.month%>/<%= patient.dob.year%>
+			</td>			
+  			<td><%= link_to 'Show', :action => 'show', :wedgetail => patient.wedgetail if classType=="list-line-new"%></td>
+			<td><%= link_to 'Add Entry', :controller => 'entry', :action => 'new', :wedgetail=> patient.wedgetail  if classType=="list-line-new"%></td>
+    		<td><%= link_to 'Edit', :action => 'edit', :wedgetail => patient.wedgetail  if classType=="list-line-new"%></td>
+
+  		</tr>
+<% end %>
+		<% lastID=patient.wedgetail %>
+		<% end %>
+	</table>
+
+</div>
+
+<% search_params = params %>
+ <%= link_to('&laquo; Previous', params.merge({:page => @patient_pages.current.previous}))  + " | " if @patient_pages.current.previous %>
+   <%= pagination_links(@patient_pages, :window_size => 4, :params => params) %>
+   <%= " | " + link_to('Next &raquo;', params.merge({:page => @patient_pages.current.next})) if @patient_pages.current.next %>
+<p>
+
+
+<br />

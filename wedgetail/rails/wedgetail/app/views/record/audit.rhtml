@@ -1,0 +1,27 @@
+<%= render(:partial => "patient_demographic") %>
+
+<h1>Access Log</h1>
+<table width=100%>
+
+
+	<tr>
+		<td width=50% valign=top>
+		<% i=@audits.length-1 %>
+		<% for audit in @audits%>
+			
+			<%= audit.created_at.strftime("%H:%M %d/%m/%y") %>  <%= audit.user.family_name%>
+			<%= ", " if audit.user.given_names!=""%>
+			<%= audit.user.given_names%><br>
+			<% i=i-1 %>
+			<%if (i < @audits.length/2) %>
+				</td><td width=50% valign=top> 
+				<% i=@audits.length%>
+			<% end  %>
+		<% end %>
+	</td></tr>
+</table>
+
+<hr>
+<%= will_paginate @audits %>
+<hr>
+<%= link_to 'Back', :action => 'show', :wedgetail => @patient.wedgetail %>

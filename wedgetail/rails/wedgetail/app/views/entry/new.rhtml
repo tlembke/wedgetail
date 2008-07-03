@@ -1,0 +1,16 @@
+<h1>New narrative</h1>
+
+<% form_for(:narrative,
+ 			:url=> {:action => 'create'},
+			:html=>{:multipart=>true}) do |form| %>
+			
+				<%= render :partial => 'form',:object=>form %>
+		
+			
+ 
+
+
+  <%= submit_tag "Create" %>
+<% end %>
+
+<%= link_to 'Back', :controller=>'record',:action => 'show',:wedgetail=>@narrative.wedgetail %>

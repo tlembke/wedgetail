@@ -1,0 +1,9 @@
+<% form_for(:certificate_upload,
+ 			:url=> {:action => 'load_certificate',:wedgetail=>params[:wedgetail]},
+			
+			:html=>{:multipart=>true}) do |form| %>
+<p><label for="narrative_content">Load Public Certificate</label><br/>
+<%=form.file_field("certificate")%>
+<%= submit_tag "Load Certificate", :class => "submit" %>
+
+<%end%>

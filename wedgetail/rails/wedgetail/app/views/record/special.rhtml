@@ -1,0 +1,35 @@
+<div class="wedgetail-form">
+<table>
+	<% if @summary%>
+	<tr>
+		<td>
+			<fieldset>
+				<legend>Health Summary</legend>
+				<h1><%= @summary.narrative_date.strftime("%d/%m/%y")%>   <%= @summary.title-%> - <%= @summary.narrative_type.narrative_type_name %></h1>
+				<%= simple_format(sanitize(@summary.content))%>
+			</fieldset>
+		</td>
+	</tr>
+	<% end %>
+	<tr>
+		<td width=50% valign=top>
+			<% if @medicationChart %>
+			<fieldset>
+				<legend>Medications</legend>
+				<h1><%= @medicationChart.narrative_date.strftime("%d/%m/%y")%>   <%= @medicationChart.title-%> - <%= @medicationChart.narrative_type.narrative_type_name %></h1>
+				<%= simple_format(sanitize(@medicationChart.content))%>
+			</fieldset>
+			<% end %>
+		</td>
+		<td width=50% valign=top>
+			<% if @allergy %>
+			<fieldset>
+				<legend>Allergies</legend>
+				<h1><%= @allergy.narrative_date.strftime("%d/%m/%y")%>   <%= @allergy.title-%> - <%= @allergy.narrative_type.narrative_type_name %></h1>
+				<%= simple_format(sanitize(@allergy.content))%>
+			</fieldset>
+			<% end %>
+		</td>
+	</tr>
+</table>
+</div>

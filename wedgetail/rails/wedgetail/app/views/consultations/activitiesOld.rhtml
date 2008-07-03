@@ -1,0 +1,35 @@
+<style>
+.hover {
+	background-color: #888888;
+}
+#possibles ul li, #included ul li {
+	list-style: none;
+	cursor: -moz-grab;
+}
+#possibles , #included {
+	border: 1px solid gray;
+}
+</style>
+<h2>Possibles</h2>
+<div id='possibles'>
+	<%= render :partial=>"possibles" %>
+</div>
+
+<h2>Included</h2>
+<div id='included'>
+	<%= render :partial=>"included" %>
+</div>
+
+<%= drop_receiving_element('possibles',
+	:accept  => 'included_li',
+
+
+	:url => {:controller=>:ajax,:action=>:todo_pending, :id=>@consultation}
+	)%>
+	
+<%= drop_receiving_element('included',
+	:accept  => 'possibles_li',
+
+
+	:url => {:controller=>:ajax,:action=>:todo_completed, :id=>@consultation}
+	)%>

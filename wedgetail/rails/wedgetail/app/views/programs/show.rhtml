@@ -1,0 +1,21 @@
+<h2>Cycle of care for <%= @condition.name %></h2>
+
+
+<table>
+	<tr>
+		<td>Month</td>
+		<td>Code</td>
+		<td>Item Numbers</td>
+<% for consultation in @consultations%>
+	<tr>
+		<td valign=top><%= consultation.month %></td>
+		<td valign=top><%= consultation.code %></td>
+		<td valign=top>
+		<% for item in consultation.item_numbers %>
+			<%= item.name%>(<%= item.number%>)<br>
+		<% end %>
+		</td>
+		
+	</tr>
+<% end %>
+</table>

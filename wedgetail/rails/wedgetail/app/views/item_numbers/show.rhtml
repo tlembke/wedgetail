@@ -1,0 +1,18 @@
+<p>
+  <b>Number:</b>
+  <%=h @item_number.number %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @item_number.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @item_number.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_item_number_path(@item_number) %> |
+<%= link_to 'Back', item_numbers_path %>

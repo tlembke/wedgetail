@@ -1,0 +1,6 @@
+---
+mode: development
+bundle: /Applications/Locomotive2/Bundles/valentine2008.locobundle
+port: 3000
+identifier: wedgetail
+runs_at_launch: 1

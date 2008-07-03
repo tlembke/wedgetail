@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: AdminController</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">AdminController</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/controllers/admin_controller_rb.html">
+                app/controllers/admin_controller.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="ApplicationController.html">
+                ApplicationController
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+<a href="AdminController.html">AdminController</a> is the controller for
+managing patient display information
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000005">audit</a>&nbsp;&nbsp;
+      <a href="#M000009">create</a>&nbsp;&nbsp;
+      <a href="#M000010">edit</a>&nbsp;&nbsp;
+      <a href="#M000003">index</a>&nbsp;&nbsp;
+      <a href="#M000004">list</a>&nbsp;&nbsp;
+      <a href="#M000007">narrative</a>&nbsp;&nbsp;
+      <a href="#M000008">new</a>&nbsp;&nbsp;
+      <a href="#M000012">new_message_patient</a>&nbsp;&nbsp;
+      <a href="#M000006">show</a>&nbsp;&nbsp;
+      <a href="#M000011">update</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="#M000005" class="method-signature">
+          <span class="method-name">audit</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="AdminController.html#M000006">show</a> all users who access a
+patient&#8216;s information
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000005-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 24</span>
+24:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">audit</span>
+25:      <span class="ruby-ivar">@patient</span> = <span class="ruby-constant">Patient</span>.<span class="ruby-identifier">find_current</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:identifier</span>])
+26:      <span class="ruby-ivar">@audit_pages</span>, <span class="ruby-ivar">@audits</span> = <span class="ruby-identifier">paginate</span>(<span class="ruby-identifier">:audits</span>, <span class="ruby-identifier">:per_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">60</span>, <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'created_at DESC'</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value str">&quot;patient_identifier=?&quot;</span>, <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:identifier</span>]])
+27:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
+
+        <div class="method-heading">
+          <a href="#M000009" class="method-signature">
+          <span class="method-name">create</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000009-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000009-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 64</span>
+64:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
+65:     <span class="ruby-ivar">@patient</span> = <span class="ruby-constant">Patient</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:patient</span>])
+66:     <span class="ruby-ivar">@newuser</span>=<span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:users</span>])
+67:     <span class="ruby-ivar">@newuser</span>.<span class="ruby-identifier">username</span> = <span class="ruby-ivar">@newuser</span>.<span class="ruby-identifier">wedgetail</span>
+68:     <span class="ruby-ivar">@newuser</span>.<span class="ruby-identifier">family_name</span>=<span class="ruby-ivar">@patient</span>.<span class="ruby-identifier">family_name</span>
+69:     <span class="ruby-ivar">@newuser</span>.<span class="ruby-identifier">given_names</span>= <span class="ruby-ivar">@patient</span>.<span class="ruby-identifier">given_names</span>
+70:     <span class="ruby-ivar">@newuser</span>.<span class="ruby-identifier">role</span>=<span class="ruby-value">1</span>
+71:     <span class="ruby-constant">Patient</span>.<span class="ruby-identifier">transaction</span> <span class="ruby-keyword kw">do</span> 
+72:       <span class="ruby-ivar">@patient</span>.<span class="ruby-identifier">user</span>=<span class="ruby-ivar">@newuser</span>
+73:       <span class="ruby-ivar">@patient</span>.<span class="ruby-identifier">save!</span> 
+74:       <span class="ruby-ivar">@newuser</span>.<span class="ruby-identifier">save!</span>
+75:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>]=<span class="ruby-value str">'Patient saved'</span>
+76:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:show</span>, <span class="ruby-identifier">:identifier</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@patient</span>.<span class="ruby-identifier">user</span>.<span class="ruby-identifier">wedgetail</span>
+77:     <span class="ruby-keyword kw">end</span> 
+78: 
+79:   <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">RecordInvalid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span> 
+80:       <span class="ruby-ivar">@newuser</span>.<span class="ruby-identifier">valid?</span> <span class="ruby-comment cmt"># force checking of errors even if patient failed </span>
+81:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:new</span>
+82:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="#M000010" class="method-signature">
+          <span class="method-name">edit</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000010-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000010-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 84</span>
+84:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
+85:     <span class="ruby-ivar">@patient</span> = <span class="ruby-constant">Patient</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
+86:     <span class="ruby-ivar">@newuser</span> = <span class="ruby-ivar">@patient</span>.<span class="ruby-identifier">user</span>
+87:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="#M000003" class="method-signature">
+          <span class="method-name">index</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000003-source">
+<pre>
+   <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 5</span>
+5:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
+6:     <span class="ruby-identifier">list</span>
+7:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'list'</span>
+8:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="#M000004" class="method-signature">
+          <span class="method-name">list</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+find patients according to search parameters
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000004-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 15</span>
+15:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">list</span>
+16:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:identifier</span>].<span class="ruby-identifier">to_s!</span>=<span class="ruby-value str">&quot;&quot;</span>
+17:         <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">show</span>, <span class="ruby-identifier">:identifier</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:identifier</span>]
+18:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:family_name</span>].<span class="ruby-identifier">to_s</span><span class="ruby-operator">==</span><span class="ruby-value str">&quot;&quot;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:given_names</span>].<span class="ruby-identifier">to_s</span><span class="ruby-operator">==</span><span class="ruby-value str">&quot;&quot;</span>)
+19:         <span class="ruby-ivar">@patient_pages</span>, <span class="ruby-ivar">@patients</span> = <span class="ruby-identifier">paginate</span>(<span class="ruby-identifier">:patients</span>, <span class="ruby-identifier">:per_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>, <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'family_name,user_id DESC, created_at DESC'</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value str">&quot; visibility=1 &amp;&amp; family_name like ? and (given_names like ? || known_as like ?)&quot;</span>, <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:family_name</span>].<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;%&quot;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:given_names</span>].<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;%&quot;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:given_names</span>].<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;%&quot;</span>])
+20:     <span class="ruby-keyword kw">end</span>
+21:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="#M000007" class="method-signature">
+          <span class="method-name">narrative</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+display <a href="AdminController.html#M000007">narrative</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000007-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000007-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 54</span>
+54:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">narrative</span>
+55:     <span class="ruby-ivar">@narrative</span>=<span class="ruby-constant">Narrative</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
+56:     <span class="ruby-ivar">@patient</span> = <span class="ruby-constant">Patient</span>.<span class="ruby-identifier">find_current</span>(<span class="ruby-ivar">@narrative</span>.<span class="ruby-identifier">patient_identifier</span>) 
+57:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="#M000008" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000008-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000008-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 59</span>
+59:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
+60:     <span class="ruby-ivar">@patient</span> = <span class="ruby-constant">Patient</span>.<span class="ruby-identifier">new</span>
+61:     <span class="ruby-ivar">@newuser</span>= <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>
+62:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
+
+        <div class="method-heading">
+          <a href="#M000012" class="method-signature">
+          <span class="method-name">new_message_patient</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000012-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000012-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 100</span>
+100:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new_message_patient</span>
+101:     <span class="ruby-ivar">@message</span>=<span class="ruby-constant">Message</span>.<span class="ruby-identifier">new</span>
+102: 
+103:      <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:recipient_id</span>])
+104:        <span class="ruby-ivar">@recipient_user</span>=<span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:recipient_id</span>])
+105:      <span class="ruby-keyword kw">end</span>
+106:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:update</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">page</span><span class="ruby-operator">|</span>
+107:       <span class="ruby-identifier">page</span>.<span class="ruby-identifier">visual_effect</span> <span class="ruby-identifier">:toggle_blind</span>, <span class="ruby-value str">&quot;new_message_patient&quot;</span>    
+108:     <span class="ruby-keyword kw">end</span>
+109:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
+
+        <div class="method-heading">
+          <a href="#M000006" class="method-signature">
+          <span class="method-name">show</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+main patient display
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000006-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 32</span>
+32:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
+33: 
+34:     <span class="ruby-identifier">wedgetail</span>=<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:identifier</span>]
+35:     <span class="ruby-ivar">@patient_user</span>=<span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_wedgetail</span>(<span class="ruby-identifier">wedgetail</span>)
+36:     <span class="ruby-ivar">@patient</span> = <span class="ruby-ivar">@patient_user</span>.<span class="ruby-identifier">current_patient</span>
+37:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span> <span class="ruby-ivar">@patient</span>
+38:        <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>]=<span class="ruby-value str">'Patient not found'</span>
+39:        <span class="ruby-ivar">@object</span>=<span class="ruby-identifier">params</span>
+40:        <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:debug</span>
+41:     <span class="ruby-keyword kw">else</span>
+42:       <span class="ruby-ivar">@audit</span>=<span class="ruby-constant">Audit</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">:patient_identifier=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">wedgetail</span>,<span class="ruby-identifier">:user_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span>)
+43:       <span class="ruby-ivar">@narrative</span>=<span class="ruby-constant">Narrative</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-value str">&quot;patient_identifier=?&quot;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:identifier</span>]], <span class="ruby-identifier">:order=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">&quot;narrative_date DESC&quot;</span>) 
+44:       <span class="ruby-ivar">@narrative_type</span>=<span class="ruby-constant">NarrativeType</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>)
+45:       <span class="ruby-ivar">@narrative_type_name</span>=<span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+46:       <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">narrativeType</span> <span class="ruby-keyword kw">in</span> <span class="ruby-ivar">@narrative_type</span>
+47:         <span class="ruby-ivar">@narrative_type_name</span>[<span class="ruby-identifier">narrativeType</span>[<span class="ruby-identifier">:id</span>]]=<span class="ruby-identifier">narrativeType</span>[<span class="ruby-identifier">:narrative_type_name</span>]
+48:       <span class="ruby-keyword kw">end</span>
+49:       <span class="ruby-ivar">@medicationChart</span>=<span class="ruby-constant">Narrative</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:first</span>, <span class="ruby-identifier">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-value str">&quot;patient_identifier=? &amp;&amp; narrative_type_id=2&quot;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:identifier</span>]], <span class="ruby-identifier">:order=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">&quot;narrative_date DESC&quot;</span>) 
+50:     <span class="ruby-keyword kw">end</span>
+51:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <a href="#M000011" class="method-signature">
+          <span class="method-name">update</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000011-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000011-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 89</span>
+89:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
+90: 
+91:     <span class="ruby-ivar">@patient</span> = <span class="ruby-constant">Patient</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:patient</span>])
+92:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@patient</span>.<span class="ruby-identifier">save</span>
+93:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">'Patient was successfully updated.'</span>
+94:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'show'</span>, <span class="ruby-identifier">:identifier</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@patient</span>.<span class="ruby-identifier">user</span>.<span class="ruby-identifier">wedgetail</span>
+95:     <span class="ruby-keyword kw">else</span>
+96:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'edit'</span>
+97:     <span class="ruby-keyword kw">end</span>
+98:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<h1>Listing consultations</h1>
+
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Condition</th>
+    <th>Month</th>
+  </tr>
+  
+<% for consultation in @consultations %>
+  <tr>
+    <td><%=h consultation.code %></td>
+    <td><%=h consultation.condition_id %></td>
+    <td><%=h consultation.month %></td>
+    <td><%= link_to 'Show', :action => 'show', :id => consultation %> </td>
+	<td><%= link_to 'Edit', :action => 'edit', :id => consultation %></td> |
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => consultation }, :confirm => 'Are you sure?', :method => :post %> </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New consultation', :action=>'new' %>

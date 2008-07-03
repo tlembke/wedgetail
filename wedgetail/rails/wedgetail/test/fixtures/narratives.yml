@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+first:
+  id: 1
+  wedgetail: "1234"
+  narrative_type_id: 1
+  title: "test Message"
+  content: "This is a narrative"
+  narrative_date: <%= Date.today %>
+  created_by: "12346"
+  created_at: <%= DateTime.now %>
+  content_type: "text/plain"
+

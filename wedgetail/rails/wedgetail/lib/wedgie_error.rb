@@ -1,0 +1,2 @@
+class WedgieError < StandardError
+end

@@ -1,0 +1,19 @@
+<%= error_messages_for 'pref' %>
+<fieldset>
+<legend>Preferences</legend>
+<% @pref = Pref
+  @errors = flash[:prefs_errors] || {} 
+  Pref.list.each_pair do |key,val| %>
+  <p><%= "<label for=\"pref_#{key.to_s}\">" %>
+  <%= val[:name] %></label><br/>
+  <% if val[:default] == false or val[:default] == true %>
+    <%= check_box 'pref', key.to_s %> 
+  <% else %>
+    <%= text_field 'pref', key.to_s,:size=>'10',:maxlength=>'255'  %>
+    <% if @errors[key] %>
+      <div class="error"><%= @errors[key] %></div>
+    <% end %>
+  <% end %></p>
+<% end %>
+
+</fieldset>

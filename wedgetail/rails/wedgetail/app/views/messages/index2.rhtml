@@ -1,0 +1,23 @@
+<%= button_to 'Create New Message', :action => 'new'%><p>
+You have <%= pluralize(@user.inbox.size, "message")%><br>
+
+<% for message in @user.inbox%>
+	<%= "<div id='message-"+message.id.to_s+"'>" %>
+	<b>Subject :</b><%= message.subject%><br>
+	<b>From : </b><%= message.sender.given_names if message.sender.given_names%> <%= message.sender.family_name if message.sender.family_name %>
+	<br>
+	<b>Date : </b><%=message.created_at.strftime("%H:%M %d/%m/%y") %>
+	<p>
+	<%= message.content%>
+	<span>
+<%= button_to 'Reply', :controller => 'messages',:action=> 'new',:recipient_id=> message.sender.id,:thread=>message.id,:subject=>'Re: '+message.subject -%> 	
+<% form_remote_tag :url=>{:action =>"mark_as_read", :id=>message.id},:update=>'email_status_'+message.id.to_s do%>
+<%= submit_tag "Mark as Read Ajax "%>
+<% end %>
+<%= link_to_remote "New Read", :url => {:action => "mark_as_read_new",:id=> message.id} %><br/>
+<%=button_to 'Mark as Read', :action=> 'mark_as_read',:id=> message.id %>
+<%= "<span id='email_status_"+message.id.to_s+"'>" %></span>
+	<hr>
+	</div>
+	
+<% end%>

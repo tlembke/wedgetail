@@ -1,0 +1,2 @@
+module BoomerangHelper
+end

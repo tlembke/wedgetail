@@ -1,0 +1,33 @@
+<p>
+  <b>Patient:</b>
+  <%=h @event.patient %>
+</p>
+
+<p>
+  <b>Month:</b>
+  <%=h @event.month %>
+</p>
+
+<p>
+  <b>Time:</b>
+  <%=h @event.time %>
+</p>
+
+<p>
+  <b>Agent:</b>
+  <%=h @event.agent_id %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%=h @event.location %>
+</p>
+
+<p>
+  <b>Event type:</b>
+  <%=h @event.event_type_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

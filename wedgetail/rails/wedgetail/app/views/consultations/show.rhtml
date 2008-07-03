@@ -1,0 +1,31 @@
+<p>
+  <b>Code:</b>
+  <%=h @consultation.code %>
+</p>
+
+<p>
+  <b>Condition:</b>
+  <%=h @consultation.condition_id %>
+</p>
+
+<p>
+  <b>Month:</b>
+  <%=h @consultation.month %>
+</p>
+
+<p>
+	<b>Activities:</b>
+	<% for activity in @consultation.activities%>
+		<br><%= activity.name%>
+	<% end %>
+</p>
+<p>
+	<b>Item Numbers:</b>
+	<% for item in @consultation.item_numbers%>
+		<br><%= item.name%>(<%= item.number%>)
+	<% end %>
+</p>
+
+
+<%= link_to 'Edit', :action=> :edit, :id=> @consultation %> |
+<%= link_to 'Back', :action=> :index %>

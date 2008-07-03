@@ -1,0 +1,27 @@
+<h1>Listing narratives</h1>
+
+<table>
+  <tr>
+  <% for column in Narrative.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for narrative in @narratives %>
+  <tr>
+  <% for column in Narrative.content_columns %>
+    <td><%=h narrative.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => narrative %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => narrative %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => narrative }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @narrative_pages.current.previous } if @narrative_pages.current.previous %>
+<%= link_to 'Next page', { :page => @narrative_pages.current.next } if @narrative_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New narrative', :action => 'new' %>

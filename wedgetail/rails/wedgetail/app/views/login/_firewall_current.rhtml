@@ -1,0 +1,9 @@
+<div class='wedgetail-form'
+<fieldset>
+<legend><%="Current "+ @listname.to_s + " for " + @useredit.full_name.to_s %></legend>
+
+	<% for @listed in @currentlist %>
+		<%= @listed.family_name_given_names %><br>
+	<% end %>
+	</fieldset>
+</div>

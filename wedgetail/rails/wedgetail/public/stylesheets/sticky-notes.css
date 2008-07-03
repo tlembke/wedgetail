@@ -1,0 +1,41 @@
+.draggable { 
+  position: absolute; 
+  overflow: hidden;
+  text-align: justify;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+  font: normal 12px Verdana, Arial;
+  height: 200px; 
+  width: 200px; 
+  background-color: #fefd9a; 
+}
+
+.dragger {
+  position: relative;
+  cursor: move;
+  overflow: hidden;
+  text-align: center;
+  font: bold 12px Verdana, Arial;
+  height: 20px;
+  width: 200px;
+  background-color: #fefe05;
+}
+
+.note {
+  position: relative;
+  height: 180px; 
+  width: 200px; 
+  margin-left: 2px;
+  overflow: hidden;
+  text-align: justify;
+  padding: 0px;
+}
+
+.note dir{
+  margin-bottom: 5px;
+  margin-top: 2px;
+}
+
+
