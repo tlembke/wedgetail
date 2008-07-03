@@ -1,0 +1,29 @@
+<div class="wedgetail-form"> 
+	<h1>Health Summary for <%=@patient.full_name%></h1>
+<table border=0>
+	<tr>
+		<td width=50%>
+			My health summary is available online from <br>
+			<b>http://wedgetail.medicine.net.au</b><br>
+			<p>
+				You can access this record (once only) using the username and password on this page
+		</td>
+		
+		<td width=50%>
+	<fieldset> 
+		<legend>One Time Guest Access</legend> 
+
+		<table border=0>
+			<tr>
+				<td>Username</td>
+				<td><%=@newuser.username%></td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td><%=@newuser.password%></td>
+			</tr>
+		</table>
+	</fieldset>
+	</td></tr></table>
+</div>
+

@@ -1,0 +1,41 @@
+<%= button_to 'Create New Message', :action => 'new'%><p>
+	
+<span id='message_count'><%= "You have "+pluralize(@user.inbox.size, "unread message")%></span><br>
+<% if @user.team_name!="" %>
+Messages in <font color='red'>red</font> were sent to the team <%= @user.team_name%><br>
+<% end %>
+<%= link_to 'Show archive', :action => 'archive'%> | 
+<%= link_to 'Audit Sent Messages', :action => 'out', :find=>"unread" %><p>
+
+<p>
+<% for message in @user.inbox%>
+	<%= "<div id='message_"+message.id.to_s+"'>" %>
+	<%= "<font color='red'>" if message.recipient_id.to_s ==@user.team.to_s %>	
+	<b><%= message.subject%></b>
+	<%="</font>" if message.recipient_id.to_s==@user.team.to_s %>
+	From: <%= message.sender.given_names if message.sender.given_names%> <%= message.sender.family_name if message.sender.family_name %>
+	Date: <%=message.created_at.strftime("%H:%M %d/%m/%y") %>
+	<br>
+	<%= "<div id='message_content_"+message.id.to_s+"'>" %>
+	<%= link_to "Regarding: "+ message.patient.full_name+"<br>",{:controller=>"record",:action=>"show",:wedgetail=>message.re} if message.re.to_s!="" %>
+	<%= simple_format(message.content) %>
+	</div>
+	<%= link_to_remote "Show/Hide", :url => {:action => "toggle",:id=> message.id,} %> |  
+	<%= link_to_remote 'Reply',
+	 					:url => {:controller => 'messages',:action=> 'new_ajax',:id => message.id},
+						:update=>"message_reply_"+message.id.to_s,
+						:complete=> visual_effect(:blind_down, "message_reply_"+message.id.to_s) -%> |
+
+						
+
+	<%= link_to_remote "Mark as Read", :url => {:action => "mark_as_read",:id=> message.id} %><br/>
+	<%= "<div id='message_reply_"+message.id.to_s+"' >" %></div>
+	
+	
+
+
+	<hr>
+	</div>
+
+<% end%>
+

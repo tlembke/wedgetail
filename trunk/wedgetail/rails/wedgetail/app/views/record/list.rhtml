@@ -1,0 +1,37 @@
+
+<div class="wedgetail-form"> 
+	<fieldset> 
+		<legend>Search</legend>
+		<% form_tag do %> 
+			<p> <table>
+				<tr
+				<td>
+				<label for="family_name">Surname:</label> </td><td>
+				<%= text_field_tag :family_name, params[:family_name] %>
+				</td>
+				</tr>
+				<tr>
+				<td>
+				<label for="given_name">First Name:</label> </td><td>
+				<%= text_field_tag :given_names, params[:given_names]%> 
+				</td>
+				</tr>
+				<tr>
+				<td>
+				<label for="identifier">Wedgetail Number:</td><td>
+				<%= text_field_tag :wedgetail, params[:wedgetail]%>
+				</td></tr>
+				<tr>
+				<td colspan=2 align=center><%= submit_tag "Search" %> 
+				</td>
+				</tr>
+				</table>
+			</p> 
+		<% end %> 
+	</fieldset> 
+</div>
+
+<%= render(:partial => "patientlist") if @patients && @patients.length>0 %> 
+<p>
+<%= button_to 'New patient', :action => 'new' if @user.role<5 %>
+

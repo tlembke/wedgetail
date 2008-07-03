@@ -1,0 +1,24 @@
+<h1>Listing item_numbers</h1>
+
+<table>
+  <tr>
+    <th>Number</th>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+  
+<% for item_number in @item_numbers %>
+  <tr>
+    <td><%=h item_number.number %></td>
+    <td><%=h item_number.name %></td>
+    <td><%=h item_number.description %></td>
+    <td><%= link_to 'Show', item_number_path(item_number) %></td>
+    <td><%= link_to 'Edit', edit_item_number_path(item_number) %></td>
+    <td><%= link_to 'Destroy', item_number_path(item_number), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New item_number', new_item_number_path %>

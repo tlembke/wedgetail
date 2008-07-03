@@ -1,0 +1,21 @@
+From: Ian Haywood <ihaywood@iinet.net.au>
+To: wedgetail@iinet.net.au
+Subject: test message
+Date: Sun, 7 Oct 2007 10:09:12 +1000
+User-Agent: KMail/1.9.6 (enterprise 0.20070907.709405)
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+Message-Id: <200710071009.15945.ihaywood@iinet.net.au>
+Status: R
+X-Status: NQ
+X-KMail-EncryptionState:  
+X-KMail-SignatureState:  
+X-KMail-MDN-Sent:  
+
+This is a message to test use of the Re: line
+
+Re: Bloggs, John, dob 2/1/1960
+

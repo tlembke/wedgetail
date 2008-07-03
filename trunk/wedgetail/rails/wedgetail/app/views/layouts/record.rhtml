@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html> 
+<head> 
+<title>Wedgetail Shared EHR</title> 
+<%= stylesheet_link_tag "scaffold", "wedgetail","prototip", :media => "all" %> 
+
+<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag "prototip" %>
+<% if flash[:background_print_narrative] -%>
+  <script type="text/javascript">
+  //<![CDATA[
+    win=window.open("","","width=10 height=10");
+    win.blur();
+    win.document.location = '<%= url_for(:controller=>"form",:action=>"gen_pdf",:wedgetail=>params[:wedgetail],:narr_id=>flash[:background_print_narrative]) %>';
+    win.print();
+    win.close();
+  //]]>
+<% end %>
+</head> 
+<body id="record">
+
+	
+<div id="banner"> 
+<img src="/images/wedgetail_littler.jpg"/> 
+<%= @page_title || "Wedgetail shared EHR" %>
+</div> 
+<div id="columns"> 
+<div id="side"> 
+<p>
+<%= render :partial => 'layouts/side_links' if session[:user_id]%>
+
+<br/>  
+ 
+</div> 
+<div id="main">  
+
+<% if flash[:notice] -%> 
+<div id="notice"><%= flash[:notice] %></div> 
+<% end -%> 
+<%= yield :layout %> 
+</div> 
+</div> 
+</body> 
+</html>

@@ -1,0 +1,26 @@
+This will be the cycle:
+
+Visits <%= @visits %><br>
+Start Month  <%= @month_name[0]%><br>
+Interval <%= @interval %><br>
+Wedgetail <%= @wedgetail %>
+
+<br>
+<table border =1 >
+<% j=0 %>
+<% while j < @scope %>
+
+<tr><td><%= @month_name[j] %></td>
+	<td>
+	<% for act in @month_appt[j] %>
+	<%= act %>, 
+	<% end %>	
+	</td>
+</tr>
+<% j=j + @interval %>
+
+<% end %>
+</table>
+
+
+

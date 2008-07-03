@@ -1,0 +1,27 @@
+<h1>Editing item_number</h1>
+
+<%= error_messages_for :item_number %>
+
+<% form_for(:item_number, :url => item_number_path(@item_number), :html => { :method => :put }) do |f| %>
+  <p>
+    <b>Number</b><br />
+    <%= f.text_field :number %>
+  </p>
+
+  <p>
+    <b>Name</b><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <b>Description</b><br />
+    <%= f.text_field :description %>
+  </p>
+
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', item_number_path(@item_number) %> |
+<%= link_to 'Back', item_numbers_path %>

@@ -1,0 +1,25 @@
+<div class="wedgetail-form">
+Showing <b><%= @search_type.pluralize %></b><br/>
+Click to <%=link_to "show "+ @next_search.pluralize, :show=>@next_search%><br>
+Those in <font color=red>red</font> are already selected.<br/>
+
+<%= button_to "Click here when finished",:action=>"password",:wedgetail=>@useredit.wedgetail%><p>
+<fieldset>
+<table>
+<% for @choice in @allusers%>
+<tr id='choice_<%=@choice.wedgetail%>'>
+	<td id='name_<%=@choice.wedgetail%>'>
+	<% if @choice.is_listed(@useredit.wedgetail) %>
+		<font color=red><%= @choice.family_name_given_names %></font>
+	<% else %>
+		<%= @choice.family_name_given_names %>
+	<% end %>
+	</td>
+	<td id='command_<%=@choice.wedgetail%>'>
+	<%= link_to_remote @choice.firewall_term(@useredit.wedgetail), :url => {:action => "select_user",:wedgetail=> @choice.wedgetail,:useredit=>@useredit.wedgetail} %><br/>
+	</td>
+</tr>
+<% end %>
+</table>
+</fieldset>
+</div>

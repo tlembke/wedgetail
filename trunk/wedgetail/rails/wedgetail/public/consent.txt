@@ -1,0 +1,26 @@
+This is all the consent stuff.
+
+You should be aware that using this service involves sharing your health record.
+
+Sign here, Dude
+
+Cheers,
+
+The Big Wedgie
+
+
+
+
+Patient Sign ............................................
+                      <patient_full_name>
+
+
+
+Witness Sign .............................................
+
+
+Witness Name..............................................
+
+
+Witness Role .............................................
+

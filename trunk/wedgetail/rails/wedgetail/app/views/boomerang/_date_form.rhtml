@@ -1,0 +1,7 @@
+<%= date_select('newclaim', 'date',:order=>[:day,:month,:year],:start_year => 2000,:include_blank=>true)  -%>
+<%= hidden_field 'newclaim', 'item_number_id'  -%>
+<%= hidden_field 'newclaim', 'code'  -%>
+<%= hidden_field 'newclaim', 'wedgetail'  -%>
+<a href="javascript: set_today('newclaim', 'date');"><font size=-2>Today</font></a>
+
+

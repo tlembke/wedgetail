@@ -1,0 +1,74 @@
+<% if @patient%>
+	<h1>Cycle of Care for <%=@patient.full_name %></h1>
+<% else %>
+	<h1>Cycle of Care</h1>
+<% end %>
+Wedgetail is <%= @wedgetail %><p>
+	<%= debug(params)%>
+Eligibility<p>
+	
+	<% form_tag('javascript:void(0)') do |form| %> 
+		GPMP  <%= check_box_tag(:gpmp,:id=>'gpmp_check') -%> TCA <%= check_box_tag(:tca,:id=>'tca_check') -%> HMR <%= check_box_tag(:hmr,:id=>'hmr_check') -%> SIPP <%= check_box_tag(:sipp,:id=>'sipp_check') -%>
+		<%= observe_field('gpmp_check',
+	      :url => { :action => :toggle_eligibility,:wedgetail=>@wedgetail,:epc=>'gpmp' },
+	      :frequency => 0.1,
+		  :with=>"'value='+value")	
+	      %>
+		<%= observe_field('tca_check',
+	      :url => { :action => :toggle_eligibility,:wedgetail=>@wedgetail,:epc=>'tca' },
+	      :frequency => 0.1,
+		  :with=>"'value='+value")	
+	      %>
+		<%= observe_field('hmr_check',
+	      :url => { :action => :toggle_eligibility,:wedgetail=>@wedgetail,:epc=>'hmr' },
+	      :frequency => 0.1,
+		  :with=>"'value='+value")	
+	      %>
+		<%= observe_field('sipp_check',
+	      :url => { :action => :toggle_eligibility,:wedgetail=>@wedgetail,:epc=>'sipp' },
+	      :frequency => 0.1,
+		  :with=>"'value='+value")	
+	      %>
+		<span id='done'></span
+	<% end %>
+	
+	<p>
+
+<table border=0 cellpadding=5 cellspacing=5>
+<% for @claim in @claims %>
+<tr>
+
+<% @name = @claim.code%>
+<td valign=middle><%= @claim.item_number.name %></td>
+<td id='<%= @name -%>-date'% valign=middle><%= claim_date(@claim) %></td>	
+<td id='<%= @name -%>' valign=middle>
+	<%= render (:partial=>'call_update')%>
+</td>
+</tr>
+<% end %>
+</table>
+
+<% form_remote_tag(:url => {:action => 'coc'}, :update => 'coc') do %> 
+Visits per year : <%= select_tag(:visits,options_for_select(%w{1 2 3 4 6}, "4")) %><br>
+Show months     : <%= select_tag(:scope,options_for_select(%w{12 24}, "12")) %><br>
+<%= hidden_field_tag(:wedgetail,@wedgetail)  -%>
+Start from: <%= select_month(Time.now)%><br>
+<%= submit_tag("Generate Cycle") %>
+<% end %>
+
+
+<div id='coc'>
+	<%= render (:partial=>'coc')%>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

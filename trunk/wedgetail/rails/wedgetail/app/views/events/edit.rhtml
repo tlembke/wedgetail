@@ -1,0 +1,42 @@
+<h1>Editing event</h1>
+
+<%= error_messages_for :event %>
+
+<% form_for(:event, :url => event_path(@event), :html => { :method => :put }) do |f| %>
+  <p>
+    <b>Patient</b><br />
+    <%= f.text_field :patient %>
+  </p>
+
+  <p>
+    <b>Month</b><br />
+    <%= f.text_field :month %>
+  </p>
+
+  <p>
+    <b>Time</b><br />
+    <%= f.datetime_select :time %>
+  </p>
+
+  <p>
+    <b>Agent</b><br />
+    <%= f.text_field :agent_id %>
+  </p>
+
+  <p>
+    <b>Location</b><br />
+    <%= f.text_field :location %>
+  </p>
+
+  <p>
+    <b>Event type</b><br />
+    <%= f.text_field :event_type_id %>
+  </p>
+
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', event_path(@event) %> |
+<%= link_to 'Back', events_path %>

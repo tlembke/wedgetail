@@ -1,0 +1,9 @@
+#page.replace_html 'time_updated', Time.now.to_s #<label id="code.time-update" />
+#page.visual_effect :shake, 'time_updated'
+
+#page.insert_html :top, 'the_list', '<li>King of the Hill</li>' #<label id="code.list-insertion" />
+#page.visual_effect :highlight, 'the_list'
+
+#page.show 'initially_hidden' #<label id="code.unhide" />
+
+page.replace_html @item_to_update #<label id="code.remove" />

@@ -1,0 +1,53 @@
+<div class="wedgetail-form"> 
+	<%= error_messages_for 'newuser' %> 
+	<fieldset> 
+		<legend>Enter Team Details</legend> 
+		<% form_for :newuser do |form| %> 
+
+		<p> 
+			<label for="user_family_name">Team / Location name:</label> 
+			<%= form.text_field :family_name, :size => 40 %> 
+		</p>
+
+
+		<p> 
+			<label for="user_email">Email:</label> 
+			<%= form.text_field :email, :size => 40 %> 
+		</p>
+
+<p>
+	<label for="user_address_line">
+		Address line
+	</label>
+	<br/>
+	<%= form.text_field :address_line %>
+</p>
+
+<p>
+	<label for="user_town">
+		Town
+	</label>
+	<br/>
+	<%= form.text_field :town %>
+</p>
+
+<p>
+	<label for="user_postcode">
+		Postcode
+	</label>
+	<br/>
+	<%= form.text_field :postcode %>
+</p>
+
+
+<p>
+	<label for="user_state">
+		State
+	</label>
+	<br/>
+	<%= form.select(:state, %w{ NSW VIC QLD SA WA TAS NT ACT }) %>
+</p>
+		<%= submit_tag "Add Team", :class => "submit" %> 
+		<% end %> 
+	</fieldset> 
+</div>

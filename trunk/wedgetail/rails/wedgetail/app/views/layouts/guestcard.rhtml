@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html> 
+<head> 
+<title>Wedgetail Shared EHR</title> 
+<%= stylesheet_link_tag "scaffold", "wedgetail", :media => "all" %> 
+<%= javascript_include_tag :defaults %>
+<!--<%= javascript_include_tag "sticky-notes" %>-->
+</head> 
+<body id="record">
+
+
+<div id="banner"> 
+<img src="/images/wedgetail_littler.jpg"/> 
+<%= "Wedgetail shared EHR" %>
+</div> 
+
+<div id="main">  
+
+
+<%= yield :layout %> 
+</div> 
+
+</body> 
+</html>

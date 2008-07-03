@@ -1,0 +1,18 @@
+<div class="wedgetail-form">
+<%= render(:partial => "patient_demographic") %>
+<h1><%= @title %></h1>
+<% for @narrative in @narratives %>
+	<fieldset>
+		<legend><%= @narrative.narrative_date.strftime("%d/%m/%y")%>   <%= @narrative.title-%></legend>	
+		<% content, partial = @narrative.convert %>
+				<%= render(:partial=>partial,:object=>content)%>
+		<br>
+		<%= "Created by "+ @narrative.author + "<br>" if @narrative.author!=""%>
+		<%= link_to 'Update this '+ @narrative.narrative_type.narrative_type_name, :controller=>'entry',:action=>'new',:wedgetail=>@patient.wedgetail,:narrative=>@narrative.id %>
+	</fieldset>
+<% end %>
+</div>
+
+
+
+

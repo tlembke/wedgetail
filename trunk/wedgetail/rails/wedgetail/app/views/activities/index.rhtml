@@ -1,0 +1,24 @@
+<h1>Listing activities</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Agent</th>
+    <th>Timing</th>
+  </tr>
+  
+<% for activity in @activities %>
+  <tr>
+    <td><%=h activity.name %></td>
+    <td><%=h activity.agent_id %></td>
+    <td><%=h activity.timing %></td>
+    <td><%= link_to 'Show', activity_path(activity) %></td>
+    <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
+    <td><%= link_to 'Destroy', activity_path(activity), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New activity', new_activity_path %>

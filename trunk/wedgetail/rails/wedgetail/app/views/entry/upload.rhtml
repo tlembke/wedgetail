@@ -1,0 +1,38 @@
+
+<h1>File upload</h1>
+
+<% form_for(:upload,
+ 			:url=> {:action => 'upload'},
+			:html=>{:multipart=>true}) do |form| %>
+<%= error_messages_for 'upload' %>
+<p>
+<label for="narrative_content">Upload Text</label><br/>
+  <%= form.text_area(:text, :cols=>80, :rows=>4) %><br/>
+  You can cut and paste documents into this textbox. They must contain a line like
+  <pre>
+Re: Bloggs, Joe DOB 1/1/1970
+  </pre>
+  or 
+  <pre>
+wedgetail: nnnnn
+  </pre>
+  where <tt>nnnn</tt> is the wedgetail number.<br/>
+  PIT file format is also accepted
+</p>
+<p>
+  <label for="narrative_content">File select</label><br/>	
+  <%=form.file_field("file")%><br/>
+  This can be a Word .DOC or a plain text file
+</p>
+<p>
+  <b>Note: </b> you can add a document that does not contain the Re: line by searching for that patient and clicking 'Add Clinical Entry'
+</p>
+<p>
+  <%= submit_tag "Upload" %>
+
+<% end %>
+
+<%= link_to 'Back', :controller=>'record',:action => 'list'%>
+</p>
+
+

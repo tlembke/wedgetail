@@ -1,0 +1,7 @@
+<% patient=@patient%>
+
+	<h2><%= h(patient.family_name+", "+patient.given_names)-%>
+	<%= h(" \""+patient.known_as+ "\"")	if patient.known_as !="" -%>
+	</h2>
+	<b>DOB</b>  <%= patient.dob.day %>/<%= patient.dob.month%>/<%= patient.dob.year-%>
+	&nbsp; &nbsp;<b>Address</b>  <%= patient.address_line+", "+patient.town%>

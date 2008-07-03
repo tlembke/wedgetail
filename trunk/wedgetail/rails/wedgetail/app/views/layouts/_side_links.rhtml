@@ -1,0 +1,46 @@
+<%= link_to @user.given_names+" "+ @user.family_name, :controller=>'login', :action=>'password',:wedgetail=>@user.wedgetail if @user.role > 3 and @user.role < 6 %>
+<%= link_to @user.given_names+" "+ @user.family_name, :controller=>'login', :action=>'edit',:wedgetail=>@user.wedgetail if @user.role < 4%>	
+<br>
+<p>
+
+
+<% if @user.role<7 %>
+
+
+	<%= show_icon("internet-mail","/messages/","Messages","Messages","Read and post messages","medium")%>
+
+<br>
+	<span id="sb_message_count">
+	<%= pluralize(@user.inbox.size, "message")%>
+	</span>
+	</p>
+<% end %>
+<p> 
+<%= show_icon("system-log-out","/login/logout","Logout","Logout","","medium")%>
+</p>
+<p> 
+<%= show_icon("system-users","/record/list","Patients","Patients","Search for patients","medium") unless @user.role >4%>
+</p> 
+<p> 
+<%= show_icon("Physician","/login/list_users","Users","Users","Edit and Add new users","medium") if @user.role<4 %>
+</p>
+<p> 
+<%= show_icon("go-home","/login/list_teams","Teams","Teams","Manage teams","medium") if @user.role<4 %>
+</p>
+<p> 
+
+<%= show_icon("network-server","/prefs/edit/","Server Prefs","Server Preferences","Change preferences for this server","medium") if @user.role<2 %>
+</p>
+<p>
+
+<%= show_icon("document-save","/entry/upload/","Upload File","File Upload","Upload clinical narrative","medium") if @user.role<5 %>
+<p>
+<% if @user.role==1 and User.unhatched.size>0 %>
+<%= show_icon("document-open","/record/nest/","Nest","Nest","Process new patients","medium","tango") %><br>
+<span id="sb_unhatched_count">
+(<%= User.unhatched.size %> unhatched)
+</span>
+<% end %>
+
+
+
