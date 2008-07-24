@@ -10,6 +10,38 @@
 		<p> 
 			<label for="user_family_name">Team Name:</label> 
 			<%= form.text_field :family_name, :size => 40 %> 
+		</p>
+		<p>
+			<label for="user_address_line">
+				Address line
+			</label>
+			<br/>
+			<%= form.text_field :address_line %>
+		</p>
+
+		<p>
+			<label for="user_town">
+				Town
+			</label>
+			<br/>
+			<%= form.text_field :town %>
+		</p>
+
+		<p>
+			<label for="user_postcode">
+				Postcode
+			</label>
+			<br/>
+			<%= form.text_field :postcode %>
+		</p>
+
+
+		<p>
+			<label for="user_state">
+				State
+			</label>
+			<br/>
+			<%= form.select(:state, %w{ NSW VIC QLD SA WA TAS NT ACT }) %>
 		</p>		
 		
 		<% else %>
