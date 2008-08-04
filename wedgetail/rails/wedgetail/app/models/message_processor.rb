@@ -128,18 +128,7 @@ class MessageProcessor
       raise WedgieError, 'wedgetail no %s not valid' % wedgetail unless wedgetail
       narrative_date ||= Time.now
       thisuser=User.find(user_id)
-      team=0
-      if thisuser.role==6
-        team=thisuser.wedgetail
-      else
-        if thisuser.all_teams.length == 1
-          team=thisuser.default_team_wedgetail
-        end
-      end
-      #if session[:team_id]>0 and thisteam=User.find(session[:team_id])
-      #  team=thisteam.wedgetail
-      #end
-      d = {:wedgetail=>wedgetail,:content_type=>content_type,:content=>file,:created_by=>thisuser.wedgetail,:created_team=>team,:narrative_type_id=>narrative_type_id,:narrative_date=>narrative_date}
+      d = {:wedgetail=>wedgetail,:content_type=>content_type,:content=>file,:created_by=>thisuser.wedgetail,:narrative_type_id=>narrative_type_id,:narrative_date=>narrative_date}
       if plaintext
         d[:plaintext] = plaintext
       end

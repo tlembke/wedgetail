@@ -13,7 +13,11 @@
 					<%= "</b></span>"  if classType=="list-line-new" %>
 			</td>
 			<td width>
+			    <% if patient.dob %>
 				<%= patient.dob.day %>/<%= patient.dob.month%>/<%= patient.dob.year%>
+			    <% else %>
+			        <b>No DOB</b>
+			    <% end %>
 			</td>			
   			<td><%= link_to 'Show', :action => 'show', :wedgetail => patient.wedgetail if classType=="list-line-new"%></td>
 			<td><%= link_to 'Add Entry', :controller => 'entry', :action => 'new', :wedgetail=> patient.wedgetail  if classType=="list-line-new"%></td>

@@ -17,7 +17,7 @@ class RecordController < ApplicationController
         if params[:wedgetail].to_s!=""
             redirect_to :action => "show", :wedgetail => params[:wedgetail]
         elsif !(params[:family_name].to_s=="" && params[:given_names].to_s=="")
-            @patients = User.paginate(:page => params[:page],:per_page => 10, :order => 'family_name,wedgetail DESC, created_at DESC', :conditions => ["visibility=? and family_name like ? and (given_names like ? or known_as like ?)", true,params[:family_name].to_s+"%",params[:given_names].to_s+"%",params[:given_names].to_s+"%"])
+            @patients = User.paginate(:page => params[:page],:per_page => 10, :order => 'family_name,wedgetail DESC, created_at DESC', :conditions => ["visibility=? and family_name like ? and (given_names like ? or known_as like ?) and role=5", true,params[:family_name].to_s+"%",params[:given_names].to_s+"%",params[:given_names].to_s+"%"])
         end
       end
 
