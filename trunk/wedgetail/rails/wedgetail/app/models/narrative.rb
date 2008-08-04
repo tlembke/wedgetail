@@ -123,7 +123,7 @@ class Narrative < ActiveRecord::Base
   end
   
   def team
-      user_team=User.find_by_wedgetail(self.created_team)
+    author.team
   end
   
   # send out copies acording to subscription control table.
