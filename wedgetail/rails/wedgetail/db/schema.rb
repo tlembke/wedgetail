@@ -89,7 +89,6 @@ ActiveRecord::Schema.define(:version => 2) do
     t.boolean  "awaiting_pickup",   :default => false
     t.string   "hl7_id"
     t.string   "hl7_reply_id"
-    t.string   "created_team"
   end
 
   create_table "outgoing_messages", :force => true do |t|
