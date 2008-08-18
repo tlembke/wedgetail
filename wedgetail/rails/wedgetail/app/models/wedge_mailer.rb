@@ -14,7 +14,7 @@ class WedgeMailer < ActionMailer::Base
     @subject    = 'New Wedgetail Message'
     @body["recipient"]       = recipient
     @recipients = recipient.email
-    @from       = 'Wedgetail <wedge@medicine.net.au>'
+    @from       = Pref.email
     @sent_on    = Time.now
     @headers    = {'Auto-Submitted'=>'auto-generated'} # RFC 3834
   end
@@ -23,7 +23,7 @@ class WedgeMailer < ActionMailer::Base
   def message_error(email,hl7,error)
     @subject = "Wedgetail Got Wedgied"
     @recipients = ['Ian Haywood <ihaywood@iinet.net.au>']
-    @from = 'Wedgetail <wedge@medicine.net.au>'
+    @from = Pref.email
     part :content_type => "text/plain",:body=>error
     if hl7
       attachment :content_type => "text/plain",
@@ -52,7 +52,7 @@ class WedgeMailer < ActionMailer::Base
     @body["date"]       = email.date
     @body["error"] = error
     @recipients = email.from
-    @from       = 'Wedgetail <wedge@medicine.net.au>'
+    @from       = Pref.email
     @sent_on    = Time.now
     @headers    = {'Auto-Submitted'=>'auto-replied'}
   end
