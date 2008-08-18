@@ -31,13 +31,15 @@ class MessageProcessor
         when /.*\.txt$/i then mime = 'text/plain'
       end
     end
+    word_magic = "\320\317\021\340\241\261\032\341"
     if mime.nil? or mime == 'text/plain'
       # as a last-ditch attempt, we try to infer the filetype directly
+      logger.debug("file = %p" % file)
       if file.starts_with? "{\\rtf"
         mime = 'application/x-rtf'
       elsif file.starts_with?("MSH|") || file.starts_with?("FHS|") || file.starts_with?("BHS|")
         mime = 'application/edi-hl7'
-      elsif file.starts_with? "\320\317\021\340\241\261\032\341"
+      elsif file[0,word_magic.length] == word_magic
         mime = 'application/x-ms-word'
       elsif file =~ /-----BEGIN PGP MESSAGE-----/
         mime = 'application/x-openpgp'
