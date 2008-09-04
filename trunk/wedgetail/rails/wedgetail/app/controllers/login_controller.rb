@@ -317,9 +317,7 @@ class LoginController < ApplicationController
     authorize :leader
     if @user.role==3
       @thisteam=@user.team
-      @all_users=User.find(:all, 
-        :conditions => "role = 4 and teams.team_wedgetail = #{@thisteam}", 
-        :joins => "inner join teams on users.wedgetail = teams.user_wedgetail")       
+      @all_users=User.find(:all, :conditions => ["(role = 4 or role =3) and team = '#{@thisteam}'"])     
     else
       @all_users = User.find(:all,:conditions => ["role<5"], :order => "role") 
     end
