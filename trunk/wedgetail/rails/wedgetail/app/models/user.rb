@@ -183,8 +183,8 @@ class User < ActiveRecord::Base
         n
       else
         n = find_helper(["medicare = ? and dob = ? and given_names like '#{firstname}%'", medicare, dob])
-        if n.length == 1
-          ret = n[0]
+        if n
+          n
         else
           n = find_helper(["medicare = ? and dob = ?", medicare, dob])
           if n

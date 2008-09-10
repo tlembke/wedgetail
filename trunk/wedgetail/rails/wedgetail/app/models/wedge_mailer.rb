@@ -135,7 +135,7 @@ EOF
   
   def crypto_deliver(text,mime,crypto_mode,to,cert=nil,subject='[wedgetail] message',auto_mode='auto-generated')
     logger.debug "sending message %p" % text
-    cert ||= email
+    cert ||= to
     # form EDI packet as per HL7 docs
     b64 = Base64.encode64(text)
     b64.gsub!("\n","\r\n")
@@ -180,6 +180,9 @@ EOF
     logger.debug "***signed message***"
     logger.debug result
     f = RAILS_ROOT+'/certs/'+to
+    unless File.exists? f
+      raise WedgieError, "I don't have a certificate for %s" % to
+    end
     cmd = "openssl smime -encrypt %s" % f
     logger.debug "CMD: %s" % cmd
     popen3(cmd) do |stdin, stdout, stderr|
