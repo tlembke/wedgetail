@@ -176,17 +176,17 @@ class User < ActiveRecord::Base
     medicare.delete! " -" if medicare
     familyname.gsub!(%q('),%q(\\\'))
     firstname.gsub!(%q('),%q(\\\'))
-    dob = dob.strftime "%Y-%-m-%-d" # use date that works with database
+    sdob = dob.strftime "%Y-%-m-%-d" # use date that works with database
     if medicare
-      n = find_helper(["medicare = ? and dob = ? and family_name like '#{familyname}%' and given_names like '#{firstname}%'", medicare, dob])
+      n = find_helper(["medicare = ? and dob = ? and family_name like '#{familyname}%' and given_names like '#{firstname}%'", medicare, sdob])
       if n
         n
       else
-        n = find_helper(["medicare = ? and dob = ? and given_names like '#{firstname}%'", medicare, dob])
+        n = find_helper(["medicare = ? and dob = ? and given_names like '#{firstname}%'", medicare, sdob])
         if n
           n
         else
-          n = find_helper(["medicare = ? and dob = ?", medicare, dob])
+          n = find_helper(["medicare = ? and dob = ?", medicare, sdob])
           if n
             n
           else
@@ -195,7 +195,7 @@ class User < ActiveRecord::Base
         end
       end
     else
-      n = find_helper(["dob = ? and family_name like '#{familyname}%' and given_names like '#{firstname}%'", dob])
+      n = find_helper(["dob = ? and family_name like '#{familyname}%' and given_names like '#{firstname}%'", sdob])
       if n
         n
       else
@@ -208,7 +208,7 @@ class User < ActiveRecord::Base
           if n
             n
           else
-            n = find_helper(["dob = ? and given_names like '#{firstname}%'", dob])
+            n = find_helper(["dob = ? and given_names like '#{firstname}%'", sdob])
             if n
               n
             else
