@@ -10,14 +10,18 @@ class LoginController < ApplicationController
   layout "record"
 
   def add_user
+    # team leaders can create new providers
+    # admin can create team leaders
+    # wedegtail can create admins
+    
     @newuser = User.new(params[:newuser])
     authorize_only (:leader) {
-      @newuser.team = @user.wedgetail # team must be leaders team
+      @newuser.team = @user.team # team must be leaders team
       true
     }
     authorize :admin 
     if request.post?
-      # generate temporary wedgetail number
+      # generate wedgetail number
       if @newuser.role<=@user.role
         @newuser.errors.add(:role,"Cannot create a user with more rights than yourself")
       else
@@ -290,16 +294,13 @@ class LoginController < ApplicationController
   
   def update
     #@newteam=User.new(params[:newteam])
+    # @useredit is the User being edited and @user is the current user
     @useredit = User.find_by_wedgetail(params[:useredit][:wedgetail])
-    authorize_only (:patient) {@useredit.wedgetail == @user.wedgetail && params[:useredit][:role] == 4} # patients can edit themselves
-    authorize_only (:user) do
-      (params[:useredit][:role] == 5 && @useredit.role == 5) || (@useredit.wedgetail == @user.wedgetail && params[:useredit][:role] == 4)
-    end # users can edit patients & themselves
+    authorize_only (:patient) {@useredit.wedgetail == @user.wedgetail} # patients can edit themselves
+    authorize_only (:user) {@useredit.wedgetail == @user.wedgetail} # users can edit themselves
     authorize_only (:leader) do
-      is_same_team = Team.find(:first,:conditions=>["user_wedgetail=? and team=?",@useredit.wedgetail,@user.team_id])
-      (@useredit.role == 5 && params[:useredit][:role] == 5) ||
-      (@useredit.wedgetail == @user.wedgetail && params[:useredit][:role] == 3) ||
-      (params[:useredit][:role] == 4 && is_same_team)
+      #team = User.find(:first,:conditions=>["user_wedgetail=? and team=?",@useredit.wedgetail,@user.team_id])
+      (@useredit.team == @user.team)
     end # team leaders can edit patients, themselves, and users of their team
     authorize :admin # admins can do whatever they like
     if @useredit.update_attributes(params[:useredit])

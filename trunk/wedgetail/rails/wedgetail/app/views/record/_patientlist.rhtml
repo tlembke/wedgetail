@@ -20,8 +20,7 @@
 			    <% end %>
 			</td>			
   			<td><%= link_to 'Show', :action => 'show', :wedgetail => patient.wedgetail if classType=="list-line-new"%></td>
-			<td><%= link_to 'Add Entry', :controller => 'entry', :action => 'new', :wedgetail=> patient.wedgetail  if classType=="list-line-new"%></td>
-    		<td><%= link_to 'Edit', :action => 'edit', :wedgetail => patient.wedgetail  if classType=="list-line-new"%></td>
+
 
   		</tr>
 <% end %>

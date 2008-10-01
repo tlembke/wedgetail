@@ -43,12 +43,16 @@
 /* Styles for main page */
 
 #banner {
-  background: #a0aeb9;
+ /* background: #a0aeb9; */
+  background: #00677E;
   padding-top: 10px;
   padding-bottom: 31px;
-  border-bottom: 2px solid;
+  border-bottom: 2px black solid;
   font: small-caps 40px/40px "Times New Roman", serif;
-  color: #5d442b;
+  /* color: #5d442b; */
+  /* color: #FFA100;   */
+  color: #ffffff;
+
   text-align: center;
 }
 
@@ -58,14 +62,15 @@
 	color: #5d442b;
 	font:  sans-serif;
 }
+
 #banner img {
 	position: absolute;
 	float: left ;
-	margin-left: 10px;
+	margin-left: 5 px;
 }
 
 #columns {
-  background: #141;
+  background: #000000;
 }
 
 #main {
@@ -77,16 +82,22 @@
 
 #side {
   float: left;
-  padding-top: 1em;
+  padding-top: 4em;
   padding-left: 1em;
   padding-bottom: 1em;
   width: 9em;
-  background: #141;
-  color: #bfb;
+  /* background: #141; 
+  background: #FFA100; */
+  background: #000000;
+  /* color: #bfb; 
+  color: #00677E;*/
+  color: #FFA100;
 }
 
 #side a {
-  color: #bfb;
+  /* color: #bfb; 
+  color: #00677E; */
+  color: #FFA100;
   font-size: small;
 }
 
@@ -180,7 +191,7 @@ h2 {
 
 .wedgetail-form legend {
   color: #dfd;
-  background: #141;
+  background: #00677E;
   font-family: sans-serif;
   padding: 0.2em 1em;
 }

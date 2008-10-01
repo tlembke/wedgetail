@@ -82,7 +82,7 @@ class MessageProcessor
     logger.info("UPLOAD #{content_type}")
     case content_type
       when 'application/x-ms-word'
-        file,plaintext = MessageProcessor.make_html_txt_from_doc(file)
+        file,plaintext = MessageProcessor.make_html_text_from_doc(file)
         upload(user_id,file,'text/html',plaintext)
       when 'application/x-rtf'
         file,plaintext = MessageProcessor.make_html_text_from_rtf(file)
