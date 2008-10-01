@@ -27,12 +27,18 @@
 			<label for="user_email">Email:</label> 
 			<%= form.text_field :email, :size => 40 %> 
 		</p>
-
+		
 		<p> 
 			<label for="user_role">Role:</label> 
-			<%= form.select (:role, [	['Patient',5],['Health Provider',4],['Team Captain',3],['Admin',2]])
-			%> 
+			<% if @user.role==1 %>
+				<%= form.select (:role, [	['Health Provider',4],['Team Captain',3],['Admin',2]])%> 
+			<% elsif @user.role==2 %>
+				<%= form.select (:role, [	['Health Provider',4],['Team Captain',3]])%> 
+			<% elsif @user.role==3 %>
+				<%= form.select (:role, [	['Health Provider',4]])%> 
+			<% end %>
 		</p>
+		
 		<p> 
 	<% if @user.role<=2 %>
 			<label for="team_wedgetail">Team:</label> 

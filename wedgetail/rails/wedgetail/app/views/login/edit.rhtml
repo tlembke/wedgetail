@@ -79,6 +79,7 @@
 			<%= form.check_box :patient_post %> 
 		</p>
 		<% end %>
+	<% if @user.role <3 %>	
 		<% if @useredit.role == 4 or @useredit.role == 3 %>
 			<label for="user_team">Team:</label>
 			<%= 
@@ -86,7 +87,7 @@
 			@teamslist += User.find(:all, :order => "family_name",:conditions=>"role=6").map{|u| [u.family_name,u.wedgetail]}
 			form.select(:team,@teamslist) %>
 		<% end %>
-		
+	<% end %>	
 		<% if @useredit.role==6%>
 			<%= image_tag("/images/cert.png",:align => "middle") %>
 			<% if @useredit.cert and @useredit.cert !=""%>

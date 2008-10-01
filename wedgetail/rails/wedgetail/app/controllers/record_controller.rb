@@ -211,11 +211,19 @@ EOF
 
       def gen_pdf(wedgetail)
         patient=User.find_by_wedgetail(wedgetail,:order =>"created_at DESC")
-        patient_name=patient.full_name + "\n"
+        patient_name=patient.full_name
         patient_text="DOB - "+patient.dob.day.to_s + "/" + patient.dob.month.to_s + "/" + patient.dob.year.to_s + "\n"
-        patient_text+= patient.address_line + "\n" + patient.town + "\n\n\n"
+        patient_text+= patient.address_line + "\n" + patient.town+"\n"
+        patient_text+= "Wedgetail: "+wedgetail
+        patient_address=patient.address_line + ", " + patient.town
+        patient_dob=patient.dob.day.to_s + "/" + patient.dob.month.to_s + "/" + patient.dob.year.to_s
         consent_text= IO.read(RAILS_ROOT + "/public/consent.txt") 
         consent_text=consent_text.sub("<patient_full_name>",patient_name)
+        consent_text=consent_text.sub("<patient_address>",patient_address)
+        consent_text=consent_text.sub("<patient_dob>",patient_dob)
+        consent_text=consent_text.sub("<wedgetail_number>",wedgetail)
+       
+
 
 
         pdf=FPDF.new
@@ -223,21 +231,29 @@ EOF
         pdf.SetFont('Arial','B',16)
         #a0aeb9
         pdf.SetFillColor(160,174,185)
-        pdf.Image(RAILS_ROOT + '/public/images/wedgetail_little.jpg', 10, 8, 30)
-        pdf.SetX(50)
-        pdf.Cell(130,10,'Wedgetail Shared Electronic Health Record',1,1,'C',1)
+        pdf.Image(RAILS_ROOT + '/public/images/wedgetail_vert_250.jpg', 10, 8, 50)
+
         pdf.SetX(55)
         pdf.Cell(100,10,'Patient Consent Form',0 ,1,'C');
-        pdf.SetX(30)
-        pdf.SetY(55)
-        pdf.SetFillColor(204)
-        pdf.SetDrawColor(0,0,0)
-        pdf.Rect(10,53,100,25,"DF")
+        
+        pdf.SetY(20)
+
+        
         pdf.SetFont('Arial','B',16)
-        pdf.Write(5,patient_name)
-        pdf.SetFont('Arial','',12)
-        pdf.Write(5,patient_text)
+        pdf.SetX(75)
+        pdf.MultiCell(100,7,patient_name,0,'R');
+        pdf.SetX(75)
+        pdf.SetFont('Arial','',10)
+        pdf.MultiCell(100,5,patient_text,0,'R');
         pdf.Write(5,consent_text)
+        pdf.SetX(25)
+        pdf.SetY(-60)        
+        pdf.MultiCell(100,7,"Sign...................................................\nName: "+patient_name+"\n\nDate.............",0,"L")
+        pdf.SetLeftMargin(100)
+        pdf.SetY(-60)
+        pdf.MultiCell(200,7,"Witness...............................................\nName:..................................................\nPosition................................................\nDate........................................",0,"L")
+        
+        
         pdf.Output 
       end
   
