@@ -64,9 +64,10 @@
 }
 
 #banner img {
-	position: absolute;
+	position: fixed;
 	float: left ;
-	margin-left: 5 px;
+	top: 5pt;
+	left: 5px;
 }
 
 #columns {
