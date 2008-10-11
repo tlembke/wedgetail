@@ -84,7 +84,7 @@
 #side {
   float: left;
   padding-top: 4em;
-  left: 1em;
+  padding-left: 1em;
   padding-bottom: 1em;
   width: 9em;
   /* background: #141; 
@@ -93,6 +93,7 @@
   /* color: #bfb; 
   color: #00677E;*/
   color: #FFA100;
+  position: absolute;
 }
 
 #side a {
