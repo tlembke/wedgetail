@@ -64,10 +64,10 @@
 }
 
 #banner img {
-	position: fixed;
-	float: left ;
+	position: absolute;
 	top: 5pt;
 	left: 5px;
+	float: none;
 }
 
 #columns {
@@ -93,7 +93,6 @@
   /* color: #bfb; 
   color: #00677E;*/
   color: #FFA100;
-  position: static;
   float: left;
 }
 
