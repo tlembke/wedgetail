@@ -84,7 +84,7 @@
 #side {
   float: left;
   padding-top: 4em;
-  padding-left: 1em;
+  left: 1em;
   padding-bottom: 1em;
   width: 9em;
   /* background: #141; 
