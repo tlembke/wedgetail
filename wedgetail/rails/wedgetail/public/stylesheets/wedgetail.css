@@ -82,7 +82,7 @@
 }
 
 #side {
-  float: left;
+
   padding-top: 4em;
   padding-left: 1em;
   padding-bottom: 1em;
@@ -93,7 +93,8 @@
   /* color: #bfb; 
   color: #00677E;*/
   color: #FFA100;
-  position: absolute;
+  position: static;
+  float: left;
 }
 
 #side a {
