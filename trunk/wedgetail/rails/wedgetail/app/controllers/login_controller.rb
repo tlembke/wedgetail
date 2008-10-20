@@ -122,7 +122,7 @@ class LoginController < ApplicationController
       logger.debug("Attempt to do PEM->text conversion gave clearly invalid data, input: %p, with error stream %p" % [content,err])
     end
     # the moment of truth, look for the e-mail
-    if text =~ /email:(.*)/
+    if text =~ /email:(.*)/ or text =~ /emailAddress=([a-zA-Z0-9\.]+@[a-zA-Z0-9\.]+)/
       path = RAILS_ROOT+'/certs/'+$1
       logger.info("Saving new cert to #{path}")
       f = open(path,"w")
@@ -133,6 +133,7 @@ class LoginController < ApplicationController
       u.save!
       flash[:notice] = "Certificate Uploaded"
     else
+      logger.debug ("Attempt to analyse certificate failed: %p" % text)
       flash[:error] = "Analysis of certificate failed"
     end
     redirect_to(:action => "edit",:wedgetail=>params[:wedgetail]) 

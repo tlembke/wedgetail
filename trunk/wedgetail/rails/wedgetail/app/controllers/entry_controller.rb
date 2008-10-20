@@ -41,6 +41,7 @@ class EntryController < ApplicationController
       end
     end
     if upload_ok and @narrative.save
+      @narrative.sendout
       flash[:notice] = 'Narrative was successfully created.'
       redirect_to :controller => 'record', :action => 'show', :wedgetail => @narrative.wedgetail
     else

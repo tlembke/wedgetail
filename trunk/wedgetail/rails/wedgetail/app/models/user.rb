@@ -212,7 +212,13 @@ class User < ActiveRecord::Base
             if n
               n
             else
-              raise WedgieError, "No unique match to patient using  #{familyname}, #{firstname} #{dob}"
+              firstname = firstname.split[0] # use first part of name
+              n = find_helper(["dob = ? and given_names like '#{firstname}%' and family_name like '#{familyname}%'", sdob])
+              if n
+                n
+              else
+                raise WedgieError, "No unique match to patient using  #{familyname}, #{firstname} #{dob}"
+              end
             end
           end
         end
