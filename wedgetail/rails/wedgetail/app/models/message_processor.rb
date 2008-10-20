@@ -221,7 +221,7 @@ class MessageProcessor
   # if we want to replace it when the interfaces of make_html_XXX functions should be preserved
   
   def self.make_html_text_from_doc(file)
-    abiwordise('doc,doc',file,true)
+    abiwordise('doc.doc',file,true)
   end
   
   def self.make_html_text_from_rtf(file)
@@ -261,6 +261,9 @@ class MessageProcessor
       raise WedgieError,"No name found" unless /([A-Za-z][A-Za-z'\- ]+),([A-Za-z'\- ]+)/i =~ re_line
       familyname = $~[1].strip
       firstname = $~[2].strip
+      if firstname.ends_with? " dob"
+        firstname = firstname[0..-5]
+      end
       dob = get_date(re_line)
       wedgetail = nil
     end
@@ -313,8 +316,9 @@ class MessageProcessor
       logger.warn "Starting abiword..."
       Kernel.system("abiword --to=html %s" % name)
       Kernel.system("abiword --to=txt %s" % name) if txt
-      file=open("doc.html"){|x| x.read}
-      plaintext=open("doc.txt"){|x| x.read} if txt
+      name =~ /(.*)\..*/
+      file=open("%s.html" % $1){|x| x.read}
+      plaintext=open("%s.txt" % $1){|x| x.read} if txt
       logger.warn "Stopping abiword"
       start=file.index('<body>')
       ende=file.index('</body>',start)
