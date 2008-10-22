@@ -173,6 +173,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_fuzzy(familyname,firstname,dob,medicare)
+    
     medicare.delete! " -" if medicare
     familyname.gsub!(%q('),%q(\\\'))
     firstname.gsub!(%q('),%q(\\\'))
@@ -217,7 +218,7 @@ class User < ActiveRecord::Base
               if n
                 n
               else
-                raise WedgieError, "No unique match to patient using  #{familyname}, #{firstname} #{dob}"
+                raise WedgieError, "No unique match to patient using  #{familyname}, #{firstname}, #{dob}"
               end
             end
           end

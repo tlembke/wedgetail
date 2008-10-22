@@ -46,7 +46,7 @@
  /* background: #a0aeb9; */
   background: #00677E;
   padding-top: 10px;
-  padding-bottom: 31px;
+  padding-bottom: 10px;
   border-bottom: 2px black solid;
   font: small-caps 40px/40px "Times New Roman", serif;
   /* color: #5d442b; */
@@ -63,7 +63,7 @@
 	font:  sans-serif;
 }
 
-#banner img {
+#banner .logo {
 	position: absolute;
 	top: 5pt;
 	left: 5px;

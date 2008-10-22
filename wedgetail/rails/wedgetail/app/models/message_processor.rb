@@ -114,7 +114,7 @@ class MessageProcessor
         rescue HL7::Error
           raise WedgieError,'HL7 error: %s' % $!
         end
-      when 'text/plain'
+      when 'text/plain' 
         wedgetail,familyname,firstname,dob,narrative_date=process_text(file)
         medicare=nil
       when 'text/html'
@@ -261,8 +261,9 @@ class MessageProcessor
       raise WedgieError,"No name found" unless /([A-Za-z][A-Za-z'\- ]+),([A-Za-z'\- ]+)/i =~ re_line
       familyname = $~[1].strip
       firstname = $~[2].strip
-      if firstname.ends_with? " dob"
+      if firstname.ends_with? " dob" or firstname.ends_with? " DOB"
         firstname = firstname[0..-5]
+        firstname = firstname.strip
       end
       dob = get_date(re_line)
       wedgetail = nil
