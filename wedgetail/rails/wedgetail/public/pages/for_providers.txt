@@ -1,0 +1,80 @@
+<h2>Information for Health Professionals</h2>
+
+<h4>Consent to participate</h4>
+Personal consent for information to be sent and viewed in Wedgetail is 
+ongoing. At the time of agreeing to participate in Wedgetail, patients 
+consent to an initial health summary being sent to their Individual 
+Electronic Health Record by their nominated health care provider who 
+is registered with Wedgetail. The health summary may be updated 
+periodically. 
+
+Patients decide which health care providers can access Wedgetail. 
+Guest cards may be created by patients to allow health care providers 
+a one-time access to their Individual Electronic Health Record. The 
+patient may withdraw consent at any time or decide that information 
+about a particular episode of care will not be included in Wedgetail. 
+
+<h4>Transmission of information </h4>
+Wedgetail uses HeSA's PKI and SSL encryption for the secure transfer 
+of health information to ensure the highest standards in safety and 
+privacy. Health data is sent to and retrieved from Wedgetail using 
+International Standard HL7 messaging. 
+
+<h4>Health professionals’ access</h4>
+Health professionals can apply for access to Wedgetail by contacting 
+the Wedgetail Project Officer via email at:  
+wedgetail_admin@nrgpn.org.au. Once approved, a user name and 
+password is nominated by the applicant and Wedgetail can be 
+accessed through a web page on the internet. 
+
+<h4>Health information</h4>
+The health information in Wedgetail is flexible and may include all or 
+some of the following: health summaries; medications; allergies; public 
+hospital discharge summaries; public hospital encounters; primary care 
+consultation summaries; letters; radiology and pathology reports; 
+patient notes; care plans; team care arrangements and relevant 
+templates.  
+
+The message facility allows providers to send messages to other 
+members of the health care team involved in caring for the 
+individual. Health care providers may register an interest in 
+receiving messages concerning an individual, thus having instant 
+access to the most current information. Messages may also be sent 
+directly to patients.  
+
+<h4>Continuum of Care </h4>
+Wedgetail is designed to provide health professionals with 
+immediate access to health information across the continuum of care.  
+Health care providers who may access information in Wedgetail 
+include GPs, specialists, pharmacists, hospital staff, community health 
+staff and allied health professionals.
+  
+<h4>Cost </h4>
+There are no initial or ongoing costs to either the individual or the 
+health professional to participate in Wedgetail. There may, 
+however, be infrastructure costs for computers and internet services if 
+these are not already in the clinical environment. 
+
+<h4>Automation </h4>
+The technical design of Wedgetail has been underscored by the 
+desire for a user-friendly interface for ease of use by health 
+professionals. Information from a primary source may be uploaded 
+into Wedgetail with a few clicks of a mouse. Clinical data may be 
+directly entered into a patient’s Shared Electronic Health Record at 
+time of consultation, or may be uploaded at the end of a clinical 
+consultation or verification of a medical report. Individual health 
+summaries may be updated as regularly as the health care provider 
+deems relevant. The scratchpad facility may be used for notes and 
+social or familial information.  
+
+Wedgetail saves time, enables immediate access to important 
+medical information at the point of care, and assists in the 
+integration and coordination of care. 
+ 
+ 
+ 
+ 
+ 
+ 
+Adapted from eHealthNT’s: ‘Shared Electronic Health Record – 
+Information for Health Professionals’.
