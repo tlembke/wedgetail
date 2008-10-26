@@ -28,7 +28,10 @@ class RecordController < ApplicationController
          authorize :user
          @audits = Audit.paginate(:page => params[:page],:per_page => 60, :order => 'created_at DESC', :conditions => ["patient=?", params[:wedgetail]])
       end  
-
+      
+      def test
+        @thisTest="this Test"
+      end
       #main patient display
       def show
         @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
