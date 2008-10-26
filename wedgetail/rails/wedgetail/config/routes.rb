@@ -25,6 +25,12 @@ ActionController::Routing::Routes.draw do |map|
 
   # Install the default route as the lowest priority.
   map.connect ':controller/:action/:id.:format'
+  map.connect 'page/:page/',
+              :controller => "page",
+              :action => "show"
+  map.connect 'page',
+              :controller => "page",
+              :action => "show"  
   map.connnect 'record/narrative/:id',
               :controller => "record",
               :action => "narrative"
