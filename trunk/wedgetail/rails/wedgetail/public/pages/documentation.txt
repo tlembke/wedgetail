@@ -13,8 +13,8 @@ The following pdfs are available for download:
 <a href="/docs/Provider_info.pdf">Information for Health Providers</a><br>
 <a href="/docs/Privacy_and_Security.pdf">Privacy and Security</a><br>
 </blockquote>
-<h4>Web Site</h4>
-This web site includes the following pages -
+
+
 
 
 

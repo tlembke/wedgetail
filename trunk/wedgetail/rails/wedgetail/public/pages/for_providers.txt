@@ -72,9 +72,5 @@ medical information at the point of care, and assists in the
 integration and coordination of care. 
  
  
- 
- 
- 
- 
 Adapted from eHealthNT’s: ‘Shared Electronic Health Record – 
 Information for Health Professionals’.

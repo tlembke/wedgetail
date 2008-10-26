@@ -4,7 +4,6 @@ It allows patients to access a summary of their own medical conditions. This inf
 
 Wedgetail also enables this information to be shared by all doctors, hospitals and other health providers involved in a patient's care.
 
-You can find out some important information about Wedgetail using the links below.
 
 
 
