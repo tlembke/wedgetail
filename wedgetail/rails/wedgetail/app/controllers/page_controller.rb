@@ -6,7 +6,7 @@ class PageController < ApplicationController
     @all_menus=[]
     @all_pages=[]
     Dir.foreach(RAILS_ROOT + "/public/pages/"){|filename|
-      if (filename!="." and filename !=".." and filename !="index.txt")
+      if (!File.directory?(filename) and filename !="index.txt" )
         @page={}
         @menu={}
         @page[:file]=filename.slice(0..-5)
