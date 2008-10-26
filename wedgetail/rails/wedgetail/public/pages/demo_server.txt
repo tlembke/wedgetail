@@ -10,5 +10,5 @@ Username: guest
 Password: guest
 </blockquote>
 <p>
-Other pages in this site.
+
 
