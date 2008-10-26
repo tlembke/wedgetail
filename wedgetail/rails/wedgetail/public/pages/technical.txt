@@ -4,7 +4,7 @@ The Wedgetail project aims to design a database schema required to maintain an I
 
 Wedgetail has the following features.
 <blockquote><h3>Open Source</h3>Wedgetail is released under the open source GPL licence, which means that the code it is written in is free for others to use.
-Any SQL database can be used and it is written in the open source language <a href='http://www.rubyonrails.org/'>Ruby on Rails.
+Any SQL database can be used and it is written in the open source language <a href='http://www.rubyonrails.org/'>Ruby on Rails.</a>
 The wedgetail code is downloadable from <a href='http://code.google.com/p/wedgetail/'>Google Code.</a>
 </blockquote><blockquote>
 <h3>Standards Based</h3>As far as possible, Wedegtail aims to comply with Australian standards, as determined by <a href='http://nehta.gov.au'>NEHTA</a>.
