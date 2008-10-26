@@ -1,0 +1,34 @@
+<h2>Information for patients about Wedgetail</h2>
+
+<h4>What is Wedgetail? </h4>
+
+Wedgetail is an Individual Electronic Health Record Service which securely stores and shares important information about your health, such as the medications you take, any allergies you have and a summary of your health history. Your Individual Electronic Health Record does not replace your medical records held by your GP, your hospital records or any other records held by other health care providers. It contains a summary of all the important health information held in those other records. It also contains information that is collected when you visit participating health care providers such as GPs, specialists, nurses, and allied health professionals such as physiotherapists, dieticians and diabetic educators. 
+
+<h4>How will Wedgetail help me? </h4>
+
+When you visit different health care providers, the authorised health professional treating you can quickly and securely check your health information online rather than you having to rely on your memory. Wedgetail eliminates the need for paper records to be mailed or faxed and multiple telephone calls between health providers. Your medical information is stored in a safe repository and can be accessed quickly and easily by yourself and health professionals 24 hours a day. What information will be in Wedgetail? Each time you make a visit to a participating health care provider, a summary of the information collected about your treatment and care can be added to Wedgetail. 
+
+The sort of information included is listed below: 
+<ul>
+<li>A summary about your health provided by your GP, which may be updated from time to time; 
+<li>Any changes to your medications 
+<li>A summary collected from each visit to a participating health care provider; <li>Letters or reports concerning your care and treatment; 
+<li>A public hospital discharge summary from an admission to a ward or the Emergency Department; 
+<li>Radiology and pathology test results. 
+</ul>
+
+<h4>Which health care providers are involved?</h4>
+ After discussion with your GP, you nominate which health care providers have access to your Individual Electronic Health Record. Participating health care providers can include GPs, specialists, pharmacists and authorised health professionals in public or private hospitals, such as doctors, nurses and allied health staff. 
+
+<h4>Who has access to your health information?</h4>
+You control access to your information . You can see the information held in your Individual Electronic Health Record at any time by logging on to the Wedgetail website, entering you user name and your personal password. You will then be able to see all the information that health care providers have access to. If there is certain information that you do not want viewed in or sent to Wedgetail, you can tell your participating health care provider and the information will not be viewed or sent. When you join Wedgetail, you may nominate which health care providers you would like to have access to your record. This is done by selecting access options in the Preferences section of Wedgetail. You can also check to see who has viewed or sent information to your record. This information is tracked automatically and kept in an access log. The log is available in the Audit section of Wedgetail. 
+
+<h4>How do I join Wedgetail?</h4>
+ Joining Wedgetail is voluntary and free. Initially, your GP will provide you with information on Wedgetail and tell you how to access Wedgetail on your computer. You will be able to read the information, browse the website and consider your preferences at your convenience. If you agree to participate in a twelve month trial of Wedgetail, you will be asked to sign a consent form for your health information to be shared. Your name, date of birth, address and a password nominated by you will be entered into the Wedgetail system and an individual Wedgetail number will be generated. The Wedgetail team will upload a health summary from your medical record held with your GP to your Shared Electronic Health Record. 
+
+Please note that you may withdraw at any time by contacting the Wedgetail Project Officer via email at: wedgetail_admin@nrgpn.org.au 
+
+<h4>How will my private information be managed?</h4>
+Wedgetail complies with the Federal Government’s health privacy principles and those of the National e-Health Transition Authority, as well as relevant privacy legislation. The only people who have access to your health information are authorised health care professionals. They are only authorised to access your health information for the purpose of providing your health care and to check the information is correct. Wedgetail data may be used for evaluation purposes and may be published. You will not be personally identified in any way. The protection of your privacy is extremely important.
+
+For further information, please read the ‘Wedgetail Privacy and Security’ information sheet or email the Wedgetail Project Officer at: wedgetail_admin@nrgpn.org.au
