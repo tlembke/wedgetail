@@ -62,7 +62,7 @@ class EntryController < ApplicationController
           mp = MessageProcessor.new(logger,session[:user_id],file_content,content_type,nil)
           mp.save
         rescue WedgieError
-          flash[:notice] = $!
+          flash[:notice] = $!.to_s
         else
           flash[:notice] = 'File successfully uploaded'
         end
@@ -71,7 +71,7 @@ class EntryController < ApplicationController
           mp = MessageProcessor.new(logger,session[:user_id],params[:upload][:text],'text/plain',nil)
           mp.save
         rescue WedgieError
-          flash[:notice] = $!
+          flash[:notice] = $!.to_s
         else
           flash[:notice] = 'File successfully uploaded'
         end
