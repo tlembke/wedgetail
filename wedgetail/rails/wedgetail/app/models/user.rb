@@ -256,12 +256,13 @@ class User < ActiveRecord::Base
     pid = HL7::Pid.new
     pid[0] = "PID"
     pid.set_id = 1
-    pid.patient_identifier_list = [{:id_number=>wedgetail,:identifier_type_code=>"WEDGIE",
+    pil = [{:id_number=>wedgetail,:identifier_type_code=>"WEDGIE",
       :assigning_authority=>{:namespace_id=>"Wedgetail",:universal_id=>'wedgetail.medicine.net.au',:universal_id_type=>'DNS'},
       :assigning_facility=>{:namespace_id=>Pref.namespace_id,:universal_id=>Pref.hostname,:universal_id_type=>'DNS'}}]
-    if medicare
-      pid.patient_identifier_list << {:id_number=>medicare,:identifier_type_code=>"MC",:assigning_authority=>{:namespace_id=>"AUSHIC"}}
+    if medicare and medicare.length > 0
+      pil <<  {:id_number=>medicare,:identifier_type_code=>"MC",:assigning_authority=>{:namespace_id=>"AUSHIC"}}
     end
+    pid.patient_identifier_list = pil
     first, second = given_names.upcase.split(" ",2)
     pid.patient_name = {:family_name=>{:surname=>family_name.upcase},:given_name=>first,:second_name=>second}
     pid.date_of_birth = dob
