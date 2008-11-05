@@ -19,8 +19,8 @@ Build something that works, test it, then add to it!
 <h3>Respect Workflows</h3>
 Wedgetail aims to make it easy for clinical information to be added and maintained. It can use <a href='http://argusconnect.com.au'>Argus</a> as a simple means of communication between health providers and the wegdetail system.
 </blockquote><blockquote>
-<h3>Scalebale</h3>
+<h3>Scaleable</h3>
 Wedgetail is designed to facilitate peer-to-peer or parent-child synchronisation.
-Work has begun on an API to allow other programs to interact directly with Wedgetail.
+Work has begun on an <a href='wedgetail_api'>API</a> to allow other programs to interact directly with Wedgetail.
 </blockquote>
 
