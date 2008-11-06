@@ -47,7 +47,7 @@
 			@teamslist += User.find(:all, :order => "family_name",:conditions=>"role=6").map{|u| [u.family_name,u.wedgetail]}
 			form.select(:team,@teamslist)
 			%>
-	<% else %>
+	<% elsif @user.team and @user.team!=""%>
 			Team: <%= User.find_current(@user.team).family_name %>
 	<% end %>
 		</p>
