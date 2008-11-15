@@ -26,14 +26,14 @@ class User < ActiveRecord::Base
     unless medicare.blank?
       self.medicare=medicare.delete " -"
       if medicare =~ /^[0-9]{10}$/
-        errors.add(:medicare,"must add final digit (next to patient's name on the card")
+        errors.add(:medicare,"Wedgetail requires Medicare numbers to have 11 digits, the final digit is the one next to the patient's name. If it is not there, use 1.")
       elsif medicare =~ /^[0-9]{11}$/
         check = 0
         [1,3,7,9,1,3,7,9].each_with_index {|mul,i| check+=medicare[i..i].to_i*mul}
         check = check % 10
-        errors.add(:medicare,"number invalid (fails checksum)") unless check == medicare[8..8].to_i
+        errors.add(:medicare,"not a valid Medicare number (fails checksum)") unless check == medicare[8..8].to_i
       else
-        errors.add(:medicare,"not valid Medicare number")
+        errors.add(:medicare,"not a valid Medicare number")
       end
     end
   end 
