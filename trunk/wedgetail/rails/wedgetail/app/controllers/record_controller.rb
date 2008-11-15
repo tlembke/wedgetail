@@ -116,13 +116,24 @@ class RecordController < ApplicationController
       end 
     
       def edit
-        authorize :user
+        w = params[:wedgetail]
+        authorize_only (:patient) {w == @user.wedgetail}
+        authorize_only (:temp) {w == @user.wedgetail.from(6)}
         @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC") 
+        authorize_only(:leader){@patient.firewall(@user)}
+        authorize_only(:user){@patient.firewall(@user)}
+        authorize :admin
       end
 
       def update
-        authorize :user
-        @patient = User.find_by_wedgetail(params[:patient][:wedgetail],:order =>"created_at DESC")
+        w = params[:patient][:wedgetail]
+        authorize_only (:patient) {w == @user.wedgetail}
+        authorize_only (:temp) {w == @user.wedgetail.from(6)}
+        @patient=User.find_by_wedgetail(w,:order =>"created_at DESC") 
+        authorize_only(:leader){@patient.firewall(@user)}
+        authorize_only(:user){@patient.firewall(@user)}
+        authorize :admin
+     
         @patient.update_attributes(params[:patient])
         if @patient.save
           flash[:notice] = 'Patient was successfully updated.'
