@@ -96,9 +96,7 @@
 	<label for="patient_crn">Centrelink CRN</label>
 	<br/>
 	<%= text_field 'patient', 'crn' %>
-</p>
-
-<% if(@user.role<4 && params[:action]!="edit") %> 
+</p> 
 	<p> 
 		<label for="user_password">Password:</label> 
 		<%= password_field('patient','password', :size => 40) %> 
@@ -107,6 +105,6 @@
 		<label for="user_password_confirmation">Confirm:</label> 
 		<%= password_field (:password_confirmation, :size => 40) %> 
 	</p>
-<% end %>
+
 </fieldset>
 <!--[eoform:patient]-->
