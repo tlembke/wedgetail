@@ -107,4 +107,23 @@
 	</p>
 
 </fieldset>
+
+<% if @patient and @patient.crn.blank? %>
+<script language="JavaScript" type="text/javascript">
+// this brutally clears a password field in firefox
+// compliments of verysimple.com
+function clearCrn()
+{
+  if (document.getElementById)
+  {
+    var crn = document.getElementById('patient_crn');
+    if (pw != null)
+    {
+       crn.value = '';
+    }
+  }
+}
+window.setTimeout("clearCrn()", 100);
+</script>
+<% end %>
 <!--[eoform:patient]-->

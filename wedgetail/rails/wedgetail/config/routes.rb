@@ -40,7 +40,7 @@ ActionController::Routing::Routes.draw do |map|
               :controller => "prefs"
   map.connect 'rest/:action/:id',
               :controller => "rest"
-  map.connect 'rest/:action/:id1/:id2',
+  map.connect 'rest/:action/:id/:id2',
               :controller => "rest"
   map.connnect 'ajax/:action/:id',
               :controller => "ajax"
