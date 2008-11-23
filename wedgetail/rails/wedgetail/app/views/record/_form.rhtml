@@ -96,16 +96,20 @@
 	<label for="patient_crn">Centrelink CRN</label>
 	<br/>
 	<%= text_field 'patient', 'crn' %>
-</p> 
+
+</p>
+
+<% if(@user.role<5 && params[:action]!="edit") %> 
+
 	<p> 
 		<label for="user_password">Password:</label> 
 		<%= password_field('patient','password', :size => 40) %> 
 	</p> 
 	<p> 
 		<label for="user_password_confirmation">Confirm:</label> 
-		<%= password_field (:password_confirmation, :size => 40) %> 
+		<%= password_field ('patient','password_confirmation', :size => 40) %> 
 	</p>
-
+<% end %>
 </fieldset>
 
 <% if @patient and @patient.crn.blank? %>
