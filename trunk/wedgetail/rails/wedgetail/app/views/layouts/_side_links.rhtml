@@ -35,11 +35,18 @@
 
 <%= show_icon("document-save","/entry/upload/","Upload File","File Upload","Upload clinical narrative","medium") if @user.role<5 %>
 <p>
-<% if @user.role==1 and User.unhatched.size>0 %>
+<% if @user.role==1 and @user.unhatched.size>0 %>
 <%= show_icon("document-open","/record/nest/","Nest","Nest","Process new patients","medium","tango") %><br>
 <span id="sb_unhatched_count">
-(<%= User.unhatched.size %> unhatched)
+(<%= @user.unhatched.size %> unhatched)
 </span>
+<% end %>
+<p>
+<% if @user.role>2 and @user.role<5 and @user.unhatched.size>0 %>
+	<%= show_icon("document-open","/record/mynest/","Nest","Nest","Show new patients","medium","tango") %><br>
+
+		(<%= @user.unhatched.size %> unhatched)
+
 
 <% end %>
 <p>
