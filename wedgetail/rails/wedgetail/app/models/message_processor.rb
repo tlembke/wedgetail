@@ -1,4 +1,3 @@
-
 # common code for processing incoming messages, either via e-mail, web upload or API.
 # Note this class does not refer to a backend table
 class MessageProcessor

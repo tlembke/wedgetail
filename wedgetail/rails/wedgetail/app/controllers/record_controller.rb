@@ -106,6 +106,8 @@ class RecordController < ApplicationController
         @patient.wedgetail=wedgetail_number
         @patient.username = @patient.wedgetail
         @patient.role=5
+        @patient.hatched=0
+        @patient.created_by=@user.wedgetail
        	begin 
           @patient.save! 
           flash[:notice]='Patient saved'
@@ -146,9 +148,14 @@ class RecordController < ApplicationController
       # the nest contains all 'unhatched' patient, awaiting confirmation by big wedgie
       def nest
         authorize :big_wedgie
-        @patients=User.find(:all,:conditions=>["wedgetail LIKE ?","U%"], :order => "family_name,given_names")
+        @patients=User.find(:all,:conditions=>["role=5 and hatched=0"], :order => "family_name,given_names")
       end
-
+      
+      def mynest
+        authorize :user
+        @patients=User.find(:all,:conditions=>["role=5 and hatched=0 and created_by='#{@user.wedgetail}'","U%"])
+      end
+      
       def hatch
           authorize :big_wedgie
           new_wedgetail=params[:wedgetail] + ""
@@ -156,12 +163,12 @@ class RecordController < ApplicationController
           @new_patient=User.find_by_wedgetail(params[:wedgetail])
           @new_patient.wedgetail=new_wedgetail
           @new_patient.username=new_wedgetail
+          @new_patient.hatched=1
           @new_patient.save
           render :update do |page|
               page.replace_html "old_wedge_"+params[:wedgetail],new_wedgetail
               page.replace_html "hatch_"+params[:wedgetail],"<font color=red>Hatched</font>"
-
-              page.replace_html 'sb_unhatched_count', "(" + User.unhatched.size.to_s + " unhatched)"
+              page.replace_html 'sb_unhatched_count', "(" + @user.unhatched.size.to_s + " unhatched)"
           end
       end    
 

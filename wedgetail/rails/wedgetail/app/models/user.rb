@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
     errors.add_to_base("Missing password") if hashed_password.blank? 
     errors.add_to_base("must either have a team or an address") if address_line.blank? and team.blank? and role>2 and role!=7
     errors.add(:town,"must not be empty if address") if town.blank? and not address_line.blank?
+    # errors.add(:password,"Password confirmation does not match Password") if password  !=  password_confirmation
     errors.add(:postcode,"must not be empty if address") if postcode.blank? and (not address_line.blank?)
     l = User.find(:all,:conditions=>["wedgetail <> ? and username = ?",wedgetail,username])
     errors.add(:username,"must be unique") unless l.blank? 
@@ -82,8 +83,12 @@ class User < ActiveRecord::Base
     end
   end
   
-  def self.unhatched
-    User.find(:all,:conditions=>["wedgetail LIKE ?","U%"])
+  def unhatched
+    if self.role==1
+      User.find(:all,:conditions=>["role=5 and hatched=0"])
+    else
+      User.find(:all,:conditions=>["role=5 and hatched=0 and created_by='#{self.wedgetail}'"])
+    end
   end
   
   def last_access

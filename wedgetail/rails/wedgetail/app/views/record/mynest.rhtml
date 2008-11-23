@@ -15,20 +15,10 @@
 			</td>			
   			<td><%= patient.address%></td>
 			<td id='old_wedge_<%= patient.wedgetail %>'><%=patient.wedgetail%></td>
-			<td id='hatch_<%= patient.wedgetail %>'><%= link_to_remote "Hatch", :url => {:action => "hatch",:wedgetail=> patient.wedgetail} %></td>
+
    
   		</tr>
-		<% if patient.find_fuzzier.size>0 %>
-		<tr>
-			<td><font color='red'>Possible duplicates</font></td>
-			<td colspan= 4>
-				<%for match in patient.find_fuzzier%>
-					<%= link_to match.full_name, :action=>'show',:wedgetail=>match.wedgetail%> - <%=match.birthdate%> - <%=match.wedgetail%> - <%=%><br>
-					
-				<%end%>
-			</td>
-		</tr>
-		<% end%>
+
 	<% end %>
 	</table>
 
