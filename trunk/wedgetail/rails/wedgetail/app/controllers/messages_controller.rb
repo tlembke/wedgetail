@@ -33,10 +33,6 @@ class MessagesController < ApplicationController
       page.visual_effect :toggle_blind, "new_message_patient"    
     end
   end 
-  
-  def list
-    @messages = Message.paginate :page => params[:page], :per_page => 10
-  end
 
   def show
     @message = Message.find(params[:id])
