@@ -1,6 +1,10 @@
 <%= button_to 'Create New Message', :action => 'new'%><p>
 	
-<span id='message_count'><%= "You have "+pluralize(@messages.total_entries, params[:find].to_s+" message")%> in your sent mail</span><br>
+<% if params[:find]=='unread'%>
+<span id='message_count'><%= "You have "+pluralize(@messages.total_entries, " message")%> that are yet to be read by their recipients</span><br>
+<% else %>
+<span id='message_count'><%= "You have "+pluralize(@messages.total_entries, "sent message")%></span><br>
+<% end %>
 <%= link_to "Show Unread Only", :action=>'out', :find=>'unread' if params[:find]!='unread'%>
 <%= link_to "Show All Sent Messages", :action=>'out' if params[:find]=='unread'%>
 | <%= link_to 'Show Inbox', :action => 'index'%><p>
