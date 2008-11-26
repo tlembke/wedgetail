@@ -1,4 +1,5 @@
 # an HL7 parsing error
-
-class HL7::Error < StandardError
+module HL7
+  class Error < StandardError
+  end
 end
