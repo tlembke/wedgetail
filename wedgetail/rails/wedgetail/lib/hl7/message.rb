@@ -143,7 +143,29 @@ module HL7
       pre_mllp = to_hl7(range)
       "\x0b" + pre_mllp + "\x1c\r"
     end
-    
+
+  def to_qp # to quoted-printable
+    text = self.to_hl7
+    line = 0
+    i = 0
+    len = 0
+    r = ""
+    while i < text.length
+      if text[i] == 13
+        len += 3
+      else
+        len += 1
+      end
+      if len > 79
+        r << text[line..i-1].gsub("\r","=0D")+"=\r\n"
+        line = i
+        len = 0
+      end
+      i += 1
+    end
+    r
+  end
+
     # called by +pp+ to do pretty-printing
     def pretty_print(pp)
       pp.group(1) do
@@ -168,7 +190,7 @@ module HL7
       msh.segment = "MSH"
       msh.encoding_characters = '^~\\&'
       msh.sending_application = "Wedgetail"
-      msh.datetime_of_message = 'now'
+      msh.datetime_of_message = :now
       msh.version_id = {:version_id=>"2.3.1",:internationalization_code=>{:identifier=>"AUS",:name_of_coding_system=>"ISO"},:international_version_id=>{:identifier=>"AS4700.2",:name_of_coding_system=>"L"
   }}
       msh
