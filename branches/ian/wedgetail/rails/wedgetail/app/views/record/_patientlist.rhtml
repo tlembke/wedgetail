@@ -1,0 +1,40 @@
+<div id="patient-list">
+	<h1>Patients</h1>
+	<table cellpadding="5" cellspacing="0" border="0">
+		<% lastID="0"%>
+  	<% for patient in @patients %>
+		<% classType="list-line-new" %>
+		<% if lastID !=patient.wedgetail %>
+			<tr valign="top" class="<%= classType %>">
+			<td width>
+				<%= "<span class='list-title'><b>" if classType=="list-line-new" %>
+				<%= patient.family_name+", "+patient.given_names%>
+					<%= " \""+patient.known_as+ "\""	if patient.known_as and patient.known_as!="" %>
+					<%= "</b></span>"  if classType=="list-line-new" %>
+			</td>
+			<td width>
+			    <% if patient.dob %>
+				<%= patient.dob.day %>/<%= patient.dob.month%>/<%= patient.dob.year%>
+			    <% else %>
+			        <b>No DOB</b>
+			    <% end %>
+			</td>			
+  			<td><%= link_to 'Show', :action => 'show', :wedgetail => patient.wedgetail if classType=="list-line-new"%></td>
+
+
+  		</tr>
+<% end %>
+		<% lastID=patient.wedgetail %>
+		<% end %>
+	</table>
+
+</div>
+
+<% search_params = params %>
+
+   <%= will_paginate @patients %>
+
+<p>
+
+
+<br/>

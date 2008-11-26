@@ -1,0 +1,15 @@
+<h4>The Wedgetail Team</h4>
+You are welcome to join the Wegdetail team.
+
+We need programmers, testers, and documenters.
+
+The team consists of 
+<blockquote>
+Cati Smith
+Ian Haywood
+David Guest
+Tony Lembke
+</blockquote>
+
+The support of the <a href='http://nrgpn.org.au'>Northern Rivers General Practice Network</a> is gratefully acknowledged.
+

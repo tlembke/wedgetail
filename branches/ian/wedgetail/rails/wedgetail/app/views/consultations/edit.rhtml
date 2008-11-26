@@ -1,0 +1,39 @@
+<h1>Editing consultation</h1>
+
+<%= error_messages_for :consultation %>
+
+<% form_for(:consultation, :url => {:action=>:update,:id=>@consultation}, :html => { :method => :put }) do |f| %>
+  <p>
+    <b>Code</b><br />
+    <%= f.text_field :code %>
+  </p>
+
+  <p>
+    <b>Condition</b><br />
+	<%= @conditions=Condition.find(:all,:order=>"name")
+		f.collection_select(:condition_id,@conditions,:id,:name)
+	%>
+
+
+  </p>
+
+  <p>
+    <b>Month</b><br />
+	Offset from Month 1 (1-12)
+    <%= f.text_field :month %>
+  </p>
+	<% for item in @items %>
+	<input type="checkbox"
+			id="<%=item.id%>"
+			name="item_ids[]"
+			value="<%=item.id%>"
+			<% if @consultation.item_numbers.include? item%>checked="checked"<%end%>
+			>  <%=item.name%>(<%= item.number %>)
+	<% end %>
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', :action=>:show, :id=> @consultation %> |
+<%= link_to 'Back', :action=>:index %>

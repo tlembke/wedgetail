@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+  patient: MyString
+  month: 1
+  time: 2008-01-19 16:02:53
+  agent_id: 1
+  location: MyString
+  event_type_id: 1
+two:
+  id: 2
+  patient: MyString
+  month: 1
+  time: 2008-01-19 16:02:53
+  agent_id: 1
+  location: MyString
+  event_type_id: 1

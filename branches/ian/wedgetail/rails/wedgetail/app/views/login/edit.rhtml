@@ -1,0 +1,107 @@
+<div class="wedgetail-form"> 
+	<%= error_messages_for 'useredit' %>
+	
+	<fieldset> 
+		<legend>Enter <%= "Provider" if (@useredit.role<6) %><%= "Team" if (@useredit.role==6) %>   Details</legend> 
+		<% form_for (:useredit,:url=> {:action => 'update'}) do |form| %> 
+		<%= form.hidden_field :wedgetail%>
+
+		<% if @useredit.role==6 %>
+		<p> 
+			<label for="user_family_name">Team Name:</label> 
+			<%= form.text_field :family_name, :size => 40 %> 
+		</p>
+		<p>
+			<label for="user_address_line">
+				Address line
+			</label>
+			<br/>
+			<%= form.text_field :address_line %>
+		</p>
+
+		<p>
+			<label for="user_town">
+				Town
+			</label>
+			<br/>
+			<%= form.text_field :town %>
+		</p>
+
+		<p>
+			<label for="user_postcode">
+				Postcode
+			</label>
+			<br/>
+			<%= form.text_field :postcode %>
+		</p>
+
+
+		<p>
+			<label for="user_state">
+				State
+			</label>
+			<br/>
+			<%= form.select(:state, %w{ NSW VIC QLD SA WA TAS NT ACT }) %>
+		</p>		
+		
+		<% else %>
+		<p> 
+			<label for="user_username">Username:</label> 
+			<%= form.text_field :username, :size => 40 %> 
+		</p>
+		<p> 
+			<label for="user_family_name">Family Name:</label> 
+			<%= form.text_field :family_name, :size => 40 %> 
+		</p>
+		<p> 
+			<label for="user_given_names">Given Names:</label> 
+			<%= form.text_field :given_names, :size => 40 %> 
+		</p>
+
+		<% end %>
+		<p> 
+			<label for="user_email">Email:</label> 
+			<%= form.text_field :email, :size => 40 %> 
+		</p>
+                <p>
+			<label for="user_crypto_pref">Crypto option:</label> 
+			<ul id='crypto_pref'>
+                          <li><%= form.radio_button :crypto_pref, 1 %> S/MIME (aka "PKI", "HeSA", "X.509" or Argus-type)
+                          <li><%= form.radio_button :crypto_pref, 2 %> OpenPGP (aka "PGP" or "GnuPG")
+                          <li><%= form.radio_button :crypto_pref, 3 %> E-mail notification, with link to message
+                          <li><%= form.radio_button :crypto_pref, 4 %> Download via Wedgetail API <b>(WARNING: not yet implemented)</b>
+                          <li><%= form.radio_button :crypto_pref, 5 %> Unencrypted HL7 <b>(generally for testing only)</b>
+                        </ul>
+                </p>
+		<% if @useredit.role <6 %>
+		<p> 
+			<label for="user_patient_post">Block patient postings:</label> 
+			<%= form.check_box :patient_post %> 
+		</p>
+		<% end %>
+	<% if @user.role <3 %>	
+		<% if @useredit.role == 4 or @useredit.role == 3 %>
+			<label for="user_team">Team:</label>
+			<%= 
+			@teamslist = [["None","0"]]
+			@teamslist += User.find(:all, :order => "family_name",:conditions=>"role=6").map{|u| [u.family_name,u.wedgetail]}
+			form.select(:team,@teamslist) %>
+		<% end %>
+	<% end %>	
+		<% if @useredit.role==6%>
+			<%= image_tag("/images/cert.png",:align => "middle") %>
+			<% if @useredit.cert and @useredit.cert !=""%>
+				 Certificate Uploaded <%= link_to "Change certificate", :controller => 'login', :action => 'certificate', :wedgetail => @useredit.wedgetail %> 
+				<% else %>
+				No certificate Uploaded <%= link_to "Load certificate", :controller => 'login', :action => 'certificate', :wedgetail => @useredit.wedgetail %> 
+			<% end %>
+		<% end %>
+		<br/>
+		<%= submit_tag "Save Changes", :class => "submit" %> 
+		<% end %> 
+	</fieldset> 
+</div>
+<%= link_to "Change Password", :controller => 'login', :action => 'password', :wedgetail => @useredit.wedgetail %> 
+<%= link_to "Load certificate", :controller => 'login', :action => 'certificate', :wedgetail => @useredit.wedgetail %> 
+
+<p>

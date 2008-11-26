@@ -1,0 +1,39 @@
+<%= button_to 'Create New Message', :action => 'new'%><p>
+	
+<% if params[:find]=='unread'%>
+<span id='message_count'><%= "You have "+pluralize(@messages.total_entries, " message")%> that are yet to be read by their recipients</span><br>
+<% else %>
+<span id='message_count'><%= "You have "+pluralize(@messages.total_entries, "sent message")%></span><br>
+<% end %>
+<%= link_to "Show Unread Only", :action=>'out', :find=>'unread' if params[:find]!='unread'%>
+<%= link_to "Show All Sent Messages", :action=>'out' if params[:find]=='unread'%>
+| <%= link_to 'Show Inbox', :action => 'index'%><p>
+<p>
+<div id='outbox'>
+<% for message in @messages%>
+	<%= "<div id='message_"+message.id.to_s+"'>" %>
+	<%="Unread" if message.status==0 -%>
+	<%="Read" if message.status==1 -%>
+	<%= link_to_remote "Show/Hide", :url => {:action => "toggle",:id=> message.id,} %> 
+	<b><%= message.subject%></b>
+	To : <%= message.recipient.full_name %>
+	Date : <%=message.created_at.strftime("%H:%M %d/%m/%y") %>
+	<br>
+		<%= link_to "Regarding: "+ message.patient.full_name+"<br>",{:controller=>"record",:action=>"show",:wedgetail=>message.re} if message.re and message.re.to_s!="" %>
+	<%= "<div id='message_content_"+message.id.to_s+"' style='display: none;'>" %>
+
+	<%= simple_format(message.content) %>
+	</div>  
+
+	<%= "<div id='message_reply_"+message.id.to_s+"' >" %></div>
+	
+	
+
+
+	<hr>
+	</div>
+
+<% end%>
+<%= will_paginate @messages %>
+
+</div>

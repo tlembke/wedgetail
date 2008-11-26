@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html> 
+<head> 
+<title><% if @pageTitle%><%= @pageTitle%><% else %>Wedgetail Shared EHR<% end %></title> 
+<%= stylesheet_link_tag "scaffold", "wedgetail","prototip", :media => "all" %> 
+
+<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag "prototip" %>
+<% if flash[:background_print_narrative] -%>
+  <script type="text/javascript">
+  //<![CDATA[
+    win=window.open("","","width=10 height=10");
+    win.blur();
+    win.document.location = '<%= url_for(:controller=>"form",:action=>"gen_pdf",:wedgetail=>params[:wedgetail],:narr_id=>flash[:background_print_narrative]) %>';
+    win.print();
+    win.close();
+  //]]>
+<% end %>
+</head> 
+<body id="record">
+
+	
+<div id="banner"> 
+<img class="logo" src="/images/wedgetail_logo.gif"/> 
+<img src="/images/wedgetail_horiz_80.jpg" align=center /> 
+</div> 
+<div id="columns"> 
+<div id="side"> 
+<p>
+<%= link_to "Home", :action=>"index" %> <p>
+<% for menu in @all_menus %> 
+<%= link_to menu[:title], :action=>menu[:file] %> <p>
+<% end %>
+<p><p>
+<%= link_to "Return to Wedgtetail", :controller=>"record",:action=>"list" %> <br>
+ 
+</div> 
+<div id="main">  
+
+<% if flash[:notice] -%> 
+<div id="notice"><%= flash[:notice] %></div> 
+<% end -%> 
+<%= yield :layout %> 
+</div> 
+</div> 
+</body> 
+</html>

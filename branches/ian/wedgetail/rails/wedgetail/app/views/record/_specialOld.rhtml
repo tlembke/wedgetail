@@ -1,0 +1,5 @@
+<div id='medication_chart'>
+<h1><%= @special.narrative_date.strftime("%d/%m/%y")%>   <%= @special.title-%> - <%= @special.narrative_type.narrative_type_name %></h1>
+<%= simple_format(sanitize(@special.content))%>
+</div><p>
+

@@ -1,0 +1,58 @@
+<div class="wedgetail-form"> 
+	<%= error_messages_for 'newuser' %> 
+	<fieldset> 
+		<legend>Enter Provider Details</legend> 
+		<% form_for :newuser do |form| %> 
+		<p> 
+			<label for="user_username">Username:</label> 
+			<%= form.text_field :username, :size => 40 %> 
+		</p> 
+		<p> 
+			<label for="user_password">Password:</label> 
+			<%= form.password_field :password, :size => 40 %> 
+		</p> 
+		<p> 
+			<label for="user_password_confirmation">Confirm:</label> 
+			<%= form.password_field :password_confirmation, :size => 40 %> 
+		</p> 
+		<p> 
+			<label for="user_family_name">Family Name:</label> 
+			<%= form.text_field :family_name, :size => 40 %> 
+		</p>
+		<p> 
+			<label for="user_given_names">Given Names:</label> 
+			<%= form.text_field :given_names, :size => 40 %> 
+		</p>
+		<p> 
+			<label for="user_email">Email:</label> 
+			<%= form.text_field :email, :size => 40 %> 
+		</p>
+		
+		<p> 
+			<label for="user_role">Role:</label> 
+			<% if @user.role==1 %>
+				<%= form.select (:role, [	['Health Provider',4],['Team Captain',3],['Admin',2]])%> 
+			<% elsif @user.role==2 %>
+				<%= form.select (:role, [	['Health Provider',4],['Team Captain',3]])%> 
+			<% elsif @user.role==3 %>
+				<%= form.select (:role, [	['Health Provider',4]])%> 
+			<% end %>
+		</p>
+		
+		<p> 
+	<% if @user.role<=2 %>
+			<label for="team_wedgetail">Team:</label> 
+			<%= 
+			@teamslist = [["None","0"]]
+			@teamslist += User.find(:all, :order => "family_name",:conditions=>"role=6").map{|u| [u.family_name,u.wedgetail]}
+			form.select(:team,@teamslist)
+			%>
+	<% elsif @user.team and @user.team!="" and @user.team != "0" %>
+			Team: <%= User.find_current(@user.team).family_name %>
+	<% end %>
+		</p>
+
+		<%= submit_tag "Add User", :class => "submit" %> 
+		<% end %> 
+	</fieldset> 
+</div>

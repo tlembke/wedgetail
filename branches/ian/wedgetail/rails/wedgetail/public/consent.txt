@@ -1,0 +1,25 @@
+ 
+I, <patient_full_name> of <patient_address>, born on <patient_dob>, having consented for my medical information to be sent to Wedgetail, the Individual Electronic Health Record, understand the following: 
+
+ * I consent to my participation in a twelve month trial of Wedgetail. 
+ * My consent is voluntary.   
+ * Personal information, including medical history and relevant health information, will be stored on Wedgetail. 
+ * This information will be accessed only by those health care providers who are registered with Wedgetail.  
+ * If I choose, I am able to limit access to my Individual Electronic Health Record so that only certain health care providers can view, read or add to my record, by selecting access options in the Preferences section of Wedgetail. Assistance with this can be sought by contacting the Wedgetail administrator via email at: wedgetail_admin@nrgpn.org.au. 
+ * I can see who has accessed my Individual Electronic Health Record by viewing the access log in the Audit section of Wedgetail. 
+ * If I choose, I am able to restrict the content of my personal information that is stored in Wedgetail by informing health providers that I would like to exclude certain episodes of care. 
+ * If I wish to make a complaint, I can contact the Wedgetail administrator via email at: wedgetail_admin@nrgpn.org.au. 
+ * I may withdraw from Wedgetail at any time by informing the Wedgetail administrator via email at: wedgetail_admin@nrgpn.org.au. 
+ * If I decide to withdraw from Wedgetail, my Individual Electronic Health Record data will be kept for medicolegal reasons, but will not be accessible by anyone other than myself. 
+ * Wedgetail data will be used for evaluation purposes and may be used for research and published. I will not be personally identified in the data in any way. 
+ * My information will not be used for any other purposes without my consent. 
+ * The Wedgetail team has secured the server which houses my information against unauthorised access and will continue to do so to the best of their ability. However, I understand that whilst every effort will be made to keep the information secure, there is always some risk associated with online information. 
+ 
+
+I have read the information sheets: "Information for patients about Wedgetail, the Individual Electronic Heath Record Service"" and "Wedgetail Privacy and Security"
+(please tick)                                                                                                  
+ 
+I have been given the opportunity to ask any questions regarding Individual Electronic Health Records to clarify my understanding of Wedgetail   
+(please tick)                                                                                                                                  
+ 
+															

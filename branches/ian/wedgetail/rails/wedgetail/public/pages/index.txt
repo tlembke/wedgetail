@@ -1,0 +1,9 @@
+Wedgetail is a means of storing medical information on the web.
+
+It allows patients to access a summary of their own medical conditions. This information is placed in Wedgetail by their doctor or other health providers.
+
+Wedgetail also enables this information to be shared by all doctors, hospitals and other health providers involved in a patient's care.
+
+
+
+

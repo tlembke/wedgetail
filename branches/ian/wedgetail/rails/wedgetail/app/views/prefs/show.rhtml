@@ -1,0 +1,17 @@
+<h1>Preferences</h1>
+
+<table>
+  <% Pref.list.each_pair do |key, val| %>
+    <tr>
+      <th>
+        <%= val[:name] %>
+      </td>
+      <td>
+        <%= Pref.send(key) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Change', :action => 'edit' %>
+

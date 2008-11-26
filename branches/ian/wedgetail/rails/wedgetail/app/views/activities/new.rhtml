@@ -1,0 +1,26 @@
+<h1>New activity</h1>
+
+<%= error_messages_for :activity %>
+
+<% form_for(:activity, :url => activities_path) do |f| %>
+  <p>
+    <b>Name</b><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <b>Agent</b><br />
+    <%= f.text_field :agent_id %>
+  </p>
+
+  <p>
+    <b>Timing</b><br />
+    <%= f.text_field :timing %>
+  </p>
+
+  <p>
+    <%= submit_tag "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', activities_path %>

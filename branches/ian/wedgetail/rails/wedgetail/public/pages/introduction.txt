@@ -1,0 +1,19 @@
+<h2>What is Wedgetail?</h2>
+
+Wedgetail is a secure central electronic repository that houses clinical information from multiple care providers who can access the information via the internet.
+
+Clinical information is viewed in the format of an individual electronic health record (IEHR). The records may be accessed by patients, GPs, specialists, pharmacists, nurses, allied health staff, Area Health staff and other relevant providers.
+
+Wedgetail is designed to improve integration and coordination of care for patients with chronic and complex needs by providing easy and immediate electronic access to health information.  Instant access promotes safer, higher quality decision making and aims to reduce preventable errors and misuse of resources.
+
+Patient records in Wedgetail are flexible and can contain health summaries, patient notes, current medications, allergies, management plans and team care arrangements, specialist reports, hospital discharge summaries, pathology and radiology reports and relevant templates.
+
+Individuals have access to their IEHR and may request that sensitive health information be excluded from the record. Moreover, the individual controls access to the IEHR and can track who has been viewing the IEHR through the audit log facility. Guest cards may be created by individuals to allow health care providers a one-time access to Wedgetail. Personal consent for information to be sent and viewed in the IEHR is ongoing. At the time of agreeing to participate in Wedgetail, individuals sign a consent form which leads to an initial health summary being sent to their record by their nominated health care provider who is registered with Wedgetail. The health summary may be updated periodically and other information added as required. Individuals may withdraw their consent at any time.
+
+
+Teams of health care providers can be created within Wedgetail and can communicate through the messaging facility. Whenever a patient record is updated, a message is sent to all relevant providers. Individual providers may also send messages to the patient via email. Conversely, the patients may send email messages to their GP. The technical design of Wedgetail has been underscored by the desire for a user-friendly interface to promote ease of use by health professionals. As IEHRs are a secondary source of data, information from a primary source is uploaded into the IEHR with the click of a mouse. Clinical data may be directly entered into an individual’s IEHR at time of consultation, or may be uploaded at the end of a clinical consultation or verification of a medical report. Individual health summaries may be updated as regularly as the health care provider deems relevant. The scratchpad facility may be used for notes and social or familial information. Wedgetail uses HeSA's PKI and SSL encryption for the secure transfer of health information to ensure the highest standards in safety and privacy. Health data is sent to, and retrieved from, the IEHR using International Standard HL7 messaging. Electronic storing of records enables boundaries to be set around who can access what information, and when, which improves individual privacy. Passwords, audit trails, review processes and other security mechanisms prevent unauthorised people from being able to browse through records.
+
+Wedgetail is modelled on eHealthNT’s Shared Electronic Health Record.
+
+Adapted from eHealthNT’s: ‘Shared Electronic Health Record 
+– Information for Health Professionals’.

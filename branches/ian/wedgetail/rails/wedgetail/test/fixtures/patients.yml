@@ -1,0 +1,51 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+  wedgetail: 1234
+  family_name: Bloggs
+  given_names: John
+  address_line: "1 Smith St"
+  town: "Bloggsville"
+  postcode: "9999"
+  sex: 1
+  dob: 1960-1-2
+two:
+  id: 2
+  wedgetail: 1235
+  family_name: Mouse
+  given_names: Mickey
+  address_line: "2 Smith St"
+  town: "Bloggsville"
+  postcode: "9999"
+  sex: 1
+  dob: 1985-1-1
+three:
+  id: 3
+  wedgetail: 1236
+  family_name: Lembke
+  given_names: Tess
+  address_line: "3 Smith St"
+  town: "Bloggsville"
+  postcode: "9999"
+  sex: 1
+  dob: 1945-8-1
+four:
+  id: 4
+  wedgetail: 1237
+  family_name: Mouse
+  given_names: Michael
+  address_line: "3 Smith St"
+  town: "Balina"
+  postcode: "2345"
+  sex: 1
+  dob: 1997-01-11
+five:
+  id: 5
+  wedgetail: 1236
+  family_name: Carr
+  given_names: Paul
+  address_line: "4 Dee St"
+  town: "Genietown"
+  postcode: "1234"
+  sex: 1
+  dob: 1960-5-18

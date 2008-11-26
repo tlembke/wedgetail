@@ -1,0 +1,302 @@
+Return-Path: <wedgetail-development-bounces@lists.sourceforge.net>
+Delivered-To: ihaywood@iinet.net.au
+Received: from mail.iinet.net.au [203.0.178.192]
+	by ian-desktop with POP3 (fetchmail-6.3.8)
+	for <ian@localhost> (single-drop); Fri, 31 Aug 2007 17:45:38 +1000 (EST)
+Received: (qmail 29694 invoked from network); 31 Aug 2007 04:59:14 -0000
+Received: from unknown (HELO icp-qv1-irony-in5.iinet.net.au) ([203.59.1.159])
+          (envelope-sender <wedgetail-development-bounces@lists.sourceforge.net>)
+          by mail.iinet.net.au (qmail-ldap-1.03) with SMTP
+          for <ihaywood@iinet.net.au>; 31 Aug 2007 04:59:14 -0000
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AgAAAPI810ZCI/rhnmdsb2JhbACBVoEYixYBAQIHBAYPGA
+X-IronPort-AV: E=Sophos;i="4.19,328,1183305600"; 
+   d="hl7'?scan'208,217";a="89755121"
+Received: from lists-outbound.sourceforge.net ([66.35.250.225])
+  by inbound.icp-qv1-irony-in5.iinet.net.au with ESMTP; 31 Aug 2007 12:59:12 +0800
+Received: from sc8-sf-list1-new.sourceforge.net (sc8-sf-list1-new-b.sourceforge.net [10.3.1.93])
+	by sc8-sf-spam2.sourceforge.net (Postfix) with ESMTP
+	id 07E1A12FCD; Thu, 30 Aug 2007 21:59:12 -0700 (PDT)
+Received: from sc8-sf-mx2-b.sourceforge.net ([10.3.1.92]
+	helo=mail.sourceforge.net)
+	by sc8-sf-list1-new.sourceforge.net with esmtp (Exim 4.43)
+	id 1IQyb3-0007dE-Ry for wedgetail-development@lists.sourceforge.net;
+	Thu, 30 Aug 2007 21:59:09 -0700
+Received: from gate-96-40.newyork.iservice.net ([216.55.96.40]
+	helo=medicineau.net.au)
+	by mail.sourceforge.net with esmtp (Exim 4.44) id 1IQxe0-0001S9-NN
+	for wedgetail-development@lists.sourceforge.net;
+	Thu, 30 Aug 2007 20:58:05 -0700
+Received: from [10.0.2.6] (udsl-7-047.NSW.dft.com.au [202.168.106.47]) by
+	medicineau.net.au (8.8.8) id DAA03039; Fri, 31 Aug 2007 03:57:47 GMT
+Mime-Version: 1.0 (Apple Message framework v752.3)
+To: wedgetail-development@lists.sourceforge.net
+Message-Id: <33A51B8F-3322-4D9D-991F-929D8821D581@lemlink.com.au>
+References: <6006181.1188520003248.JavaMail.argus@gpclinic.com.au>
+From: Tony Lembke <tony@lemlink.com.au>
+Date: Fri, 31 Aug 2007 13:58:42 +1000
+X-Mailer: Apple Mail (2.752.3)
+X-Spam-Score: 1.2 (+)
+X-Spam-Report: Spam Filtering performed by sourceforge.net.
+	See http://spamassassin.org/tag/ for more details.
+	Report problems to
+	http://sf.net/tracker/?func=add&group_id=1&atid=200001
+	1.0 FORGED_RCVD_HELO       Received: contains a forged HELO
+	0.0 HTML_MESSAGE           BODY: HTML included in message
+	0.2 HTML_90_100            BODY: Message is 90% to 100% HTML
+Subject: [Wedgetail-development] HL7 message
+X-BeenThere: wedgetail-development@lists.sourceforge.net
+X-Mailman-Version: 2.1.8
+Precedence: list
+List-Id: <wedgetail-development.lists.sourceforge.net>
+List-Unsubscribe: <https://lists.sourceforge.net/lists/listinfo/wedgetail-development>,
+	<mailto:wedgetail-development-request@lists.sourceforge.net?subject=unsubscribe>
+List-Archive: <http://sourceforge.net/mailarchive/forum.php?forum_name=wedgetail-development>
+List-Post: <mailto:wedgetail-development@lists.sourceforge.net>
+List-Help: <mailto:wedgetail-development-request@lists.sourceforge.net?subject=help>
+List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/wedgetail-development>,
+	<mailto:wedgetail-development-request@lists.sourceforge.net?subject=subscribe>
+Content-Type: multipart/mixed;
+  boundary="===============0829085724=="
+Sender: wedgetail-development-bounces@lists.sourceforge.net
+Errors-To: wedgetail-development-bounces@lists.sourceforge.net
+Status: RO
+Content-Length: 12296
+Lines: 232
+X-Status: UT
+X-KMail-EncryptionState:  
+X-KMail-SignatureState:  
+X-KMail-MDN-Sent:  
+
+
+--===============0829085724==
+Content-Type: multipart/alternative; boundary=Apple-Mail-43--227874613
+
+
+--Apple-Mail-43--227874613
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=UTF-8;
+	delsp=yes;
+	format=flowed
+
+Ian,
+Resend,
+Patient is 'Tess Lembke' - my dog
+61 Main St, Alstonville         Birthdate: 01/08/1945    Age: Y62    =20
+Sex: F
+Her past Hx and medication list are just part of the referral letter =20
+text which is in the PIT section wrapped up in the HL7!
+Letter was to Prof Tony Wedgetail, from Paul  Earner, and Tess must =20
+have the unique ID  40819 within the genie database.
+The message was sent unencrypted as Prof Tony Wedgetail does not have =20=
+
+a HESA certificate.
+TL
+
+Begin forwarded message:
+
+> From: argus@gpclinic.com.au
+> Date: 31 August 2007 10:26:43 AM
+> To: tony@lemlink.com.au
+> Subject: Message from Alstonville Clinic
+>
+=EF=BF=BC
+
+--Apple-Mail-43--227874613
+Content-Type: multipart/mixed;
+	boundary=Apple-Mail-44--227874613
+
+
+--Apple-Mail-44--227874613
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=ISO-8859-1
+
+<HTML><BODY style=3D"word-wrap: break-word; -khtml-nbsp-mode: space; =
+-khtml-line-break: after-white-space; =
+"><DIV><DIV>Ian,</DIV><DIV>Resend,</DIV><DIV>Patient is 'Tess Lembke' - =
+my dog</DIV><DIV>61 Main St, Alstonville=A0 =A0=A0 =A0=A0 =A0Birthdate: =
+01/08/1945=A0 =A0 Age: Y62=A0 =A0 Sex: F</DIV><DIV>Her past Hx and =
+medication list are just part of the referral letter text which is in =
+the PIT section wrapped up in the HL7!</DIV><DIV>Letter was to Prof Tony =
+Wedgetail, from Paul=A0 Earner, and Tess must have the unique ID=A0=A04081=
+9 within the genie database.</DIV><DIV>The message was sent unencrypted =
+as Prof Tony Wedgetail does not have a HESA =
+certificate.</DIV><DIV>TL</DIV><DIV><BR =
+class=3D"khtml-block-placeholder"></DIV><DIV><DIV>Begin forwarded =
+message:</DIV><BR class=3D"Apple-interchange-newline"><BLOCKQUOTE =
+type=3D"cite"><DIV style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; "><FONT face=3D"Helvetica" =
+size=3D"3" color=3D"#000000" style=3D"font: 12.0px Helvetica; color: =
+#000000"><B>From: </B></FONT><FONT face=3D"Helvetica" size=3D"3" =
+style=3D"font: 12.0px Helvetica"><A =
+href=3D"mailto:argus@gpclinic.com.au">argus@gpclinic.com.au</A></FONT></DI=
+V><DIV style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; "><FONT face=3D"Helvetica" size=3D"3" color=3D"#000000" =
+style=3D"font: 12.0px Helvetica; color: #000000"><B>Date: =
+</B></FONT><FONT face=3D"Helvetica" size=3D"3" style=3D"font: 12.0px =
+Helvetica">31 August 2007 10:26:43 AM</FONT></DIV><DIV =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; "><FONT face=3D"Helvetica" size=3D"3" color=3D"#000000" =
+style=3D"font: 12.0px Helvetica; color: #000000"><B>To: </B></FONT><FONT =
+face=3D"Helvetica" size=3D"3" style=3D"font: 12.0px Helvetica"><A =
+href=3D"mailto:tony@lemlink.com.au">tony@lemlink.com.au</A></FONT></DIV><D=
+IV style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; "><FONT face=3D"Helvetica" size=3D"3" color=3D"#000000" =
+style=3D"font: 12.0px Helvetica; color: #000000"><B>Subject: =
+</B></FONT><FONT face=3D"Helvetica" size=3D"3" style=3D"font: 12.0px =
+Helvetica"><B>Message from Alstonville Clinic</B></FONT></DIV><DIV =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; min-height: 14px; "><BR></DIV> =
+</BLOCKQUOTE></DIV></DIV></BODY></HTML>=
+
+--Apple-Mail-44--227874613
+Content-Transfer-Encoding: quoted-printable
+Content-Type: application/octet-stream; x-unix-mode=0644;
+	name=200708300619400629.hl7
+Content-Disposition: attachment;
+	filename=200708300619400629.hl7
+
+MSH|^~\&|Argus=204.2.2=20for=20Mac=20-=2026/3/2007|Alstonville=20=
+Clinic|||200708300619400629+1000||ORU^R01|200708300619400629|P|2.3.1~AUS^A=
+ustralia^ISO3166-1=0DPID|||||^^||=0DOBR||Placer=20Order=20Number|Filler=20=
+Order=20Number|Universal=20Service=20ID=0D=
+OBX|1|TX|200708300619400629-1.pit~Argus=20Observation~Argus=20=
+Observation=20Filename||001=20Alstonville=20Clinic=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=2007=2001/07/1996\XOD\\XOA\002=20\XOD\\XOA\003=20=
+Report=20Run=20Number:=200001=20Created:=20=20=2030/08/2007=20=20=20=20=20=
+at=20=20=20=2017:12:51\XOD\\XOA\010=20Prof=20Tony=20Wedgetail=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+\XOD\\XOA\019=20=
+---------------------------------------------------------------------\XOD\=
+\XOA\020=20Your=20ref.=20=20=20Patient=20Name=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20Lab=20Ref.=20=20=20=20=20=20=20=20=
+Test\XOD\\XOA\021=20=20=20=20=20=20=20=20=20=20=20=20=20LEMBKE,TESS=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=2040819=20=20=20=20=20=
+=20=20=20=20=20=20LETTER\XOD\\XOA\029=20=
+---------------------------------------------------------------------\XOD\=
+\XOA\100=20Start=20Patient=20=20:=20=20=20=20=20=20=
+LEMBKE,TESS\XOD\\XOA\101=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=2061=20Main=20St,=20Alstonville=20=20=20=20=
+2477\XOD\\XOA\104=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20Birthdate:=2001/08/1945=20=20=20=20Age:=20Y62=20=20=20=20=
+Sex:=20F\XOD\\XOA\105=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20Telephone:=20\XOD\\XOA\109=20=
+---------------------------------------------------------------------\XOD\=
+\XOA\110=20Your=20reference=20:=20=20=20=20=20=20\XOD\\XOA\111=20Our=20=
+reference=20=20:=20=20=20=20=20=2040819\XOD\\XOA\112=20Medicare=20=
+Number:=20=20=20=20=20=20\XOD\\XOA\115=20Phone=20Enquiries:=20=20=20=20=20=
+=20Paul=20Earner=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=2002=2066280505\XOD\\XOA\119=20=
+---------------------------------------------------------------------\XOD\=
+\XOA\121=20Referred=20by=20=20=20=20:=20=20=20=20=20=20Prof=20Tony=20=
+Wedgetail\XOD\\XOA\123=20Addressee=20=20=20=20=20=20:=20=20=20=20=20=20=
+Prof=20Tony=20Wedgetail=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+\XOD\\XOA\129=20=
+---------------------------------------------------------------------\XOD\=
+\XOA\200=20Start=20of=20Result:\XOD\\XOA\201=20Specimen=20=20=20=20=20=20=
+=20:\XOD\\XOA\203=20Requested=20=20=20=20=20=20:=20=20=20=20=20=20=
+30/08/2007\XOD\\XOA\204=20Collected=20=20=20=20=20=20:=20=20=20=20=20=20=
+30/08/2007\XOD\\XOA\205=20Name=20of=20Test=20=20=20:=20=20=20=20=20=20=
+LETTER\XOD\\XOA\206=20Reported=20=20=20=20=20=20=20:=20=20=20=20=20=20=
+30/08/2007\XOD\\XOA\207=20Confidential=20=20=20:=20=20=20=20=20=20=
+N\XOD\\XOA\208=20Test=20Category=20=20:=20=20=20=20=20=20R\XOD\\XOA\209=20=
+\XOD\\XOA\299=20=
+---------------------------------------------------------------------\XOD\=
+\XOA\301=20Dr=20J.C.M.=20Chiu=09=09=09=20=20=20=20=20Alstonville=20=
+Clinic=20Services=09=09=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20Dr=20Michael=20Leslie\XOD\\XOA\301=20M.B.,B.S.,B.Sc.,(Med)=09=09=20=20=
+=20=20=20=20=20=20=20=20A.B.N.=2032965934068=09=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+M.B.,B.S.(Hons),B.A.=20DIP.=20R.A.C.O.G.=09=09=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=2061=20Main=20Street=09=09=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20D.R.A.C.O.G.\XOD\\XOA\301=20=09=09=09=09=09=
+=09=20=20=20ALSTONVILLE\XOD\\XOA\301=20Dr=20Tony=20Lembke=09=09=09=20=20=20=
+=20=20Phone:=20(02)66280505=09=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20Dr=20Nicholas=20DeMarco\XOD\\XOA\301=20M.B.,B.S.,D.R.A.C.=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+Fax:=20=20(02)66285627=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+M.B.B.S.,B.Sc.,BEC\XOD\\XOA\301=20F.R.A.C.G.P.\XOD\\XOA\301=20=
+\XOD\\XOA\301=20Dr=20Paul=20Earner=09=09=09=09=09=09=09=09=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20Dr=20Alison=20=
+Skimmings\XOD\\XOA\301=20M.B.,B.S.,D.OBST.,R.C.O.G.=09=09=09=09=09=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+M.B.,B.S.(Hons),D.R.A.C.O.G.\XOD\\XOA\301=20F.R.A.C.G.P.=20DIP.=20=
+R.A.C.O.G.=09=09=09=09=09=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20F.R.A.C.G.P.\XOD\\XOA\301=20\XOD\\XOA\301=20Thu,=20=
+30=20Aug=202007\XOD\\XOA\301=20\XOD\\XOA\301=20Prof=20Tony=20Wedgetail=20=
+\XOD\\XOA\301=20\XOD\\XOA\301=20Ph:=20=20=20\XOD\\XOA\301=20Fax:=20=20=20=
+\XOD\\XOA\301=20\XOD\\XOA\301=20\XOD\\XOA\301=20Dear=20Tony,=20=20=
+\XOD\\XOA\301=20\XOD\\XOA\301=20Re:=20Tess=20Lembke,=2061=20Main=20St=20=
+Alstonville=20=20=20,=20DOB:=2001/08/45:=20Phone:=20=20=20=20=20=
+\XOD\\XOA\301=20\XOD\\XOA\301=20Thank=20you=20for=20seeing=20Tess,=20=
+aged=2001/08/45,=20=20for=20review.\XOD\\XOA\301=20\XOD\\XOA\301=20=
+\XOD\\XOA\301=20Current=20Problems:\XOD\\XOA\301=20\XOD\\XOA\301=20=
+Hypothyroidism\XOD\\XOA\301=20Depression\XOD\\XOA\301=20Hypertension=20=20=
+-=20onset=202/3/95\XOD\\XOA\301=20Non=20insulin=20dependent=20diabetes=20=
+=20-=20onset=2011/6/02\XOD\\XOA\301=20Hyperlipidaemia=20=20-=20onset=20=
+16/6/04\XOD\\XOA\301=20Seb=20keratosis=20=20-=20onset=20=
+13/1/05\XOD\\XOA\301=20\XOD\\XOA\301=20Past=20History:\XOD\\XOA\301=20=
+\XOD\\XOA\301=20Anxiety=20disorder\XOD\\XOA\301=20=
+Hysterectomy\XOD\\XOA\301=20CABG\XOD\\XOA\301=20\XOD\\XOA\301=20Current=20=
+Medications:\XOD\\XOA\301=20\XOD\\XOA\301=20Aspirin=20300mg=20Tablets=20=
+half=20od=20with=20food\XOD\\XOA\301=20Avapro=20HCT=20300/12.5=20Tablets=20=
+=20Tablets=201=20once=20daily=20with=20food\XOD\\XOA\301=20Diabex=20=
+500mg=20Tablets=201=20tds=20with=20food\XOD\\XOA\301=20Frusemide=2040mg=20=
+Tablets=201=20=20od=20=20\XOD\\XOA\301=20Indocid=2025mg=20Capsules=201=20=
+=20bd=20=20\XOD\\XOA\301=20Lipitor=2080mg=20Tablets=201=20=20od=20=20=
+\XOD\\XOA\301=20Maxolon=2010mg=20Tablets=201=20=20tds=20=20For=20=
+nausea\XOD\\XOA\301=20Panamax=20500=20mg=20=201-2=20qid=20=
+prn\XOD\\XOA\301=20Pravachol=2020mg=20Tablets=201=20once=20daily=20=
+\XOD\\XOA\301=20Solprin=20300=20mg=20Tablets=20half=20od=20\XOD\\XOA\301=20=
+Temaze=2010mg=20Tablets=2010mg=20nocte=20Only=20if=20jimmy=20is=20=
+annoying=20her\XOD\\XOA\301=20Tritace=2010mg=20Capsules=201=20od=20=
+\XOD\\XOA\301=20\XOD\\XOA\301=20Allergies:\XOD\\XOA\301=20\XOD\\XOA\301=20=
+Nil=20Known\XOD\\XOA\301=20\XOD\\XOA\301=20\XOD\\XOA\301=20\XOD\\XOA\301=20=
+Thanks,\XOD\\XOA\301=20\XOD\\XOA\301=20\XOD\\XOA\301=20\XOD\\XOA\301=20=
+Paul=20\XOD\\XOA\301=20Provider=20No:039223H\XOD\\XOA\301=20=20=
+\XOD\\XOA\301=20\XOD\\XOA\309=20\XOD\\XOA\390=20End=20of=20=
+Report:\XOD\\XOA\399=20=
+---------------------------------------------------------------\XOD\\XOA\9=
+99=20END=20OF=20LISTING=20-=20Run=20Number:0001=20=2030/08/2007=20=20=
+17:12:56||||||F=0D=
+
+--Apple-Mail-44--227874613
+Content-Transfer-Encoding: 7bit
+Content-Type: text/html;
+	charset=US-ASCII
+
+<HTML><BODY style="word-wrap: break-word; -khtml-nbsp-mode: space; -khtml-line-break: after-white-space; "><DIV><DIV><BLOCKQUOTE type="cite"></BLOCKQUOTE></DIV><BR></DIV></BODY></HTML>
+--Apple-Mail-44--227874613--
+
+--Apple-Mail-43--227874613--
+
+
+--===============0829085724==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+-------------------------------------------------------------------------
+This SF.net email is sponsored by: Splunk Inc.
+Still grepping through log files to find problems?  Stop.
+Now Search log events and configuration files using AJAX and a browser.
+Download your FREE copy of Splunk now >>  http://get.splunk.com/
+--===============0829085724==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Wedgetail-development mailing list
+Wedgetail-development@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/wedgetail-development
+
+--===============0829085724==--

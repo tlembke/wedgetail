@@ -1,0 +1,61 @@
+<h2><%= obr.universal_service_identifier.text %></h2>
+
+<table>
+<% unless obr.requested_time.blank? %>
+  <tr><th>Requested: </th><td> <%= obr.requested_time.strftime %></td></tr>
+<% end %>
+<% unless obr.specimen_received.blank? %>
+  <tr><th>Specimen received: </th><td> <%= obr.specimen_received.strftime %></td></tr>
+<% end %>
+<% unless obr.observation_time.blank? %>
+  <tr><th>Time of study </th><td> <%= obr.observation_time.strftime %></td></tr>
+<% end %>
+<% unless obr.ordering_provider.blank? %>
+  <tr><th>Ordered by: </th><td> <% obr.ordering_provider.each { |x| %><%= x.prefix %> <%= x.given_name %> <%= x.family_name.surname %> (<%= x.id_number %>)<% } %></td></tr>
+<% end %>
+<% unless obr.principal_result_interpreter.blank? %>
+  <tr><th>Author: </th><td> <% x = obr.principal_result_interpreter.name %><%= x.given_name %> <%= x.family_name %> (<%= x.id_number %>)</td></tr>
+<% end %>
+<% unless obr.result_status.blank? %>
+<tr><th>Status:</th><td>
+<%= {"F"=>"Final","O"=>"Order but no specimen","I"=>"Pending","S"=>"Booked","A"=>"Partial results","P"=>"Preliminary results","C"=>"Correction","R"=>"Not verified","X"=>"Cancelled"}[obr.result_status] %>
+</td></tr>
+<% end %>
+</table><p>
+<% 
+table = false
+obr.sub("OBX") do |obx|
+  if table and not obx.value_type == "NM"
+    %> </table> <%
+    table = false
+  end
+  case obx.value_type 
+  when "FT"
+    unless obx.identifier.text.blank? or obx.identifier.text == obr.universal_service_identifier.text %>
+      <h3><%= obx.identifier.text %></h3><% 
+    end 
+    %><%= obx.value_as_html %><p><% 
+  when "ST" 
+    %><b><%= obx.identifier.text %>: </b><%= obx.value %><p/><% 
+  when "ED"
+    for v in obx.value
+      case v.subtype
+      when "RTF"
+        %><%= MessageProcessor.make_html_from_rtf v.data %><%
+      end
+    end
+  when "NM" 
+    unless table
+      %> <table> <%
+      table = true
+    end
+    %><tr><th><%= obx.identifier.text %></th> <%
+    if obx.abnormal_flags.blank?
+      %> <td><%= obx.value[0] %><%
+    else
+      %> <th><%= obx.value[0] %><%
+    end 
+    %><td><%= obx.unit.text %></td><td><%= obx.reference_range %></td></tr><% 
+  end
+end 
+if table %></table><% end %>

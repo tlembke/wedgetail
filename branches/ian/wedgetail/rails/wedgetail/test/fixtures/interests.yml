@@ -1,0 +1,7 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  patient: "1234"
+  user: 12346
+two:
+  patient: '1234"
+  user: 12345

@@ -1,0 +1,69 @@
+<table width=100%>
+	<tr>
+		<td width=50% valign=top>
+<%= render(:partial => "patient_demographic") %>
+
+
+
+
+
+<% if @patient.user %>
+<table>
+	<tr>
+		<td>
+<%= button_to 'Message To Patient', :controller => 'messages',:action=> 'new',:wedgetail=> @patient.wedgetail,:return=> "patient" if @user.role<5-%> 
+</td>
+<td><%= button_to 'Message About Patient', :controller => 'messages',:action=> 'new',:re_id=> @patient.wedgetail,:return=> "patient_user"  if @user.role<5-%>	
+	<%= button_to 'Message', :controller => 'messages',:action=> 'new',:re_id=> @patient.wedgetail,:return=> "patient_user"  if @user.role==5-%>			
+</td>
+</tr>
+<div id='register'>
+<% if @user.role<5%>
+	<% if @user.interest(@patient.wedgetail) %>
+		<%= link_to_remote "Unregister interest", :url => {:action => "unregister",:wedgetail=>@patient.wedgetail} %>
+	<% else %>
+		<%= link_to_remote "Register interest", :url => {:action => "register",:wedgetail=>@patient.wedgetail} %>
+	<% end %>
+<% end %>
+</div>
+<% if @user.role<5%>
+<tr>
+	<td><%= button_to 'Edit Demographics', :action => 'edit', :wedgetail => @patient.wedgetail -%></td>
+	<td><%= button_to 'Add Clinical Entry', :controller => 'entry', :action => 'new', :wedgetail=> @patient.wedgetail-%></td>
+
+</tr>
+<% end %>
+<%if @user.role==5 or @user.role<3 %>
+	<tr>
+<td><%= button_to 'Audit', :action => 'audit', :wedgetail => @patient.wedgetail -%>		
+<%= button_to 'Preferences', :controller=>'login',:action => 'password', :wedgetail => @patient.wedgetail -%></td>
+<td><%= button_to 'Guest Pass', :controller=>"login",:action => 'guest', :wedgetail => @patient.wedgetail -%>
+<%= button_to 'View Guests', :controller=>"record",:action => 'guests', :wedgetail => @patient.wedgetail -%></td>
+
+</tr>
+<% end %>
+</table>
+<% else %>
+	Patient does not have a User entry<p>
+<% end%>
+
+
+<table border=1>
+<% for narrative in @narrative %>
+	<tr>
+		<td><%= narrative.narrative_date.strftime("%d/%m/%y")%></td>
+		<td><%= narrative.narrative_type.narrative_type_name %></td> 
+		<td><%= narrative.title%></td>	
+		<td><%= link_to 'Show', :action => 'narrative', :id=> narrative %></td>
+	</tr>
+<% end %>
+</table>
+
+</td>
+<td width=50% valign = top>
+	<%= render(:partial => "special") %>
+</td>
+</tr>
+</table>
+	
+

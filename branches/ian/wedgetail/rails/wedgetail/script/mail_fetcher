@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+require File.dirname(__FILE__) + '/../config/environment.rb'
+
+class MailFetcherDaemon < Daemon::Base
+  
+  @config = YAML.load_file("#{RAILS_ROOT}/config/mail.yml")
+  @config = @config[RAILS_ENV].to_options
+  
+  @sleep_time = @config.delete(:sleep_time) || 5
+  def self.start
+    puts "Starting MailFetcherDaemon"
+    # Add your own receiver object below
+    #@fetcher = Fetcher.create({:receiver => nil}.merge(@config))
+    @fetcher = Fetcher.create({:type => :pop,
+                                :receiver => WedgeMailer,
+                                :server => 'medicineau.net.au',
+                                :username => 'wedgie',
+                                :password => 'eagle'})
+    loop do
+      @fetcher.fetch
+      sleep(@sleep_time)
+    end
+  end
+  
+  def self.stop
+    puts "Stopping MailFetcherDaemon"
+  end
+  
+end
+
+MailFetcherDaemon.daemonize

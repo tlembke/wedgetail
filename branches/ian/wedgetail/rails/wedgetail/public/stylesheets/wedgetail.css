@@ -1,0 +1,284 @@
+/* Global styles */
+
+/* START:notice */
+#notice {
+  border: 2px solid red;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold smaller sans-serif;
+}
+/* END:notice */
+
+/* Styles for record/list */
+
+#patient-list .list-title {
+	color:        #244;
+	font-weight:  bold;
+	font-size:    larger;
+}
+
+#patient-list .list-image {
+  width:        60px;
+  height:       70px;
+}
+
+
+#patient-list .list-actions {
+  font-size:    x-small;
+  text-align:   right;
+  padding-left: 1em;
+}
+
+#patient-list .list-line-new {
+  background:   #e0f8f8;
+}
+
+#patient-list .list-line-old {
+  background:   #f8b0f8;
+  font-size:   x-small;
+}
+
+
+/* Styles for main page */
+
+#banner {
+ /* background: #a0aeb9; */
+  background: #00677E;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px black solid;
+  font: small-caps 40px/40px "Times New Roman", serif;
+  /* color: #5d442b; */
+  /* color: #FFA100;   */
+  color: #ffffff;
+
+  text-align: center;
+}
+
+#record .timer p{
+	font-size:    x-small;
+  	text-align:   right;
+	color: #5d442b;
+	font:  sans-serif;
+}
+
+#banner .logo {
+	position: absolute;
+	top: 5pt;
+	left: 5px;
+	float: none;
+}
+
+#columns {
+  background: #000000;
+}
+
+#main {
+  margin-left: 10em;
+  padding-top: 4ex;
+  padding-left: 2em;
+  background: white;
+}
+
+#side {
+
+  padding-top: 4em;
+  padding-left: 1em;
+  padding-bottom: 1em;
+  width: 9em;
+  /* background: #141; 
+  background: #FFA100; */
+  background: #000000;
+  /* color: #bfb; 
+  color: #00677E;*/
+  color: #FFA100;
+  float: left;
+}
+
+#side a {
+  /* color: #bfb; 
+  color: #00677E; */
+  color: #FFA100;
+  font-size: small;
+}
+
+h1 {
+  font:  150% sans-serif;
+  color: #226;
+  border-bottom: 3px dotted #77d;
+}
+h2 {
+  font:  150% sans-serif;
+  /* color: #226;  */
+  border: 2px  solid #77d;;
+
+}
+
+
+
+#record  .entry {
+  border-bottom: 1px dotted #77d;
+}
+
+#record  .title {
+  font-size: 120%;
+  font-family: sans-serif;
+}
+
+#record .entry img {
+  width: 75px;
+  float: left;
+}
+
+
+#record .entry h3 {
+ margin-bottom: 2px;
+ color: #227;
+}
+
+#record .entry p {
+ margin-top: 0px; 
+ margin-bottom: 0.8em; 
+}
+
+#record .entry .price-line {
+}
+
+#record .entry .add-to-cart {
+  position: relative;
+}
+
+#record .entry  .price {
+  color: #44a;
+  font-weight: bold;
+  margin-right: 2em;
+}
+
+/* START:inline */
+#record .entry form, #record .entry form div {
+  display: inline;
+}
+/* END:inline */
+
+#patient_demo{
+	width: 400px;
+	border: 2px solid #5d442b;
+	padding: 7px;
+	padding-bottom: 12px;
+	margin-bottom: 20px;
+	background-color: #cccccc;
+}
+
+
+
+
+
+
+#medication_chart {
+	float: right;
+	clear: right;
+	width: 400px;
+	border: 2px solid red;
+	padding: 7px;
+	padding-bottom: 12px;
+	margin-bottom: 20px;
+	background-color: #f0f0f0;
+}
+
+.wedgetail-form fieldset {
+  background: #efe;
+}
+
+
+.wedgetail-form legend {
+  color: #dfd;
+  background: #00677E;
+  font-family: sans-serif;
+  padding: 0.2em 1em;
+}
+/*
+.wedgetail-form label {
+  width: 5em;
+  float: left;
+  text-align: right;
+  margin-right: 0.5em;
+  display: block;
+}
+*/
+.wedgetail-form .submit {
+  margin-left: 5.5em;
+}
+
+/* The error box */
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+div.error {
+	font-weight: bold;
+	color: red;
+}
+
+.pagination {
+    padding: 3px;
+    margin: 3px;
+}
+.pagination a {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #aaaadd;
+    text-decoration: none;
+    color: #000099;
+}
+.pagination a:hover, .pagination a:active {
+    border: 1px solid #000099;
+    color: #000;
+}
+.pagination span.current {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #000099;
+    font-weight: bold;
+    background-color: #000099;
+    color: #FFF;
+}
+.pagination span.disabled {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #eee;
+    color: #ddd;
+}

@@ -1,0 +1,22 @@
+
+<%= error_messages_for 'message' %>
+
+<!--[form:message]-->
+<p>
+<b>To <%= @recipient_user.full_name -%></b>
+
+<% form_tag :action => 'create' do %>
+<%= hidden_field 'message', 'recipient_id',:value=>@recipient_user.wedgetail %>
+<%= hidden_field 'message', 'thread',:value=>params[:thread] %>
+<br><label for="message_subject">Subject</label><br/>
+<%= text_field 'message', 'subject',:size=>60 %></p>
+
+<p><label for="message_content">Body</label><br/>
+
+<%= text_area 'message', 'content',:rows=>5,:cols=>60  %></p>
+ <%= submit_tag "Send" %>
+<% end %>
+
+<p>
+<!--[eoform:message]-->
+

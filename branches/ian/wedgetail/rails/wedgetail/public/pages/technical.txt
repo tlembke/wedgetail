@@ -1,0 +1,26 @@
+<h2>Technical Aspects of Wedgetail</h2>
+
+The Wedgetail project aims to design a database schema required to maintain an Individual Electronic Health Record online, and to create the tools required for this to be implemented.
+
+Wedgetail has the following features.
+<blockquote><h3>Open Source</h3>Wedgetail is released under the open source GPL licence, which means that the code it is written in is free for others to use.
+Any SQL database can be used and it is written in the open source language <a href='http://www.rubyonrails.org/'>Ruby on Rails.</a>
+The wedgetail code is downloadable from <a href='http://code.google.com/p/wedgetail/'>Google Code.</a>
+</blockquote><blockquote>
+<h3>Standards Based</h3>As far as possible, Wedegtail aims to comply with Australian standards, as determined by <a href='http://nehta.gov.au'>NEHTA</a>.
+</blockquote>
+<blockquote><h3>Patient Centred</h3>
+Wedgetail is patient controlled - patients determine who has access to their records, adn are able to view an 'audit trail' of all those who have accessed their information
+</blockquote><blockquote>
+<h3>Agile Development</h3>
+Wedgetail is being developed using an 'Agile Development' model.
+Build something that works, test it, then add to it!
+</blockquote><blockquote>
+<h3>Respect Workflows</h3>
+Wedgetail aims to make it easy for clinical information to be added and maintained. It can use <a href='http://argusconnect.com.au'>Argus</a> as a simple means of communication between health providers and the wegdetail system.
+</blockquote><blockquote>
+<h3>Scaleable</h3>
+Wedgetail is designed to facilitate peer-to-peer or parent-child synchronisation.
+Work has begun on an <a href='wedgetail_api'>API</a> to allow other programs to interact directly with Wedgetail.
+</blockquote>
+

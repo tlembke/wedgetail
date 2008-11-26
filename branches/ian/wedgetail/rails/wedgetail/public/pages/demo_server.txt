@@ -1,0 +1,14 @@
+<h2>Demonstration Server</h2>
+There is a demo server where you can test Wedgetail.
+It is available at <a href='http://wedgetail.medicine.net.au'>wedgetail.medicine.net.au</a>
+
+Please do not post any real clinical information to this demo server.
+
+You can access the server using 
+<blockquote>
+Username: guest
+Password: guest
+</blockquote>
+<p>
+
+

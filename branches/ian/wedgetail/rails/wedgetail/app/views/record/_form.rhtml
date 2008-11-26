@@ -1,0 +1,133 @@
+<%= error_messages_for 'patient' %>
+
+<!--[form:patient]-->
+<fieldset>
+<% if(params[:wedgetail]) %>
+	<legend>Edit patient</legend>
+<% else %>
+	<legend>Add patient</legend>
+<% end %>
+<%= hidden_field 'patient','wedgetail'%>
+<%= hidden_field 'patient','role'%>
+<p>
+	<label for="patient_family_name">Family name</label>
+	<br/>
+	<%= text_field 'patient', 'family_name'  %>
+</p>
+
+<p>
+	<label for="patient_given_names">
+		Given names
+	</label>
+	<br/>
+	<%= text_field 'patient', 'given_names'  %>
+</p>
+
+<p>
+	<label for="patient_known_as">
+		Known as
+	</label>
+	<br/>
+	<%= text_field 'patient', 'known_as' %>
+</p>
+
+<p>
+	<label for="patient_address_line">
+		Address line
+	</label>
+	<br/>
+	<%= text_field 'patient', 'address_line'  %>
+</p>
+
+<p>
+	<label for="patient_town">
+		Town
+	</label>
+	<br/>
+	<%= text_field 'patient', 'town'  %>
+</p>
+
+<p>
+	<label for="patient_state">
+		State
+	</label>
+	<br/>
+	<%= select('patient',:state, %w{ NSW VIC QLD SA WA TAS NT ACT }) %>
+</p>
+
+
+<p>
+	<label for="patient_postcode">
+		Postcode
+	</label>
+	<br/>
+	<%= text_field 'patient', 'postcode'  %>
+</p>
+
+<p>
+	<label for="patient_sex">
+		Sex
+	</label>
+	<br/>
+	M <%= radio_button('patient',:sex, 1) %>
+	F <%= radio_button('patient',:sex, 2) %>
+</p>
+
+
+
+<p>
+	<label for="patient_dob">Dob</label><br/>
+	<%= date_select('patient', 'dob',:order=>[:day,:month,:year],:start_year => 1900)  %>
+</p>
+
+<p>
+	<label for="patient_medicare">Medicare number</label>
+	<br/>
+	<%= text_field 'patient', 'medicare' %>
+</p>
+
+<p>
+	<label for="patient_dva">DVA number</label>
+	<br/>
+	<%= text_field 'patient', 'dva' %>
+</p>
+
+<p>
+	<label for="patient_crn">Centrelink CRN</label>
+	<br/>
+	<%= text_field 'patient', 'crn' %>
+
+</p>
+
+<% if(@user.role<5 && params[:action]!="edit") %> 
+
+	<p> 
+		<label for="user_password">Password:</label> 
+		<%= password_field('patient','password', :size => 40) %> 
+	</p> 
+	<p> 
+		<label for="user_password_confirmation">Confirm:</label> 
+		<%= password_field ('patient','password_confirmation', :size => 40) %> 
+	</p>
+<% end %>
+</fieldset>
+
+<% if @patient and @patient.crn.blank? %>
+<script language="JavaScript" type="text/javascript">
+// this brutally clears a password field in firefox
+// compliments of verysimple.com
+function clearCrn()
+{
+  if (document.getElementById)
+  {
+    var crn = document.getElementById('patient_crn');
+    if (pw != null)
+    {
+       crn.value = '';
+    }
+  }
+}
+window.setTimeout("clearCrn()", 100);
+</script>
+<% end %>
+<!--[eoform:patient]-->

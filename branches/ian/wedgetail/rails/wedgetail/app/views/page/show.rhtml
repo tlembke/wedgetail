@@ -1,0 +1,8 @@
+<%= simple_format(@pageText) %>
+<p>
+<h4>Pages available on this site</h4>
+<ul>
+<% for page in @all_pages%>
+<li><%=link_to page[:title], :action=>page[:file] %> <br>
+<% end %>
+</ul>

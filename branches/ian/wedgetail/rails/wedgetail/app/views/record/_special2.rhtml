@@ -1,0 +1,40 @@
+<div class="wedgetail-form">
+<table width=100%>
+	<% if @summary%>
+	<tr>
+		<td>
+			<fieldset>
+				<legend>Health Summary</legend>
+				<h1><%= @summary.narrative_date.strftime("%d/%m/%y")%>   <%= @summary.title-%></h1>
+				<%= sanitize(@summary.convert)%>
+				<br><%= link_to 'Show All '+ @summary.narrative_type.narrative_type_name.pluralize, :action => 'narrative' %>
+			</fieldset>
+		</td>
+	</tr>
+	<% end %>
+	<% if @medicationChart %>
+	<tr>
+		<td valign=top>
+		
+			<fieldset>
+				<legend>Medications</legend>
+				<h1><%= @medicationChart.narrative_date.strftime("%d/%m/%y")%>   <%= @medicationChart.title-%></h1>
+				<%= sanitize(@medicationChart.convert)%>
+			</fieldset>
+		</td>
+	</tr>
+	<% end %>
+	<% if @allergy %>
+	<tr>
+		<td valign=top>
+		
+			<fieldset>
+				<legend>Allergies</legend>
+				<h1><%= @allergy.narrative_date.strftime("%d/%m/%y")%>   <%= @allergy.title-%></h1>
+				<%= sanitize(@allergy.convert)%>
+			</fieldset>
+		</td>
+	</tr>
+	<% end %>
+</table>
+</div>

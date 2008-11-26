@@ -1,0 +1,23 @@
+<%= error_messages_for 'narrative' %>
+
+<!--[form:narrative]-->
+<%= form.hidden_field 'wedgetail' %>
+<p><label for="narrative_narrative_type">Narrative type</label><br/>
+<%= form.collection_select('narrative_type_id', @narrative_type, :id, :narrative_type_name)  %></p>
+
+
+
+<p><label for="narrative_title">Narrative title</label><br/>
+<%= form.text_field 'title'  %></p>
+
+<p><label for="narrative_content">Narrative content</label><br/>
+You can <b>either</b> upload a plain text file by selecting it<br>
+<%=form.file_field("uploaded_narrative")%>  or<br>
+<b>Or</b> enter text in the field below<br>
+<%= form.text_area  'content'  %></p>
+<p><label for="narrative_narrative_date">Narrative date</label><br/>
+<%= form.date_select  'narrative_date'  %></p>
+
+
+<!--[eoform:narrative]-->
+

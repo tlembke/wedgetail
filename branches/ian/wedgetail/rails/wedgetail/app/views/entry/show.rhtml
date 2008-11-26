@@ -1,0 +1,9 @@
+<% for column in Narrative.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @narrative.send(column.name) %>
+</p>
+<% end %>
+Narrative Type : <%=@narrative_type%>
+
+<%= link_to 'Edit', :action => 'edit', :id => @narrative %> |
+<%= link_to 'Back', :action => 'list' %>

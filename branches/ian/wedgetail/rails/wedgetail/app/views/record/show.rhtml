@@ -1,0 +1,33 @@
+
+<table width=99% valign=top>
+	<tr>
+		<td width=90% valign=top>
+
+			<%= render(:partial => "patient_demographic") %>
+
+
+			<%= render(:partial => "special") %>
+
+
+			<table border=1>
+			<% for narrative in @narratives %>
+				<tr>
+					<td><%= narrative.narrative_date.strftime("%d/%m/%y")%></td>
+					<td><%= narrative.narrative_type.narrative_type_name %></td> 
+					<td><%= narrative.title%></td>	
+					<td><%= link_to 'Show', :action => 'narrative', :id=> narrative %></td>
+				</tr>
+			<% end %>
+			</table>
+
+			</td>
+			<td valign=top align=center>
+
+			<%= render(:partial => "buttons") %>
+
+
+</td>
+</tr>
+</table>
+	
+
