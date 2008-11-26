@@ -518,7 +518,7 @@ class HL7DateTime
     when Time
       x = dt.strftime "%Y%m%d%H%M%S"
       x << "%+.2d%.2d" % [dt.gmt_offset/3600,(dt.gmt_offset.abs % 3600) / 60]
-    when 'now'
+    when :now
       dt = Time.now
       x = dt.strftime "%Y%m%d%H%M%S"
       x << "%+.2d%.2d" % [dt.gmt_offset/3600,(dt.gmt_offset.abs % 3600) / 60]

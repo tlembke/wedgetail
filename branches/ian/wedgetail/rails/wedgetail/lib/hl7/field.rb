@@ -31,7 +31,7 @@ module HL7
       pp.group(1) do
         fields_desc.each do |field|
           val = self.send(field[0])
-          if !val.blank?
+          unless val.nil? or val == ''
             pp.breakable
             pp.text(field[0].to_s+':')
             pp.pp(val)
@@ -78,7 +78,7 @@ module HL7
       if index.is_a? Symbol
         index = get_by_sym(index)
       end
-      if ! x.blank?
+      unless x.nil? or x == ''
         if fields_desc[index][1] # we're a repeating field
           x = [x] unless x.is_a? Array
           @fields[index] = x.map { |y| fields_desc[index][2].from_ruby(y)}
