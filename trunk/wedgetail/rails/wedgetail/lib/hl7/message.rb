@@ -3,8 +3,9 @@ require 'pp'
 
 class HL7::Message
 
-  def initialize()
-    @segments = []
+  def initialize(segs=[])
+    @segments = segs
+    segs.each {|s| s.parent = self}
   end
   
   # add a segment to the end of the message
@@ -114,7 +115,38 @@ class HL7::Message
       start += 1
     end
   end
+
+  # the number instances of a particular segment in the message
+  def number_of(seg)
+    count = 0
+    @segments.each {|s| count += 1 if s[0].to_s == seg}
+    return count
+  end
+
+  # true if multiple MSH segments in this message
+  def multi?
+    return number_of("MSH")>1
+  end
   
+  # divide the message by its MSG segments
+  def divide
+    submsgs = []
+    thismsg = []
+    first = true
+    @segments.each do |seg|
+      if seg[0].to_s == "MSH"
+        if first
+          first = false
+        else
+          submsgs << HL7::Message.new(thismsg)
+          thismsg = []
+        end
+      end
+      thismsg << seg
+    end
+    submsgs << HL7::Message.new(thismsg)
+    return submsgs
+  end  
   # serialise back to HL7 format
   def to_hl7(range=nil)
     if range.nil?
