@@ -30,7 +30,7 @@ class MessageProcessor
         when /.*\.txt$/i then mime = 'text/plain'
       end
     end
-    word_magic = "\320\317\021\340\241\261\032\341"
+    word_magic = "\320\317\021\340\241\261\032\341" # magic number to identify wordfiles
     if mime.nil? or mime == 'text/plain'
       # as a last-ditch attempt, we try to infer the filetype directly
       logger.debug("file = %p" % file)
@@ -142,6 +142,10 @@ class MessageProcessor
   # extract wedgetail number from HL7, or handle ACKs as appropriate
   def process_hl7(user_id,hl7)
     ret = wedgetail = patient = nil
+    if hl7.multi?
+      hl7.divide.each {|m| upload(user_id,m,'application/edi-hl7',nil)}
+      return nil
+    end
     logger.info "message type is %s" % hl7.msh.message_type.message_code
     case hl7.msh.message_type.message_code
     when "ACK"
