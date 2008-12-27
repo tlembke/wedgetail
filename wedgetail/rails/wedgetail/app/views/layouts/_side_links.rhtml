@@ -25,8 +25,10 @@
 <%= show_icon("Physician","/login/list_users","Users","Users","Edit and Add new users","medium") if @user.role<4 %>
 </p>
 <p> 
-<%= show_icon("go-home","/login/list_teams","Teams","Teams","Manage teams","medium") if @user.role<4 %>
+<%= show_icon("go-home","/login/list_teams","Teams","Teams","Manage teams","medium") if @user.role<3 %>
 </p>
+<p>
+<%= show_icon("go-home","/login/edit/%s" % @user.team,"My Team","My Team","Manage My Team Settings","medium") if @user.role == 3 %>
 <p> 
 
 <%= show_icon("network-server","/prefs/edit/","Server Prefs","Server Preferences","Change preferences for this server","medium") if @user.role<2 %>
