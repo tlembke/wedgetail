@@ -61,9 +61,11 @@ class MessageProcessor
   def initialize(logger,user_id,file,content_type,plaintext=nil)
     @query = nil
     @narrs = []
+    @status = "no action performed"
+    @wedgetail = nil
     @logger = logger
     @logger ||= ActiveRecord::Base.logger
-    upload(user_id,file,content_type,plaintext=nil)
+    upload(user_id,file,content_type,plaintext)
   end
   
   # the Rails logger, for compatibility with the rest of the framework
@@ -78,8 +80,8 @@ class MessageProcessor
   # as for new
   def upload(user_id,file,content_type,plaintext=nil)
     narrative_type_id = 4
-    ret = wedgetail = familyname = nil
-    logger.info("UPLOAD #{content_type}")
+    ret = nil
+    data = {}
     case content_type
       when 'application/x-ms-word'
         file,plaintext = MessageProcessor.make_html_text_from_doc(file)
@@ -92,14 +94,14 @@ class MessageProcessor
         file.gsub! "\n\r","\n"
         file.gsub! "\r","\n"
         raise WedgieError,"Invalid PIT format - no patient name" unless /^100 Start Patient *: +([^,]+),(.+)$/i =~ file
-        familyname = $~[1].strip
-        firstname = $~[2].strip
+        data[:familyname] = $~[1].strip
+        data[:firstname] = $~[2].strip
         raise WedgieError,"Invalid PIT format - no patient DOB" unless /^104 +Birthdate ?: +([^ ]+) *.*$/i =~ file
-        dob = get_date($~[1])
+        data[:dob] = get_date($~[1])
         raise WedgieError,"Invalid PIT format - no Medicare number" unless /^112 Medicare Number ?: +(.+)$/i =~ file
-        medicare = $~[1].strip
+        data[:medicare] = $~[1].strip
         raise WedgieError,"Invalid PIT format - no report date" unless /^206 Reported ?:? (.*)/ =~ file
-        narrative_date = get_date($~[1])
+        data[:narrative_date] = get_date($~[1])
         narrative_type_id = 3 if /^205.*Discharge Summary/i =~ file
         narrative_type_id = 8 if /^205.*Letter/i =~ file
         narrative_type_id = 7 if /^205.*Investigation/i =~ file
@@ -111,27 +113,47 @@ class MessageProcessor
           else
             hl7 = HL7::Message.parse(file)
           end
-          wedgetail,narrative_type_id = process_hl7(user_id,hl7)
+          data[:wedgetail],narrative_type_id = process_hl7(user_id,hl7)
         rescue HL7::Error
           raise WedgieError,'HL7 error: %s' % $!
         end
       when 'text/plain' 
-        wedgetail,familyname,firstname,dob,narrative_date=process_text(file)
-        medicare=nil
+        data=process_text(file)
       when 'text/html'
-        wedgetail,familyname,firstname,dob,narrative_date=process_text(plaintext)
-        medicare=nil
+        data=process_text(plaintext)
     end
-    if familyname and ( ! wedgetail)
-      patient = User.find_fuzzy(familyname, firstname, dob, medicare)
-      wedgetail = patient.wedgetail
+    if data[:familyname] and ( ! data[:wedgetail])
+      begin
+        patient = User.find_fuzzy(data[:familyname], data[:firstname], data[:dob], data[:medicare])
+        data[:wedgetail] = patient.wedgetail
+      rescue WedgieError
+        if data[:create]
+          patient = User.new({:family_name=>data[:familyname],:given_names=>data[:firstname],:address_line=>data[:address_line],:town=>data[:town],:dob=>data[:dob],:medicare=>data[:medicare],:sex=>data[:sex],:dva=>data[:dva],:crn=>data[:crn],:password=>data[:password],:postcode=>data[:postcode],:password_confirmation=>data[:password]})
+          # generate temporary wedgetail number
+          wedgetail_number=WedgePassword.make("U")
+          patient.wedgetail=wedgetail_number
+          patient.username = patient.wedgetail
+          patient.role=5
+       	  begin 
+            patient.save!
+            @status = "new patient created"
+            @wedgetail = wedgetail_number
+            logger.info "creating new patient from document"
+            data[:wedgetail] = nil  
+      	  rescue ActiveRecord::RecordInvalid
+            raise WedgieError,"could not create patient due to %s" % $!.to_s
+          end
+        else
+          raise
+        end
+      end
     end
-    if wedgetail
-      patient = User.find_by_wedgetail(wedgetail,:order=>"created_at DESC")
-      raise WedgieError, 'wedgetail no %s not valid' % wedgetail unless wedgetail
-      narrative_date ||= Time.now
+    if data[:wedgetail]
+      patient = User.find_by_wedgetail(data[:wedgetail],:order=>"created_at DESC")
+      raise WedgieError, 'wedgetail no %s not valid' % data[:wedgetail] unless data[:wedgetail]
+      data[:narrative_date] ||= Time.now
       thisuser=User.find(user_id)
-      d = {:wedgetail=>wedgetail,:content_type=>content_type,:content=>file,:created_by=>thisuser.wedgetail,:narrative_type_id=>narrative_type_id,:narrative_date=>narrative_date}
+      d = {:wedgetail=>data[:wedgetail],:content_type=>content_type,:content=>file,:created_by=>thisuser.wedgetail,:narrative_type_id=>narrative_type_id,:narrative_date=>data[:narrative_date]}
       if plaintext
         d[:plaintext] = plaintext
       end
@@ -162,6 +184,7 @@ class MessageProcessor
         om.acktype = hl7.msa.code
         om.ack = hl7.to_hl7
         om.save!
+        @status = "HL7 ACK processed"
       rescue ActiveRecord::RecordNotFound
         # we couldn't find a message
         # however this is an ACK -- so we log the problem but we don't raise an error
@@ -189,6 +212,14 @@ class MessageProcessor
     return [wedgetail,narrative_type_id]
   end
   
+  def wedgetail
+    @wedgetail
+  end
+
+  def status
+    @status
+  end
+
   # extract wedgetail from PID segment of HL7
   def wedgetail_from_pid(pid)
     wedgetail = patient = medicare = nil
@@ -202,9 +233,14 @@ class MessageProcessor
     end
     if ! wedgetail
       pid.patient_name.each do |name| # check each name provided
-        patient ||= User.find_fuzzy(name.family_name.surname,name.given_name,dob,medicare)
+        begin
+          patient = User.find_fuzzy(name.family_name.surname,name.given_name,dob,medicare)
+        rescue WedgieError
+          patient = nil
+        end
       end
-      wedgetail = patient.wedgetail if patient
+      raise WedgieError, "no match to patient from HL7 data" unless patient
+      wedgetail = patient.wedgetail
     end
     wedgetail
   end
@@ -223,6 +259,7 @@ class MessageProcessor
     @narrs.each do |narr|
       narr.save
       narr.sendout
+      @status = "new narrative created"
     end
   end
   
@@ -253,6 +290,7 @@ class MessageProcessor
     x.gsub!("\n\n","<p/>")
     x.gsub!("\r\n\r\n","<p/>")
     x.gsub!("\n","<br/>")
+    return x
   end
 
   # search for a Re: line or wedgetail: XX in the text and match patient accordingly.
@@ -263,23 +301,50 @@ class MessageProcessor
     file.gsub! "\n\r","\n"
     file.gsub! "\r","\n"
     logger.info "TEXT FILE: %p" % file
+    r = {}
     if /wedgetail *: *([0-9a-zA-Z]+)/i =~ file
-      familyname = firstname = dob = nil
-      wedgetail = $1
+      r[:familyname] = r[:firstname] = r[:dob] = nil
+      r[:wedgetail] = $1
     else
       raise WedgieError,"No Wedgetail: or Re: line found" unless /^Re ?:?(.*)$/i =~ file
       re_line = $~[1]
       raise WedgieError,"No name found" unless /([A-Za-z][A-Za-z'\- ]+),([A-Za-z'\- ]+)/i =~ re_line
-      familyname = $~[1].strip
-      firstname = $~[2].strip
-      if firstname.ends_with? " dob" or firstname.ends_with? " DOB"
-        firstname = firstname[0..-5]
-        firstname = firstname.strip
+      r[:familyname] = $~[1].strip
+      r[:firstname] = $~[2].strip
+      if r[:firstname].ends_with? " dob" or r[:firstname].ends_with? " DOB"
+        r[:firstname] = r[:firstname][0..-5]
+        r[:firstname] = r[:firstname].strip
       end
-      dob = get_date(re_line)
-      wedgetail = nil
+      r[:dob] = get_date(re_line)
+      if /([0-9]+\/?[0-9]* [A-Za-z' ]+), ([A-Za-z' ]+) ([0-9]{4})/ =~ re_line
+        r[:address_line] = $1
+        r[:town] = $2
+        r[:postcode] = $3
+      end
+      if /medicare: ?([0-9\- ]+)/i =~ file
+        r[:medicare] = $1.delete(" -")
+      end
+      if /CRN: ?([0-9\- ]+)/i =~ file
+        r[:crn] = $1.delete(" -")
+      end
+      if /DVA: ?([0-9\- ]+)/i =~ file or /DVA number: ?([0-9\- ]+)/i =~ file
+        r[:dva] = $1.delete(" -")
+      end
+      if /password: ?([0-9a-z]+)/i =~ file
+        r[:password] = $1
+      end
+      if /gender: ?([a-z]+)/i =~ file or /sex: ?([a-z]+)/i =~ file
+        s = $1.downcase
+        if s == "m" or s == "male" or s == "man"
+          r[:sex]=1
+        elsif s == "f" or s == "female" or s == "woman"
+          r[:sex] = 2
+        end
+      end
+      r[:create] = true if /WEDGETAIL CREATE/i =~ file
+      r[:wedgetail] = nil
     end
-    narrative_date = nil
+    r[:narrative_date] = nil
     [/([0-9]+)\/([0-9]+)\/([0-9]+)/,/([0-9]+)\.([0-9]+)\.([0-9]+)/,/([0-9]+)\-([0-9]+)\-([0-9]+)/].each do |re|
       file.scan(re) do |x|
         day = x[0].to_i
@@ -290,13 +355,13 @@ class MessageProcessor
           year -= 100 if year > Date.today.year
         end
         d= Date.civil(year,month,day)
-        if d != dob && (d <= Date.today) && ((! narrative_date ) || d > narrative_date)
-          narrative_date = d
+        if d != r[:dob] && (d <= Date.today) && ((! r[:narrative_date] ) || d > r[:narrative_date])
+          r[:narrative_date] = d
         end
       end
     end
-    narrative_date = Date.today unless narrative_date
-    [wedgetail,familyname,firstname,dob,narrative_date]
+    r[:narrative_date] = Date.today unless r[:narrative_date]
+    return r
   end
       
   # exhaustive matching of a date from a string. Returns Ruby Date type.

@@ -57,6 +57,7 @@ class EntryController < ApplicationController
   
   def upload
     authorize :user
+    mp = nil
     if params.has_key? :upload
       file = params[:upload][:file]
       if file.respond_to? :original_filename
@@ -69,7 +70,7 @@ class EntryController < ApplicationController
         rescue WedgieError
           flash[:notice] = $!.to_s
         else
-          flash[:notice] = 'File successfully uploaded'
+          flash[:notice] = mp.status
         end
       elsif not params[:upload][:text].blank?
         begin
@@ -78,10 +79,13 @@ class EntryController < ApplicationController
         rescue WedgieError
           flash[:notice] = $!.to_s
         else
-          flash[:notice] = 'File successfully uploaded'
+          flash[:notice] = mp.status
         end
       else
         flash[:notice] = "No file uploaded"
+      end
+      if mp and mp.status == "new patient created"
+        redirect_to :controller=>:record,:action=>:show,:wedgetail=>mp.wedgetail
       end
     end
   end
