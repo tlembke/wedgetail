@@ -59,7 +59,8 @@ class MessageProcessor
   # - +content_type+ the content type, must be from detect_type
   # - +plaintext+ the plaintext representation, if appropriate (generally for RTF)
   def initialize(logger,user_id,file,content_type,plaintext=nil)
-    @narr = @query = nil
+    @query = nil
+    @narrs = []
     @logger = logger
     @logger ||= ActiveRecord::Base.logger
     upload(user_id,file,content_type,plaintext=nil)
@@ -106,10 +107,11 @@ class MessageProcessor
         begin
           if file.is_a? HL7::Message
             hl7 = file
+            file = hl7.to_hl7
           else
             hl7 = HL7::Message.parse(file)
           end
-          wedgetail = process_hl7(user_id,hl7)
+          wedgetail,narrative_type_id = process_hl7(user_id,hl7)
         rescue HL7::Error
           raise WedgieError,'HL7 error: %s' % $!
         end
@@ -120,11 +122,11 @@ class MessageProcessor
         wedgetail,familyname,firstname,dob,narrative_date=process_text(plaintext)
         medicare=nil
     end
-    if familyname and ( ! wedgetail) and ( ! @narr)
+    if familyname and ( ! wedgetail)
       patient = User.find_fuzzy(familyname, firstname, dob, medicare)
       wedgetail = patient.wedgetail
     end
-    if wedgetail and ! @narr 
+    if wedgetail
       patient = User.find_by_wedgetail(wedgetail,:order=>"created_at DESC")
       raise WedgieError, 'wedgetail no %s not valid' % wedgetail unless wedgetail
       narrative_date ||= Time.now
@@ -133,9 +135,9 @@ class MessageProcessor
       if plaintext
         d[:plaintext] = plaintext
       end
-      logger.debug "trying to create narrative with %p" % d
-      @narr = Narrative.new d
-      logger.info "created new narrative %p" % @narr
+      narr = Narrative.new d
+      logger.info "created new narrative %p" % narr
+      @narrs << narr
     end
   end
   
@@ -143,8 +145,11 @@ class MessageProcessor
   def process_hl7(user_id,hl7)
     ret = wedgetail = patient = nil
     if hl7.multi?
-      hl7.divide.each {|m| upload(user_id,m,'application/edi-hl7',nil)}
-      return nil
+      logger.info "Multiple HL7 found"
+      hl7.divide.each do |m| 
+         upload(user_id,m,'application/edi-hl7',nil)
+      end
+      return [nil,nil]
     end
     logger.info "message type is %s" % hl7.msh.message_type.message_code
     case hl7.msh.message_type.message_code
@@ -164,23 +169,24 @@ class MessageProcessor
         logger.error "unable to process HL7 ACK"
         logger.error hl7
       end
+      return [nil,nil]
     when "ORU"
       if hl7.pid.patient_name[0].blank? && hl7.obx.identifier.identifier.ends_with?(".pit")
         # it's an Argus-style message purely used to encapsulate PIT
         upload(user_id,hl7.obx.value[0],'application/x-pit',nil)
       elsif ! hl7.pid.patient_name[0].blank?
         wedgetail = wedgetail_from_pid hl7.pid
+        narrative_type_id = 7
       else
         raise WedgieError, "Unable to determine valid PID segment"
       end
-      narrative_type_id = 7
     when "REF","RRI"
       wedgetail = wedgetail_from_pid hl7.pid
       narrative_type_id = 8
     else
       raise WedgieError, "HL7 type %s not supported yet" % hl7.msh.message_type.message_code
     end
-    return wedgetail
+    return [wedgetail,narrative_type_id]
   end
   
   # extract wedgetail from PID segment of HL7
@@ -203,9 +209,9 @@ class MessageProcessor
     wedgetail
   end
   
-  # make a HL7 ack if neccssary
+  # make a HL7 ack if neccessary
   def form_hl7_response(hl7)
-    if @narr
+    if @narrs
       hl7.ack
     elsif @query
       @query.to_hl7
@@ -214,9 +220,9 @@ class MessageProcessor
   
   # save the narrative if it exists.
   def save
-    if @narr
-      @narr.save
-      @narr.sendout
+    @narrs.each do |narr|
+      narr.save
+      narr.sendout
     end
   end
   
@@ -244,7 +250,9 @@ class MessageProcessor
     x.gsub!("<","&lt;")
     x.gsub!(">","&gt;")
     x.gsub!('"',"&quot;")
-    "<pre>%s</pre>" % x
+    x.gsub!("\n\n","<p/>")
+    x.gsub!("\r\n\r\n","<p/>")
+    x.gsub!("\n","<br/>")
   end
 
   # search for a Re: line or wedgetail: XX in the text and match patient accordingly.

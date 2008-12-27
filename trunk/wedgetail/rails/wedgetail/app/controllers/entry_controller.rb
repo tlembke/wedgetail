@@ -27,25 +27,30 @@ class EntryController < ApplicationController
 
   def create
     authorize :user
-    @narrative = Narrative.new(params[:narrative])
-    @narrative.created_by=@user.wedgetail
-    @narrative.created_team=@user.team
+    begin
+      @narrative = Narrative.new(params[:narrative])
+      @narrative.created_by=@user.wedgetail
+      @narrative.created_team=@user.team
     
-    upload_ok=true
-    if params[:narrative][:uploaded_narrative]!=""
-      file = params[:narrative][:uploaded_narrative]
-      content_type=file.content_type.chomp
-      if content_type!="text/plain"
-        flash[:notice] = 'Sorry, only plain text files currently supported'
-        upload_ok=false
+      upload_ok=true
+      if params[:narrative][:uploaded_narrative]!=""
+        file = params[:narrative][:uploaded_narrative]
+        content_type=file.content_type.chomp
+        if content_type!="text/plain"
+          flash[:notice] = 'Sorry, only plain text files currently supported'
+          upload_ok=false
+        end
       end
-    end
-    if upload_ok and @narrative.save
-      @narrative.sendout
-      flash[:notice] = 'Narrative was successfully created.'
-      redirect_to :controller => 'record', :action => 'show', :wedgetail => @narrative.wedgetail
-    else
-      redirect_to :action => 'new',:wedgetail=> @narrative.wedgetail
+      if upload_ok and @narrative.save
+        @narrative.sendout
+        flash[:notice] = 'Narrative was successfully created.'
+        redirect_to :controller => 'record', :action => 'show', :wedgetail => @narrative.wedgetail
+      else
+        redirect_to :action => 'new',:wedgetail=> @narrative.wedgetail
+      end
+    rescue WedgieError
+      flash[:notice] = $!.to_s
+      redirect_to :action => 'new',:wedgetail=> params[:narrative][:wedgetail]
     end
   end
 
