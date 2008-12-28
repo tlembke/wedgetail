@@ -15,9 +15,10 @@ require 'pp'
 
 module HL7
   class Message
-  
-    def initialize()
-      @segments = []
+
+    def initialize(segs=[])
+      @segments = segs
+      segs.each {|s| s.parent = self}
     end
     
     # add a segment to the end of the message
@@ -144,27 +145,27 @@ module HL7
       "\x0b" + pre_mllp + "\x1c\r"
     end
 
-  def to_qp # to quoted-printable
-    text = self.to_hl7
-    line = 0
-    i = 0
-    len = 0
-    r = ""
-    while i < text.length
-      if text[i] == 13
-        len += 3
-      else
-        len += 1
+    def to_qp # to quoted-printable
+      text = self.to_hl7
+      line = 0
+      i = 0
+      len = 0
+      r = ""
+      while i < text.length
+        if text[i] == 13
+          len += 3
+        else
+          len += 1
+        end
+        if len > 79
+          r << text[line..i-1].gsub("\r","=0D")+"=\r\n"
+          line = i
+          len = 0
+        end
+        i += 1
       end
-      if len > 79
-        r << text[line..i-1].gsub("\r","=0D")+"=\r\n"
-        line = i
-        len = 0
-      end
-      i += 1
+      r
     end
-    r
-  end
 
     # called by +pp+ to do pretty-printing
     def pretty_print(pp)
@@ -182,6 +183,47 @@ module HL7
       old_stdout = $>
       $> = sio; pp self; $> = old_stdout
       sio.string
+    end
+
+    # the number instances of a particular segment in the message
+    def number_of(seg)
+      count = 0
+      @segments.each {|s| count += 1 if s[0].to_s == seg}
+      return count
+    end
+
+    # true if multiple MSH segments in this message
+    def multi?
+      return number_of("MSH")>1
+    end
+  
+    # divide the message by its MSG segments
+    def divide
+      submsgs = []
+      thismsg = []
+      first = true
+      @segments.each do |seg|
+        if seg[0].to_s == "MSH"
+          if first
+            first = false
+          else
+            submsgs << HL7::Message.new(thismsg)
+            thismsg = []
+          end
+        end
+        thismsg << seg
+      end
+      submsgs << HL7::Message.new(thismsg)
+      return submsgs
+    end  
+  
+    # serialise back to HL7 format
+    def to_hl7(range=nil)
+      if range.nil?
+        segs = @segments.map {|x| x.to_hl7}
+      else
+        segs = @segments[range].map {|x| x.to_hl7}
+      end
     end
     
     # form a standard MSH segment
@@ -235,11 +277,13 @@ module HL7
             msa.text = "Normal acknowledgement."
           else
             return nil
-          end
-        end
-      end
+          end # if ack_type
+        end # if error
+      end # if
       ack << msa
       return ack
-    end
-  end
-end
+    end # def
+
+
+  end # class
+end # module

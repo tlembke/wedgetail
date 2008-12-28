@@ -41,7 +41,7 @@ class RecordController < ApplicationController
         if ! @patient
            flash[:notice]='Patient not found'
            redirect_to :action => :list
-        elsif @patient.wedgetail.starts_with?("U")
+        elsif @patient.hatched == 0
            flash[:notice]='Patient not yet registered'
            render(:action=> :unconfirmed)
         else
@@ -102,7 +102,7 @@ class RecordController < ApplicationController
         authorize :user
         @patient = User.new(params[:patient])
         # generate temporary wedgetail number
-        wedgetail_number=WedgePassword.make("U")
+        wedgetail_number=WedgePassword.make("H")
         @patient.wedgetail=wedgetail_number
         @patient.username = @patient.wedgetail
         @patient.role=5
@@ -153,20 +153,15 @@ class RecordController < ApplicationController
       
       def mynest
         authorize :user
-        @patients=User.find(:all,:conditions=>["role=5 and hatched=0 and created_by='#{@user.wedgetail}'","U%"])
+        @patients=User.find(:all,:conditions=>["role=5 and hatched=0 and created_by='#{@user.wedgetail}'"])
       end
       
       def hatch
           authorize :big_wedgie
-          new_wedgetail=params[:wedgetail] + ""
-          new_wedgetail[0]='H'
-          @new_patient=User.find_by_wedgetail(params[:wedgetail])
-          @new_patient.wedgetail=new_wedgetail
-          @new_patient.username=new_wedgetail
+          @new_patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
           @new_patient.hatched=1
           @new_patient.save
           render :update do |page|
-              page.replace_html "old_wedge_"+params[:wedgetail],new_wedgetail
               page.replace_html "hatch_"+params[:wedgetail],"<font color=red>Hatched</font>"
               page.replace_html 'sb_unhatched_count', "(" + @user.unhatched.size.to_s + " unhatched)"
           end

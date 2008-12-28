@@ -320,7 +320,7 @@ EOF
         result2 = ''
         certsdir = RAILS_ROOT+"/certs"
         outcert = Tempdir.tmpdir+"cert.pem"
-        cmd = "openssl smime -verify -noverify -signer %s -CApath %s" % [outcert,certsdir]
+        cmd = "openssl smime -verify -signer %s -CApath %s" % [outcert,certsdir]
         logger.debug "CMD: %s" % cmd
         popen3(cmd) do |stdin, stdout, stderr|
           stdin.write(result)

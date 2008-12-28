@@ -14,7 +14,6 @@
 				<%= patient.dob.day %>/<%= patient.dob.month%>/<%= patient.dob.year%>
 			</td>			
   			<td><%= patient.address%></td>
-			<td id='old_wedge_<%= patient.wedgetail %>'><%=patient.wedgetail%></td>
 			<td id='hatch_<%= patient.wedgetail %>'><%= link_to_remote "Hatch", :url => {:action => "hatch",:wedgetail=> patient.wedgetail} %></td>
    
   		</tr>
@@ -31,5 +30,3 @@
 		<% end%>
 	<% end %>
 	</table>
-
-</div>

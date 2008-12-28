@@ -56,11 +56,16 @@ module HL7
       end
       @fields[5] = x
     end
-    
+  
     # attempt to return as HTML, only for text-type fields.
     def value_as_html
       v = value
-      v = v[0] if v.is_a? Array
+      if v.is_a? Array
+        return "" if v.length == 0
+        v = v[0]
+      end
+      return "" if v.nil?
+      v = v.to_s unless v.is_a? String
       v.gsub!("\n\n","<p/>")
       v.gsub(/^( *)(.*)/) { |m| n = $1; m = $2; n="" unless n ; m="" unless m; n.gsub!(" ","&nbsp;") ; if m.length < 70 then;  n+m+"<br/>" else n+m ; end}
     end
