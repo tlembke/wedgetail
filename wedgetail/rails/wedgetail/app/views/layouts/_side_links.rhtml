@@ -13,8 +13,8 @@
 	<span id="sb_message_count">
 	<%= pluralize(@user.inbox.size, "message")%>
 	</span>
-	</p>
 <% end %>
+</p>
 <p> 
 <%= show_icon("system-log-out","/login/logout","Logout","Logout","","medium")%>
 </p>
@@ -25,15 +25,17 @@
 <%= show_icon("Physician","/login/list_users","Users","Users","Edit and Add new users","medium") if @user.role<4 %>
 </p>
 <p> 
-<%= show_icon("go-home","/login/list_teams","Teams","Teams","Manage teams","medium") if @user.role<4 %>
+<%= show_icon("go-home","/login/list_teams","Teams","Teams","Manage teams","medium") if @user.role<3 %>
 </p>
-<p> 
-
+<p>
+<%= show_icon("go-home","/login/edit/%s" % @user.team,"My Team","My Team","Manage My Team Settings","medium") if @user.role == 3 %>
+</p> 
+<p>
 <%= show_icon("network-server","/prefs/edit/","Server Prefs","Server Preferences","Change preferences for this server","medium") if @user.role<2 %>
 </p>
 <p>
-
 <%= show_icon("document-save","/entry/upload/","Upload File","File Upload","Upload clinical narrative","medium") if @user.role<5 %>
+</p>
 <p>
 <% if @user.role==1 and @user.unhatched.size>0 %>
 <%= show_icon("document-open","/record/nest/","Nest","Nest","Process new patients","medium","tango") %><br>
@@ -41,7 +43,7 @@
 (<%= @user.unhatched.size %> unhatched)
 </span>
 <% end %>
-<p>
+</p><p>
 <% if @user.role>2 and @user.role<5 and @user.unhatched.size>0 %>
 	<%= show_icon("document-open","/record/mynest/","Nest","Nest","Show new patients","medium","tango") %><br>
 
@@ -49,7 +51,7 @@
 
 
 <% end %>
-<p>
+</p><p>
 <%= link_to "Documentation", :controller=>'page'%>
 
-
+</p>

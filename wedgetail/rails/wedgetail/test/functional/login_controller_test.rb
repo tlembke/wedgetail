@@ -25,9 +25,7 @@ class LoginControllerTest < Test::Unit::TestCase
   
   def test_upload_cert1
     upload_cert "wedge_mailer/ian.cert"
+    assert File.exists?("/home/ian/wedgetail/certs/ihaywood@iinet.net.au")
   end
-  
-  def test_upload_cert2
-    upload_cert "PublicSiteKey.cer"
-  end
+
 end
