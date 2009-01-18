@@ -79,9 +79,8 @@ class MessageProcessor
   
   # as for new
   def upload(user_id,file,content_type,plaintext=nil)
-    narrative_type_id = 4
     ret = nil
-    data = {}
+    data = {:narrative_type_id=>4,:discard=>false}
     case content_type
       when 'application/x-ms-word'
         file,plaintext = MessageProcessor.make_html_text_from_doc(file)
@@ -102,9 +101,9 @@ class MessageProcessor
         data[:medicare] = $~[1].strip
         raise WedgieError,"Invalid PIT format - no report date" unless /^206 Reported ?:? (.*)/ =~ file
         data[:narrative_date] = get_date($~[1])
-        narrative_type_id = 3 if /^205.*Discharge Summary/i =~ file
-        narrative_type_id = 8 if /^205.*Letter/i =~ file
-        narrative_type_id = 7 if /^205.*Investigation/i =~ file
+        data[:narrative_type_id] = 3 if /^205.*Discharge Summary/i =~ file
+        data[:narrative_type_id] = 8 if /^205.*Letter/i =~ file
+        data[:narrative_type_id] = 7 if /^205.*Investigation/i =~ file
       when 'application/edi-hl7'
         begin
           if file.is_a? HL7::Message
@@ -113,7 +112,7 @@ class MessageProcessor
           else
             hl7 = HL7::Message.parse(file)
           end
-          data[:wedgetail],narrative_type_id = process_hl7(user_id,hl7)
+          data = process_hl7(user_id,hl7)
         rescue HL7::Error
           raise WedgieError,'HL7 error: %s' % $!
         end
@@ -130,16 +129,18 @@ class MessageProcessor
         if data[:create]
           patient = User.new({:family_name=>data[:familyname],:given_names=>data[:firstname],:address_line=>data[:address_line],:town=>data[:town],:dob=>data[:dob],:medicare=>data[:medicare],:sex=>data[:sex],:dva=>data[:dva],:crn=>data[:crn],:password=>data[:password],:postcode=>data[:postcode],:password_confirmation=>data[:password]})
           # generate temporary wedgetail number
-          wedgetail_number=WedgePassword.make("U")
-          patient.wedgetail=wedgetail_number
-          patient.username = patient.wedgetail
-          patient.role=5
+          wedgetail_number = WedgePassword.make("H")
+          patient.wedgetail = wedgetail_number
+          patient.username = wedgetail_number
+          patient.role = 5
+          patient.hatched = 0
+          patient.created_by = user_id
        	  begin 
             patient.save!
             @status = "new patient created"
             @wedgetail = wedgetail_number
             logger.info "creating new patient from document"
-            data[:wedgetail] = nil  
+            data[:wedgetail] = wedgetail_number
       	  rescue ActiveRecord::RecordInvalid
             raise WedgieError,"could not create patient due to %s" % $!.to_s
           end
@@ -148,12 +149,11 @@ class MessageProcessor
         end
       end
     end
-    if data[:wedgetail]
+    if data[:wedgetail] and (! data[:discard])
       patient = User.find_by_wedgetail(data[:wedgetail],:order=>"created_at DESC")
       raise WedgieError, 'wedgetail no %s not valid' % data[:wedgetail] unless data[:wedgetail]
       data[:narrative_date] ||= Time.now
-      thisuser=User.find(user_id)
-      d = {:wedgetail=>data[:wedgetail],:content_type=>content_type,:content=>file,:created_by=>thisuser.wedgetail,:narrative_type_id=>narrative_type_id,:narrative_date=>data[:narrative_date]}
+      d = {:wedgetail=>data[:wedgetail],:content_type=>content_type,:content=>file,:created_by=>user_id,:narrative_type_id=>data[:narrative_type_id],:narrative_date=>data[:narrative_date]}
       if plaintext
         d[:plaintext] = plaintext
       end
@@ -171,7 +171,7 @@ class MessageProcessor
       hl7.divide.each do |m| 
          upload(user_id,m,'application/edi-hl7',nil)
       end
-      return [nil,nil]
+      return {}
     end
     logger.info "message type is %s" % hl7.msh.message_type.message_code
     case hl7.msh.message_type.message_code
@@ -179,10 +179,7 @@ class MessageProcessor
       logger.info "HL7 ACK recognised"
       begin
         om = OutgoingMessage.find(hl7.msa.control_id.to_i(16)) # our control ID is the row ID in hex
-        om.status = 200
-        om.acked_at = Time.now
-        om.acktype = hl7.msa.code
-        om.ack = hl7.to_hl7
+        om.acked(hl7)
         om.save!
         @status = "HL7 ACK processed"
       rescue ActiveRecord::RecordNotFound
@@ -192,7 +189,7 @@ class MessageProcessor
         logger.error "unable to process HL7 ACK"
         logger.error hl7
       end
-      return [nil,nil]
+      return {}
     when "ORU"
       if hl7.pid.patient_name[0].blank? && hl7.obx.identifier.identifier.ends_with?(".pit")
         # it's an Argus-style message purely used to encapsulate PIT
@@ -209,7 +206,7 @@ class MessageProcessor
     else
       raise WedgieError, "HL7 type %s not supported yet" % hl7.msh.message_type.message_code
     end
-    return [wedgetail,narrative_type_id]
+    return {:wedgetail=>wedgetail,:narrative_type_id=>narrative_type_id}
   end
   
   def wedgetail
@@ -229,14 +226,15 @@ class MessageProcessor
         medicare = p.id_number
       elsif p.identifier_type_code == "WEDGIE"
         wedgetail = p.id_number
+        raise WedgieError,"bogus wedgetail number %s in HL7" % wedgetail unless User.find_by_wedgetail(wedgetail)
       end
     end
+    patient = nil
     if ! wedgetail
       pid.patient_name.each do |name| # check each name provided
         begin
           patient = User.find_fuzzy(name.family_name.surname,name.given_name,dob,medicare)
         rescue WedgieError
-          patient = nil
         end
       end
       raise WedgieError, "no match to patient from HL7 data" unless patient
@@ -254,12 +252,12 @@ class MessageProcessor
     end
   end
   
-  # save the narrative if it exists.
+  # save the narrative(s) if it/they exist(s).
   def save
     @narrs.each do |narr|
       narr.save
       narr.sendout
-      @status = "new narrative created"
+      @status = "File successfully uploaded" if @status == "no action performed"
     end
   end
   
@@ -301,7 +299,7 @@ class MessageProcessor
     file.gsub! "\n\r","\n"
     file.gsub! "\r","\n"
     logger.info "TEXT FILE: %p" % file
-    r = {}
+    r = {:wedgetail=>nil,:discard=>false,:create=>false}
     if /wedgetail *: *([0-9a-zA-Z]+)/i =~ file
       r[:familyname] = r[:firstname] = r[:dob] = nil
       r[:wedgetail] = $1
@@ -321,14 +319,14 @@ class MessageProcessor
         r[:town] = $2
         r[:postcode] = $3
       end
-      if /medicare: ?([0-9\- ]+)/i =~ file
-        r[:medicare] = $1.delete(" -")
+      if /medicare: ?([0-9\-\/ ]+)/i =~ file
+        r[:medicare] = $1.delete(" -/")
       end
-      if /CRN: ?([0-9\- ]+)/i =~ file
-        r[:crn] = $1.delete(" -")
+      if /CRN: ?([0-9\-\/ ]+)/i =~ file
+        r[:crn] = $1.delete(" -/")
       end
-      if /DVA: ?([0-9\- ]+)/i =~ file or /DVA number: ?([0-9\- ]+)/i =~ file
-        r[:dva] = $1.delete(" -")
+      if /DVA: ?([0-9\-\/a-zA-Z ]+)/i =~ file or /DVA number: ?([0-9\-\/A-Za-z ]+)/i =~ file
+        r[:dva] = $1.delete(" -/")
       end
       if /password: ?([0-9a-z]+)/i =~ file
         r[:password] = $1
@@ -341,8 +339,8 @@ class MessageProcessor
           r[:sex] = 2
         end
       end
-      r[:create] = true if /WEDGETAIL CREATE/i =~ file
-      r[:wedgetail] = nil
+      r[:create] = true if /wedgetail create/i =~ file
+      r[:discard] = true if /wedgetail discard/i =~ file
     end
     r[:narrative_date] = nil
     [/([0-9]+)\/([0-9]+)\/([0-9]+)/,/([0-9]+)\.([0-9]+)\.([0-9]+)/,/([0-9]+)\-([0-9]+)\-([0-9]+)/].each do |re|

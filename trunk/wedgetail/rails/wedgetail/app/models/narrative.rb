@@ -102,7 +102,7 @@ class Narrative < ActiveRecord::Base
       # this should hardly happen as the message will have been parsed successfully
       # once to get into the DB
       partial= 'pit'
-      message = "Parsing error of HL7"
+      message = "Parsing error of HL7 - %s" % $!.to_s
     end
     return [message,partial]
   end
@@ -171,7 +171,6 @@ class Narrative < ActiveRecord::Base
     hl7 = HL7::Message.new
     msh = hl7.standard_msh
     msh.sending_facility = {:namespace_id=>Pref.namespace_id,:universal_id=>Pref.hostname,:universal_id_type=>"DNS"}
-    msh.message_type = {:message_code=>'ORU',:trigger_event=>'R01'}
     if ENV['RAILS_ENV'] == 'development'
       pro_id = 'D'
     else
@@ -187,7 +186,9 @@ class Narrative < ActiveRecord::Base
     obr.filler_order_number= {:entity_identifier=>"%X" % self.id,:namespace_id=>Pref.namespace_id,:universal_id=>Pref.hostname,:universal_id_type=>"DNS"}
     author = User.find_by_wedgetail(created_by,:order=>"created_at DESC")
     obr.principal_result_interpreter = {:name=>{:family_name=>author.family_name.upcase,:given_name=>author.given_names.upcase,:id_number=>author.id}}
+    obr.observation_time = created_at
     usi = {:name_of_coding_system=>"LN"} # LOINC
+    message_type = {:message_code=>'REF',:trigger_event=>'I12'}
     case narrative_type_id
     when 1 # Health Summary
       usi[:identifier] = "34133-9"
@@ -210,6 +211,7 @@ class Narrative < ActiveRecord::Base
     when 7 # Result
       usi[:identifier] = "11526-1"
       usi[:text] = "Study report"
+      message_type = {:message_code=>'ORU',:trigger_event=>'R01'}
     when 8 # Letter
       usi[:identifier] = "34140-4"
       usi[:text] = "Transfer of care referral note"
@@ -221,6 +223,7 @@ class Narrative < ActiveRecord::Base
       usi[:text] = "Consultation Note"
     end
     obr.universal_service_identifier = usi
+    msh.message_type = message_type
     hl7 << obr
     obx = HL7::Obx.new
     obx[0] = "OBX"

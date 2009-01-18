@@ -1,6 +1,7 @@
-# message acknowledgement
-class HL7::Msa < HL7::Segment
-  def fields_desc
+module HL7
+  # message acknowledgement
+  class Msa < HL7::Segment
+    def fields_desc
     [
       [:segment,false,Literal],
       [:code,false,Id],
@@ -10,5 +11,6 @@ class HL7::Msa < HL7::Segment
       [:delayed_ack_type,false,St], # deprecated to the point that the 2.5 docs refuse to tell us what type it was!
       [:error_condition,false,Ce]
     ]
+    end
   end
 end

@@ -1,6 +1,17 @@
 
 <h1>File upload</h1>
 
+<script language="javascript">
+// always focus on the textbox
+document.observe("dom:loaded",function () {$('upload_text').focus();});
+
+document.observe("keyup",function (e) {
+  if (e.keyCode == 86 && e.ctrlKey) {
+    document.forms[0].submit();
+  }
+});
+</script>
+
 <% form_for(:upload,
  			:url=> {:action => 'upload'},
 			:html=>{:multipart=>true}) do |form| %>
