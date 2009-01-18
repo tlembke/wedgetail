@@ -5,7 +5,7 @@ class WedgeMailerTest < Test::Unit::TestCase
   CHARSET = "utf-8"
 
   include ActionMailer::Quoting
-  fixtures :patients,:users
+  fixtures :users,:prefs
   
   def setup
     ActionMailer::Base.delivery_method = :test
@@ -31,7 +31,8 @@ class WedgeMailerTest < Test::Unit::TestCase
     Dir.glob("#{FIXTURES_PATH}/wedge_mailer/*.email") do |fname|
       WedgeMailer.receive(open(fname).read)
     end
-    assert true
+    n = Narrative.find_by_wedgetail(users(:harry).wedgetail)
+    assert /unit test/ =~ n.content
   end
       
 
