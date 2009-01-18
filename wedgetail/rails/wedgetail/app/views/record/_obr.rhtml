@@ -44,18 +44,24 @@ obr.sub("OBX") do |obx|
         %><%= MessageProcessor.make_html_from_rtf v.data %><%
       end
     end
-  when "NM" 
+  when "NM","SN" 
     unless table
       %> <table> <%
       table = true
     end
     %><tr><th><%= obx.identifier.text %></th> <%
+    case obx.value_type
+    when "NM"
+      v = obx.value[0]
+    when "SN"
+      v = obx.value[0]
+      v = v.comparator.to_s + v.num1.to_s + v.separator.to_s + v.num2.to_s
+    end
     if obx.abnormal_flags.blank?
-      %> <td><%= obx.value[0] %><%
+      %> <td><%= v %><%
     else
-      %> <th><%= obx.value[0] %><%
+      %> <th><%= v %><%
     end 
     %><td><%= obx.unit.text %></td><td><%= obx.reference_range %></td></tr><% 
-  end
 end 
 if table %></table><% end %>
