@@ -30,7 +30,6 @@ class EntryController < ApplicationController
     begin
       @narrative = Narrative.new(params[:narrative])
       @narrative.created_by=@user.wedgetail
-    
       upload_ok=true
       if params[:narrative][:uploaded_narrative]!=""
         file = params[:narrative][:uploaded_narrative]
@@ -88,5 +87,4 @@ class EntryController < ApplicationController
       end
     end
   end
-
 end

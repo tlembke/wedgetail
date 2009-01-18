@@ -358,7 +358,7 @@ class Sn < HL7::Field
     [
      [:comparator,false,St],
      [:num1,false,Nm],
-     [:separator,false,St],
+     [:separator_suffix,false,St],
      [:num2,false,Nm]
     ]
   end
@@ -535,7 +535,7 @@ class HL7DateTime
     when Time
       x = dt.strftime "%Y%m%d%H%M%S"
       x << "%+.2d%.2d" % [dt.gmt_offset/3600,(dt.gmt_offset.abs % 3600) / 60]
-    when :now
+    when :now,'now'
       dt = Time.now
       x = dt.strftime "%Y%m%d%H%M%S"
       x << "%+.2d%.2d" % [dt.gmt_offset/3600,(dt.gmt_offset.abs % 3600) / 60]
