@@ -55,7 +55,7 @@ obr.sub("OBX") do |obx|
       v = obx.value[0]
     when "SN"
       v = obx.value[0]
-      v = v.comparator.to_s + v.num1.to_s + v.separator.to_s + v.num2.to_s
+      v = v.comparator.to_s + v.num1.to_s + v.separator_suffix.to_s + v.num2.to_s
     end
     if obx.abnormal_flags.blank?
       %> <td><%= v %><%

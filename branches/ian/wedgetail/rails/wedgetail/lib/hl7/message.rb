@@ -20,7 +20,18 @@ module HL7
       @segments = segs
       segs.each {|s| s.parent = self}
     end
-    
+  
+    # add a segment to the end of the message
+    def << (x)
+      if x.kind_of? HL7::Segment
+        x.no = @segments.length
+        x.parent = self
+        @segments << x
+      else
+        x.segments.each { |z| self << z}
+      end
+    end
+      
     # add a segment to the end of the message
     def << (x)
       if x.kind_of? HL7::Segment
@@ -36,7 +47,12 @@ module HL7
     def segments
       @segments
     end
-  
+    
+    # for testing, load and parse a file
+    def self.loadfile(file)
+      HL7::Message.parse(File.open(file) {|fn| fn.read})
+    end
+    
     # form a Message object from HL7 source
     def self.parse (text)
       msg = HL7::Message.new()
@@ -225,6 +241,47 @@ module HL7
         segs = @segments[range].map {|x| x.to_hl7}
       end
     end
+
+    # the number instances of a particular segment in the message
+    def number_of(seg)
+      count = 0
+      @segments.each {|s| count += 1 if s[0].to_s == seg}
+      return count
+    end
+
+    # true if multiple MSH segments in this message
+    def multi?
+      return number_of("MSH")>1
+    end
+  
+    # divide the message by its MSG segments
+    def divide
+      submsgs = []
+      thismsg = []
+      first = true
+      @segments.each do |seg|
+        if seg[0].to_s == "MSH"
+          if first
+            first = false
+          else
+            submsgs << HL7::Message.new(thismsg)
+            thismsg = []
+          end
+        end
+        thismsg << seg
+      end
+      submsgs << HL7::Message.new(thismsg)
+      return submsgs
+    end  
+  
+    # serialise back to HL7 format
+    def to_hl7(range=nil)
+      if range.nil?
+        segs = @segments.map {|x| x.to_hl7}
+      else
+        segs = @segments[range].map {|x| x.to_hl7}
+      end
+    end
     
     # form a standard MSH segment
     def standard_msh
@@ -283,7 +340,6 @@ module HL7
       ack << msa
       return ack
     end # def
-
-
   end # class
 end # module
+

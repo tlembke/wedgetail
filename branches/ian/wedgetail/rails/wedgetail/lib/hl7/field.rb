@@ -31,7 +31,7 @@ module HL7
       pp.group(1) do
         fields_desc.each do |field|
           val = self.send(field[0])
-          unless val.nil? or val == ''
+          unless (val.respond_to?(:blank?) and val.blank?) or val.nil? or val == ''
             pp.breakable
             pp.text(field[0].to_s+':')
             pp.pp(val)
@@ -44,7 +44,7 @@ module HL7
     #  - +fields+ is the line of HL7 source text to parse
     #  - +separator+ is the primary spearator in this context (| for segments, ^ for fields, & for components)
     #  - +subseparator+ is the next level (^ for segments, & for fields, nil for components)
-    #  - +subsubseparator+, & for segments, otheriwse nil
+    #  - +subsubseparator+, & for segments, otherwise nil
     #  - +rep_sep+ the repition separator (usually ~)
     #  - +esc+ is the HL7 escape char, usually \\
     def self.parse(fields, separator, subseparator, subsubseparator, rep_sep, esc)
@@ -60,7 +60,7 @@ module HL7
               field = subfields.map {|x| 
                 kls.parse(x,subseparator,subsubseparator,nil,nil,esc)
               }
-              if ! obj.fields_desc[index][1] # if it's not a repeating field, dump the repeats
+              if ! obj.fields_desc[index][1] # if it's not a repeating field, dump the repeats if they exist
                 field = field[0]
               end
             else
