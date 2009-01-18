@@ -1,4 +1,13 @@
-# otugoing messages sent using the subscription system
+# outgoing messages sent using the subscription system
+
+
+# status has the following meanings
+# 0..99 number of resends
+# 100 max resends reached without an ACK (so failed delivery)
+# 200 ACK received
+# 300 don't resend: plain notification e-mail sent
+# 400 don't resend: booked for download via API
+# 500 don't resend: fatal error when trying to send e-mail
 
 class OutgoingMessage < ActiveRecord::Base
   belongs_to :narrative
@@ -47,6 +56,13 @@ class OutgoingMessage < ActiveRecord::Base
     end
   end
   
+  def acked(hl7)
+    self.status = 200
+    self.acked_at = Time.now
+    self.acktype = hl7.msa.code
+    self.ack = hl7.to_hl7
+  end
+
   # resend all outgoing messages which haven't been acknowledged yet
   # should be called via script/runner from +cron+
   def self.resend_acks

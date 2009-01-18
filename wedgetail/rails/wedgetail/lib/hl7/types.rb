@@ -83,6 +83,10 @@ end
 class St
 
   def self.parse(text, separator, subseparator, subsubseparator, rep_sep, esc)
+    # strictly speaking, at this point we should scan for separators and subseparators,
+    # an ingore what's beyond them, as the standard says if you encounter a split field where you expect a simple
+    # one you should ignore all the other fields as it may be a future version of the standard
+    # however in reality it's more likely they are unescaped, so we don't
     r = "#{esc}([A-Z0-9a-z\.]+)#{esc}"
     if esc == "\\"
       r.gsub!("\\","\\\\\\\\") # \ is the escape character for Ruby, HL7 and the regexp layer. Not pretty.
@@ -97,7 +101,7 @@ class St
         when 'T'
           '&'
         when 'R'
-          '~'
+          rep_sep
         when 'E'
           esc
         when /X([0-9A-F]+)/
@@ -347,6 +351,19 @@ class Si
   end
 end
 
+
+# structured numeric
+class Sn < HL7::Field
+  def fields_desc
+    [
+     [:comparator,false,St],
+     [:num1,false,Nm],
+     [:separator_suffix,false,St],
+     [:num2,false,Nm]
+    ]
+  end
+end
+
 class MessageType < HL7::Field
   def fields_desc
     [
@@ -518,7 +535,7 @@ class HL7DateTime
     when Time
       x = dt.strftime "%Y%m%d%H%M%S"
       x << "%+.2d%.2d" % [dt.gmt_offset/3600,(dt.gmt_offset.abs % 3600) / 60]
-    when 'now'
+    when :now,'now'
       dt = Time.now
       x = dt.strftime "%Y%m%d%H%M%S"
       x << "%+.2d%.2d" % [dt.gmt_offset/3600,(dt.gmt_offset.abs % 3600) / 60]

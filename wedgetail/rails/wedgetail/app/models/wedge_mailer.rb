@@ -300,7 +300,7 @@ EOF
         file = RAILS_ROOT+"/certs/wedgie_decrypt.key"
         cert = RAILS_ROOT+"/certs/fac_encrypt.pem"
         open(file).read
-        cmd = "openssl smime -decrypt -inkey %s -recip %s -passin pass:Pass-123" % [file,cert]
+        cmd = "openssl smime -decrypt -inkey %s -passin pass:Pass-123" % file
         logger.debug "CMD: %s" % cmd
         popen3(cmd) do |stdin, stdout, stderr|
           begin
@@ -320,7 +320,7 @@ EOF
         result2 = ''
         certsdir = RAILS_ROOT+"/certs"
         outcert = Tempdir.tmpdir+"cert.pem"
-        cmd = "openssl smime -verify -noverify -signer %s -CApath %s" % [outcert,certsdir]
+        cmd = "openssl smime -verify -signer %s -CApath %s" % [outcert,certsdir]
         logger.debug "CMD: %s" % cmd
         popen3(cmd) do |stdin, stdout, stderr|
           stdin.write(result)

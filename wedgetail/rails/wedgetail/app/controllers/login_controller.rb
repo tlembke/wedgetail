@@ -79,6 +79,9 @@ class LoginController < ApplicationController
   end 
 
   def load_certificate
+      authorize_only (:user) {@useredit.wedgetail == @user.wedgetail}
+      authorize_only (:leader) {@useredit.wedgetail == @user.wedgetail}
+      authorize :admin  # apart from admin
     content = params[:certificate_upload][:certificate]
     if content.respond_to? :original_filename
       content = content.read
@@ -119,7 +122,7 @@ class LoginController < ApplicationController
       err = stderr.read
     end
     if text.length < 20
-      logger.debug("Attempt to do PEM->text conversion gave clearly invalid data, input: %p, with error stream %p" % [content,err])
+      logger.debug("Attempted to do PEM->text conversion gave, clearly invalid data, input: %p, with error stream %p" % [content,err])
     end
     # the moment of truth, look for the e-mail
     if text =~ /email:(.*)/ or text =~ /emailAddress=([a-zA-Z0-9\.]+@[a-zA-Z0-9\.]+)/
@@ -130,10 +133,11 @@ class LoginController < ApplicationController
       f.close
       u = User.find_by_wedgetail(params[:wedgetail])
       u.cert = $1
+      u.crypto_pref = 1 if u.crypto_pref == 0 # select X.509 as crypto preference 
       u.save!
       flash[:notice] = "Certificate Uploaded"
     else
-      logger.debug ("Attempt to analyse certificate failed: %p" % text)
+      logger.debug("Attempt to analyse certificate failed: %p" % text)
       flash[:error] = "Analysis of certificate failed"
     end
     redirect_to(:action => "edit",:wedgetail=>params[:wedgetail]) 
