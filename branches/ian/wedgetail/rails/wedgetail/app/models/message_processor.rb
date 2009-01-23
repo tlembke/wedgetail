@@ -291,6 +291,19 @@ class MessageProcessor
     return x
   end
 
+  def self.make_html_from_clinical(c)
+    c = make_html_from_text(c).gsub(/\*(\w+)\*/,"<b>\\1</b>")
+    c.gsub(/\{([^\{]+)\}/) do |str|
+      obj = Code.get_clinical_object($1)
+      if obj
+        obj.to_html
+      else
+        str
+      end
+    end
+  end
+
+
   # search for a Re: line or wedgetail: XX in the text and match patient accordingly.
   # Returns a list +[wedgetail,familyname,firstname,dob,narrative_date]+
   # either wedgetail or the other values will be nil, if both are nil then matching failed.

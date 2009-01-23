@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   attr_accessor :password_confirmation 
   validates_confirmation_of :password 
   validates_format_of :postcode,:with=>/^[0-9]{4}$/,:message=>"postcode must be 4 digits",:allow_nil=>true
-            
-  
+  validates_format_of :prescriber,:with=>/^[0-9]{6,7}$/,:message=>"Prescriber number must be 6-7 digits",:allow_nil=>true
+  validates_format_of :provider,:with=>/^[0-9]{6}[0-9A-Z][A-Z]$/,:message=>"Provider number not valid format",:allow_nil=>true
   has_many :outbox,
           :class_name => "Message",
           :foreign_key => "sender_id",
@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
     errors.add(:team,"team captains must have a team") if role==3 and team.blank?
     errors.add(:dob,"patients must have a birthdate") if role==5 and dob.blank?
     unless medicare.blank?
-      self.medicare=medicare.delete " -"
+      self.medicare=medicare.delete " -/"
       if medicare =~ /^[0-9]{10}$/
         errors.add(:medicare,"Wedgetail requires Medicare numbers to have 11 digits, the final digit is the one next to the patient's name. If it is not there, use 1.")
       elsif medicare =~ /^[0-9]{11}$/
@@ -36,6 +36,17 @@ class User < ActiveRecord::Base
       else
         errors.add(:medicare,"not a valid Medicare number")
       end
+    end
+    unless provider.blank?
+      # algorithm obtained from http://www.medicareaustralia.gov.au/provider/vendors/files/IDI-formats.pdf, pages 11-12
+      check = 0
+      [3,5,8,4,2,1].each_with_index {|mul,i| check+=provider[i..i].to_i*mul }
+      plv = provider[6]-48
+      plv-=7 if plv > 10
+      check+=plv*6
+      check = check % 11
+      check = ['Y','X','W','T','L','K','J','H','F','B','A'][check]
+      errors.add(:provider,"Provider number not valid (failed checksum)") unless check == provider[7..7]
     end
   end 
  

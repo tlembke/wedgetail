@@ -10,3 +10,9 @@
 	&nbsp; &nbsp;<b>Address</b>  <%= patient.address_line+", "+patient.town%>
 	</fieldset>
 </div>
+<%= link_to "Summary",{:controller=>:record,:action=>:show,:wedgetail=>patient.wedgetail} %> |
+<%= link_to "Encounters",{:controller=>:record,:action=>:narrative,:type=>4,:wedgetail=>patient.wedgetail} %> |
+<%= link_to "Results",{:controller=>:record,:action=>:narrative,:type=>7,:wedgetail=>patient.wedgetail} %> |
+<%= link_to "Letters",{:controller=>:record,:action=>:narrative,:type=>8,:wedgetail=>patient.wedgetail} %> |
+<%= link_to "Discharges",{:controller=>:record,:action=>:narrative,:type=>3,:wedgetail=>patient.wedgetail} %>
+
