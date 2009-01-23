@@ -35,7 +35,7 @@ class Narrative < ActiveRecord::Base
           self.content_type = content_type
       end
     else
-      self.content_type="text/plain"
+      self.content_type="text/x-clinical"
     end
     
   end
@@ -57,23 +57,16 @@ class Narrative < ActiveRecord::Base
         else
           MessageProcessor.make_html_from_text(c)
         end
+      when 'text/x-clinical'
+        MessageProcessor.make_html_from_clinical(content)
     end
-  end
-
-  def content_yaml
-    raise "Narrative is not text/yaml" unless content_type=="text/yaml" 
-    YAML::parse self.content
-  end
-
-  def content_yaml=(x)
-    self.content = x.to_yaml
   end
 
   # used to control the message-viewing control.
   # returns +[message,partial]+
   # For HL7 +message+ is the parsed HL7 object, +partial+ is the HL7 message type.
   # For all others +message+ is the same as value and +partial+ is the string "pit"
-  def convert()
+  def convert
     begin
       if content_type == 'application/edi-hl7'
         message = HL7::Message.parse(self.content)
@@ -111,18 +104,13 @@ class Narrative < ActiveRecord::Base
   # (remember all patients have a user entry too)
   def user
     logger.warn("DEBUG: getting user for %p" % self.wedgetail)
-    User.find_by_wedgetail(self.wedgetail)
+    User.find_by_wedgetail(self.wedgetail,:order=>"created_at desc")
   end 
   
   def author
     author_name=""
-    @author=User.find_by_wedgetail(self.created_by)
+    @author=User.find_by_wedgetail(self.created_by,:order=>"created_at desc")
     author_name=@author.full_name if @author
-    user_team=User.find_by_wedgetail(self.created_team)
-    if user_team
-      author_name+=", " if author_name!="" and user_team.family_name !=""
-      author_name+= user_team.family_name
-    end
     return author_name
   end
   
@@ -144,6 +132,51 @@ class Narrative < ActiveRecord::Base
     end
   end
   
+
+  # return the PDF object for this narrative
+  # NB can_print? had better be true 
+  def printout
+    raise WedgieError, "can't print #{content_type}" unless content_type == 'text/x-clinical'
+    pdf = FPDF.new
+    pdf.SetFont('Arial','',10)
+    clinical_objects.each do |obj|
+      pdf.AddPage
+      obj.gen_pdf(pdf,author,user)
+    end
+    return pdf
+  end
+
+
+  # true if something to print in this narrative
+  def can_print?
+    ret = false
+    if content_type == 'text/x-clinical'
+      content.gsub(/\{([^\{]+)\}/) do |s|
+        obj = Code.get_clinical_object($1)
+        raise WedgieError,"#{$1} is not a valid clinical command" unless obj
+        ret = true if obj.can_print?
+        ''
+      end
+    end
+    return ret
+  end
+
+  # get list of clinical objects
+  def clinical_objects
+    return [] if content_type != 'text/x-clinical'
+    objs = []
+    content.gsub(/\{([^\{]+)\}/) do |s|
+      obj = Code.get_clinical_object($1)
+      if obj.nil? # don't raise exception if it's invalid -- it's too late now
+        logger.warn("unable to turn #{$1} into a clinical object")
+      else
+        objs << obj
+      end
+      ''
+    end
+    return objs
+  end
+
   # generate outgoing HL7.
   # For HL7 messages this is simply the message itself as a parsed HL7::Message object.
   # for all others a suitable HL7 wrapper is created "ex nihilo"
@@ -158,7 +191,7 @@ class Narrative < ActiveRecord::Base
         html, txt= MessageProcessor.make_html_text_from_rtf(txt)
       end
       hl7 = make_hl7_from_text txt
-    when 'text/plain'
+    when 'text/plain','text/x-clinical'
       hl7 = make_hl7_from_text content
     when 'text/html'
       hl7 = make_hl7_from_text plaintext

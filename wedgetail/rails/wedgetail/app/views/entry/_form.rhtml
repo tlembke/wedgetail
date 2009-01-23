@@ -13,11 +13,16 @@
 <p><label for="narrative_content">Narrative content</label><br/>
 You can <b>either</b> upload a plain text file by selecting it<br>
 <%=form.file_field("uploaded_narrative")%>  or<br>
-<b>Or</b> enter text in the field below<br>
-<%= form.text_area  'content'  %></p>
+<b>Or</b> enter text in the field below<br></p>
+<p>
+<div id="notes_surrounder">
+<%= form.text_area  'content'  %>
+<div id="notes_completions">
+
+</div>
+</div>
 <p><label for="narrative_narrative_date">Narrative date</label><br/>
 <%= form.date_select  'narrative_date'  %></p>
-
 
 <!--[eoform:narrative]-->
 

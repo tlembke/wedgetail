@@ -57,7 +57,13 @@
 			<label for="user_given_names">Given Names:</label> 
 			<%= form.text_field :given_names, :size => 40 %> 
 		</p>
-
+			<% if @useredit.role == 4 or @useredit.role == 3 %>
+			   <label for="user_provider">Provider number:</label>
+			   <%= form.text_field :provider, :size=>40 %>
+			   form.select(:team,@teamslist) %>
+			   <label for="user_provider">Prescriber number:</label>
+			   <%= form.text_field :prescriber, :size=>40 %>
+			<% end %>
 		<% end %>
 		<p> 
 			<label for="user_email">Email:</label> 
