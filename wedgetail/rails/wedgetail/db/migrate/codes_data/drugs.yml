@@ -1,0 +1,21 @@
+# list of drugs, currently examples only
+---
+code: "1.3.6.1.4.1.18298.2.1" 
+name: "risperidone 1mg"
+values: {qty: 30, rpt: 5}
+---
+code: "1.3.6.1.4.1.18298.2.2" 
+name: "risperidone 2mg"
+values: {qty: 30, rpt: 5}
+---
+code: "1.3.6.1.4.1.18298.2.3" 
+name: "alprazolam 1mg"
+values: {qty: 50, rpt: 1}
+---
+code: "1.3.6.1.4.1.18298.2.4" 
+name: "alprazolam 0.5mg"
+values: {qty: 50, rpt: 1}
+---
+code: "1.3.6.1.4.1.18298.2.5" 
+name: "alpronic acid 10mg" # made-up drug
+values: {qty: 28, rpt: 3}
