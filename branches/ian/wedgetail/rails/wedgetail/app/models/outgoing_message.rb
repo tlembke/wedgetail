@@ -24,11 +24,11 @@ class OutgoingMessage < ActiveRecord::Base
       when 1 # S/MIME
         hl7 = narrative.make_outgoing_hl7
         hl7.msh.message_control_id = "%X" % self.id
-        WedgeMailer.crypto_deliver(hl7.to_hl7,'application/edi-hl7',:x509,recipient.email,recipient.cert)
+        WedgeMailer.crypto_deliver(self.id,hl7.to_hl7,'application/edi-hl7',:x509,recipient.email,recipient.cert)
       when 2 # OpenPGP
         hl7 = narrative.make_outgoing_hl7
         hl7.msh.message_control_id = "%X" % self.id
-        WedgeMailer.crypto_deliver(hl7.to_hl7,'application/edi-hl7',:pgp,recipient.email)
+        WedgeMailer.crypto_deliver(self.id,hl7.to_hl7,'application/edi-hl7',:pgp,recipient.email)
       when 3 # e-mail - no crypto
         WedgeMailer.deliver_notify(recipient)
         self.status = 300 # don't expect ACKs
@@ -40,7 +40,7 @@ class OutgoingMessage < ActiveRecord::Base
         f = open("/home/ian/test_wedgie.hl7","w")
         f.write hl7.to_hl7
         f.close
-        WedgeMailer.crypto_deliver(hl7.to_hl7,'application/edi-hl7',:none,recipient.email)
+        WedgeMailer.crypto_deliver(narrative.id,hl7.to_hl7,'application/edi-hl7',:none,recipient.email)
       end
       self.last_sent = Time.now
     rescue WedgieError
@@ -74,5 +74,16 @@ class OutgoingMessage < ActiveRecord::Base
         om.save!
       end
     end
+  end
+
+  def self.force_sendout(recip,narr_id)
+    debugger
+    u = User.find_by_username(recip)
+    om = OutgoingMessage.find(:first,:conditions=>{:recipient_id=>u.wedgetail,:narrative_id=>narr_id})
+    unless om
+      om = OutgoingMessage.new({:recipient_id=>u.wedgetail,:narrative_id=>narr_id})
+      om.save!
+    end
+    om.sendout
   end
 end

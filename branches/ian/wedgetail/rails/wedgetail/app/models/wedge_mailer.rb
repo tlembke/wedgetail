@@ -63,6 +63,7 @@ class WedgeMailer < ActionMailer::Base
       h = handle(email,nil)
       logger.debug "ultimate error: %p" % h[:error]
       m = nil
+      id = nil
       return if email['Auto-Submitted'] =~ /auto-.*/ # don't process further if auto-generated, to avoid mail loop
       if h[:error]
         WedgeMailer.deliver_message_error(email,h[:hl7],h[:error]) # tell me about it
@@ -85,6 +86,7 @@ EOF
         h[:mp].save
         if h[:hl7]
           m = h[:mp].form_hl7_response(h[:hl7])
+          id = h[:mp].get_id
           m = m.to_hl7 unless m.blank?
           logger.debug "ACK to be sent: %p" % m
           mime = 'application/edi-hl7'
@@ -112,7 +114,8 @@ EOF
           crypto_mode = :none
         end
         # FIXME: for now ignore crypto_mode and always send unencrypted as we are testing argus
-        crypto_deliver(m,mime,:none,addr,subject,'auto-replied')
+        id = Time.now unless id 
+        crypto_deliver(id,m,mime,:none,addr,subject,'auto-replied')
       end
     rescue
       # log uncaught expceptions
@@ -129,17 +132,26 @@ EOF
   # - +to+ recipients e-mail address, used to find encrypting key
   # - +subject+ the message subject (Note: this doesn't get encrypted)
   # - +auto_mode+ - contents of the Auto-Submitted: RFC838 header
-  def self.crypto_deliver(text,mime,crypto_mode,to,cert=nil,subject='[wedgetail] message',auto_mode='auto-generated')
-    new.crypto_deliver(text,mime,crypto_mode,to,cert,subject,auto_mode)
+  def self.crypto_deliver(id,text,mime,crypto_mode,to,cert=nil,subject='[wedgetail] message',auto_mode='auto-generated')
+    new.crypto_deliver(id,text,mime,crypto_mode,to,cert,subject,auto_mode)
   end
   
-  def crypto_deliver(text,mime,crypto_mode,to,cert=nil,subject='[wedgetail] message',auto_mode='auto-generated')
+  def crypto_deliver(id,text,mime,crypto_mode,to,cert=nil,subject='[wedgetail] message',auto_mode='auto-generated')
     logger.debug "sending message %p" % text
     cert ||= to
     # form EDI packet as per HL7 docs
     b64 = Base64.encode64(text)
     b64.gsub!("\n","\r\n")
-    mail_out = "Content-Type: application/octet-stream;name=\"message.hl7\"\r\nContent-Transfer-Encoding: base64\r\nContent-Disposition: ATTACHMENT; filename=\"message.hl7\"\r\n\r\n#{b64}"
+    case mime
+      when 'text/plain','text/x-clinical'
+      fname  = '%X.txt'
+      when 'application/edi-hl7'
+      fname = '%X.hl7'
+      else
+      fname = '%X.dat'
+      end
+    fname = fname % id
+    mail_out = "Content-Type: application/octet-stream;name=\"#{fname}\"\r\nContent-Transfer-Encoding: base64\r\nContent-Disposition: ATTACHMENT; filename=\"#{fname}\"\r\n\r\n#{b64}"
     # use appropriate crypto based on what we got
     case crypto_mode
     when :pgp
