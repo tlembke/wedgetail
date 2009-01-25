@@ -33,9 +33,10 @@ class EntryController < ApplicationController
         false
       end
     end
-    @narrative_type.unshift(encounter)
+    @narrative_type.unshift(encounter) if encounter
     # tell the layout to load our Huge Javascript File
     @completions = true
+    render :layout=>"standard"
   end
 
   def create
@@ -43,7 +44,7 @@ class EntryController < ApplicationController
     begin
       @narrative = Narrative.new(params[:narrative])
       @narrative.created_by=@user.wedgetail
-      p = @narrative.printable?
+      p = @narrative.can_print?
       if @narrative.save
         flash[:background_print_narrative] = @narrative.id if p
         @narrative.sendout
@@ -94,11 +95,12 @@ class EntryController < ApplicationController
         redirect_to :controller=>:record,:action=>:show,:wedgetail=>mp.wedgetail
       end
     end
+    render :layout=>'layouts/standard'
   end
 
   def gen_pdf
     authorize :user
     @narrative = Narrative.find(params[:id])
-    send_data(gen_pdf(@narrative.printout.Output, :filename => "wedgetail.pdf", :type => "application/pdf")
+    send_data(@narrative.printout.Output, :filename => "wedgetail.pdf", :type => "application/pdf")
   end
 end

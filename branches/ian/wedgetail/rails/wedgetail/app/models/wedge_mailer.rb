@@ -141,7 +141,6 @@ EOF
     b64.gsub!("\n","\r\n")
     mail_out = "Content-Type: application/octet-stream;name=\"message.hl7\"\r\nContent-Transfer-Encoding: base64\r\nContent-Disposition: ATTACHMENT; filename=\"message.hl7\"\r\n\r\n#{b64}"
     # use appropriate crypto based on what we got
-    logger.debug "crypto type is #{crypto_mode.to_s}"
     case crypto_mode
     when :pgp
       mail_out = pgp_create(mail_out,to)
@@ -158,6 +157,7 @@ EOF
     mail_out.date = Time.now
     mail_out['Auto-Submitted'] = auto_mode
     WedgeMailer.deliver(mail_out)
+    return mail_out
   end
 
   # deliver mail as encrypted X.509

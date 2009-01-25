@@ -58,7 +58,15 @@ class Narrative < ActiveRecord::Base
           MessageProcessor.make_html_from_text(c)
         end
       when 'text/x-clinical'
-        MessageProcessor.make_html_from_clinical(content)
+        c = MessageProcessor.make_html_from_text(content).gsub(/\*(\w+)\*/,"<b>\\1</b>")
+        c.gsub(/\{([^\{]+)\}/) do |str|
+          obj = Code.get_clinical_object($1,self)
+          if obj
+            obj.to_html
+          else
+            str
+          end
+        end
     end
   end
 
@@ -137,11 +145,11 @@ class Narrative < ActiveRecord::Base
   # NB can_print? had better be true 
   def printout
     raise WedgieError, "can't print #{content_type}" unless content_type == 'text/x-clinical'
-    pdf = FPDF.new
+    pdf = FPDF.new('P','mm','A4')
     pdf.SetFont('Arial','',10)
     clinical_objects.each do |obj|
       pdf.AddPage
-      obj.gen_pdf(pdf,author,user)
+      obj.gen_pdf(pdf)
     end
     return pdf
   end
@@ -151,9 +159,7 @@ class Narrative < ActiveRecord::Base
   def can_print?
     ret = false
     if content_type == 'text/x-clinical'
-      content.gsub(/\{([^\{]+)\}/) do |s|
-        obj = Code.get_clinical_object($1)
-        raise WedgieError,"#{$1} is not a valid clinical command" unless obj
+      clinical_objects(true).each do |obj|
         ret = true if obj.can_print?
         ''
       end
@@ -162,13 +168,17 @@ class Narrative < ActiveRecord::Base
   end
 
   # get list of clinical objects
-  def clinical_objects
+  def clinical_objects(exc=false)
     return [] if content_type != 'text/x-clinical'
     objs = []
     content.gsub(/\{([^\{]+)\}/) do |s|
-      obj = Code.get_clinical_object($1)
-      if obj.nil? # don't raise exception if it's invalid -- it's too late now
-        logger.warn("unable to turn #{$1} into a clinical object")
+      obj = Code.get_clinical_object($1,self)
+      if obj.nil?
+        if exc
+          raise WedgieError,"#{$1} is not a valid clinical command" unless obj
+        else  # don't raise exception if it's invalid -- it's too late now
+          logger.warn("unable to turn #{$1} into a clinical object")
+        end
       else
         objs << obj
       end

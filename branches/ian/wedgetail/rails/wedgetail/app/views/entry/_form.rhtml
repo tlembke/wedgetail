@@ -2,18 +2,13 @@
 
 <!--[form:narrative]-->
 <%= form.hidden_field 'wedgetail' %>
-<p><label for="narrative_narrative_type">Narrative type</label><br/>
-<%= form.collection_select('narrative_type_id', @narrative_type, :id, :narrative_type_name)  %></p>
-
 
 
 <p><label for="narrative_title">Narrative title</label><br/>
 <%= form.text_field 'title'  %></p>
 
 <p><label for="narrative_content">Narrative content</label><br/>
-You can <b>either</b> upload a plain text file by selecting it<br>
-<%=form.file_field("uploaded_narrative")%>  or<br>
-<b>Or</b> enter text in the field below<br></p>
+
 <p>
 <div id="notes_surrounder">
 <%= form.text_area  'content'  %>
@@ -21,6 +16,13 @@ You can <b>either</b> upload a plain text file by selecting it<br>
 
 </div>
 </div>
+You can <b>either</b> upload a plain text file by selecting it<br>
+<%=form.file_field("uploaded_narrative")%>  or<br>
+<b>Or</b> enter text in the field above<br></p>
+<p><label for="narrative_narrative_type">Narrative type</label><br/>
+<%= form.collection_select('narrative_type_id', @narrative_type, :id, :narrative_type_name)  %></p>
+
+
 <p><label for="narrative_narrative_date">Narrative date</label><br/>
 <%= form.date_select  'narrative_date'  %></p>
 

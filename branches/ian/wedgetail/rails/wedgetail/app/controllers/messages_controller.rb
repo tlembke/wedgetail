@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_filter :redirect_to_ssl, :authenticate
-  layout "record"
+  layout "standard"
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],

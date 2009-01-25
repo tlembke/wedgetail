@@ -11,3 +11,13 @@ first:
   created_at: <%= DateTime.now %>
   content_type: "text/plain"
 
+second:
+  id: 2
+  wedgetail: "1234"
+  narrative_type_id: 1
+  title: "test Message"
+  content: "fake narrative {risperidone 2mg tab;bd qty 50 rpt 2} {yellow fever;}"
+  narrative_date: <%= Date.today %>
+  created_by: "12346"
+  created_at: <%= DateTime.now %>
+  content_type: "text/x-clinical"
