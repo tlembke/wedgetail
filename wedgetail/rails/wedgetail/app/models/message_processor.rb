@@ -320,7 +320,7 @@ class MessageProcessor
         r[:postcode] = $3
       end
       if /medicare: ?([0-9\-\/ ]+)/i =~ file
-        r[:medicare] = $1.delete(" -/")
+        r[:medicare] = $1
       end
       if /CRN: ?([0-9\-\/ ]+)/i =~ file
         r[:crn] = $1.delete(" -/")
