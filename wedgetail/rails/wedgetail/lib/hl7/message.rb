@@ -152,7 +152,8 @@ module HL7
       else
         segs = @segments[range].map {|x| x.to_hl7}
       end
-      segs.join("\r")+"\r"
+      s = segs.join("\r")
+      return s+"\r"
     end
     
     # as for to_hl7 but add MLLP marker bytes

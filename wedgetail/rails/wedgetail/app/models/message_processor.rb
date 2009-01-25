@@ -66,6 +66,7 @@ class MessageProcessor
     @logger = logger
     @logger ||= ActiveRecord::Base.logger
     upload(user_id,file,content_type,plaintext)
+    @id = nil
   end
   
   # the Rails logger, for compatibility with the rest of the framework
@@ -256,11 +257,16 @@ class MessageProcessor
   def save
     @narrs.each do |narr|
       narr.save
+      @id = narr.id
       narr.sendout
       @status = "File successfully uploaded" if @status == "no action performed"
     end
   end
   
+
+  def get_id
+    @id
+  end
   # this and the other make_XXX encapsulate code that is specific to using Abiword as our processor for proprietary formats
   # if we want to replace it when the interfaces of make_html_XXX functions should be preserved
   
