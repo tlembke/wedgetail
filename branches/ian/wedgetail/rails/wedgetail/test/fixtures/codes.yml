@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+# two:
+#   column: value
+one:
+  type: Drug
+  code: "1.3.6.1.4.1.18298.2.2" 
+  name: "risperidone 2mg tab"
+  values: {qty: 30, rpt: 5}
+two:
+  type: Diagnosis
+  code: 1.3.6.1.4.1.18298.4.1.95
+  name: "yellow fever"
+  values: {"icd10": "A95"}
