@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
     errors.add(:team,"team captains must have a team") if role==3 and team.blank?
     errors.add(:dob,"patients must have a birthdate") if role==5 and dob.blank?
     unless medicare.blank?
-      self.medicare=medicare.delete " -"
+      self.medicare=medicare.delete " -/"
       if medicare =~ /^[0-9]{10}$/
         errors.add(:medicare,"Wedgetail requires Medicare numbers to have 11 digits, the final digit is the one next to the patient's name. If it is not there, use 1.")
       elsif medicare =~ /^[0-9]{11}$/
@@ -179,7 +179,7 @@ class User < ActiveRecord::Base
 
   def self.find_fuzzy(familyname,firstname,dob,medicare)
     
-    medicare.delete! " -" if medicare
+    medicare.delete! " -/" if medicare
     familyname.gsub!(%q('),%q(\\\'))
     firstname.gsub!(%q('),%q(\\\'))
     sdob = dob.strftime "%Y-%-m-%-d" # use date that works with database
