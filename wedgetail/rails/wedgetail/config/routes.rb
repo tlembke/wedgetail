@@ -34,6 +34,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connnect 'record/narrative/:id',
               :controller => "record",
               :action => "narrative"
+  map.connect 'entry/gen_pdf/:id',
+              :controller=>'entry',:action=>'gen_pdf'
   map.connnect 'messages/:action/:id',
               :controller => "messages"
   map.connnect 'prefs/:action/:id',

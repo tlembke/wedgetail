@@ -7,7 +7,7 @@ include Open3
 class LoginController < ApplicationController
   before_filter :redirect_to_ssl
   before_filter :authenticate, :except =>[:login,:logout]
-  layout "record"
+  layout "standard"
 
   def add_user
     # team leaders can create new providers
@@ -26,6 +26,7 @@ class LoginController < ApplicationController
         @newuser.errors.add(:role,"Cannot create a user with more rights than yourself")
       else
         @newuser.wedgetail=WedgePassword.make("P")
+        @newuser.hatched = false
         if @newuser.save 
           flash.now[:notice] = "User #{@newuser.username} created" 
           @newuser = User.new 

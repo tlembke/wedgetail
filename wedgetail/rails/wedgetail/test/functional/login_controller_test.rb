@@ -19,7 +19,7 @@ class LoginControllerTest < Test::Unit::TestCase
   def upload_cert(cert)
     user = users(:one)
     post(:load_certificate,{:wedgetail=>user.wedgetail, :certificate_upload=>{:certificate=>fixture_file_upload(cert,"application/octet-stream")}},{:user_id=>user.id})
-    assert_redirected_to :controller=>'login',:action=>'edit'
+    assert_redirected_to :controller=>'login',:action=>'edit',:wedgetail=>'12346'
     assert_equal "Certificate Uploaded", flash[:notice]
   end
   
