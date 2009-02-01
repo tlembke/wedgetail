@@ -59,9 +59,7 @@ class MessagesController < ApplicationController
   
   def new
     @message = Message.new
-    if(params[:id])
-      @recipient_user=User.find_by_wedgetail(params[:id])
-    end
+    @recipient_user=User.find_by_wedgetail(params[:id],:order=>"created_at desc") if params[:id]
     if(params[:re_id])
       @message.re=params[:re_id]
       @re=User.find_by_wedgetail(params[:re_id],:order =>"created_at DESC");

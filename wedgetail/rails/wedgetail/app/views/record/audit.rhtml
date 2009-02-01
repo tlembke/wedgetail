@@ -1,5 +1,3 @@
-<%= render(:partial => "patient_demographic") %>
-
 <h1>Access Log</h1>
 <table width=100%>
 
@@ -9,9 +7,8 @@
 		<% i=@audits.length-1 %>
 		<% for audit in @audits%>
 			
-			<%= audit.created_at.strftime("%H:%M %d/%m/%y") %>  <%= audit.user.family_name%>
-			<%= ", " if audit.user.given_names!=""%>
-			<%= audit.user.given_names%><br>
+			<%= audit.created_at.strftime("%H:%M %d/%m/%y") %>  
+<%= audit.user.full_name %><br>
 			<% i=i-1 %>
 			<%if (i < @audits.length/2) %>
 				</td><td width=50% valign=top> 

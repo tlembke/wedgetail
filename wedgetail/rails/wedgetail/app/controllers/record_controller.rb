@@ -30,6 +30,16 @@ class RecordController < ApplicationController
          @audits = Audit.paginate(:page => params[:page],:per_page => 60, :order => 'created_at DESC', :conditions => ["patient=?", params[:wedgetail]])
       end  
       
+
+      # show outgoing messages of narrative
+      def outgoings
+        @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
+        authorize_only (:patient) {@patient.wedgetail == @user.wedgetail}
+        authorize :user
+        @narrative = Narrative.find(params[:id])
+        @outgoings = @narrative.outgoing_messages
+      end
+
       #main patient display
       def show
         @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
@@ -86,6 +96,7 @@ class RecordController < ApplicationController
         authorize_only(:user){@patient.firewall(@user)}
         authorize :admin
         @audit=Audit.create(:patient=>@wedgetail,:user_wedgetail=>@user.wedgetail)
+        OutgoingMessage.check_view(@user,@narrative) if @narrative
       end
       
       def new

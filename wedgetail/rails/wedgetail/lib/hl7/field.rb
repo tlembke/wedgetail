@@ -129,21 +129,18 @@ module HL7
         x =  f.delete(i)
         kls = fields_desc[i][2]
         if kls == Obx5
-          begin
-            kls = eval("#{value_type.capitalize}")
-          rescue NameError
-            raise HL7::Error, "Unknown OBX-5 type: #{value_type}"
-          end
-        end
-        if x
-          if fields_desc[i][1] and x.kind_of? Array
-            s << x.map {|y| kls.to_hl7(y)}.join(@rep_sep)
-          else
-            y = kls.to_hl7(x)
-            if y.nil?
-              y = ''
+          s << x.to_s
+        else
+          if x
+            if fields_desc[i][1] and x.kind_of? Array
+              s << x.map {|y| kls.to_hl7(y)}.join(@rep_sep)
+            else
+              y = kls.to_hl7(x)
+              if y.nil?
+                y = ''
+              end
+              s << y
             end
-            s << y
           end
         end
         i += 1

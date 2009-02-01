@@ -1,5 +1,5 @@
-<%= link_to @user.given_names+" "+ @user.family_name, :controller=>'login', :action=>'password',:wedgetail=>@user.wedgetail if @user.role > 3 and @user.role < 6 %>
-<%= link_to @user.given_names+" "+ @user.family_name, :controller=>'login', :action=>'edit',:wedgetail=>@user.wedgetail if @user.role < 4%>	
+<%= link_to @user.given_names+" "+ @user.family_name, :controller=>'login', :action=>'password',:wedgetail=>@user.wedgetail if @user.role == 5 %>
+<%= link_to @user.given_names+" "+ @user.family_name, :controller=>'login', :action=>'edit',:wedgetail=>@user.wedgetail if @user.role <= 4 %>	
 
 
 <% if @user.role<7 %>

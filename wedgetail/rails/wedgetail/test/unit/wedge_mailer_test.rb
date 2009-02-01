@@ -33,14 +33,14 @@ Re: Potter, Harry, dob: 11/8/1994
 
 This is a unit test message
 eom
-    m = WedgeMailer.crypto_deliver(text,"text/plain",:x509,"ihaywood@iinet.net.au")
+    m = WedgeMailer.crypto_deliver(1,text,"text/plain",:x509,"ihaywood@iinet.net.au")
     WedgeMailer.receive(m.encoded)
     n = Narrative.find_by_wedgetail(users(:harry).wedgetail)
     assert /unit test/ =~ n.content
   end
       
   def test_send
-    m = WedgeMailer.crypto_deliver("This is a an example message","text/plain",:x509,"ihaywood@iinet.net.au")
+    m = WedgeMailer.crypto_deliver(1,"This is a an example message","text/plain",:x509,"ihaywood@iinet.net.au")
     assert m
   end
 

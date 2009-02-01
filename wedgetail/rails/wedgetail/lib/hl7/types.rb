@@ -214,6 +214,7 @@ class Ft < St
   def self.to_hl7(string)
     string = common_to_hl7 string
     string.gsub!("\n","\\.br\\")
+    string
   end
 end
 
