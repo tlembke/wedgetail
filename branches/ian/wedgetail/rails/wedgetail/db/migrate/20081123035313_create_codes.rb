@@ -5,6 +5,7 @@ class CreateCodes < ActiveRecord::Migration
       t.column :name, :string
       t.column :values, :text
       t.column :type, :string
+      t.column :deleted, :boolean, :default=>false
       t.timestamps
     end
   end

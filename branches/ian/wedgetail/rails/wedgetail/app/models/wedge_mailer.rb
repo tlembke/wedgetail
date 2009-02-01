@@ -144,11 +144,11 @@ EOF
     b64.gsub!("\n","\r\n")
     case mime
       when 'text/plain','text/x-clinical'
-      fname  = '%X.txt'
+      fname = 'W%.7X.txt'
       when 'application/edi-hl7'
-      fname = '%X.hl7'
+      fname = 'W%.7X.hl7'
       else
-      fname = '%X.dat'
+      fname = 'W%.7X.dat'
       end
     fname = fname % id
     mail_out = "Content-Type: application/octet-stream;name=\"#{fname}\"\r\nContent-Transfer-Encoding: base64\r\nContent-Disposition: ATTACHMENT; filename=\"#{fname}\"\r\n\r\n#{b64}"
@@ -189,8 +189,6 @@ EOF
       logger.info "signing error: %p" % err
       raise WedgieError, err
     end
-    logger.debug "***signed message***"
-    logger.debug result
     f = RAILS_ROOT+'/certs/'+to
     unless File.exists? f
       raise WedgieError, "I don't have a certificate for %s" % to

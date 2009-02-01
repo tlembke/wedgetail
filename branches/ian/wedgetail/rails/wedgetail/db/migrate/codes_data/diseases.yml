@@ -1,3164 +1,2373 @@
 ---
-code: 1.3.6.1.4.1.18298.4.1.95
+code: "A95"
 name: "yellow fever"
-values: {"icd10": "A95"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.25.1
+code: "Q251"
 name: "coarctation"
-values: {"icd10": "Q251"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.18.1
+code: "H181"
 name: "bullous keratopathy"
-values: {"icd10": "H181"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.73.6
+code: "Z736"
 name: "disability"
-values: {"icd10": "Z736"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.35
+code: "B35"
 name: "dermatophytosis"
-values: {"icd10": "B35"}
 ---
-code: 1.3.6.1.4.1.18298.4.19.6.5
+code: "S065"
 name: "subdural haemorrhage"
-values: {"icd10": "S065"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.60
+code: "H60"
 name: "acute otitis externa"
-values: {"icd10": "H60"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.25
+code: "I25"
 name: "ischaemic heart disease"
-values: {"icd10": "I25"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.70
+code: "Q70"
 name: "syndactyly"
-values: {"icd10": "Q70"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.7.1
+code: "A071"
 name: "giardia"
-values: {"icd10": "A071"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.58
+code: "K58"
 name: "irritable bowel syndrome"
-values: {"icd10": "K58"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.14.2.2
+code: "E1422"
 name: "diabetic nephropathy"
-values: {"icd10": "E1422"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.31
+code: "F31"
 name: "bipolar"
-values: {"icd10": "F31"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.64.0
+code: "Q640"
 name: "epispadias"
-values: {"icd10": "Q640"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.59.0
+code: "A590"
 name: "urogenital trichomoniasis"
-values: {"icd10": "A590"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.26
+code: "R26"
 name: "mobility"
-values: {"icd10": "R26"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.55
+code: "H55"
 name: "nystagmus"
-values: {"icd10": "H55"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.48.0
+code: "Z480"
 name: "dressing"
-values: {"icd10": "Z480"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.3
+code: "J03"
 name: "tonsillitis"
-values: {"icd10": "J03"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.82
+code: "L82"
 name: "seborrhoeic keratosis"
-values: {"icd10": "L82"}
 ---
-code: 1.3.6.1.4.1.18298.4.19.6.4
+code: "S064"
 name: "epidural haemorrhage"
-values: {"icd10": "S064"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.4.1
+code: "E041"
 name: "thyroid nodule nontoxic"
-values: {"icd10": "E041"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.52
+code: "D52"
 name: "folate deficiency"
-values: {"icd10": "D52"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.83
+code: "I83"
 name: "varicose veins of legs"
-values: {"icd10": "I83"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.51
+code: "D51"
 name: "b12 deficiency"
-values: {"icd10": "D51"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.42
+code: "L42"
 name: "pityriasis rosea"
-values: {"icd10": "L42"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.18
+code: "D18"
 name: "lymphangioma"
-values: {"icd10": "D18"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.70
+code: "I70"
 name: "atherosclerosis"
-values: {"icd10": "I70"}
 ---
-code: 1.3.6.1.4.1.18298.4.3.90
+code: "C90"
 name: "multiple myeloma"
-values: {"icd10": "C90"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.98.5
+code: "F985"
 name: "stuttering"
-values: {"icd10": "F985"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.41
+code: "K41"
 name: "femoral hernia"
-values: {"icd10": "K41"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.1
+code: "B01"
 name: "chickenpox"
-values: {"icd10": "B01"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.7.1
+code: "A071"
 name: "giardiasis"
-values: {"icd10": "A071"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.68
+code: "D68"
 name: "coagulation defects"
-values: {"icd10": "D68"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.59.0
+code: "K590"
 name: "constipation"
-values: {"icd10": "K590"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.70.0
+code: "L700"
 name: "acne vulgaris"
-values: {"icd10": "L700"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.8.1
+code: "B081"
 name: "contagiosum"
-values: {"icd10": "B081"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.2.4
+code: "Z024"
 name: "driving"
-values: {"icd10": "Z024"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.39.3
+code: "N393"
 name: "stress incontinence"
-values: {"icd10": "N393"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.69.3
+code: "D693"
 name: "idiopathic thrombocytopenic purpura"
-values: {"icd10": "D693"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.81.4
+code: "N814"
 name: "uterovaginal prolapse"
-values: {"icd10": "N814"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.74
+code: "K74"
 name: "cirrhosis"
-values: {"icd10": "K74"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.51.0
+code: "G510"
 name: "bell's palsy"
-values: {"icd10": "G510"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.95.0
+code: "N950"
 name: "postmenopausal bleeding"
-values: {"icd10": "N950"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.47.0
+code: "I470"
 name: "ventricular arrhythmia"
-values: {"icd10": "I470"}
 ---
-code: 1.3.6.1.4.1.18298.4.19.6.0.0
+code: "S0600"
 name: "concussion"
-values: {"icd10": "S0600"}
 ---
-code: 1.3.6.1.4.1.18298.4.15.91.2
+code: "O912"
 name: "mastitis"
-values: {"icd10": "O912"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.4.1
+code: "J041"
 name: "tracheitis"
-values: {"icd10": "J041"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.5
+code: "E05"
 name: "thyrotoxicosis"
-values: {"icd10": "E05"}
 ---
-code: 1.3.6.1.4.1.18298.4.15.1
+code: "O01"
 name: "hydatidiform mole"
-values: {"icd10": "O01"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.0.1
+code: "K001"
 name: "supernumerary teeth"
-values: {"icd10": "K001"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.36
+code: "J36"
 name: "peritonsillar abscess"
-values: {"icd10": "J36"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.84
+code: "L84"
 name: "corns"
-values: {"icd10": "L84"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.35.0
+code: "I350"
 name: "aortic stenosis"
-values: {"icd10": "I350"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.70
+code: "G70"
 name: "myasthenia gravis"
-values: {"icd10": "G70"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.60.5
+code: "K605"
 name: "anorectal fistula"
-values: {"icd10": "K605"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.70
+code: "L70"
 name: "acne"
-values: {"icd10": "L70"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.77.1
+code: "M771"
 name: "lateral epicondylitis"
-values: {"icd10": "M771"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.51.5
+code: "Z515"
 name: "palliative"
-values: {"icd10": "Z515"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.35.5
+code: "B355"
 name: "tinea imbricata"
-values: {"icd10": "B355"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.14
+code: "J14"
 name: "haemophilus"
-values: {"icd10": "J14"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.7.4
+code: "R074"
 name: "chest pain"
-values: {"icd10": "R074"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.43.0
+code: "F430"
 name: "acute stress"
-values: {"icd10": "F430"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.25.0
+code: "Q250"
 name: "patent ductus arteriosus"
-values: {"icd10": "Q250"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.92
+code: "G92"
 name: "encephalopathy"
-values: {"icd10": "G92"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.80.9
+code: "F809"
 name: "disorder of speech"
-values: {"icd10": "F809"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.49.1
+code: "Z491"
 name: "extracorporeal"
-values: {"icd10": "Z491"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.44
+code: "K44"
 name: "hiatus hernia"
-values: {"icd10": "K44"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.61
+code: "I61"
 name: "cerebral haemorrhage"
-values: {"icd10": "I61"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.44
+code: "I44"
 name: "lbbb"
-values: {"icd10": "I44"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.80
+code: "K80"
 name: "cholelithiasis"
-values: {"icd10": "K80"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.76.0
+code: "Z760"
 name: "repeat prescription"
-values: {"icd10": "Z760"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.5.9
+code: "F059"
 name: "organic psychosis"
-values: {"icd10": "F059"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.53
+code: "Q53"
 name: "undescended testicle"
-values: {"icd10": "Q53"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.11.3
+code: "H113"
 name: "conjunctival haemorrhage"
-values: {"icd10": "H113"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.4.2
+code: "R042"
 name: "haemoptysis"
-values: {"icd10": "R042"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.2
+code: "B02"
 name: "herpes zoster"
-values: {"icd10": "B02"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.35.6
+code: "B356"
 name: "tinea cruris"
-values: {"icd10": "B356"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.20.9
+code: "N209"
 name: "urinary calculus"
-values: {"icd10": "N209"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.60
+code: "I60"
 name: "subarachnoid"
-values: {"icd10": "I60"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.56.5
+code: "K565"
 name: "bands"
-values: {"icd10": "K565"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.1.0
+code: "A010"
 name: "typhoid"
-values: {"icd10": "A010"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.73.2
+code: "K732"
 name: "chronic active hepatitis"
-values: {"icd10": "K732"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.50
+code: "K50"
 name: "crohn's disease"
-values: {"icd10": "K50"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.80
+code: "N80"
 name: "endometriosis"
-values: {"icd10": "N80"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.32
+code: "R32"
 name: "urinary incontinence"
-values: {"icd10": "R32"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.73
+code: "H73"
 name: "myringitis"
-values: {"icd10": "H73"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.94.1
+code: "N941"
 name: "dyspareunia"
-values: {"icd10": "N941"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.55
+code: "R55"
 name: "syncope"
-values: {"icd10": "R55"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.54
+code: "Q54"
 name: "hypospadias"
-values: {"icd10": "Q54"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.14
+code: "R14"
 name: "flatulence"
-values: {"icd10": "R14"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.5
+code: "L05"
 name: "pilonidal"
-values: {"icd10": "L05"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.71
+code: "L71"
 name: "rosacea"
-values: {"icd10": "L71"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.53.2
+code: "H532"
 name: "diplopia"
-values: {"icd10": "H532"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.35
+code: "G35"
 name: "multiple sclerosis"
-values: {"icd10": "G35"}
 ---
-code: 1.3.6.1.4.1.18298.4.20.59.5
+code: "T595"
 name: "fluoride"
-values: {"icd10": "T595"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.30.4
+code: "J304"
 name: "rhinitis"
-values: {"icd10": "J304"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.23
+code: "N23"
 name: "renal colic"
-values: {"icd10": "N23"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.46
+code: "I46"
 name: "arrest"
-values: {"icd10": "I46"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.20.1
+code: "M201"
 name: "hallux valgus"
-values: {"icd10": "M201"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.76
+code: "N76"
 name: "vulvitis"
-values: {"icd10": "N76"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.1.9
+code: "I019"
 name: "acute rheumatic fever"
-values: {"icd10": "I019"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.21
+code: "K21"
 name: "gastro-oesophageal reflux"
-values: {"icd10": "K21"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.35
+code: "A35"
 name: "tetanus"
-values: {"icd10": "A35"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.75.2
+code: "Q752"
 name: "hypertelorism"
-values: {"icd10": "Q752"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.50
+code: "L50"
 name: "urticaria"
-values: {"icd10": "L50"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.50
+code: "I50"
 name: "cardiac failure"
-values: {"icd10": "I50"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.6.7
+code: "R067"
 name: "sneezing"
-values: {"icd10": "R067"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.30.5
+code: "L305"
 name: "pityriasis alba"
-values: {"icd10": "L305"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.84
+code: "I84"
 name: "haemorrhoid"
-values: {"icd10": "I84"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.5
+code: "E05"
 name: "hyperthyroidism"
-values: {"icd10": "E05"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.83.0
+code: "K830"
 name: "cholangitis"
-values: {"icd10": "K830"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.18
+code: "N18"
 name: "chronic renal failure"
-values: {"icd10": "N18"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.30.1
+code: "L301"
 name: "pompholyx"
-values: {"icd10": "L301"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.33
+code: "M33"
 name: "polymyositis"
-values: {"icd10": "M33"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.35
+code: "R35"
 name: "polyuria"
-values: {"icd10": "R35"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.45.9
+code: "N459"
 name: "epididymo-orchitis"
-values: {"icd10": "N459"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.45
+code: "N45"
 name: "orchitis"
-values: {"icd10": "N45"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.78.1
+code: "I781"
 name: "naevus"
-values: {"icd10": "I781"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.2.0
+code: "H020"
 name: "trichiasis"
-values: {"icd10": "H020"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.37
+code: "K37"
 name: "appendicitis"
-values: {"icd10": "K37"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.98.1
+code: "Z981"
 name: "arthrodesis"
-values: {"icd10": "Z981"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.92.2
+code: "K922"
 name: "gastrointestinal haemorrhage"
-values: {"icd10": "K922"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.52.2
+code: "R522"
 name: "chronic pain"
-values: {"icd10": "R522"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.81
+code: "K81"
 name: "cholecystitis"
-values: {"icd10": "K81"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.30
+code: "M30"
 name: "polyarteritis nodosa"
-values: {"icd10": "M30"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.9
+code: "A09"
 name: "diarrhoea"
-values: {"icd10": "A09"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.20.2
+code: "M202"
 name: "hallux rigidus"
-values: {"icd10": "M202"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.60
+code: "H60"
 name: "otitis externa"
-values: {"icd10": "H60"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.1
+code: "J01"
 name: "acute sinusitis"
-values: {"icd10": "J01"}
 ---
-code: 1.3.6.1.4.1.18298.4.20.45.5
+code: "T455"
 name: "anticoagulant"
-values: {"icd10": "T455"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.45
+code: "N45"
 name: "epididymitis"
-values: {"icd10": "N45"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.2.0
+code: "H020"
 name: "entropion"
-values: {"icd10": "H020"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.58
+code: "B58"
 name: "toxoplasmosis"
-values: {"icd10": "B58"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.89.4
+code: "Q894"
 name: "conjoined twins"
-values: {"icd10": "Q894"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.35
+code: "B35"
 name: "tinea"
-values: {"icd10": "B35"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.48
+code: "I48"
 name: "atrial fibrillation"
-values: {"icd10": "I48"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.44
+code: "I44"
 name: "left-bundle branch block"
-values: {"icd10": "I44"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.16.0
+code: "H160"
 name: "corneal ulcer"
-values: {"icd10": "H160"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.64
+code: "I64"
 name: "stroke"
-values: {"icd10": "I64"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.0.2
+code: "R002"
 name: "palpitations"
-values: {"icd10": "R002"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.6.0
+code: "R060"
 name: "dyspnoea"
-values: {"icd10": "R060"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.1.3
+code: "Z013"
 name: "blood pressure"
-values: {"icd10": "Z013"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.81.1
+code: "N811"
 name: "cystocele"
-values: {"icd10": "N811"}
 ---
-code: 1.3.6.1.4.1.18298.4.3.81
+code: "C81"
 name: "hodgkin's disease"
-values: {"icd10": "C81"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.43
+code: "N43"
 name: "hydrocele"
-values: {"icd10": "N43"}
 ---
-code: 1.3.6.1.4.1.18298.4.23.42
+code: "W42"
 name: "noise"
-values: {"icd10": "W42"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.66
+code: "L66"
 name: "folliculitis"
-values: {"icd10": "L66"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.67.6
+code: "Q676"
 name: "excavatum"
-values: {"icd10": "Q676"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.40
+code: "G40"
 name: "epilepsy"
-values: {"icd10": "G40"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.48
+code: "F48"
 name: "neurotic disorder"
-values: {"icd10": "F48"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.29.4
+code: "R294"
 name: "clicking hip"
-values: {"icd10": "R294"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.47.0
+code: "G470"
 name: "insomnia"
-values: {"icd10": "G470"}
 ---
-code: 1.3.6.1.4.1.18298.4.15.82
+code: "O82"
 name: "caesarean"
-values: {"icd10": "O82"}
 ---
-code: 1.3.6.1.4.1.18298.4.15.81
+code: "O81"
 name: "forceps"
-values: {"icd10": "O81"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.67.6
+code: "Q676"
 name: "pectus excavatum"
-values: {"icd10": "Q676"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.76.0
+code: "N760"
 name: "vaginitis"
-values: {"icd10": "N760"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.5
+code: "R05"
 name: "cough"
-values: {"icd10": "R05"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.82.0
+code: "N820"
 name: "vesicovaginal fistula"
-values: {"icd10": "N820"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.41.0
+code: "N410"
 name: "acute prostatitis"
-values: {"icd10": "N410"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.5
+code: "J05"
 name: "croup"
-values: {"icd10": "J05"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.84
+code: "I84"
 name: "haemorrhoids"
-values: {"icd10": "I84"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.51
+code: "K51"
 name: "ulcerative colitis"
-values: {"icd10": "K51"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.54.4
+code: "M544"
 name: "lumbago"
-values: {"icd10": "M544"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.95.5
+code: "Z955"
 name: "angioplasty"
-values: {"icd10": "Z955"}
 ---
-code: 1.3.6.1.4.1.18298.4.20.59.1
+code: "T591"
 name: "sulphur dioxide"
-values: {"icd10": "T591"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.86
+code: "N86"
 name: "ectropion"
-values: {"icd10": "N86"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.5
+code: "K05"
 name: "gingivitis"
-values: {"icd10": "K05"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.77.3
+code: "M773"
 name: "calcaneal spur"
-values: {"icd10": "M773"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.44
+code: "N44"
 name: "testicular torsion"
-values: {"icd10": "N44"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.33
+code: "R33"
 name: "urinary retention"
-values: {"icd10": "R33"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.80
+code: "H80"
 name: "otosclerosis"
-values: {"icd10": "H80"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.58.0
+code: "D580"
 name: "spherocytosis"
-values: {"icd10": "D580"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.54
+code: "H54"
 name: "blindness"
-values: {"icd10": "H54"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.75.2
+code: "D752"
 name: "essential thrombocytosis"
-values: {"icd10": "D752"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.51.8.1
+code: "Z5181"
 name: "apheresis"
-values: {"icd10": "Z5181"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.93.1
+code: "H931"
 name: "tinnitus"
-values: {"icd10": "H931"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.10
+code: "M10"
 name: "gout"
-values: {"icd10": "M10"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.20
+code: "I20"
 name: "angina"
-values: {"icd10": "I20"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.44
+code: "N44"
 name: "torsion of testis"
-values: {"icd10": "N44"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.1
+code: "L01"
 name: "impetigo"
-values: {"icd10": "L01"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.9
+code: "A09"
 name: "dysentery"
-values: {"icd10": "A09"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.85
+code: "B85"
 name: "pediculosis"
-values: {"icd10": "B85"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.35.0
+code: "B350"
 name: "tinea barbae"
-values: {"icd10": "B350"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.20
+code: "J20"
 name: "acute bronchitis"
-values: {"icd10": "J20"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.21
+code: "K21"
 name: "oesophageal reflux"
-values: {"icd10": "K21"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.24.5
+code: "G245"
 name: "blepharospasm"
-values: {"icd10": "G245"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.65
+code: "M65"
 name: "synovitis"
-values: {"icd10": "M65"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.38.2
+code: "Q382"
 name: "macroglossia"
-values: {"icd10": "Q382"}
 ---
-code: 1.3.6.1.4.1.18298.4.20.3
+code: "T03"
 name: "dislocations"
-values: {"icd10": "T03"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.78.5
+code: "E785"
 name: "hyperlipidaemia"
-values: {"icd10": "E785"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.16.0
+code: "R160"
 name: "hepatomegaly"
-values: {"icd10": "R160"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.44
+code: "K44"
 name: "diaphragmatic hernia"
-values: {"icd10": "K44"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.6.2
+code: "R062"
 name: "wheezing"
-values: {"icd10": "R062"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.50.4
+code: "Z504"
 name: "psychotherapy"
-values: {"icd10": "Z504"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.16.1
+code: "R161"
 name: "splenomegaly"
-values: {"icd10": "R161"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.50.0
+code: "G500"
 name: "trigeminal neuralgia"
-values: {"icd10": "G500"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.75
+code: "N75"
 name: "bartholin's"
-values: {"icd10": "N75"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.25.0
+code: "Q250"
 name: "arteriosus"
-values: {"icd10": "Q250"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.39.2
+code: "Q392"
 name: "tracheo-oesophageal fistula"
-values: {"icd10": "Q392"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.44.0
+code: "G440"
 name: "cluster headache"
-values: {"icd10": "G440"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.93.1
+code: "Z931"
 name: "gastrostomy"
-values: {"icd10": "Z931"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.61.2
+code: "K612"
 name: "anorectal abscess"
-values: {"icd10": "K612"}
 ---
-code: 1.3.6.1.4.1.18298.4.25.57.0
+code: "Y570"
 name: "anorectic"
-values: {"icd10": "Y570"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.43.7
+code: "Q437"
 name: "cloaca"
-values: {"icd10": "Q437"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.81
+code: "H81"
 name: "vestibular"
-values: {"icd10": "H81"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.39.2
+code: "N392"
 name: "orthostatic proteinuria"
-values: {"icd10": "N392"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.21
+code: "J21"
 name: "bronchiolitis"
-values: {"icd10": "J21"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.8.9
+code: "L089"
 name: "infection of skin"
-values: {"icd10": "L089"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.38
+code: "A38"
 name: "scarlet fever"
-values: {"icd10": "A38"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.98.5
+code: "F985"
 name: "stammering"
-values: {"icd10": "F985"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.35.3
+code: "B353"
 name: "tinea pedis"
-values: {"icd10": "B353"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.86
+code: "B86"
 name: "scabies"
-values: {"icd10": "B86"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.65
+code: "H65"
 name: "serous otitis media"
-values: {"icd10": "H65"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.45
+code: "J45"
 name: "asthma"
-values: {"icd10": "J45"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.56.1
+code: "K561"
 name: "intussusception"
-values: {"icd10": "K561"}
 ---
-code: 1.3.6.1.4.1.18298.4.20.70.3
+code: "T703"
 name: "decompression"
-values: {"icd10": "T703"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.81.0
+code: "H810"
 name: "meniere's disease"
-values: {"icd10": "H810"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.71
+code: "H71"
 name: "cholesteatoma"
-values: {"icd10": "H71"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.51.3
+code: "G513"
 name: "facial spasm"
-values: {"icd10": "G513"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.6
+code: "B06"
 name: "rubella"
-values: {"icd10": "B06"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.30.0
+code: "R300"
 name: "dysuria"
-values: {"icd10": "R300"}
 ---
-code: 1.3.6.1.4.1.18298.4.15.0
+code: "O00"
 name: "ectopic pregnancy"
-values: {"icd10": "O00"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.73
+code: "K73"
 name: "hepatitis"
-values: {"icd10": "K73"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.48.3
+code: "N483"
 name: "priapism"
-values: {"icd10": "N483"}
 ---
-code: 1.3.6.1.4.1.18298.4.15.86
+code: "O86"
 name: "puerperal infection"
-values: {"icd10": "O86"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.35.0
+code: "B350"
 name: "tinea capitis"
-values: {"icd10": "B350"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.73
+code: "N73"
 name: "pelvic inflammatory disease"
-values: {"icd10": "N73"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.41
+code: "M41"
 name: "scoliosis"
-values: {"icd10": "M41"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.50
+code: "Z50"
 name: "rehabilitation"
-values: {"icd10": "Z50"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.77.0
+code: "M770"
 name: "medial epicondylitis"
-values: {"icd10": "M770"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.20
+code: "G20"
 name: "parkinson's disease"
-values: {"icd10": "G20"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.71.1
+code: "L711"
 name: "rhinophyma"
-values: {"icd10": "L711"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.32.1
+code: "N321"
 name: "vesicointestinal fistula"
-values: {"icd10": "N321"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.63.4
+code: "R634"
 name: "weight loss"
-values: {"icd10": "R634"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.6.2
+code: "G062"
 name: "subdural abscess"
-values: {"icd10": "G062"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.85
+code: "I85"
 name: "varices"
-values: {"icd10": "I85"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.26
+code: "I26"
 name: "pulmonary embolism"
-values: {"icd10": "I26"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.37
+code: "B37"
 name: "candida"
-values: {"icd10": "B37"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.30
+code: "J30"
 name: "allergic rhinitis"
-values: {"icd10": "J30"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.81.5
+code: "N815"
 name: "enterocele"
-values: {"icd10": "N815"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.22.1
+code: "E221"
 name: "hyperprolactinaemia"
-values: {"icd10": "E221"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.54.3
+code: "M543"
 name: "sciatia"
-values: {"icd10": "M543"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.41.0
+code: "N410"
 name: "prostatitis, acute"
-values: {"icd10": "N410"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.93.0
+code: "Z930"
 name: "tracheostomy"
-values: {"icd10": "Z930"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.39.1
+code: "Z391"
 name: "lactating"
-values: {"icd10": "Z391"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.34
+code: "N34"
 name: "urethritis"
-values: {"icd10": "N34"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.11
+code: "R11"
 name: "vomiting"
-values: {"icd10": "R11"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.20
+code: "K20"
 name: "oesophagitis"
-values: {"icd10": "K20"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.50
+code: "D50"
 name: "iron deficiency"
-values: {"icd10": "D50"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.20.4
+code: "M204"
 name: "hammer toe"
-values: {"icd10": "M204"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.98.1
+code: "F981"
 name: "encopresis"
-values: {"icd10": "F981"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.3
+code: "L03"
 name: "cellulitis"
-values: {"icd10": "L03"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.43
+code: "N43"
 name: "spermatocele"
-values: {"icd10": "N43"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.6
+code: "J06"
 name: "upper respiratory infection"
-values: {"icd10": "J06"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.34
+code: "Z34"
 name: "antenatal care"
-values: {"icd10": "Z34"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.14
+code: "E14"
 name: "diabetic"
-values: {"icd10": "E14"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.63
+code: "L63"
 name: "alopecia areata"
-values: {"icd10": "L63"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.27
+code: "I27"
 name: "pulmonary heart disease"
-values: {"icd10": "I27"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.37.0
+code: "A370"
 name: "pertussis"
-values: {"icd10": "A370"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.60
+code: "K60"
 name: "fissure"
-values: {"icd10": "K60"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.5.1
+code: "A051"
 name: "botulism"
-values: {"icd10": "A051"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.33
+code: "Z33"
 name: "pregnant"
-values: {"icd10": "Z33"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.15
+code: "R15"
 name: "faecal incontinence"
-values: {"icd10": "R15"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.81
+code: "H81"
 name: "vertigo"
-values: {"icd10": "H81"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.50
+code: "I50"
 name: "heart failure"
-values: {"icd10": "I50"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.36.1
+code: "B361"
 name: "tinea nigra"
-values: {"icd10": "B361"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.86
+code: "M86"
 name: "osteomyelitis"
-values: {"icd10": "M86"}
 ---
-code: 1.3.6.1.4.1.18298.4.20.16
+code: "T16"
 name: "foreign body in ear"
-values: {"icd10": "T16"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.67.7
+code: "Q677"
 name: "pectus carinatum"
-values: {"icd10": "Q677"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.60
+code: "A60"
 name: "genital herpes"
-values: {"icd10": "A60"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.97
+code: "N97"
 name: "infertility female"
-values: {"icd10": "N97"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.7
+code: "B07"
 name: "warts"
-values: {"icd10": "B07"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.25
+code: "K25"
 name: "gastric ulcer"
-values: {"icd10": "K25"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.47
+code: "N47"
 name: "redundant prepuce"
-values: {"icd10": "N47"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.11.7.2
+code: "E1172"
 name: "insulin resistance"
-values: {"icd10": "E1172"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.92.1
+code: "H921"
 name: "otorrhoea"
-values: {"icd10": "H921"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.47
+code: "N47"
 name: "phimosis"
-values: {"icd10": "N47"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.66.4
+code: "Q664"
 name: "talipes calcaneovalgus"
-values: {"icd10": "Q664"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.67.7
+code: "Q677"
 name: "carinatum"
-values: {"icd10": "Q677"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.92.0
+code: "Z920"
 name: "contraception"
-values: {"icd10": "Z920"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.48
+code: "I48"
 name: "atrial flutter"
-values: {"icd10": "I48"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.52
+code: "Z52"
 name: "donor"
-values: {"icd10": "Z52"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.5
+code: "E05"
 name: "hyperthyroid"
-values: {"icd10": "E05"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.56.2
+code: "K562"
 name: "volvulus"
-values: {"icd10": "K562"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.71
+code: "A71"
 name: "trachoma"
-values: {"icd10": "A71"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.0
+code: "A00"
 name: "cholera"
-values: {"icd10": "A00"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.4
+code: "J04"
 name: "acute laryngitis"
-values: {"icd10": "J04"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.85.6
+code: "N856"
 name: "synechiae"
-values: {"icd10": "N856"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.42
+code: "R42"
 name: "dizziness"
-values: {"icd10": "R42"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.3
+code: "J03"
 name: "acute tonsillitis"
-values: {"icd10": "J03"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.86
+code: "D86"
 name: "sarcoid"
-values: {"icd10": "D86"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.20
+code: "F20"
 name: "schizophrenia"
-values: {"icd10": "F20"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.42
+code: "R42"
 name: "giddiness"
-values: {"icd10": "R42"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.46
+code: "A46"
 name: "erysipelas"
-values: {"icd10": "A46"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.32
+code: "J32"
 name: "chronic sinusitis"
-values: {"icd10": "J32"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.63.1
+code: "R631"
 name: "polydipsia"
-values: {"icd10": "R631"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.9
+code: "I09"
 name: "rheumatic heart disease"
-values: {"icd10": "I09"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.18.6
+code: "Q186"
 name: "macrocheilia"
-values: {"icd10": "Q186"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.73
+code: "E73"
 name: "lactose intolerance"
-values: {"icd10": "E73"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.45.1
+code: "R451"
 name: "agitation"
-values: {"icd10": "R451"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.18.4
+code: "Q184"
 name: "macrostomia"
-values: {"icd10": "Q184"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.27
+code: "K27"
 name: "peptic ulcer"
-values: {"icd10": "K27"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.0.0
+code: "B000"
 name: "eczema"
-values: {"icd10": "B000"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.15.1
+code: "N151"
 name: "perinephric abscess"
-values: {"icd10": "N151"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.34.1
+code: "F341"
 name: "dysthymia"
-values: {"icd10": "F341"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.43
+code: "G43"
 name: "migraine"
-values: {"icd10": "G43"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.47
+code: "I47"
 name: "paroxysmal tachycardia"
-values: {"icd10": "I47"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.6.4
+code: "R064"
 name: "hyperventilation"
-values: {"icd10": "R064"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.81.0
+code: "N810"
 name: "urethrocele"
-values: {"icd10": "N810"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.57
+code: "Z57"
 name: "occupational exposure"
-values: {"icd10": "Z57"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.27
+code: "B27"
 name: "infectious mononucleosis"
-values: {"icd10": "B27"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.66.0
+code: "Q660"
 name: "talipes equinovarus"
-values: {"icd10": "Q660"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.98.0
+code: "F980"
 name: "enuresis"
-values: {"icd10": "F980"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.33
+code: "F33"
 name: "depressive disorder"
-values: {"icd10": "F33"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.47.1
+code: "I471"
 name: "supraventricular tachycardia"
-values: {"icd10": "I471"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.83.0
+code: "H830"
 name: "labyrinthitis"
-values: {"icd10": "H830"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.56.7
+code: "K567"
 name: "ileus"
-values: {"icd10": "K567"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.56
+code: "R56"
 name: "convulsions"
-values: {"icd10": "R56"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.88.1
+code: "I881"
 name: "chronic lymphadenitis"
-values: {"icd10": "I881"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.37
+code: "B37"
 name: "candidiasis"
-values: {"icd10": "B37"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.8.1
+code: "B081"
 name: "molluscum"
-values: {"icd10": "B081"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.6.9
+code: "J069"
 name: "urti"
-values: {"icd10": "J069"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.39.0
+code: "N390"
 name: "urinary infection"
-values: {"icd10": "N390"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.9.3
+code: "R093"
 name: "abnormal sputum"
-values: {"icd10": "R093"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.54
+code: "A54"
 name: "gonorrhoea"
-values: {"icd10": "A54"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.79.2
+code: "Q792"
 name: "exomphalos"
-values: {"icd10": "Q792"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.68.2
+code: "R682"
 name: "dry mouth"
-values: {"icd10": "R682"}
 ---
-code: 1.3.6.1.4.1.18298.4.20.88.3
+code: "T883"
 name: "malignant hyperthermia"
-values: {"icd10": "T883"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.47
+code: "I47"
 name: "tachycardia"
-values: {"icd10": "I47"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.29
+code: "F29"
 name: "psychosis"
-values: {"icd10": "F29"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.14.9
+code: "K149"
 name: "disease of tongue"
-values: {"icd10": "K149"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.44
+code: "J44"
 name: "chronic obstructive pulmonary disease"
-values: {"icd10": "J44"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.36.2
+code: "N362"
 name: "caruncle"
-values: {"icd10": "N362"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.35.4
+code: "B354"
 name: "tinea corporis"
-values: {"icd10": "B354"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.56.9
+code: "E569"
 name: "vitamin deficiency"
-values: {"icd10": "E569"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.51.3
+code: "Z513"
 name: "blood transfusion"
-values: {"icd10": "Z513"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.82
+code: "A82"
 name: "rabies"
-values: {"icd10": "A82"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.43.6
+code: "M436"
 name: "torticollis"
-values: {"icd10": "M436"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.54.5
+code: "M545"
 name: "back pain"
-values: {"icd10": "M545"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.95.0
+code: "G950"
 name: "syringomyelia"
-values: {"icd10": "G950"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.3
+code: "E03"
 name: "hypothyroidism"
-values: {"icd10": "E03"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.11
+code: "R11"
 name: "nausea"
-values: {"icd10": "R11"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.66
+code: "E66"
 name: "obesity"
-values: {"icd10": "E66"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.2
+code: "K02"
 name: "caries"
-values: {"icd10": "K02"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.32
+code: "F32"
 name: "depression"
-values: {"icd10": "F32"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.37.2
+code: "Z372"
 name: "twins"
-values: {"icd10": "Z372"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.66.1
+code: "A661"
 name: "papillomata"
-values: {"icd10": "A661"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.90.0
+code: "K900"
 name: "coeliac"
-values: {"icd10": "K900"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.41.1
+code: "N411"
 name: "chronic prostatitis"
-values: {"icd10": "N411"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.43.1
+code: "Q431"
 name: "hirschsprung's"
-values: {"icd10": "Q431"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.70.6
+code: "M706"
 name: "trochanteric bursitis"
-values: {"icd10": "M706"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.18.9.1
+code: "N1891"
 name: "renal impairment"
-values: {"icd10": "N1891"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.4
+code: "L04"
 name: "acute lymphadenitis"
-values: {"icd10": "L04"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.20
+code: "I20"
 name: "angina pectoris"
-values: {"icd10": "I20"}
 ---
-code: 1.3.6.1.4.1.18298.4.20.79.3
+code: "T793"
 name: "wound infection"
-values: {"icd10": "T793"}
 ---
-code: 1.3.6.1.4.1.18298.4.20.58
+code: "T58"
 name: "monoxide"
-values: {"icd10": "T58"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.26
+code: "B26"
 name: "mumps"
-values: {"icd10": "B26"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.96.8.1
+code: "B9681"
 name: "helicobacter pylori"
-values: {"icd10": "B9681"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.2
+code: "L02"
 name: "carbuncle"
-values: {"icd10": "L02"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.47.3.2
+code: "G4732"
 name: "obstructive sleep apnoea"
-values: {"icd10": "G4732"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.49
+code: "Z49"
 name: "dialysis"
-values: {"icd10": "Z49"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.1.4
+code: "A014"
 name: "paratyphoid"
-values: {"icd10": "A014"}
 ---
-code: 1.3.6.1.4.1.18298.4.20.68
+code: "T68"
 name: "hypothermia"
-values: {"icd10": "T68"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.41.1
+code: "N411"
 name: "prostatitis, chronic"
-values: {"icd10": "N411"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.2.4
+code: "H024"
 name: "ptosis"
-values: {"icd10": "H024"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.93.5
+code: "Z935"
 name: "cystostomy"
-values: {"icd10": "Z935"}
 ---
-code: 1.3.6.1.4.1.18298.4.20.17.3
+code: "T173"
 name: "foreign body in larynx"
-values: {"icd10": "T173"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.79.3
+code: "Q793"
 name: "gastroschisis"
-values: {"icd10": "Q793"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.66.1
+code: "Q661"
 name: "talipescalcaneovarus"
-values: {"icd10": "Q661"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.9.1
+code: "R091"
 name: "pleurisy"
-values: {"icd10": "R091"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.41.2
+code: "Z412"
 name: "circumcision"
-values: {"icd10": "Z412"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.26
+code: "K26"
 name: "duodenal ulcer"
-values: {"icd10": "K26"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.94.3
+code: "N943"
 name: "premenstrual tension syndrome"
-values: {"icd10": "N943"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.43.0
+code: "Q430"
 name: "meckel's"
-values: {"icd10": "Q430"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.50.0
+code: "R500"
 name: "chills"
-values: {"icd10": "R500"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.59.3
+code: "K593"
 name: "megacolon"
-values: {"icd10": "K593"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.92.1
+code: "K921"
 name: "melaena"
-values: {"icd10": "K921"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.87.6
+code: "E876"
 name: "hypokalaemia"
-values: {"icd10": "E876"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.25.0
+code: "Q250"
 name: "patent ductus arteriosus"
-values: {"icd10": "Q250"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.68.0
+code: "L680"
 name: "hirsutism"
-values: {"icd10": "L680"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.51.2
+code: "Z512"
 name: "chemotherapy"
-values: {"icd10": "Z512"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.2
+code: "L02"
 name: "boil"
-values: {"icd10": "L02"}
 ---
-code: 1.3.6.1.4.1.18298.4.20.59.7
+code: "T597"
 name: "carbon dioxide"
-values: {"icd10": "T597"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.33
+code: "Z33"
 name: "incident"
-values: {"icd10": "Z33"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.78.0
+code: "E780"
 name: "hypercholesterolaemia"
-values: {"icd10": "E780"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.29.0
+code: "Z290"
 name: "isolation"
-values: {"icd10": "Z290"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.69
+code: "D69"
 name: "purpura"
-values: {"icd10": "D69"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.10.0
+code: "Z100"
 name: "occupational health"
-values: {"icd10": "Z100"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.37
+code: "A37"
 name: "whooping cough"
-values: {"icd10": "A37"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.93.2
+code: "Z932"
 name: "ileostomy"
-values: {"icd10": "Z932"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.92
+code: "N92"
 name: "irregular menstruation"
-values: {"icd10": "N92"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.54.4
+code: "Q544"
 name: "chordee"
-values: {"icd10": "Q544"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.0
+code: "H00"
 name: "chalazion"
-values: {"icd10": "H00"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.50.6
+code: "Z506"
 name: "orthoptic"
-values: {"icd10": "Z506"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.41.0
+code: "F410"
 name: "panic disorder"
-values: {"icd10": "F410"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.91.2
+code: "N912"
 name: "amenorrhoea"
-values: {"icd10": "N912"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.11.0
+code: "H110"
 name: "pterygium"
-values: {"icd10": "H110"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.90
+code: "K90"
 name: "malabsorption"
-values: {"icd10": "K90"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.52.2
+code: "H522"
 name: "astigmatism"
-values: {"icd10": "H522"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.49
+code: "I49"
 name: "arrhythmia"
-values: {"icd10": "I49"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.21
+code: "E21"
 name: "hyperparathyroidism"
-values: {"icd10": "E21"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.22.2
+code: "M222"
 name: "patellofemoral"
-values: {"icd10": "M222"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.30
+code: "K30"
 name: "dyspepsia"
-values: {"icd10": "K30"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.63.5
+code: "R635"
 name: "weight gain"
-values: {"icd10": "R635"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.10.4
+code: "R104"
 name: "abdominal pain"
-values: {"icd10": "R104"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.12
+code: "R12"
 name: "heartburn"
-values: {"icd10": "R12"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.31.3
+code: "I313"
 name: "pericardial effusion"
-values: {"icd10": "I313"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.76.6
+code: "M766"
 name: "achilles tendinitis"
-values: {"icd10": "M766"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.36.2
+code: "Z362"
 name: "amniocentesis"
-values: {"icd10": "Z362"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.1.0
+code: "H010"
 name: "blepharitis"
-values: {"icd10": "H010"}
 ---
-code: 1.3.6.1.4.1.18298.4.17.7.0
+code: "Q070"
 name: "arnold-chiari"
-values: {"icd10": "Q070"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.47
+code: "J47"
 name: "bronchiectasis"
-values: {"icd10": "J47"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.60.5
+code: "Z605"
 name: "discrimination"
-values: {"icd10": "Z605"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.14.0
+code: "N140"
 name: "analgesic nephropathy"
-values: {"icd10": "N140"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.49
+code: "I49"
 name: "cardiac arrhythmia"
-values: {"icd10": "I49"}
 ---
-code: 1.3.6.1.4.1.18298.4.20.70.2
+code: "T702"
 name: "altitude sickness"
-values: {"icd10": "T702"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.53.1
+code: "D531"
 name: "megaloblastic anaemia"
-values: {"icd10": "D531"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.47
+code: "N47"
 name: "paraphimosis"
-values: {"icd10": "N47"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.93.3
+code: "Z933"
 name: "colostomy"
-values: {"icd10": "Z933"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.40.2
+code: "M402"
 name: "kyphosis"
-values: {"icd10": "M402"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.35.3
+code: "M353"
 name: "polymyalgia"
-values: {"icd10": "M353"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.40.5
+code: "M405"
 name: "lordosis"
-values: {"icd10": "M405"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.46
+code: "N46"
 name: "infertility male"
-values: {"icd10": "N46"}
 ---
-code: 1.3.6.1.4.1.18298.4.15.32.1
+code: "O321"
 name: "breech"
-values: {"icd10": "O321"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.36
+code: "A36"
 name: "diphtheria"
-values: {"icd10": "A36"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.29
+code: "K29"
 name: "gastritis"
-values: {"icd10": "K29"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.48.0
+code: "F480"
 name: "neurasthenia"
-values: {"icd10": "F480"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.35.1
+code: "B351"
 name: "tinea unguium"
-values: {"icd10": "B351"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.51
+code: "D51"
 name: "vitamin b12 deficiency"
-values: {"icd10": "D51"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.88.0
+code: "I880"
 name: "mesenteric lymphadenitis"
-values: {"icd10": "I880"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.22
+code: "J22"
 name: "lower respiratory infection"
-values: {"icd10": "J22"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.30.4
+code: "L304"
 name: "intertrigo"
-values: {"icd10": "L304"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.60.2
+code: "K602"
 name: "anal fissure"
-values: {"icd10": "K602"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.47.3
+code: "G473"
 name: "sleep apnoea"
-values: {"icd10": "G473"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.81.6
+code: "N816"
 name: "rectocele"
-values: {"icd10": "N816"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.4.0
+code: "R040"
 name: "epistaxis"
-values: {"icd10": "R040"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.47.3.2
+code: "G4732"
 name: "OSA"
-values: {"icd10": "G4732"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.95.2
+code: "N952"
 name: "atrophic vaginitis"
-values: {"icd10": "N952"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.44
+code: "F44"
 name: "conversion disorder"
-values: {"icd10": "F44"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.29
+code: "L29"
 name: "pruritus"
-values: {"icd10": "L29"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.50.9
+code: "H509"
 name: "strabismus"
-values: {"icd10": "H509"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.51.2
+code: "N512"
 name: "balanitis"
-values: {"icd10": "N512"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.57
+code: "K57"
 name: "diverticular disease"
-values: {"icd10": "K57"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.20
+code: "L20"
 name: "atopic dermatitis"
-values: {"icd10": "L20"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.87.1.2
+code: "Z8712"
 name: "colonic polyps"
-values: {"icd10": "Z8712"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.30
+code: "Z30"
 name: "contraceptive"
-values: {"icd10": "Z30"}
 ---
-code: 1.3.6.1.4.1.18298.4.25.57
+code: "Y57"
 name: "drug reaction"
-values: {"icd10": "Y57"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.22
+code: "D22"
 name: "mole"
-values: {"icd10": "D22"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.59
+code: "R59"
 name: "lymphadenopathy"
-values: {"icd10": "R59"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.40
+code: "K40"
 name: "inguinal hernia"
-values: {"icd10": "K40"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.22
+code: "J22"
 name: "respiratory tract infection"
-values: {"icd10": "J22"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.8.9
+code: "L089"
 name: "skin infection"
-values: {"icd10": "L089"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.52
+code: "R52"
 name: "pain in jaw"
-values: {"icd10": "R52"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.76.0
+code: "Z760"
 name: "script"
-values: {"icd10": "Z760"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.76.0
+code: "Z760"
 name: "prescription"
-values: {"icd10": "Z760"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.91.9
+code: "H919"
 name: "deafness"
-values: {"icd10": "H919"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.94.3
+code: "N943"
 name: "premenstrual symptoms"
-values: {"icd10": "N943"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.91.8
+code: "L918"
 name: "skin tag"
-values: {"icd10": "L918"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.10.2
+code: "R102"
 name: "rectal pain"
-values: {"icd10": "R102"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.66
+code: "H66"
 name: "infected middle ear"
-values: {"icd10": "H66"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.94.6
+code: "N946"
 name: "menstrual pain"
-values: {"icd10": "N946"}
 ---
-code: 1.3.6.1.4.1.18298.4.19.5
+code: "S05"
 name: "eye injury"
-values: {"icd10": "S05"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.4.7
+code: "K047"
 name: "dental abscess"
-values: {"icd10": "K047"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.19.0
+code: "R190"
 name: "abdominal mass"
-values: {"icd10": "R190"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.37.3
+code: "B373"
 name: "vaginal thrush"
-values: {"icd10": "B373"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.39.0
+code: "N390"
 name: "chronic urinary infection"
-values: {"icd10": "N390"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.6.9
+code: "N069"
 name: "rheumatoid arthritis"
-values: {"icd10": "N069"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.5
+code: "L05"
 name: "pilonidal sinus"
-values: {"icd10": "L05"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.37
+code: "B37"
 name: "candida infection"
-values: {"icd10": "B37"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.31
+code: "F31"
 name: "bipolar disorder"
-values: {"icd10": "F31"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.53
+code: "R53"
 name: "fatigability"
-values: {"icd10": "R53"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.17
+code: "R17"
 name: "jaundice"
-values: {"icd10": "R17"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.32
+code: "M32"
 name: "sle"
-values: {"icd10": "M32"}
 ---
-code: 1.3.6.1.4.1.18298.4.15.3
+code: "O03"
 name: "miscarriage"
-values: {"icd10": "O03"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.25.5
+code: "M255"
 name: "joint strain"
-values: {"icd10": "M255"}
 ---
-code: 1.3.6.1.4.1.18298.4.3.71
+code: "C71"
 name: "cerebral tumour"
-values: {"icd10": "C71"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.91.9
+code: "H919"
 name: "hearing loss"
-values: {"icd10": "H919"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.80
+code: "L80"
 name: "vitiligo"
-values: {"icd10": "L80"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.11.0
+code: "H110"
 name: "pterygium"
-values: {"icd10": "H110"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.35
+code: "B35"
 name: "fungal skin infection"
-values: {"icd10": "B35"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.83.1
+code: "E831"
 name: "haemachromatosis"
-values: {"icd10": "E831"}
 ---
-code: 1.3.6.1.4.1.18298.4.20.78.2
+code: "T782"
 name: "bee anaphylaxis"
-values: {"icd10": "T782"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.25.5
+code: "M255"
 name: "pain in joints"
-values: {"icd10": "M255"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.44
+code: "J44"
 name: "chronic airways disease"
-values: {"icd10": "J44"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.92
+code: "N92"
 name: "intermenstrual bleeding"
-values: {"icd10": "N92"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.12.4
+code: "Z124"
 name: "pap smear"
-values: {"icd10": "Z124"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.51
+code: "G51"
 name: "facial paralysis"
-values: {"icd10": "G51"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.31
+code: "F31"
 name: "manic depression"
-values: {"icd10": "F31"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.77.0
+code: "M770"
 name: "golfers elbow"
-values: {"icd10": "M770"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.2
+code: "J02"
 name: "throat infection"
-values: {"icd10": "J02"}
 ---
-code: 1.3.6.1.4.1.18298.4.3.25
+code: "C25"
 name: "carcinoma pancreas"
-values: {"icd10": "C25"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.64.4
+code: "N644"
 name: "breast pain"
-values: {"icd10": "N644"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.10
+code: "I10"
 name: "systolic hypertension"
-values: {"icd10": "I10"}
 ---
-code: 1.3.6.1.4.1.18298.4.3.44.9
+code: "C449"
 name: "skin cancer"
-values: {"icd10": "C449"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.61
+code: "N61"
 name: "breast infection"
-values: {"icd10": "N61"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.61.2
+code: "H612"
 name: "blocked ears"
-values: {"icd10": "H612"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.83.3
+code: "Z833"
 name: "fh of diabetes"
-values: {"icd10": "Z833"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.73
+code: "N73"
 name: "pelvic inflammatory disease"
-values: {"icd10": "N73"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.51
+code: "R51"
 name: "pain in temple"
-values: {"icd10": "R51"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.39.4
+code: "N394"
 name: "urgent urination"
-values: {"icd10": "N394"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.39
+code: "F39"
 name: "mood disorder"
-values: {"icd10": "F39"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.50
+code: "R50"
 name: "fever"
-values: {"icd10": "R50"}
 ---
-code: 1.3.6.1.4.1.18298.4.19.39.4
+code: "S394"
 name: "sprain of ankle"
-values: {"icd10": "S394"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.13.9
+code: "M139"
 name: "arthritis"
-values: {"icd10": "M139"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.28.2
+code: "E282"
 name: "polycystic ovaries"
-values: {"icd10": "E282"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.53
+code: "R53"
 name: "general weakness"
-values: {"icd10": "R53"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.10.2
+code: "R102"
 name: "genital pain"
-values: {"icd10": "R102"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.14.6
+code: "K146"
 name: "sore tongue"
-values: {"icd10": "K146"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.80.2
+code: "I802"
 name: "past dvt"
-values: {"icd10": "I802"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.11.1
+code: "H111"
 name: "pinguecula"
-values: {"icd10": "H111"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.75.1
+code: "M751"
 name: "rotator cuff degeneration"
-values: {"icd10": "M751"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.85.3
+code: "L853"
 name: "dry skin"
-values: {"icd10": "L853"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.94.0
+code: "N940"
 name: "intermenstrual pain"
-values: {"icd10": "N940"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.94.0
+code: "N940"
 name: "mittelschmerz"
-values: {"icd10": "N940"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.17.3
+code: "D173"
 name: "lipoma of skin"
-values: {"icd10": "D173"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.75.8
+code: "M758"
 name: "shoulder pain"
-values: {"icd10": "M758"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.58.9
+code: "D589"
 name: "hereditary haemolytic anaemia"
-values: {"icd10": "D589"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.44.4
+code: "H444"
 name: "hypotony"
-values: {"icd10": "H444"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.3.9
+code: "J039"
 name: "recurrent tonsillitis"
-values: {"icd10": "J039"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.14.6
+code: "K146"
 name: "lingual nerve myalgia"
-values: {"icd10": "K146"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.2
+code: "J02"
 name: "sore throat"
-values: {"icd10": "J02"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.35.1
+code: "B351"
 name: "fungal toenail infection"
-values: {"icd10": "B351"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.8.1
+code: "B081"
 name: "molluscum contagiosum"
-values: {"icd10": "B081"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.6.9
+code: "K069"
 name: "disease of gums"
-values: {"icd10": "K069"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.31.0
+code: "J310"
 name: "nasal congestion"
-values: {"icd10": "J310"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.4.9
+code: "G049"
 name: "encephalitis"
-values: {"icd10": "G049"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.12.0
+code: "K120"
 name: "oral ulcers"
-values: {"icd10": "K120"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.63.0.4
+code: "M6304"
 name: "hand infection"
-values: {"icd10": "M6304"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.24
+code: "B24"
 name: "aids"
-values: {"icd10": "B24"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.9
+code: "A09"
 name: "travellers diarrhoea"
-values: {"icd10": "A09"}
 ---
-code: 1.3.6.1.4.1.18298.4.15.60
+code: "O60"
 name: "premature labour"
-values: {"icd10": "O60"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.97.0
+code: "Z970"
 name: "artifical eye"
-values: {"icd10": "Z970"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.97.0
+code: "Z970"
 name: "glass eye"
-values: {"icd10": "Z970"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.5
+code: "R05"
 name: "allergic cough"
-values: {"icd10": "R05"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.11
+code: "E11"
 name: "non insulin dependent diabetes"
-values: {"icd10": "E11"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.20.8
+code: "R208"
 name: "chronic skin itch"
-values: {"icd10": "R208"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.21
+code: "R21"
 name: "allergic rash"
-values: {"icd10": "R21"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.20.2
+code: "Z202"
 name: "acute pyelonephritis"
-values: {"icd10": "Z202"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.12.3
+code: "Z123"
 name: "breast examination"
-values: {"icd10": "Z123"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.3
+code: "L03"
 name: "staph skin infection"
-values: {"icd10": "L03"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.76.5
+code: "Z765"
 name: "fabrication"
-values: {"icd10": "Z765"}
 ---
-code: 1.3.6.1.4.1.18298.4.3.56
+code: "C56"
 name: "ovarian cancer"
-values: {"icd10": "C56"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.20.0
+code: "N200"
 name: "renal calculi"
-values: {"icd10": "N200"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.64.9
+code: "D649"
 name: "anaemia"
-values: {"icd10": "D649"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.98.4
+code: "L984"
 name: "skin ulcer not healing"
-values: {"icd10": "L984"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.12
+code: "K12"
 name: "angular stomatitis"
-values: {"icd10": "K12"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.2
+code: "J02"
 name: "pharyngitis"
-values: {"icd10": "J02"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.81.4
+code: "L814"
 name: "slightly pigmented lesion"
-values: {"icd10": "L814"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.50
+code: "R50"
 name: "fever"
-values: {"icd10": "R50"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.13
+code: "K13"
 name: "cheilitis"
-values: {"icd10": "K13"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.35.1
+code: "J351"
 name: "hypertrophy tonsils"
-values: {"icd10": "J351"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.35.1
+code: "J351"
 name: "tonsillar hypertrophy"
-values: {"icd10": "J351"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.52.9
+code: "K529"
 name: "colitis"
-values: {"icd10": "K529"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.94.5
+code: "R945"
 name: "abnormal lfts"
-values: {"icd10": "R945"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.94.5
+code: "R945"
 name: "elevated lfts"
-values: {"icd10": "R945"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.6.0
+code: "R060"
 name: "shortness of breath"
-values: {"icd10": "R060"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.18
+code: "J18"
 name: "pneumonia"
-values: {"icd10": "J18"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.10
+code: "I10"
 name: "elevated blood pressure"
-values: {"icd10": "I10"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.83
+code: "I83"
 name: "varicose veins of leg"
-values: {"icd10": "I83"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.3.0
+code: "L030"
 name: "infected toenail"
-values: {"icd10": "L030"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.20
+code: "J20"
 name: "bronchitis"
-values: {"icd10": "J20"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.25
+code: "D25"
 name: "fibroid"
-values: {"icd10": "D25"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.25
+code: "D25"
 name: "leiomyoma of uterus"
-values: {"icd10": "D25"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.60
+code: "M60"
 name: "myositis"
-values: {"icd10": "M60"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.38.9
+code: "J389"
 name: "laryngofissure"
-values: {"icd10": "J389"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.79.6.6
+code: "M7966"
 name: "leg pains"
-values: {"icd10": "M7966"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.40
+code: "G40"
 name: "fitting"
-values: {"icd10": "G40"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.6
+code: "D06"
 name: "abnormal pap smear"
-values: {"icd10": "D06"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.37.2
+code: "B372"
 name: "monilia infection of skin"
-values: {"icd10": "B372"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.23.2
+code: "D232"
 name: "benign neoplasm of ear"
-values: {"icd10": "D232"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.64
+code: "I64"
 name: "cerebrovascular accident"
-values: {"icd10": "I64"}
 ---
-code: 1.3.6.1.4.1.18298.4.3.80
+code: "C80"
 name: "malignant neoplasm"
-values: {"icd10": "C80"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.23.4
+code: "R234"
 name: "scaly lesion"
-values: {"icd10": "R234"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.64.9
+code: "D649"
 name: "mild anaemia"
-values: {"icd10": "D649"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.39.8
+code: "R398"
 name: "urgency"
-values: {"icd10": "R398"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.73.0
+code: "I730"
 name: "raynaud's disease"
-values: {"icd10": "I730"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.51
+code: "K51"
 name: "ulcerating colitis"
-values: {"icd10": "K51"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.46
+code: "J46"
 name: "acute asthma attack"
-values: {"icd10": "J46"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.25.8
+code: "G258"
 name: "restless legs syndrome"
-values: {"icd10": "G258"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.30.9
+code: "L309"
 name: "dermatitis"
-values: {"icd10": "L309"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.47.8.2
+code: "M4782"
 name: "neck arthritis"
-values: {"icd10": "M4782"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.15
+code: "A15"
 name: "tuberculosis"
-values: {"icd10": "A15"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.82
+code: "I82"
 name: "past blood clot"
-values: {"icd10": "I82"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.81.8
+code: "L818"
 name: "non pigmented lesion"
-values: {"icd10": "L818"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.85
+code: "K85"
 name: "acute pancreatitis"
-values: {"icd10": "K85"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.86.1
+code: "K861"
 name: "chronic pancreatitis"
-values: {"icd10": "K861"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.86.0
+code: "K860"
 name: "alcoholic pancreatitis"
-values: {"icd10": "K860"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.86.3
+code: "K863"
 name: "pseudocyst"
-values: {"icd10": "K863"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.12.2
+code: "K122"
 name: "oral infection"
-values: {"icd10": "K122"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.72.5.7
+code: "M7257"
 name: "plantar fasciitis"
-values: {"icd10": "M7257"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.49
+code: "B49"
 name: "fungal infection"
-values: {"icd10": "B49"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.10
+code: "H10"
 name: "conjunctivitis"
-values: {"icd10": "H10"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.30.0
+code: "Z300"
 name: "contraception"
-values: {"icd10": "Z300"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.66.9
+code: "H669"
 name: "chronic otitis media"
-values: {"icd10": "H669"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.62.6
+code: "M626"
 name: "muscle strain"
-values: {"icd10": "M626"}
 ---
-code: 1.3.6.1.4.1.18298.4.19.51
+code: "S51"
 name: "open wound on forearm"
-values: {"icd10": "S51"}
 ---
-code: 1.3.6.1.4.1.18298.4.19.41
+code: "S41"
 name: "open wound on upper arm"
-values: {"icd10": "S41"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.92.0
+code: "K920"
 name: "vomit blood"
-values: {"icd10": "K920"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.10
+code: "I10"
 name: "high blood pressure"
-values: {"icd10": "I10"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.54.4
+code: "M544"
 name: "back pain with radiating symptoms"
-values: {"icd10": "M544"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.3.0
+code: "L030"
 name: "infected nail"
-values: {"icd10": "L030"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.24.6
+code: "Z246"
 name: "hepatitis b immunisation"
-values: {"icd10": "Z246"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.66.9
+code: "H669"
 name: "middle ear infection"
-values: {"icd10": "H669"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.86.4.2
+code: "Z8642"
 name: "past history of iv drug use"
-values: {"icd10": "Z8642"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.41.0
+code: "R410"
 name: "confusion"
-values: {"icd10": "R410"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.63
+code: "N63"
 name: "breast lump"
-values: {"icd10": "N63"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.2.4
+code: "H024"
 name: "blepharoptosis"
-values: {"icd10": "H024"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.23.1
+code: "Z231"
 name: "immunisation against typhoid fever"
-values: {"icd10": "Z231"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.82
+code: "L82"
 name: "seborrhoeic wart"
-values: {"icd10": "L82"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.19
+code: "N19"
 name: "renal failure"
-values: {"icd10": "N19"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.63.4
+code: "I634"
 name: "embolic cva"
-values: {"icd10": "I634"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.65.4
+code: "H654"
 name: "chronic ear infection"
-values: {"icd10": "H654"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.2
+code: "L02"
 name: "skin abscess"
-values: {"icd10": "L02"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.40
+code: "F40"
 name: "phobic disorder"
-values: {"icd10": "F40"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.12.4
+code: "Z124"
 name: "routine pap"
-values: {"icd10": "Z124"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.84.1
+code: "N841"
 name: "endocervical polyps"
-values: {"icd10": "N841"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.33
+code: "Z33"
 name: "pregnancy"
-values: {"icd10": "Z33"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.23.8
+code: "Z238"
 name: "meningococcal immunisation"
-values: {"icd10": "Z238"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.10.4
+code: "R104"
 name: "infantile colic"
-values: {"icd10": "R104"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.92.1
+code: "Z921"
 name: "prevention of blood clotting"
-values: {"icd10": "Z921"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.35.3
+code: "M353"
 name: "polymylagia rheumatica"
-values: {"icd10": "M353"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.23.7
+code: "Z237"
 name: "prevention of whooping cough"
-values: {"icd10": "Z237"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.66
+code: "E66"
 name: "morbid obesity"
-values: {"icd10": "E66"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.29.0
+code: "L290"
 name: "anal itch"
-values: {"icd10": "L290"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.29.0
+code: "L290"
 name: "pruritis ani"
-values: {"icd10": "L290"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.25.5
+code: "M255"
 name: "joint pain"
-values: {"icd10": "M255"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.53
+code: "R53"
 name: "general tiredness"
-values: {"icd10": "R53"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.36.0
+code: "H360"
 name: "diabetic retinopathy"
-values: {"icd10": "H360"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.60
+code: "A60"
 name: "recurrent genital herpes"
-values: {"icd10": "A60"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.21
+code: "R21"
 name: "rash on penis"
-values: {"icd10": "R21"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.2.8
+code: "H028"
 name: "foreign body in eye"
-values: {"icd10": "H028"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.70
+code: "L70"
 name: "severe acne"
-values: {"icd10": "L70"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.79
+code: "F79"
 name: "mental retardation"
-values: {"icd10": "F79"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.12
+code: "N12"
 name: "renal tubular acidosis"
-values: {"icd10": "N12"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.4.1
+code: "H041"
 name: "dry eyes"
-values: {"icd10": "H041"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.24
+code: "B24"
 name: "hiv infection"
-values: {"icd10": "B24"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.86
+code: "K86"
 name: "pancreatitis"
-values: {"icd10": "K86"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.35.1
+code: "B351"
 name: "onychomycosis"
-values: {"icd10": "B351"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.92.1
+code: "Z921"
 name: "anti-coagulation"
-values: {"icd10": "Z921"}
 ---
-code: 1.3.6.1.4.1.18298.4.20.14.3
+code: "T143"
 name: "soft tissue sprain"
-values: {"icd10": "T143"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.72.0
+code: "Z720"
 name: "smoker"
-values: {"icd10": "Z720"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.41.0
+code: "F410"
 name: "panic attacks"
-values: {"icd10": "F410"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.20
+code: "N20"
 name: "renal stones"
-values: {"icd10": "N20"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.12.2
+code: "K122"
 name: "mouth infection"
-values: {"icd10": "K122"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.22
+code: "L22"
 name: "diaper rash"
-values: {"icd10": "L22"}
 ---
-code: 1.3.6.1.4.1.18298.4.19.93.4
+code: "S934"
 name: "ankle sprain"
-values: {"icd10": "S934"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.67.8.2
+code: "M6782"
 name: "supraspinatus tendonitis"
-values: {"icd10": "M6782"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.26.8
+code: "R268"
 name: "loss of balance"
-values: {"icd10": "R268"}
 ---
-code: 1.3.6.1.4.1.18298.4.20.14.1
+code: "T141"
 name: "animal bite"
-values: {"icd10": "T141"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.21
+code: "R21"
 name: "rash on the chin"
-values: {"icd10": "R21"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.3
+code: "E03"
 name: "under-active thyroid gland"
-values: {"icd10": "E03"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.63.4
+code: "R634"
 name: "weight reduction"
-values: {"icd10": "R634"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.62.4
+code: "M624"
 name: "contractures"
-values: {"icd10": "M624"}
 ---
-code: 1.3.6.1.4.1.18298.4.20.30
+code: "T30"
 name: "burns"
-values: {"icd10": "T30"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.4.7
+code: "K047"
 name: "tooth abscess"
-values: {"icd10": "K047"}
 ---
-code: 1.3.6.1.4.1.18298.4.19.72.0
+code: "S720"
 name: "fractured neck of femur"
-values: {"icd10": "S720"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.67.8
+code: "M678"
 name: "plica syndrome"
-values: {"icd10": "M678"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.4.5
+code: "H045"
 name: "blocked lacrimal duct"
-values: {"icd10": "H045"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.29.2
+code: "L292"
 name: "vulval itch"
-values: {"icd10": "L292"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.29.2
+code: "L292"
 name: "pruritus vulvae"
-values: {"icd10": "L292"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.37.3
+code: "B373"
 name: "vaginal candidiasis"
-values: {"icd10": "B373"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.68.2
+code: "D682"
 name: "factor v leiden deficiency"
-values: {"icd10": "D682"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.43
+code: "G43"
 name: "migraine headaches"
-values: {"icd10": "G43"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.39.2
+code: "R392"
 name: "pre-renal failure"
-values: {"icd10": "R392"}
 ---
-code: 1.3.6.1.4.1.18298.4.19.81
+code: "S81"
 name: "leg wound"
-values: {"icd10": "S81"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.10
+code: "I10"
 name: "uncomplicated hypertension"
-values: {"icd10": "I10"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.53
+code: "A53"
 name: "syphilis"
-values: {"icd10": "A53"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.83.4
+code: "Z834"
 name: "family history of hypercholesterolaemia"
-values: {"icd10": "Z834"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.79.6
+code: "M796"
 name: "proximal limb myalgia"
-values: {"icd10": "M796"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.46.7
+code: "R467"
 name: "garrulousness"
-values: {"icd10": "R467"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.0
+code: "Z00"
 name: "medical checkup"
-values: {"icd10": "Z00"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.16.0
+code: "H160"
 name: "eye ulcer"
-values: {"icd10": "H160"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.42
+code: "I42"
 name: "cardiomyopathy"
-values: {"icd10": "I42"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.22.1
+code: "K221"
 name: "ulcerative oesophagitis"
-values: {"icd10": "K221"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.71.9
+code: "Z719"
 name: "education/counselling"
-values: {"icd10": "Z719"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.22
+code: "D22"
 name: "dysplastic naevus syndrome"
-values: {"icd10": "D22"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.11.3
+code: "F113"
 name: "narcotic withdrawal"
-values: {"icd10": "F113"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.94.0
+code: "Z940"
 name: "renal transplant"
-values: {"icd10": "Z940"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.31.6
+code: "M316"
 name: "temporal arteritis"
-values: {"icd10": "M316"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.0
+code: "B00"
 name: "herpetic infection"
-values: {"icd10": "B00"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.60
+code: "H60"
 name: "ear canal infection"
-values: {"icd10": "H60"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.3.1
+code: "L031"
 name: "infected foot"
-values: {"icd10": "L031"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.61
+code: "F61"
 name: "personality disorder"
-values: {"icd10": "F61"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.79.6
+code: "M796"
 name: "calf pain"
-values: {"icd10": "M796"}
 ---
-code: 1.3.6.1.4.1.18298.4.3.61
+code: "C61"
 name: "prostate cancer"
-values: {"icd10": "C61"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.93
+code: "N93"
 name: "dysfunctional uterine bleeding"
-values: {"icd10": "N93"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.25.5
+code: "M255"
 name: "arthritic pains"
-values: {"icd10": "M255"}
 ---
-code: 1.3.6.1.4.1.18298.4.3.43
+code: "C43"
 name: "melanoma"
-values: {"icd10": "C43"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.52.1
+code: "R521"
 name: "chronic severe pain"
-values: {"icd10": "R521"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.95.1
+code: "N951"
 name: "hot flushes"
-values: {"icd10": "N951"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.57.1
+code: "H571"
 name: "sore eyes"
-values: {"icd10": "H571"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.29.0
+code: "L290"
 name: "perianal itching"
-values: {"icd10": "L290"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.93.0
+code: "N930"
 name: "postcoital bleeding"
-values: {"icd10": "N930"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.62.0
+code: "R620"
 name: "developmental delay"
-values: {"icd10": "R620"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.31
+code: "R31"
 name: "bloody urine"
-values: {"icd10": "R31"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.22
+code: "D22"
 name: "benign compound naevus"
-values: {"icd10": "D22"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.63.0
+code: "A630"
 name: "condylomata acuminata"
-values: {"icd10": "A630"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.85.3
+code: "L853"
 name: "dry rash"
-values: {"icd10": "L853"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.50
+code: "D50"
 name: "iron deficiency anaemia"
-values: {"icd10": "D50"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.28.3
+code: "E283"
 name: "oestrogen deficiency"
-values: {"icd10": "E283"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.92.0
+code: "N920"
 name: "menstruation excessive"
-values: {"icd10": "N920"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.80
+code: "K80"
 name: "gall stones"
-values: {"icd10": "K80"}
 ---
-code: 1.3.6.1.4.1.18298.4.19.53.4
+code: "S534"
 name: "sprain in elbow"
-values: {"icd10": "S534"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.98.4
+code: "L984"
 name: "chronic ulcer skin"
-values: {"icd10": "L984"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.25
+code: "K25"
 name: "stomach ulcer"
-values: {"icd10": "K25"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.25
+code: "K25"
 name: "gastric ulcer"
-values: {"icd10": "K25"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.14
+code: "R14"
 name: "bowel upset"
-values: {"icd10": "R14"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.39
+code: "F39"
 name: "affective psychosis"
-values: {"icd10": "F39"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.20
+code: "I20"
 name: "chest tightness"
-values: {"icd10": "I20"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.1
+code: "H01"
 name: "eyelid inflammation"
-values: {"icd10": "H01"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.37.0
+code: "B370"
 name: "oral candida"
-values: {"icd10": "B370"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.76
+code: "N76"
 name: "vaginal infection"
-values: {"icd10": "N76"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.7.1
+code: "M071"
 name: "psoriatic arthritis"
-values: {"icd10": "M071"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.7.1
+code: "M071"
 name: "arthritis mutilans"
-values: {"icd10": "M071"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.29.2
+code: "Z292"
 name: "antibiotic prophylaxis"
-values: {"icd10": "Z292"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.5
+code: "R05"
 name: "productive cough"
-values: {"icd10": "R05"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.21
+code: "R21"
 name: "generalized rash"
-values: {"icd10": "R21"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.0.9
+code: "N009"
 name: "acute glomerulonephritis"
-values: {"icd10": "N009"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.44
+code: "J44"
 name: "chronic obstructive airways disease"
-values: {"icd10": "J44"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.95.9
+code: "Z959"
 name: "aortic valve replacement"
-values: {"icd10": "Z959"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.71.0
+code: "Z710"
 name: "mother worried"
-values: {"icd10": "Z710"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.71
+code: "Z71"
 name: "health education"
-values: {"icd10": "Z71"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.11.8
+code: "H118"
 name: "conjunctival ulcer"
-values: {"icd10": "H118"}
 ---
-code: 1.3.6.1.4.1.18298.4.6.31.2
+code: "F312"
 name: "bipolar psychosis"
-values: {"icd10": "F312"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.45
+code: "G45"
 name: "tia"
-values: {"icd10": "G45"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.82
+code: "I82"
 name: "deep vein thrombosis"
-values: {"icd10": "I82"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.73.0
+code: "Z730"
 name: "burn-out"
-values: {"icd10": "Z730"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.91.1
+code: "Z911"
 name: "noncompliance"
-values: {"icd10": "Z911"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.30
+code: "R30"
 name: "pain with urination"
-values: {"icd10": "R30"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.13
+code: "M13"
 name: "acute inflammatory arthritis"
-values: {"icd10": "M13"}
 ---
-code: 1.3.6.1.4.1.18298.4.3.18
+code: "C18"
 name: "carcinoma colon"
-values: {"icd10": "C18"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.44.9
+code: "L449"
 name: "papules on skin"
-values: {"icd10": "L449"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.10.1
+code: "H101"
 name: "allergic conjunctivitis"
-values: {"icd10": "H101"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.92
+code: "N92"
 name: "menorrhagia"
-values: {"icd10": "N92"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.21
+code: "R21"
 name: "localized rash"
-values: {"icd10": "R21"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.73.3
+code: "Z733"
 name: "stress"
-values: {"icd10": "Z733"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.3.0.2
+code: "L0302"
 name: "infected toe"
-values: {"icd10": "L0302"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.39
+code: "A39"
 name: "meningococcus"
-values: {"icd10": "A39"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.10
+code: "I10"
 name: "mild hypertension"
-values: {"icd10": "I10"}
 ---
-code: 1.3.6.1.4.1.18298.4.9.88
+code: "I88"
 name: "non-specific lymphadenitis"
-values: {"icd10": "I88"}
 ---
-code: 1.3.6.1.4.1.18298.4.19.83.2
+code: "S832"
 name: "acute damage meniscus of knee"
-values: {"icd10": "S832"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.34.8
+code: "J348"
 name: "nasal ulcer"
-values: {"icd10": "J348"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.37.0
+code: "B370"
 name: "oral thrush"
-values: {"icd10": "B370"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.63.9
+code: "Z639"
 name: "family stress"
-values: {"icd10": "Z639"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.28.1
+code: "E281"
 name: "moderate androgenisation"
-values: {"icd10": "E281"}
 ---
-code: 1.3.6.1.4.1.18298.4.4.23
+code: "D23"
 name: "pigmented bcc"
-values: {"icd10": "D23"}
 ---
-code: 1.3.6.1.4.1.18298.4.1.9
+code: "A09"
 name: "bowel infection"
-values: {"icd10": "A09"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.3
+code: "E03"
 name: "myxedema"
-values: {"icd10": "E03"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.37.3
+code: "B373"
 name: "candida of vagina"
-values: {"icd10": "B373"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.4.2
+code: "R042"
 name: "haemoptysis"
-values: {"icd10": "R042"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.21.0
+code: "K210"
 name: "reflux oesophagitis"
-values: {"icd10": "K210"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.0.0
+code: "Z000"
 name: "complete medical examination"
-values: {"icd10": "Z000"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.60
+code: "R60"
 name: "oedema"
-values: {"icd10": "R60"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.60.1
+code: "H601"
 name: "ear lobe infection"
-values: {"icd10": "H601"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.9.0
+code: "Z090"
 name: "post-operative examination"
-values: {"icd10": "Z090"}
 ---
-code: 1.3.6.1.4.1.18298.4.20.7
+code: "T07"
 name: "trauma"
-values: {"icd10": "T07"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.60.1
+code: "H601"
 name: "external ear infection"
-values: {"icd10": "H601"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.12.0
+code: "K120"
 name: "mouth ulcer"
-values: {"icd10": "K120"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.95.2
+code: "N952"
 name: "senile vaginitis"
-values: {"icd10": "N952"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.71
+code: "L71"
 name: "acne rosacea"
-values: {"icd10": "L71"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.93.7
+code: "R937"
 name: "hot spot on bone scan"
-values: {"icd10": "R937"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.72.5
+code: "Z725"
 name: "unprotected sex"
-values: {"icd10": "Z725"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.11.3
+code: "Z113"
 name: "reassurance regarding std"
-values: {"icd10": "Z113"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.23
+code: "L23"
 name: "allergic dermatitis"
-values: {"icd10": "L23"}
 ---
-code: 1.3.6.1.4.1.18298.4.3.34
+code: "C34"
 name: "carcinoma lung"
-values: {"icd10": "C34"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.66.4
+code: "H664"
 name: "otitis media with otorrhoea"
-values: {"icd10": "H664"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.15.7
+code: "J157"
 name: "mycoplasma chest infection"
-values: {"icd10": "J157"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.26
+code: "R26"
 name: "poor mobility/gait"
-values: {"icd10": "R26"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.79.6.7
+code: "M7967"
 name: "painful foot"
-values: {"icd10": "M7967"}
 ---
-code: 1.3.6.1.4.1.18298.4.10.2
+code: "J02"
 name: "acute pharyngitis"
-values: {"icd10": "J02"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.30
+code: "N30"
 name: "bladder infection"
-values: {"icd10": "N30"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.79.1
+code: "M791"
 name: "myalgia"
-values: {"icd10": "M791"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.35.0
+code: "H350"
 name: "hypertensive retinopathy"
-values: {"icd10": "H350"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.37.3
+code: "B373"
 name: "clinical thrush"
-values: {"icd10": "B373"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.10.3
+code: "R103"
 name: "testicular pain"
-values: {"icd10": "R103"}
 ---
-code: 1.3.6.1.4.1.18298.4.2.37.0
+code: "B370"
 name: "oral moniliasis"
-values: {"icd10": "B370"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.79.1
+code: "M791"
 name: "muscle pain"
-values: {"icd10": "M791"}
 ---
-code: 1.3.6.1.4.1.18298.4.11.13.7
+code: "K137"
 name: "disease of mouth"
-values: {"icd10": "K137"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.30.4
+code: "L304"
 name: "rash under the breast"
-values: {"icd10": "L304"}
 ---
-code: 1.3.6.1.4.1.18298.4.14.94.4
+code: "N944"
 name: "period pain"
-values: {"icd10": "N944"}
 ---
-code: 1.3.6.1.4.1.18298.4.13.92.5
+code: "M925"
 name: "osgood-schlatter disease"
-values: {"icd10": "M925"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.52.0
+code: "R520"
 name: "severe pain"
-values: {"icd10": "R520"}
 ---
-code: 1.3.6.1.4.1.18298.4.8.57.1
+code: "H571"
 name: "ocular pain"
-values: {"icd10": "H571"}
 ---
-code: 1.3.6.1.4.1.18298.4.26.25.1
+code: "Z251"
 name: "prevention of influenza"
-values: {"icd10": "Z251"}
 ---
-code: 1.3.6.1.4.1.18298.4.18.14
+code: "R14"
 name: "abdominal distension"
-values: {"icd10": "R14"}
 ---
-code: 1.3.6.1.4.1.18298.4.5.14.4.2
+code: "E1442"
 name: "diabetic peripheral neuropathy"
-values: {"icd10": "E1442"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.21.0
+code: "L210"
 name: "cradle cap"
-values: {"icd10": "L210"}
 ---
-code: 1.3.6.1.4.1.18298.4.12.29
+code: "L29"
 name: "itchy skin"
-values: {"icd10": "L29"}
 ---
-code: 1.3.6.1.4.1.18298.4.7.41
+code: "G41"
 name: "status epilepticus"
-values: {"icd10": "G41"}
 ---
-code: 1.3.6.1.4.1.18298.4.3.20
+code: "C20"
 name: "carcinoma rectum"
-values: {"icd10": "C20"}

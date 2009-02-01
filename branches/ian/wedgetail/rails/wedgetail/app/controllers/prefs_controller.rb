@@ -9,7 +9,7 @@ class PrefsController < ApplicationController
          :redirect_to => { :action => :list }
   def index
     authorize :admin
-    render :action=> 'show' if (@authorized)
+    render :action=> 'show' if @authorized
   end
 
   def show

@@ -1,5 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 one:
   id: 1
-two:
-  id: 2
+  sender_id: "12346"
+  recipient_id: "12346"
+  subject: "None in particular"
+  content: "A short test message"
+  thread: 1
+  status: 1

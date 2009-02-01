@@ -50,9 +50,10 @@ module HL7
         raise HL7::Error, "Unknown OBX-5 type: #{value_type}"
       end
       if x.kind_of? Array
-        x.map! {|y| kls.from_ruby y}
+        x.map! {|y| kls.to_hl7(kls.from_ruby(y))}
+        x = x.join(@rep_sep)
       else
-        x = kls.from_ruby x
+        x = kls.to_hl7(kls.from_ruby(x))
       end
       @fields[5] = x
     end

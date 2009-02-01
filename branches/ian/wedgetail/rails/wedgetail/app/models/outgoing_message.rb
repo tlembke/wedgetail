@@ -13,24 +13,24 @@ class OutgoingMessage < ActiveRecord::Base
   belongs_to :narrative
   
   # send out a message once instance created
-  def sendout(recipient=nil,max_sends=nil)
+  def sendout(recip=nil,max_sends=nil)
     max_sends ||= Pref.max_sends
-    recipient ||= User.find_by_wedgetail(recipient_id)
+    recip ||= recipient
     unless recipient.team.blank? or recipient.team == "0"
       recipient = User.find_by_wedgetail(recipient.team)
     end
     begin
-      case recipient.crypto_pref
+      case recip.crypto_pref
       when 1 # S/MIME
         hl7 = narrative.make_outgoing_hl7
         hl7.msh.message_control_id = "%X" % self.id
-        WedgeMailer.crypto_deliver(self.id,hl7.to_hl7,'application/edi-hl7',:x509,recipient.email,recipient.cert)
+        WedgeMailer.crypto_deliver(self.id,hl7.to_hl7,'application/edi-hl7',:x509,recip.email,recip.cert)
       when 2 # OpenPGP
         hl7 = narrative.make_outgoing_hl7
         hl7.msh.message_control_id = "%X" % self.id
-        WedgeMailer.crypto_deliver(self.id,hl7.to_hl7,'application/edi-hl7',:pgp,recipient.email)
+        WedgeMailer.crypto_deliver(self.id,hl7.to_hl7,'application/edi-hl7',:pgp,recip.email)
       when 3 # e-mail - no crypto
-        WedgeMailer.deliver_notify(recipient)
+        WedgeMailer.deliver_notify(recip)
         self.status = 300 # don't expect ACKs
       when 4 # direct download
         self.status = 400 # booked for download
@@ -40,7 +40,7 @@ class OutgoingMessage < ActiveRecord::Base
         f = open("/home/ian/test_wedgie.hl7","w")
         f.write hl7.to_hl7
         f.close
-        WedgeMailer.crypto_deliver(narrative.id,hl7.to_hl7,'application/edi-hl7',:none,recipient.email)
+        WedgeMailer.crypto_deliver(narrative.id,hl7.to_hl7,'application/edi-hl7',:none,recip.email)
       end
       self.last_sent = Time.now
     rescue WedgieError
@@ -56,11 +56,46 @@ class OutgoingMessage < ActiveRecord::Base
     end
   end
   
+  def recipient
+    User.find_by_wedgetail(recipient_id,:order=>"created_at desc")
+  end
+
   def acked(hl7)
     self.status = 200
     self.acked_at = Time.now
     self.acktype = hl7.msa.code
     self.ack = hl7.to_hl7
+  end
+
+  def self.check_view(recip,narr)
+    # checks if a viewed message is awaiting download by that user
+    # checks it off if it is
+    om = OutgoingMessage.find(:first,:conditions=>{:recipient_id=>recip.wedgetail,:narrative_id=>narr.id,:status=>300})
+    if om
+      om.status = 301
+      om.acked_at = Time.now
+      om.save!
+    end
+  end
+
+  def status_line
+    if status == 0
+      "not yet sent"
+    elsif status > 0 and status < 100
+      "sent #{status} times, last on #{last_sent.to_s}"
+    elsif status == 100
+      "sending failed; no ACK received"
+    elsif status == 200
+      "received on #{acked_at.to_s} with HL7 code #{acktype}"
+    elsif status == 500
+      "ERROR: #{ack}"
+    elsif status == 300
+      "notified by plain e-mail, waiting for download"
+    elsif status == 301
+      "viewed on #{acked_at.to_s}"
+    elsif status == 400
+      "booked for direct download"
+    end
   end
 
   # resend all outgoing messages which haven't been acknowledged yet
@@ -77,7 +112,6 @@ class OutgoingMessage < ActiveRecord::Base
   end
 
   def self.force_sendout(recip,narr_id)
-    debugger
     u = User.find_by_username(recip)
     om = OutgoingMessage.find(:first,:conditions=>{:recipient_id=>u.wedgetail,:narrative_id=>narr_id})
     unless om
@@ -85,5 +119,6 @@ class OutgoingMessage < ActiveRecord::Base
       om.save!
     end
     om.sendout
+    om.save!
   end
 end

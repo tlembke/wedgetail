@@ -308,7 +308,7 @@ class LoginController < ApplicationController
     authorize :admin # admins can do whatever they like
     if @useredit.update_attributes(params[:useredit])
         flash[:notice] = 'User was successfully updated.'
-        redirect_to :controller=>"record"
+        redirect_to :controller=>"record",:action=>"list"
 
     else
           render :action => 'edit', :wedgetail=>@useredit.wedgetail

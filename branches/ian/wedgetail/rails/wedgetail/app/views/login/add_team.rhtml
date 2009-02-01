@@ -47,7 +47,16 @@
 	<br/>
 	<%= form.select(:state, %w{ NSW VIC QLD SA WA TAS NT ACT }) %>
 </p>
-		<%= submit_tag "Add Team", :class => "submit" %> 
+	
+                <p>
+			<label for="user_crypto_pref">Crypto option:</label> 
+			<ul id='crypto_pref'>
+                          <li><%= form.radio_button :crypto_pref, 1 %> S/MIME (aka "PKI", "HeSA", "X.509" or Argus-type)
+                          <li><%= form.radio_button :crypto_pref, 2 %> OpenPGP (aka "PGP" or "GnuPG")
+                          <li><%= form.radio_button :crypto_pref, 3 %> E-mail notification, with link to message
+                        </ul>
+                </p>
+	<p><%= submit_tag "Add Team", :class => "submit" %></p> 
 		<% end %> 
 	</fieldset> 
 </div>
