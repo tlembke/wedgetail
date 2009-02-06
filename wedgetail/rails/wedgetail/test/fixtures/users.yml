@@ -12,7 +12,7 @@ one:
   salt: <%= SALT %>
   hashed_password: <%= User.encrypted_password('secret' , SALT) %>
   crypto_pref: 1
-  hatched: 1
+  hatched: true
 two:
   id: 2
   username: 1234
@@ -20,7 +20,7 @@ two:
   given_names: John
   role: 5
   wedgetail: 1234
-  hatched: 0
+  hatched: false
   dob: 1991-7-6
   address_line: "1 Foo Crt"
   town: Foovile
@@ -31,7 +31,7 @@ three:
   family_name: Bloggs
   given_names: Jack
   role: 5
-  hatched: 1
+  hatched: true
   dob: 1960-1-2
   address_line: "2 Foo Crt"
   town: Foovile
@@ -42,8 +42,19 @@ harry:
   family_name: Potter
   given_names: Harry
   role: 5
-  hatched: 1
+  hatched: true
   dob: 1994-8-11
   address_line: "8 Dursley Avenue"
   town: Dudley
   postcode: "2001"
+four:
+  id: 5
+  wedgetail: 1237
+  family_name: Ulanyov
+  given_names: "Vladimir Ilich"
+  role: 5
+  hatched: false
+  address_line: "1 Foo St"
+  town: Moscow
+  postcode: "1111"
+  dob: 1874-12-12

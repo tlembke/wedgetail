@@ -51,6 +51,11 @@ class Code < ActiveRecord::Base
     "<b>"+name+"</b> "+text
   end
 
+  def javascript_line
+    nym = self.class.name.downcase
+    return "{typ:'#{nym}',name:'#{name}'}"
+  end
+
 
   def self.load_codes
     Code.delete_all
@@ -66,41 +71,36 @@ class Code < ActiveRecord::Base
         end
       end
     end
+    Drug.process_pbs
+  end
+
+  def get_text(patient)
+    {"text"=>"","comment"=>""}
   end
 end
 
 
 
 class Diagnosis < Code # OID 4,
-  def javascript_line
-    return "{typ:'diagnosis',name:'#{name.gsub("'","\\'")}',popup:null,values:''}"
-  end
 
   def to_html(text,narr)
     "<b>diagnosed:</b> "+name
   end
+
 end
 
 class PathologyRequest < Code # OID 3.1.
-
 end
 
 class ImagingRequest < Code # OID 3.2.
-
 end
 
 # a specific individual
 class Referrer < Code # OID 3.3. 
-
 end
 
 
 # a referral discipline (so we pop up an addressbook selector)
 class Referral < Code
-
-
-  def javascript_line
-    return "{typ:'refer',name:'#{name}',popup:null,values:'referral'}"
-  end
 end
 

@@ -1,11 +1,6 @@
 require 'rexml/document'
 
 class Drug < Code
-  def javascript_line
-    return "{typ:'drug',name:'#{name}',popup:null,values:'#{values['instr']} qty #{values['qty']} rpt #{values['rpt']}'}"
-  end
-
-
 
   def gen_pdf(text,narr,pdf)
     author = User.find_by_wedgetail(narr.created_by,:order=>"created_at desc")
@@ -37,6 +32,78 @@ class Drug < Code
       pdf.SetXY(x+30,95)
       pdf.MultiCell(60,5,text+"\n\n\n\n"+author.full_name,0,"L")
     end      
+  end
+
+  def get_text(patient)
+    if item = get_item_by_chapter("R1") and not patient.dva.blank?
+      t = "qty: #{item["qty"]} rpt: #{item["rpt"]} rpbs"
+    elsif values["items"].length == 1 and values["items"].values[0]["chapter"] == "R1" or  values["items"].values[0]["chapter"] == "PI"
+      item = values["items"].values[0]
+      t = "qty: #{item["qty"]} rpt: #{item["rpt"]} non-pbs"
+    elsif item = get_item_by_chapter("GE")
+      t = "qty: #{item["qty"]} rpt: #{item["rpt"]}"
+    else
+      item = values["items"].values[0]
+      t = "qty: #{item["qty"]} rpt: #{item["rpt"]}"
+    end
+    comment = ""
+    if item["auth"].length == 1 and items["auth"][0]["streamlined"]
+      t << " auth:"+items["auth"][0]["code"]
+    elsif values["items"].length > 1 or item["auth"] or (item["chapter"] != "GE" and item["chapter"] != "R1" and item["chapter"] != "PI")
+      comment = make_comment
+    end
+    # at this point we would check for interactions
+    return {"text"=>t,"comment"=>comment}
+  end
+
+  def make_comment
+    chapters = {"GE"=>"General",
+      "R1"=>"Veteran's",
+      "MD"=>"methadone",
+      "CI"=>"colo/ileostomy",
+      "CS"=>"Section 100 (Chemotherapy Special Benefits)",
+      "CT"=>"Section 100 (Chemotherapy Scheme)",
+    "GH"=>"Section 100 (Growth Hormone)"}
+    c = "<table>"
+    c << "<tr><th>Qty.</tr><th>Rpts.</th><th>Chapter</th><th>Authority</th><th>Streamlined</th></tr>"
+    values["items"].each do |item|
+      c << "<tr><td>#{item["qty"]}</td><td>#{item["rpt"]}</td>"
+      c << "<td>#{chapters[item["chapter"]]}</td>"
+      if item["auth"]
+        a1 = item["auth"][0]
+        c << "<td>#{a1["text"]}</td><td>"
+        if a1["streamlined"]
+          c << a1["code"]
+        end
+        c << "</td></tr>"
+        item["auth"][1..-1].each do |auth|
+          c << "<tr><td></td><td></td><td></td>"
+          c << "<td>#{auth["text"]}</td><td>"
+          if auth["streamlined"]
+            c << auth["code"]
+          end
+          c << "</td></tr>"
+        end
+      else
+        c << "<td></td><td></td></tr>"
+      end
+    end
+  end
+
+  def get_item_by_chapter(chapter)
+    item = nil
+    values["items"].values.each do |i| 
+      if i["chapter"] == chapter
+        unless item
+          item = i 
+        else
+          if i["qty"]*i["rpt"] > item["qty"]*item["rpt"]
+            item = i 
+          end
+        end
+      end
+    end
+    return item
   end
 
 
@@ -76,7 +143,7 @@ class Drug < Code
 
 
   def to_yaml
-    x = {"code"=>code,"name"=>name,"items"=>values["items"]}
+    x = {"code"=>code,"name"=>name,"items"=>values["items"],"dose"=>values["dose"]}
     x.to_yaml
   end
 
@@ -138,6 +205,7 @@ class Drug < Code
           form.gsub!("(prolonged release)","SR")
           form.gsub!("(modified release)","SR")
           form.gsub!("(controlled release)","SR")
+          form.gsub!(/ SR with [0-9]+ ml diluent in pre-filled syringe$/,"")
           form.gsub!(/equivalent to ([0-9]+) mg #{generic}( [a-z]+)?/,"\\1 mg")
           unless drugs[dname+form]
             d = Drug.new
@@ -159,7 +227,7 @@ class Drug < Code
         end
       end
     end
-    drugs.values.each {|x| print x.to_yaml }
-    #drugs.values.each {|x| x.save! }
+    #drugs.values.each {|x| print x.to_yaml }
+    drugs.values.each {|x| x.save! }
   end
 end

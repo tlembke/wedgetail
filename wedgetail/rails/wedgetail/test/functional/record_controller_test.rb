@@ -69,5 +69,44 @@ class RecordControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'outgoings'
     assert_select "table#om_table tr td:first-of-type",/Ian Haywood/
-  end     
+  end
+
+  def test_create
+    post(:create,{:patient=>{"address_line"=>"1 foo", 
+             "postcode"=>"1111", 
+             "password_confirmation"=>"123", 
+             "wedgetail"=>"", 
+             "role"=>"", 
+             "dob(1i)"=>"2009", 
+             "dva"=>"", 
+             "dob(2i)"=>"2", 
+             "family_name"=>"Bloggs", 
+             "sex"=>"1", 
+             "dob(3i)"=>"5", 
+             "known_as"=>"", 
+             "town"=>"foo", 
+             "medicare"=>"", 
+             "crn"=>"", 
+             "password"=>"123", 
+             "given_names"=>"Jack", 
+             "state"=>"NSW"}},
+         {:user_id=>users(:one).id})
+    assert_response 302
+  end
+
+  def test_show1
+    get :show,{:wedgetail=>'1237'},{:user_id=>users(:one).id}
+    assert_template 'unconfirmed'
+  end
+
+  def test_show2
+    get :show,{:wedgetail=>'1235'},{:user_id=>users(:one).id}
+    assert_template 'show'
+  end
+
+  def test_consent_form
+    get :consent,{:wedgetail=>'1237'},{:user_id=>users(:one).id}
+    assert_equal @response.content_type,'application/pdf'
+    assert_response :success
+  end
 end
