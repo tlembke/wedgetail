@@ -49,7 +49,7 @@ class RecordController < ApplicationController
         if ! @patient
            flash[:notice]='Patient not found'
            redirect_to :action => :list
-        elsif @patient.hatched == 0
+        elsif not @patient.hatched 
            flash[:notice]='Patient not yet registered'
            render(:action=> :unconfirmed)
         else
@@ -116,7 +116,7 @@ class RecordController < ApplicationController
         @patient.wedgetail=wedgetail_number
         @patient.username = @patient.wedgetail
         @patient.role=5
-        @patient.hatched=0
+        @patient.hatched=false
         @patient.created_by=@user.wedgetail
        	begin 
           @patient.save! 
@@ -158,13 +158,13 @@ class RecordController < ApplicationController
       # the nest contains all 'unhatched' patient, awaiting confirmation by big wedgie
       def nest
         authorize :big_wedgie
-        @patients=User.find(:all,:conditions=>["role=5 and hatched=0"], :order => "family_name,given_names")
+        @patients=User.find(:all,:conditions=>{:role=>5,:hatched=>false}, :order => "family_name,given_names")
         render :layout=>'layouts/standard'
       end
       
       def mynest
         authorize :user
-        @patients=User.find(:all,:conditions=>["role=5 and hatched=0 and created_by='#{@user.wedgetail}'"])
+        @patients=User.find(:all,:conditions=>{:role=>5,:hatched=>false,:created_by=>@user.wedgetail})
         render :layout=>'layouts/standard'
       end
       
@@ -263,9 +263,6 @@ EOF
         consent_text=consent_text.sub("<patient_address>",patient_address)
         consent_text=consent_text.sub("<patient_dob>",patient_dob)
         consent_text=consent_text.sub("<wedgetail_number>",wedgetail)
-       
-
-
 
         pdf=FPDF.new
         pdf.AddPage
