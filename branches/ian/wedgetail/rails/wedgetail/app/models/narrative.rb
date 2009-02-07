@@ -171,7 +171,7 @@ class Narrative < ActiveRecord::Base
   def clinical_objects(exc=false)
     return [] if content_type != 'text/x-clinical'
     objs = []
-    content.gsub(/\{([^\{]+)\}/) do |s|
+    content.gsub(/\{([^\{]+)\}/m) do |s|
       obj = Code.get_clinical_object($1,self)
       if obj.nil?
         if exc

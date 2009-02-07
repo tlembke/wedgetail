@@ -6,8 +6,8 @@ class Drug < Code
     author = User.find_by_wedgetail(narr.created_by,:order=>"created_at desc")
     patient = narr.user
     team = User.find_by_wedgetail(author.team,:order=>"created_at desc")
-    text.sub!(/qty:? *([0-9]+)(|ml|g) *rpt:? *([0-9]+)/i,"\nAmount: \\1 Repeats: \\3")
-    text.sub!(/auth(ority)?:? ?([0-9a-zA-Z]+)/i,"\nAuthority: \\1")
+    text.sub!(/qty:? *([0-9\.]+)(|ml|g) *rpt:? *([0-9]+)/i,"\nAmount: \\1 Repeats: \\3")
+    text.sub!(/auth(ority)?:? ?([0-9a-zA-Z]+)/i,"\nAuthority: \\2")
     [0,105].each do |x|
       pdf.SetXY(x+25,21)
       pdf.Cell(70,6,author.prescriber)
@@ -28,56 +28,74 @@ class Drug < Code
         pdf.Cell(8,6,"X",0,0,"L")
       end
       pdf.SetXY(x+25,90)
-      pdf.MultiCell(65,5,name)
-      pdf.SetXY(x+30,95)
-      pdf.MultiCell(60,5,text+"\n\n\n\n"+author.full_name,0,"L")
+      pdf.MultiCell(65,5,name+"\n"+text+"\n\n\n\n"+author.full_name,0,"L")
     end      
   end
 
   def get_text(patient)
     if item = get_item_by_chapter("R1") and not patient.dva.blank?
-      t = "qty: #{item["qty"]} rpt: #{item["rpt"]} rpbs"
+      t = "qty: %g rpt: %d rpbs" % [item["qty"],item["rpt"]]
     elsif values["items"].length == 1 and values["items"].values[0]["chapter"] == "R1" or  values["items"].values[0]["chapter"] == "PI"
       item = values["items"].values[0]
-      t = "qty: #{item["qty"]} rpt: #{item["rpt"]} non-pbs"
+      t = "qty: %g rpt: %d non-pbs" % [item["qty"],item["rpt"]]
     elsif item = get_item_by_chapter("GE")
-      t = "qty: #{item["qty"]} rpt: #{item["rpt"]}"
+      t = "qty: %g rpt: %d" % [item["qty"],item["rpt"]]
     else
       item = values["items"].values[0]
-      t = "qty: #{item["qty"]} rpt: #{item["rpt"]}"
+      t = "qty: %g rpt: %d" % [item["qty"],item["rpt"]]
     end
     comment = ""
-    if item["auth"].length == 1 and items["auth"][0]["streamlined"]
-      t << " auth:"+items["auth"][0]["code"]
+    if values["items"].length == 1 and item["auth"] and item["auth"].length == 1 and item["auth"][0]["streamlined"]
+      t << " auth:"+item["auth"][0]["code"]
     elsif values["items"].length > 1 or item["auth"] or (item["chapter"] != "GE" and item["chapter"] != "R1" and item["chapter"] != "PI")
       comment = make_comment
+      if item["auth"]
+        t << " auth: "
+      end
     end
     # at this point we would check for interactions
-    return {"text"=>t,"comment"=>comment}
+    return {"text"=>values["dose"]+" "+t,"comment"=>comment,"action"=>"REPLACE"}
   end
 
   def make_comment
     chapters = {"GE"=>"General",
       "R1"=>"Veteran's",
-      "MD"=>"methadone",
-      "CI"=>"colo/ileostomy",
-      "CS"=>"Section 100 (Chemotherapy Special Benefits)",
-      "CT"=>"Section 100 (Chemotherapy Scheme)",
-    "GH"=>"Section 100 (Growth Hormone)"}
-    c = "<table>"
-    c << "<tr><th>Qty.</tr><th>Rpts.</th><th>Chapter</th><th>Authority</th><th>Streamlined</th></tr>"
-    values["items"].each do |item|
-      c << "<tr><td>#{item["qty"]}</td><td>#{item["rpt"]}</td>"
+      "MD"=>"Section 100 (Methadone)",
+      "CI"=>"Colo/ileostomy",
+      "CS"=>"Section 100",
+      "CT"=>"Section 100",
+      "GH"=>"Section 100",
+      "DB"=>"Doctor's Bag",    #}
+      "DT"=>"Dental",          #} } } by default these not in the DB as doctor's don't prescribe
+      "DS"=>"Dental (Special)",#} }
+      "OT"=>"Optometry",       #}
+      "HS"=>"Section 100",
+      "IF"=>"Section 100",
+      "MF"=>"Section 100",
+      "PL"=>"Pall. care",
+      "PQ"=>"para/quadriplegic",
+      "SA"=>"Section 100",
+      "SB"=>"section 100",
+      "SY"=>"Section 100",
+      "PI"=>"Private" # this is a fake PBS chapter for private-script only drugs
+    }
+    chapters.default = "Unknown"
+    c = "<p><table class=\"pbslist\" border=\"1\">"
+    c << "<tr><th>Item</th><th>Qty.</th><th>Rpts.</th><th>Chapter</th><th>Authority</th><th>Streamlined</th></tr>"
+    values["items"].each_pair do |no,item|
+      c << "<tr><td>%s</td><td>%g</td><td>%d</td>" % [no,item["qty"],item["rpt"]]
       c << "<td>#{chapters[item["chapter"]]}</td>"
       if item["auth"]
         a1 = item["auth"][0]
         c << "<td>#{a1["text"]}</td><td>"
         if a1["streamlined"]
           c << a1["code"]
+        else
+          c << "no"
         end
         c << "</td></tr>"
         item["auth"][1..-1].each do |auth|
-          c << "<tr><td></td><td></td><td></td>"
+          c << "<tr><td></td><td></td><td></td><td></td>"
           c << "<td>#{auth["text"]}</td><td>"
           if auth["streamlined"]
             c << auth["code"]
@@ -88,6 +106,8 @@ class Drug < Code
         c << "<td></td><td></td></tr>"
       end
     end
+    c << "</table></p>"
+    return c
   end
 
   def get_item_by_chapter(chapter)
@@ -97,7 +117,7 @@ class Drug < Code
         unless item
           item = i 
         else
-          if i["qty"]*i["rpt"] > item["qty"]*item["rpt"]
+          if i["qty"]*(i["rpt"]+1) < item["qty"]*(item["rpt"]+1)
             item = i 
           end
         end
@@ -114,7 +134,7 @@ class Drug < Code
 
   def remaining(text,narr)
     # try to compute quantity remaining. 0 means run out, -1 means can't compute
-    return -1 unless text =~ /qty:? *([0-9]+)(|ml|g) *rpt:? *([0-9]+)/i
+    return -1 unless text =~ /qty:? *([0-9\.]+)(|ml|g) *rpt:? *([0-9]+)/i
     qty = $1.to_i
     rpt = $3.to_i
     unit = $2
@@ -157,12 +177,15 @@ class Drug < Code
     drugfile = Dir.glob(File.join(dir, "drug*.txt")).sort[-1]
     dosesfile = File.join(dir,"doses.txt")
     doses = {}
+    print "loading doses\n"
     File.open(dosesfile).each_line do |line|
       l = line.split(':')
       doses[l[0]] = l[1].strip
     end
     auths = {}
+    print "loading PBS xml\n"
     doc = REXML::Document.new(File.new(xmlfile))
+    print "processing authorities from xml: 0"
     doc.elements.each('pbs:root/pbs:publication-layouts-list/pbs:publication-layout/pbs:section/pbs:listings-list/pbs:authority-required') do |elem|
       item = nil
       authlist = []
@@ -181,7 +204,9 @@ class Drug < Code
         authlist << {"text"=>text,"streamlined"=>streamlined,"code"=>code}
       end
       auths[item] = authlist
+      print "\rprocessing authorities from xml: %d" % auths.length
     end
+    print "\nprocessing PBS drug: 0"
     drugs = {}
     File.new(drugfile).each_line do |line|
       line = line.split('!')
@@ -192,12 +217,13 @@ class Drug < Code
       form = line[27].strip.downcase
       atc = line[1]
       chapter = line[0]
+      next if ["DS","DT","DB","OT"].include?(chapter)
       qty = line[8].to_f
       rpt = line[9].to_i
       item_no = line[4]
       flag = line[5]
       [generic,trade].each do |dname|
-        unless dname =~ /terry white/ or dname =~ /^amcal/ or dname =~ /chem mart/ or dname =~ /genrx/ or (dname != generic and dname.include?(generic[0..7]))
+        unless dname =~ /terry white/ or dname =~ /^amcal/ or dname =~ /chem mart/ or dname =~ /genrx/ or (dname != generic and (dname.starts_with?(generic[0..4]) or dname.include?(generic)))
           form.gsub!("tablet","tab")
           form.gsub!("capsule","cap")
           form.gsub!("dispersible","disp.")
@@ -226,8 +252,16 @@ class Drug < Code
           end
         end
       end
+      print "\rprocessing PBS drug: %d" % drugs.length
     end
     #drugs.values.each {|x| print x.to_yaml }
-    drugs.values.each {|x| x.save! }
+    print "\nsaving drugs: 0"
+    i = 0
+    drugs.values.each {|x| 
+      x.save!
+      i+= 1
+      print "\rsaving PBS drugs: %d" % i
+    }
+    print "\n"
   end
 end
