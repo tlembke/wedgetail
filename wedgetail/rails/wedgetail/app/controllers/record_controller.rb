@@ -19,6 +19,7 @@ class RecordController < ApplicationController
         elsif !(params[:family_name].to_s=="" && params[:given_names].to_s=="")
             @patients = User.paginate(:page => params[:page],:per_page => 10, :order => 'family_name,wedgetail DESC, created_at DESC', :conditions => ["visibility=? and family_name like ? and (given_names like ? or known_as like ?) and role=5", true,params[:family_name].to_s+"%",params[:given_names].to_s+"%",params[:given_names].to_s+"%"])
         end
+        render :layout=>'layouts/standard'
       end
 
       # show all users who access a patient's information
@@ -29,9 +30,16 @@ class RecordController < ApplicationController
          @audits = Audit.paginate(:page => params[:page],:per_page => 60, :order => 'created_at DESC', :conditions => ["patient=?", params[:wedgetail]])
       end  
       
-      def test
-        @thisTest="this Test"
+
+      # show outgoing messages of narrative
+      def outgoings
+        @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
+        authorize_only (:patient) {@patient.wedgetail == @user.wedgetail}
+        authorize :user
+        @narrative = Narrative.find(params[:id])
+        @outgoings = @narrative.outgoing_messages
       end
+
       #main patient display
       def show
         @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
@@ -41,7 +49,7 @@ class RecordController < ApplicationController
         if ! @patient
            flash[:notice]='Patient not found'
            redirect_to :action => :list
-        elsif @patient.hatched == 0
+        elsif not @patient.hatched 
            flash[:notice]='Patient not yet registered'
            render(:action=> :unconfirmed)
         else
@@ -88,11 +96,13 @@ class RecordController < ApplicationController
         authorize_only(:user){@patient.firewall(@user)}
         authorize :admin
         @audit=Audit.create(:patient=>@wedgetail,:user_wedgetail=>@user.wedgetail)
+        OutgoingMessage.check_view(@user,@narrative) if @narrative
       end
       
       def new
         authorize :user
         @patient = User.new
+        render :layout=>'layouts/standard'
       end
 
       # note that new patients are assigned a temporary wedgetail number
@@ -106,14 +116,14 @@ class RecordController < ApplicationController
         @patient.wedgetail=wedgetail_number
         @patient.username = @patient.wedgetail
         @patient.role=5
-        @patient.hatched=0
+        @patient.hatched=false
         @patient.created_by=@user.wedgetail
        	begin 
           @patient.save! 
           flash[:notice]='Patient saved'
           redirect_to :action => :show, :wedgetail => @patient.wedgetail 
       	rescue ActiveRecord::RecordInvalid => e 
-          render :action => :new
+          render :action => :new,:layout=>'layouts/standard'
         end
       end 
     
@@ -148,12 +158,14 @@ class RecordController < ApplicationController
       # the nest contains all 'unhatched' patient, awaiting confirmation by big wedgie
       def nest
         authorize :big_wedgie
-        @patients=User.find(:all,:conditions=>["role=5 and hatched=0"], :order => "family_name,given_names")
+        @patients=User.find(:all,:conditions=>{:role=>5,:hatched=>false}, :order => "family_name,given_names")
+        render :layout=>'layouts/standard'
       end
       
       def mynest
         authorize :user
-        @patients=User.find(:all,:conditions=>["role=5 and hatched=0 and created_by='#{@user.wedgetail}'"])
+        @patients=User.find(:all,:conditions=>{:role=>5,:hatched=>false,:created_by=>@user.wedgetail})
+        render :layout=>'layouts/standard'
       end
       
       def hatch
@@ -220,6 +232,19 @@ EOF
         @guests=User.find(:all,:conditions=>["wedgetail LIKE ? and wedgetail !=?","%"+ params[:wedgetail],params[:wedgetail]])
       end
       
+      def medications
+        @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
+        @meds = @patient.codes.delete_if {|obj| obj.code_class != Drug }
+        @meds.sort! {|x,y| x.narr.created_at <=> y.narr.created_at }
+      end
+
+      def diagnoses
+        @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
+        @diagnoses = @patient.codes.delete_if {|obj| obj.code_class != Diagnosis }
+      end
+
+
+
       # generates the consent for new patients, text found in /public/consent.txt
       def consent
         send_data(gen_pdf(params[:wedgetail]), :filename => "consent.pdf", :type => "application/pdf")
@@ -238,9 +263,6 @@ EOF
         consent_text=consent_text.sub("<patient_address>",patient_address)
         consent_text=consent_text.sub("<patient_dob>",patient_dob)
         consent_text=consent_text.sub("<wedgetail_number>",wedgetail)
-       
-
-
 
         pdf=FPDF.new
         pdf.AddPage

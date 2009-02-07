@@ -11,6 +11,7 @@ class EntryController < ApplicationController
 
   def new
     authorize :user
+    @patient = User.find_by_wedgetail(params[:wedgetail])
     # if narrative has value, then starting values from previous entry
     if(params[:narrative])
       @narrative = Narrative.find(params[:narrative])
@@ -22,7 +23,20 @@ class EntryController < ApplicationController
       @narrative = Narrative.new
     end
     @narrative.wedgetail=params[:wedgetail]
-    @narrative_type=NarrativeType.find(:all, :order => "narrative_type_name")
+    # put Encounter first in the list
+    encounter=nil
+    @narrative_type=NarrativeType.find(:all, :order => "narrative_type_name").delete_if do |x|
+      if x.narrative_type_name == "Encounter"
+        encounter=x
+        true
+      else
+        false
+      end
+    end
+    @narrative_type.unshift(encounter) if encounter
+    # tell the layout to load our Huge Javascript File
+    @completions = true
+    render :layout=>"standard"
   end
 
   def create
@@ -30,24 +44,19 @@ class EntryController < ApplicationController
     begin
       @narrative = Narrative.new(params[:narrative])
       @narrative.created_by=@user.wedgetail
-      upload_ok=true
-      if params[:narrative][:uploaded_narrative]!=""
-        file = params[:narrative][:uploaded_narrative]
-        content_type=file.content_type.chomp
-        if content_type!="text/plain"
-          flash[:notice] = 'Sorry, only plain text files currently supported'
-          upload_ok=false
-        end
-      end
-      if upload_ok and @narrative.save
+      p = @narrative.can_print?
+      if @narrative.save
+        flash[:background_print_narrative] = @narrative.id if p
         @narrative.sendout
         flash[:notice] = 'Narrative was successfully created.'
         redirect_to :controller => 'record', :action => 'show', :wedgetail => @narrative.wedgetail
       else
+        @completions = true
         redirect_to :action => 'new',:wedgetail=> @narrative.wedgetail
       end
     rescue WedgieError
       flash[:notice] = $!.to_s
+      @completions = true
       redirect_to :action => 'new',:wedgetail=> params[:narrative][:wedgetail]
     end
   end
@@ -86,5 +95,12 @@ class EntryController < ApplicationController
         redirect_to :controller=>:record,:action=>:show,:wedgetail=>mp.wedgetail
       end
     end
+    render :layout=>'layouts/standard'
+  end
+
+  def gen_pdf
+    authorize :user
+    @narrative = Narrative.find(params[:id])
+    send_data(@narrative.printout.Output, :filename => "wedgetail.pdf", :type => "application/pdf")
   end
 end

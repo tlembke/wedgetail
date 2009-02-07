@@ -7,27 +7,31 @@
 
 <%= javascript_include_tag :defaults %>
 <%= javascript_include_tag "prototip" %>
+<% if defined? @completions %>
+<script src="/completions/script" type="text/javascript"></script>
+<% end %>  
 <% if flash[:background_print_narrative] -%>
   <script type="text/javascript">
   //<![CDATA[
     win=window.open("","","width=10 height=10");
     win.blur();
-    win.document.location = '<%= url_for(:controller=>"form",:action=>"gen_pdf",:wedgetail=>params[:wedgetail],:narr_id=>flash[:background_print_narrative]) %>';
+    win.document.location = document.location.protocol+'//' + document.location.host + '<%= url_for(:controller=>"entry",:action=>"gen_pdf",:id=>flash[:background_print_narrative]) %>';
     win.print();
     win.close();
   //]]>
+</script>
 <% end %>
 </head> 
 <body id="record">
 
 	
 <div id="banner"> 
-<img class="logo" src="/images/wedgetail_logo.gif"/> 
+<img class="logo" src="/images/wedgetail_logo.gif"/>
 <img src="/images/wedgetail_horiz_80.jpg" align=center /> 
 </div> 
 <div id="columns"> 
 <div id="side"> 
-<%= render :partial => 'layouts/side_links' if session[:user_id] and :controller != :page %>
+<%= render :partial => 'layouts/side_links' if session[:user_id] and not controller === PageController %>
 
 <br/>  
  
@@ -37,7 +41,69 @@
 <% if flash[:notice] -%> 
 <div id="notice"><%= flash[:notice] %></div> 
 <% end -%> 
-<%= yield :layout %> 
+
+<table width=99% valign=top>
+	<tr>
+		<td width=90% valign=top>
+
+<div class="wedgetail-form">
+	<fieldset>
+		<legend>Patient Details</legend>
+	<h3><%= h(@patient.family_name+", "+@patient.given_names)-%>
+	<%= h(" \""+@patient.known_as+ "\"")	unless @patient.known_as.blank? -%>
+	</h3>
+	<b>DOB</b>  <%= @patient.dob.day %>/<%= @patient.dob.month%>/<%= @patient.dob.year-%>
+	&nbsp; &nbsp;<b>Address</b>  <%= @patient.address_line+", "+@patient.town%>
+	</fieldset>
+</div>
+<%= link_to "Summary",{:controller=>:record,:action=>:show,:wedgetail=>@patient.wedgetail} %> |
+<%= link_to "Encounters",{:controller=>:record,:action=>:narrative,:type=>4,:wedgetail=>@patient.wedgetail} %> |
+<%= link_to "Results",{:controller=>:record,:action=>:narrative,:type=>7,:wedgetail=>@patient.wedgetail} %> |
+<%= link_to "Letters",{:controller=>:record,:action=>:narrative,:type=>8,:wedgetail=>@patient.wedgetail} %> |
+<%= link_to "Discharges",{:controller=>:record,:action=>:narrative,:type=>3,:wedgetail=>@patient.wedgetail} %> |
+<%= link_to "Medications",{:controller=>:record,:action=>:medications,:wedgetail=>@patient.wedgetail} %> |
+<%= link_to "Diagnoses",{:controller=>:record,:action=>:diagnoses,:wedgetail=>@patient.wedgetail} %>
+
+			<%= yield :layout %>
+
+			</td>
+			<td valign=top align=center>
+
+		<div id='register'>
+	<% if @user.role<5%>
+		<% if @user.interest(@patient.wedgetail) %>
+<p><%= link_to_remote(show_icon("internet-news-reader","","","Interest","You have registered your interest in receiving updates about this patient. Click to unregister your interest and you will no longer receive HL7 updates as they are received","large","tango","closeButton: true"), :url => {:action => "unregister",:wedgetail=>@patient.wedgetail}) %></p>
+		<% else %>
+<p><%= link_to_remote(show_icon("internet-news-reader-x","","","Interest","You have not registered your interest in receiving updates about this patient. Click to register your interest and you will receive HL7 updates as they are received","large","tango","closeButton: true"), :url => {:action => "register",:wedgetail=>@patient.wedgetail}) %></p>
+
+		<% end %>
+	<% end %>
+</div>
+<p><%= show_icon("mail-reply-patient","/messages/new/"+ @patient.wedgetail+"?return=patient","","Message to Patient","Click to send a message to "+ @patient.full_name,"large") if @user.role<5 %></p>
+	
+	
+
+<p><%= show_icon("mail-user","/messages/new/?re_id="+@patient.wedgetail+"&return=patient_user","","Message About Patient","Click to send a message about " + @patient.full_name + "  to another user","large") if @user.role<5%></p><p>
+<%= show_icon("mail-user","/messages/new/?re_id="+@patient.wedgetail+"&return=patient_user","","Message","Click to send a message to a user","large") if @user.role==5 %></p>
+
+
+<% if @user.role<5%>
+
+<p><%= show_icon("address-book-new","/record/edit/"+ @patient.wedgetail,"","Edit Demograhics","Edit demographic details for" + @patient.full_name,"large") %></p>
+<p><%= show_icon("accessories-text-editor","/entry/new/"+ @patient.wedgetail,"","Clinical Entry","Add clinical entry about " + @patient.full_name,"large") %></p>
+
+<% end %>
+
+<%if @user.role<=5 %>
+<p><%= show_icon("edit-paste","/record/audit/"+ @patient.wedgetail,"","Audit","Show all users who have accessed this record","large") %></p>
+<p><%= show_icon("preferences-system","/login/password/"+ @patient.wedgetail,"","Preferences","Change preferences for " + @patient.full_name,"large") %></p>
+<p><%= show_icon("contact-new","/record/guests/"+ @patient.wedgetail,"","Guests","Create a Guest Access Card and manage previous guests","large")%></p>
+
+<% end %>
+
+</td>
+</tr>
+</table>
 </div> 
 </div> 
 </body> 

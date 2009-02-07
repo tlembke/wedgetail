@@ -1,0 +1,24 @@
+# abstract codes, all of class "Code"
+# they describe the overall layout
+# there may be abstract codes below this hierarchy also
+---
+code: "1.3.6.1.4.1.18298"
+name: "Root node" # registered to Horst Herb's "drugref" project
+---
+code: "1.3.6.1.4.1.18298.2" # .1 reserved for now
+name: "drugs"
+---
+code: "1.3.6.1.4.1.18298.4"
+name: "diagnoses"
+---
+code: "1.3.6.1.4.1.18298.3"
+name: "requests to external authorities, any type"
+---
+code: "1.3.6.1.4.1.18298.3.1"
+name: "pathology requests"
+---
+code: "1.3.6.1.4.1.18298.3.2"
+name: "radiology requests"
+---
+code: "1.3.6.1.4.1.18298.3.3"
+name: "other named specialists"

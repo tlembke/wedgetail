@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
   validates_presence_of :wedgetail
   attr_accessor :password_confirmation 
   validates_confirmation_of :password 
-  validates_format_of :postcode,:with=>/^[0-9]{4}$/,:message=>"postcode must be 4 digits",:allow_nil=>true
-            
-  
+  validates_format_of :postcode,:with=>/^[0-9]{4}$/,:message=>"postcode must be 4 digits",:allow_blank=>true
+  validates_format_of :prescriber,:with=>/^[0-9]{6,7}$/,:message=>"Prescriber number must be 6-7 digits",:allow_blank=>true
+  validates_format_of :provider,:with=>/^[0-9]{6}[0-9A-Z][A-Z]$/,:message=>"Provider number not valid format",:allow_blank=>true
   has_many :outbox,
           :class_name => "Message",
           :foreign_key => "sender_id",
@@ -36,6 +36,17 @@ class User < ActiveRecord::Base
       else
         errors.add(:medicare,"not a valid Medicare number")
       end
+    end
+    unless provider.blank?
+      # algorithm obtained from http://www.medicareaustralia.gov.au/provider/vendors/files/IDI-formats.pdf, pages 11-12
+      check = 0
+      [3,5,8,4,2,1].each_with_index {|mul,i| check+=provider[i..i].to_i*mul }
+      plv = provider[6]-48
+      plv-=7 if plv > 10
+      check+=plv*6
+      check = check % 11
+      check = ['Y','X','W','T','L','K','J','H','F','B','A'][check]
+      errors.add(:provider,"Provider number not valid (failed checksum)") unless check == provider[7..7]
     end
   end 
  
@@ -177,6 +188,13 @@ class User < ActiveRecord::Base
     address+=self.town
   end
 
+  def full_address
+    r = address_line
+    r+="\n" unless address_line.blank?
+    r+= town+" "+postcode
+    return r
+  end
+
   def self.find_fuzzy(familyname,firstname,dob,medicare)
     
     medicare.delete! " -/" if medicare
@@ -281,7 +299,21 @@ class User < ActiveRecord::Base
     return pid
   end
 
+  # obtain the full set of codes assigned to this person
+  def codes
+    unless defined? @codes and @codes # this is an expensive computation
+      codes = {}
+      Narrative.find(:all,:conditions=>{:wedgetail=>wedgetail}).map {|narr| narr.clinical_objects}.flatten.each do |obj|
+        codes[obj.code] = obj
+      end
+      @codes = codes.values.delete_if {|obj| obj.delete? }
+    end
+    @codes
+  end
 
+  def flush_codes
+    @codes = nil
+  end
 
   private 
   

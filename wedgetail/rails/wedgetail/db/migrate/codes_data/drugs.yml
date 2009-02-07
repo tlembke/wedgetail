@@ -1,0 +1,22 @@
+# list of drugs, this file should be non-PBS/RPBS only
+---
+code: N02AA59
+name: codeine phosphate with paracetamol tab 8mg-500mg
+dose: 1-2 qid prn
+items:
+  X: 
+    chapter: PI
+    qty: 20.0
+    rpt: 5
+---
+code: N02AA59
+name: panadeine tab 8mg-500mg
+dose: 1-2 qid prn
+items:
+  X: 
+    chapter: PI
+    qty: 20.0
+    rpt: 5
+
+
+

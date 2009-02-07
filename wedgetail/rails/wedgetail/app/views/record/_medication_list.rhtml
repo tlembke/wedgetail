@@ -1,5 +1,0 @@
-<div id='medication_chart'>
-<h1><%= @medicationChart.narrative_date.strftime("%d/%m/%y")%>   <%= @medicationChart.title-%> - <%= @medicationChart.narrative_type.narrative_type_name %></h1>
-<%= sanitize(@medicationChart.content.gsub(/\n/, '<br>')) %>
-</div>
-

@@ -1,20 +1,17 @@
-<%= link_to @user.given_names+" "+ @user.family_name, :controller=>'login', :action=>'password',:wedgetail=>@user.wedgetail if @user.role > 3 and @user.role < 6 %>
-<%= link_to @user.given_names+" "+ @user.family_name, :controller=>'login', :action=>'edit',:wedgetail=>@user.wedgetail if @user.role < 4%>	
-<br>
-<p>
+<%= link_to @user.given_names+" "+ @user.family_name, :controller=>'login', :action=>'password',:wedgetail=>@user.wedgetail if @user.role == 5 %>
+<%= link_to @user.given_names+" "+ @user.family_name, :controller=>'login', :action=>'edit',:wedgetail=>@user.wedgetail if @user.role <= 4 %>	
 
 
 <% if @user.role<7 %>
 
-
+<p>
 	<%= show_icon("internet-mail","/messages/","Messages","Messages","Read and post messages","medium")%>
 
 <br>
 	<span id="sb_message_count">
 	<%= pluralize(@user.inbox.size, "message")%>
-	</span>
+	</span></p>
 <% end %>
-</p>
 <p> 
 <%= show_icon("system-log-out","/login/logout","Logout","Logout","","medium")%>
 </p>
@@ -53,5 +50,8 @@
 <% end %>
 </p><p>
 <%= link_to "Documentation", :controller=>'page'%>
-
 </p>
+<p><small>
+version 0.1
+r86
+</small></p>
