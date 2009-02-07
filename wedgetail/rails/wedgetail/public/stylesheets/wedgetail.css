@@ -312,3 +312,8 @@ span.compl_type {
                   font-style: italic;
                   }
 }
+
+table.pbslist { 
+                border-collapse: collapse;
+   
+ }

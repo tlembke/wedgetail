@@ -27,8 +27,8 @@ class Code < ActiveRecord::Base
 
   # return the appropriate object for a clinical phrase (the contents of {})
   def self.get_clinical_object(text,narr)
-    s = text.split(';')
-    c = all_codes[s[0]]
+    s = text.split(';',2)
+    c = all_codes[s[0].strip]
     if c
       return SubNarrative.new(c,(s[1] or ''),narr)
     else
@@ -52,22 +52,32 @@ class Code < ActiveRecord::Base
   end
 
   def javascript_line
-    nym = self.class.name.downcase
-    return "{typ:'#{nym}',name:'#{name}'}"
+    typ = self.class.name.downcase
+    return "{typ:\"#{typ}\",name:\"#{name}\"}"
   end
 
 
   def self.load_codes
+    print "deleting codes\n"
     Code.delete_all
     Dir.glob(File.join(File.dirname(__FILE__), "../../db/migrate/codes_data/*.yml")) do |fname|
-      File.open(fname) do |f| 
+      File.open(fname) do |f|
+        fname = File.basename(fname)
+        print "loading #{fname}\n"
         YAML.load_documents(f) do |value| 
-          d= {}
-          d[:code] = value.delete("code")
-          d[:name] = value.delete("name")
-          d[:type] = fname[0..-5].camelize.singularize
-          d[:values] = values unless values.blank?
-          Code.new(d).save!
+          # unfortuately we have to do this the hard way in order to 
+          # manually set type.
+          c = Code.connection.quote(value.delete("code"))
+          n = Code.connection.quote(value.delete("name"))
+          t = Code.connection.quote(fname[0..-5].camelize.singularize)
+          t = "'Code'" if t == "'Abstract'"
+          if value.blank?
+            v = "NULL"
+          else
+            v = Code.connection.quote(value.to_yaml)
+          end
+          by = Code.connection.quote(Time.now)
+          Code.connection.execute("INSERT INTO codes ('code','name','values','type','created_at') VALUES (#{c},#{n},#{v},#{t},#{by})")
         end
       end
     end

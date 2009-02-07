@@ -15,7 +15,7 @@
   //<![CDATA[
     win=window.open("","","width=10 height=10");
     win.blur();
-    win.document.location = 'http://' + document.location.host + '<%= url_for(:controller=>"entry",:action=>"gen_pdf",:id=>flash[:background_print_narrative]) %>';
+    win.document.location = document.location.protocol+'//' + document.location.host + '<%= url_for(:controller=>"entry",:action=>"gen_pdf",:id=>flash[:background_print_narrative]) %>';
     win.print();
     win.close();
   //]]>

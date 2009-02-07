@@ -80,7 +80,7 @@ class RecordControllerTest < Test::Unit::TestCase
              "dob(1i)"=>"2009", 
              "dva"=>"", 
              "dob(2i)"=>"2", 
-             "family_name"=>"Bloggs", 
+             "family_name"=>"Blogggs", 
              "sex"=>"1", 
              "dob(3i)"=>"5", 
              "known_as"=>"", 
@@ -92,6 +92,8 @@ class RecordControllerTest < Test::Unit::TestCase
              "state"=>"NSW"}},
          {:user_id=>users(:one).id})
     assert_response 302
+    newpatient = User.find(:first,:conditions=>{:family_name=>"Blogggs"})
+    assert_equal newpatient.hatched,false
   end
 
   def test_show1

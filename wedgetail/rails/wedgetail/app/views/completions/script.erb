@@ -1,9 +1,9 @@
 // This is a Javascript file processed by Rails
 
 completion_digits = ['1','2','3','4','5','6','7','8','9','0','`',
-		     '#','$','%','^'];
+		     '#','$','%','^','&'];
 
-completions = [<%= @completions.map {|comp| comp.javascript_line }.join(",") %> ];
+completions = [<%= @completions.map {|comp| comp.javascript_line }.sort.join(",") %> ];
 
 current_completions = [];
 
@@ -28,7 +28,7 @@ function checkCompletions(tb,word,back)
 	if(ends_with(word,completion_digits[i]))
 	    {
 		$('notes_completions').innerHTML = "";
-		insertAtCaret("{"+current_completions[i].name+";"+current_completions[i].values+"}",back);
+		getCompletion(current_completions[i].name,back);
 		current_completions = [];
 		return false;
 	    }
@@ -108,6 +108,27 @@ function insertAtCaret(text, back)
 // called as opener.globalInsertAtCaret
 var globalInsertAtCaret = this.insertAtCaret;
 
+function getCompletion(code,back)
+{
+    new Ajax.Request('/completions/code_value',{
+	    method:'post',
+		parameters:{wedgetail:$('narrative_wedgetail').value,code:code,narr:$('narrative_content').value},
+	    onSuccess: function(transport){
+		json = transport.responseJSON;
+		switch (json.action) {
+		case "REPLACE":
+		    insertAtCaret("{"+code+";"+json.text+"} ",back);
+		    $('notes_comment').innerHTML = json.comment;
+		    break;
+		case "POPUP":
+		    insertAtCaret("",back);
+		    win = window.open("","","width=100 height=200");
+		    win.location = document.location.protocol + "//" + document.location.host + json.url;
+		    break;
+		    // there is, of course, scope to add other actions here
+		}
+	    }})
+}
 
 //courtesy of quirksmode.org
 // we may need to store the fudge factors used in calcPosition
