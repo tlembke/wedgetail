@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_filter :redirect_to_ssl, :authenticate
-  layout "record"
+  layout "standard"
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
@@ -59,9 +59,7 @@ class MessagesController < ApplicationController
   
   def new
     @message = Message.new
-    if(params[:id])
-      @recipient_user=User.find_by_wedgetail(params[:id])
-    end
+    @recipient_user=User.find_by_wedgetail(params[:id],:order=>"created_at desc") if params[:id]
     if(params[:re_id])
       @message.re=params[:re_id]
       @re=User.find_by_wedgetail(params[:re_id],:order =>"created_at DESC");

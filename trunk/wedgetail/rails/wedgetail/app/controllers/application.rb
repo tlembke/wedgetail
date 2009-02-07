@@ -102,6 +102,8 @@ class ApplicationController < ActionController::Base
       else
          redirect_to :controller => 'record'
        end
+    else
+      @authorized = true
     end
   end
 

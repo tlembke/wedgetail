@@ -1,0 +1,2373 @@
+---
+code: "A95"
+name: "yellow fever"
+---
+code: "Q251"
+name: "coarctation"
+---
+code: "H181"
+name: "bullous keratopathy"
+---
+code: "Z736"
+name: "disability"
+---
+code: "B35"
+name: "dermatophytosis"
+---
+code: "S065"
+name: "subdural haemorrhage"
+---
+code: "H60"
+name: "acute otitis externa"
+---
+code: "I25"
+name: "ischaemic heart disease"
+---
+code: "Q70"
+name: "syndactyly"
+---
+code: "A071"
+name: "giardia"
+---
+code: "K58"
+name: "irritable bowel syndrome"
+---
+code: "E1422"
+name: "diabetic nephropathy"
+---
+code: "F31"
+name: "bipolar"
+---
+code: "Q640"
+name: "epispadias"
+---
+code: "A590"
+name: "urogenital trichomoniasis"
+---
+code: "R26"
+name: "mobility"
+---
+code: "H55"
+name: "nystagmus"
+---
+code: "Z480"
+name: "dressing"
+---
+code: "J03"
+name: "tonsillitis"
+---
+code: "L82"
+name: "seborrhoeic keratosis"
+---
+code: "S064"
+name: "epidural haemorrhage"
+---
+code: "E041"
+name: "thyroid nodule nontoxic"
+---
+code: "D52"
+name: "folate deficiency"
+---
+code: "I83"
+name: "varicose veins of legs"
+---
+code: "D51"
+name: "b12 deficiency"
+---
+code: "L42"
+name: "pityriasis rosea"
+---
+code: "D18"
+name: "lymphangioma"
+---
+code: "I70"
+name: "atherosclerosis"
+---
+code: "C90"
+name: "multiple myeloma"
+---
+code: "F985"
+name: "stuttering"
+---
+code: "K41"
+name: "femoral hernia"
+---
+code: "B01"
+name: "chickenpox"
+---
+code: "A071"
+name: "giardiasis"
+---
+code: "D68"
+name: "coagulation defects"
+---
+code: "K590"
+name: "constipation"
+---
+code: "L700"
+name: "acne vulgaris"
+---
+code: "B081"
+name: "contagiosum"
+---
+code: "Z024"
+name: "driving"
+---
+code: "N393"
+name: "stress incontinence"
+---
+code: "D693"
+name: "idiopathic thrombocytopenic purpura"
+---
+code: "N814"
+name: "uterovaginal prolapse"
+---
+code: "K74"
+name: "cirrhosis"
+---
+code: "G510"
+name: "bell's palsy"
+---
+code: "N950"
+name: "postmenopausal bleeding"
+---
+code: "I470"
+name: "ventricular arrhythmia"
+---
+code: "S0600"
+name: "concussion"
+---
+code: "O912"
+name: "mastitis"
+---
+code: "J041"
+name: "tracheitis"
+---
+code: "E05"
+name: "thyrotoxicosis"
+---
+code: "O01"
+name: "hydatidiform mole"
+---
+code: "K001"
+name: "supernumerary teeth"
+---
+code: "J36"
+name: "peritonsillar abscess"
+---
+code: "L84"
+name: "corns"
+---
+code: "I350"
+name: "aortic stenosis"
+---
+code: "G70"
+name: "myasthenia gravis"
+---
+code: "K605"
+name: "anorectal fistula"
+---
+code: "L70"
+name: "acne"
+---
+code: "M771"
+name: "lateral epicondylitis"
+---
+code: "Z515"
+name: "palliative"
+---
+code: "B355"
+name: "tinea imbricata"
+---
+code: "J14"
+name: "haemophilus"
+---
+code: "R074"
+name: "chest pain"
+---
+code: "F430"
+name: "acute stress"
+---
+code: "Q250"
+name: "patent ductus arteriosus"
+---
+code: "G92"
+name: "encephalopathy"
+---
+code: "F809"
+name: "disorder of speech"
+---
+code: "Z491"
+name: "extracorporeal"
+---
+code: "K44"
+name: "hiatus hernia"
+---
+code: "I61"
+name: "cerebral haemorrhage"
+---
+code: "I44"
+name: "lbbb"
+---
+code: "K80"
+name: "cholelithiasis"
+---
+code: "Z760"
+name: "repeat prescription"
+---
+code: "F059"
+name: "organic psychosis"
+---
+code: "Q53"
+name: "undescended testicle"
+---
+code: "H113"
+name: "conjunctival haemorrhage"
+---
+code: "R042"
+name: "haemoptysis"
+---
+code: "B02"
+name: "herpes zoster"
+---
+code: "B356"
+name: "tinea cruris"
+---
+code: "N209"
+name: "urinary calculus"
+---
+code: "I60"
+name: "subarachnoid"
+---
+code: "K565"
+name: "bands"
+---
+code: "A010"
+name: "typhoid"
+---
+code: "K732"
+name: "chronic active hepatitis"
+---
+code: "K50"
+name: "crohn's disease"
+---
+code: "N80"
+name: "endometriosis"
+---
+code: "R32"
+name: "urinary incontinence"
+---
+code: "H73"
+name: "myringitis"
+---
+code: "N941"
+name: "dyspareunia"
+---
+code: "R55"
+name: "syncope"
+---
+code: "Q54"
+name: "hypospadias"
+---
+code: "R14"
+name: "flatulence"
+---
+code: "L05"
+name: "pilonidal"
+---
+code: "L71"
+name: "rosacea"
+---
+code: "H532"
+name: "diplopia"
+---
+code: "G35"
+name: "multiple sclerosis"
+---
+code: "T595"
+name: "fluoride"
+---
+code: "J304"
+name: "rhinitis"
+---
+code: "N23"
+name: "renal colic"
+---
+code: "I46"
+name: "arrest"
+---
+code: "M201"
+name: "hallux valgus"
+---
+code: "N76"
+name: "vulvitis"
+---
+code: "I019"
+name: "acute rheumatic fever"
+---
+code: "K21"
+name: "gastro-oesophageal reflux"
+---
+code: "A35"
+name: "tetanus"
+---
+code: "Q752"
+name: "hypertelorism"
+---
+code: "L50"
+name: "urticaria"
+---
+code: "I50"
+name: "cardiac failure"
+---
+code: "R067"
+name: "sneezing"
+---
+code: "L305"
+name: "pityriasis alba"
+---
+code: "I84"
+name: "haemorrhoid"
+---
+code: "E05"
+name: "hyperthyroidism"
+---
+code: "K830"
+name: "cholangitis"
+---
+code: "N18"
+name: "chronic renal failure"
+---
+code: "L301"
+name: "pompholyx"
+---
+code: "M33"
+name: "polymyositis"
+---
+code: "R35"
+name: "polyuria"
+---
+code: "N459"
+name: "epididymo-orchitis"
+---
+code: "N45"
+name: "orchitis"
+---
+code: "I781"
+name: "naevus"
+---
+code: "H020"
+name: "trichiasis"
+---
+code: "K37"
+name: "appendicitis"
+---
+code: "Z981"
+name: "arthrodesis"
+---
+code: "K922"
+name: "gastrointestinal haemorrhage"
+---
+code: "R522"
+name: "chronic pain"
+---
+code: "K81"
+name: "cholecystitis"
+---
+code: "M30"
+name: "polyarteritis nodosa"
+---
+code: "A09"
+name: "diarrhoea"
+---
+code: "M202"
+name: "hallux rigidus"
+---
+code: "H60"
+name: "otitis externa"
+---
+code: "J01"
+name: "acute sinusitis"
+---
+code: "T455"
+name: "anticoagulant"
+---
+code: "N45"
+name: "epididymitis"
+---
+code: "H020"
+name: "entropion"
+---
+code: "B58"
+name: "toxoplasmosis"
+---
+code: "Q894"
+name: "conjoined twins"
+---
+code: "B35"
+name: "tinea"
+---
+code: "I48"
+name: "atrial fibrillation"
+---
+code: "I44"
+name: "left-bundle branch block"
+---
+code: "H160"
+name: "corneal ulcer"
+---
+code: "I64"
+name: "stroke"
+---
+code: "R002"
+name: "palpitations"
+---
+code: "R060"
+name: "dyspnoea"
+---
+code: "Z013"
+name: "blood pressure"
+---
+code: "N811"
+name: "cystocele"
+---
+code: "C81"
+name: "hodgkin's disease"
+---
+code: "N43"
+name: "hydrocele"
+---
+code: "W42"
+name: "noise"
+---
+code: "L66"
+name: "folliculitis"
+---
+code: "Q676"
+name: "excavatum"
+---
+code: "G40"
+name: "epilepsy"
+---
+code: "F48"
+name: "neurotic disorder"
+---
+code: "R294"
+name: "clicking hip"
+---
+code: "G470"
+name: "insomnia"
+---
+code: "O82"
+name: "caesarean"
+---
+code: "O81"
+name: "forceps"
+---
+code: "Q676"
+name: "pectus excavatum"
+---
+code: "N760"
+name: "vaginitis"
+---
+code: "R05"
+name: "cough"
+---
+code: "N820"
+name: "vesicovaginal fistula"
+---
+code: "N410"
+name: "acute prostatitis"
+---
+code: "J05"
+name: "croup"
+---
+code: "I84"
+name: "haemorrhoids"
+---
+code: "K51"
+name: "ulcerative colitis"
+---
+code: "M544"
+name: "lumbago"
+---
+code: "Z955"
+name: "angioplasty"
+---
+code: "T591"
+name: "sulphur dioxide"
+---
+code: "N86"
+name: "ectropion"
+---
+code: "K05"
+name: "gingivitis"
+---
+code: "M773"
+name: "calcaneal spur"
+---
+code: "N44"
+name: "testicular torsion"
+---
+code: "R33"
+name: "urinary retention"
+---
+code: "H80"
+name: "otosclerosis"
+---
+code: "D580"
+name: "spherocytosis"
+---
+code: "H54"
+name: "blindness"
+---
+code: "D752"
+name: "essential thrombocytosis"
+---
+code: "Z5181"
+name: "apheresis"
+---
+code: "H931"
+name: "tinnitus"
+---
+code: "M10"
+name: "gout"
+---
+code: "I20"
+name: "angina"
+---
+code: "N44"
+name: "torsion of testis"
+---
+code: "L01"
+name: "impetigo"
+---
+code: "A09"
+name: "dysentery"
+---
+code: "B85"
+name: "pediculosis"
+---
+code: "B350"
+name: "tinea barbae"
+---
+code: "J20"
+name: "acute bronchitis"
+---
+code: "K21"
+name: "oesophageal reflux"
+---
+code: "G245"
+name: "blepharospasm"
+---
+code: "M65"
+name: "synovitis"
+---
+code: "Q382"
+name: "macroglossia"
+---
+code: "T03"
+name: "dislocations"
+---
+code: "E785"
+name: "hyperlipidaemia"
+---
+code: "R160"
+name: "hepatomegaly"
+---
+code: "K44"
+name: "diaphragmatic hernia"
+---
+code: "R062"
+name: "wheezing"
+---
+code: "Z504"
+name: "psychotherapy"
+---
+code: "R161"
+name: "splenomegaly"
+---
+code: "G500"
+name: "trigeminal neuralgia"
+---
+code: "N75"
+name: "bartholin's"
+---
+code: "Q250"
+name: "arteriosus"
+---
+code: "Q392"
+name: "tracheo-oesophageal fistula"
+---
+code: "G440"
+name: "cluster headache"
+---
+code: "Z931"
+name: "gastrostomy"
+---
+code: "K612"
+name: "anorectal abscess"
+---
+code: "Y570"
+name: "anorectic"
+---
+code: "Q437"
+name: "cloaca"
+---
+code: "H81"
+name: "vestibular"
+---
+code: "N392"
+name: "orthostatic proteinuria"
+---
+code: "J21"
+name: "bronchiolitis"
+---
+code: "L089"
+name: "infection of skin"
+---
+code: "A38"
+name: "scarlet fever"
+---
+code: "F985"
+name: "stammering"
+---
+code: "B353"
+name: "tinea pedis"
+---
+code: "B86"
+name: "scabies"
+---
+code: "H65"
+name: "serous otitis media"
+---
+code: "J45"
+name: "asthma"
+---
+code: "K561"
+name: "intussusception"
+---
+code: "T703"
+name: "decompression"
+---
+code: "H810"
+name: "meniere's disease"
+---
+code: "H71"
+name: "cholesteatoma"
+---
+code: "G513"
+name: "facial spasm"
+---
+code: "B06"
+name: "rubella"
+---
+code: "R300"
+name: "dysuria"
+---
+code: "O00"
+name: "ectopic pregnancy"
+---
+code: "K73"
+name: "hepatitis"
+---
+code: "N483"
+name: "priapism"
+---
+code: "O86"
+name: "puerperal infection"
+---
+code: "B350"
+name: "tinea capitis"
+---
+code: "N73"
+name: "pelvic inflammatory disease"
+---
+code: "M41"
+name: "scoliosis"
+---
+code: "Z50"
+name: "rehabilitation"
+---
+code: "M770"
+name: "medial epicondylitis"
+---
+code: "G20"
+name: "parkinson's disease"
+---
+code: "L711"
+name: "rhinophyma"
+---
+code: "N321"
+name: "vesicointestinal fistula"
+---
+code: "R634"
+name: "weight loss"
+---
+code: "G062"
+name: "subdural abscess"
+---
+code: "I85"
+name: "varices"
+---
+code: "I26"
+name: "pulmonary embolism"
+---
+code: "B37"
+name: "candida"
+---
+code: "J30"
+name: "allergic rhinitis"
+---
+code: "N815"
+name: "enterocele"
+---
+code: "E221"
+name: "hyperprolactinaemia"
+---
+code: "M543"
+name: "sciatia"
+---
+code: "N410"
+name: "prostatitis, acute"
+---
+code: "Z930"
+name: "tracheostomy"
+---
+code: "Z391"
+name: "lactating"
+---
+code: "N34"
+name: "urethritis"
+---
+code: "R11"
+name: "vomiting"
+---
+code: "K20"
+name: "oesophagitis"
+---
+code: "D50"
+name: "iron deficiency"
+---
+code: "M204"
+name: "hammer toe"
+---
+code: "F981"
+name: "encopresis"
+---
+code: "L03"
+name: "cellulitis"
+---
+code: "N43"
+name: "spermatocele"
+---
+code: "J06"
+name: "upper respiratory infection"
+---
+code: "Z34"
+name: "antenatal care"
+---
+code: "E14"
+name: "diabetic"
+---
+code: "L63"
+name: "alopecia areata"
+---
+code: "I27"
+name: "pulmonary heart disease"
+---
+code: "A370"
+name: "pertussis"
+---
+code: "K60"
+name: "fissure"
+---
+code: "A051"
+name: "botulism"
+---
+code: "Z33"
+name: "pregnant"
+---
+code: "R15"
+name: "faecal incontinence"
+---
+code: "H81"
+name: "vertigo"
+---
+code: "I50"
+name: "heart failure"
+---
+code: "B361"
+name: "tinea nigra"
+---
+code: "M86"
+name: "osteomyelitis"
+---
+code: "T16"
+name: "foreign body in ear"
+---
+code: "Q677"
+name: "pectus carinatum"
+---
+code: "A60"
+name: "genital herpes"
+---
+code: "N97"
+name: "infertility female"
+---
+code: "B07"
+name: "warts"
+---
+code: "K25"
+name: "gastric ulcer"
+---
+code: "N47"
+name: "redundant prepuce"
+---
+code: "E1172"
+name: "insulin resistance"
+---
+code: "H921"
+name: "otorrhoea"
+---
+code: "N47"
+name: "phimosis"
+---
+code: "Q664"
+name: "talipes calcaneovalgus"
+---
+code: "Q677"
+name: "carinatum"
+---
+code: "Z920"
+name: "contraception"
+---
+code: "I48"
+name: "atrial flutter"
+---
+code: "Z52"
+name: "donor"
+---
+code: "E05"
+name: "hyperthyroid"
+---
+code: "K562"
+name: "volvulus"
+---
+code: "A71"
+name: "trachoma"
+---
+code: "A00"
+name: "cholera"
+---
+code: "J04"
+name: "acute laryngitis"
+---
+code: "N856"
+name: "synechiae"
+---
+code: "R42"
+name: "dizziness"
+---
+code: "J03"
+name: "acute tonsillitis"
+---
+code: "D86"
+name: "sarcoid"
+---
+code: "F20"
+name: "schizophrenia"
+---
+code: "R42"
+name: "giddiness"
+---
+code: "A46"
+name: "erysipelas"
+---
+code: "J32"
+name: "chronic sinusitis"
+---
+code: "R631"
+name: "polydipsia"
+---
+code: "I09"
+name: "rheumatic heart disease"
+---
+code: "Q186"
+name: "macrocheilia"
+---
+code: "E73"
+name: "lactose intolerance"
+---
+code: "R451"
+name: "agitation"
+---
+code: "Q184"
+name: "macrostomia"
+---
+code: "K27"
+name: "peptic ulcer"
+---
+code: "B000"
+name: "eczema"
+---
+code: "N151"
+name: "perinephric abscess"
+---
+code: "F341"
+name: "dysthymia"
+---
+code: "G43"
+name: "migraine"
+---
+code: "I47"
+name: "paroxysmal tachycardia"
+---
+code: "R064"
+name: "hyperventilation"
+---
+code: "N810"
+name: "urethrocele"
+---
+code: "Z57"
+name: "occupational exposure"
+---
+code: "B27"
+name: "infectious mononucleosis"
+---
+code: "Q660"
+name: "talipes equinovarus"
+---
+code: "F980"
+name: "enuresis"
+---
+code: "F33"
+name: "depressive disorder"
+---
+code: "I471"
+name: "supraventricular tachycardia"
+---
+code: "H830"
+name: "labyrinthitis"
+---
+code: "K567"
+name: "ileus"
+---
+code: "R56"
+name: "convulsions"
+---
+code: "I881"
+name: "chronic lymphadenitis"
+---
+code: "B37"
+name: "candidiasis"
+---
+code: "B081"
+name: "molluscum"
+---
+code: "J069"
+name: "urti"
+---
+code: "N390"
+name: "urinary infection"
+---
+code: "R093"
+name: "abnormal sputum"
+---
+code: "A54"
+name: "gonorrhoea"
+---
+code: "Q792"
+name: "exomphalos"
+---
+code: "R682"
+name: "dry mouth"
+---
+code: "T883"
+name: "malignant hyperthermia"
+---
+code: "I47"
+name: "tachycardia"
+---
+code: "F29"
+name: "psychosis"
+---
+code: "K149"
+name: "disease of tongue"
+---
+code: "J44"
+name: "chronic obstructive pulmonary disease"
+---
+code: "N362"
+name: "caruncle"
+---
+code: "B354"
+name: "tinea corporis"
+---
+code: "E569"
+name: "vitamin deficiency"
+---
+code: "Z513"
+name: "blood transfusion"
+---
+code: "A82"
+name: "rabies"
+---
+code: "M436"
+name: "torticollis"
+---
+code: "M545"
+name: "back pain"
+---
+code: "G950"
+name: "syringomyelia"
+---
+code: "E03"
+name: "hypothyroidism"
+---
+code: "R11"
+name: "nausea"
+---
+code: "E66"
+name: "obesity"
+---
+code: "K02"
+name: "caries"
+---
+code: "F32"
+name: "depression"
+---
+code: "Z372"
+name: "twins"
+---
+code: "A661"
+name: "papillomata"
+---
+code: "K900"
+name: "coeliac"
+---
+code: "N411"
+name: "chronic prostatitis"
+---
+code: "Q431"
+name: "hirschsprung's"
+---
+code: "M706"
+name: "trochanteric bursitis"
+---
+code: "N1891"
+name: "renal impairment"
+---
+code: "L04"
+name: "acute lymphadenitis"
+---
+code: "I20"
+name: "angina pectoris"
+---
+code: "T793"
+name: "wound infection"
+---
+code: "T58"
+name: "monoxide"
+---
+code: "B26"
+name: "mumps"
+---
+code: "B9681"
+name: "helicobacter pylori"
+---
+code: "L02"
+name: "carbuncle"
+---
+code: "G4732"
+name: "obstructive sleep apnoea"
+---
+code: "Z49"
+name: "dialysis"
+---
+code: "A014"
+name: "paratyphoid"
+---
+code: "T68"
+name: "hypothermia"
+---
+code: "N411"
+name: "prostatitis, chronic"
+---
+code: "H024"
+name: "ptosis"
+---
+code: "Z935"
+name: "cystostomy"
+---
+code: "T173"
+name: "foreign body in larynx"
+---
+code: "Q793"
+name: "gastroschisis"
+---
+code: "Q661"
+name: "talipescalcaneovarus"
+---
+code: "R091"
+name: "pleurisy"
+---
+code: "Z412"
+name: "circumcision"
+---
+code: "K26"
+name: "duodenal ulcer"
+---
+code: "N943"
+name: "premenstrual tension syndrome"
+---
+code: "Q430"
+name: "meckel's"
+---
+code: "R500"
+name: "chills"
+---
+code: "K593"
+name: "megacolon"
+---
+code: "K921"
+name: "melaena"
+---
+code: "E876"
+name: "hypokalaemia"
+---
+code: "Q250"
+name: "patent ductus arteriosus"
+---
+code: "L680"
+name: "hirsutism"
+---
+code: "Z512"
+name: "chemotherapy"
+---
+code: "L02"
+name: "boil"
+---
+code: "T597"
+name: "carbon dioxide"
+---
+code: "Z33"
+name: "incident"
+---
+code: "E780"
+name: "hypercholesterolaemia"
+---
+code: "Z290"
+name: "isolation"
+---
+code: "D69"
+name: "purpura"
+---
+code: "Z100"
+name: "occupational health"
+---
+code: "A37"
+name: "whooping cough"
+---
+code: "Z932"
+name: "ileostomy"
+---
+code: "N92"
+name: "irregular menstruation"
+---
+code: "Q544"
+name: "chordee"
+---
+code: "H00"
+name: "chalazion"
+---
+code: "Z506"
+name: "orthoptic"
+---
+code: "F410"
+name: "panic disorder"
+---
+code: "N912"
+name: "amenorrhoea"
+---
+code: "H110"
+name: "pterygium"
+---
+code: "K90"
+name: "malabsorption"
+---
+code: "H522"
+name: "astigmatism"
+---
+code: "I49"
+name: "arrhythmia"
+---
+code: "E21"
+name: "hyperparathyroidism"
+---
+code: "M222"
+name: "patellofemoral"
+---
+code: "K30"
+name: "dyspepsia"
+---
+code: "R635"
+name: "weight gain"
+---
+code: "R104"
+name: "abdominal pain"
+---
+code: "R12"
+name: "heartburn"
+---
+code: "I313"
+name: "pericardial effusion"
+---
+code: "M766"
+name: "achilles tendinitis"
+---
+code: "Z362"
+name: "amniocentesis"
+---
+code: "H010"
+name: "blepharitis"
+---
+code: "Q070"
+name: "arnold-chiari"
+---
+code: "J47"
+name: "bronchiectasis"
+---
+code: "Z605"
+name: "discrimination"
+---
+code: "N140"
+name: "analgesic nephropathy"
+---
+code: "I49"
+name: "cardiac arrhythmia"
+---
+code: "T702"
+name: "altitude sickness"
+---
+code: "D531"
+name: "megaloblastic anaemia"
+---
+code: "N47"
+name: "paraphimosis"
+---
+code: "Z933"
+name: "colostomy"
+---
+code: "M402"
+name: "kyphosis"
+---
+code: "M353"
+name: "polymyalgia"
+---
+code: "M405"
+name: "lordosis"
+---
+code: "N46"
+name: "infertility male"
+---
+code: "O321"
+name: "breech"
+---
+code: "A36"
+name: "diphtheria"
+---
+code: "K29"
+name: "gastritis"
+---
+code: "F480"
+name: "neurasthenia"
+---
+code: "B351"
+name: "tinea unguium"
+---
+code: "D51"
+name: "vitamin b12 deficiency"
+---
+code: "I880"
+name: "mesenteric lymphadenitis"
+---
+code: "J22"
+name: "lower respiratory infection"
+---
+code: "L304"
+name: "intertrigo"
+---
+code: "K602"
+name: "anal fissure"
+---
+code: "G473"
+name: "sleep apnoea"
+---
+code: "N816"
+name: "rectocele"
+---
+code: "R040"
+name: "epistaxis"
+---
+code: "G4732"
+name: "OSA"
+---
+code: "N952"
+name: "atrophic vaginitis"
+---
+code: "F44"
+name: "conversion disorder"
+---
+code: "L29"
+name: "pruritus"
+---
+code: "H509"
+name: "strabismus"
+---
+code: "N512"
+name: "balanitis"
+---
+code: "K57"
+name: "diverticular disease"
+---
+code: "L20"
+name: "atopic dermatitis"
+---
+code: "Z8712"
+name: "colonic polyps"
+---
+code: "Z30"
+name: "contraceptive"
+---
+code: "Y57"
+name: "drug reaction"
+---
+code: "D22"
+name: "mole"
+---
+code: "R59"
+name: "lymphadenopathy"
+---
+code: "K40"
+name: "inguinal hernia"
+---
+code: "J22"
+name: "respiratory tract infection"
+---
+code: "L089"
+name: "skin infection"
+---
+code: "R52"
+name: "pain in jaw"
+---
+code: "Z760"
+name: "script"
+---
+code: "Z760"
+name: "prescription"
+---
+code: "H919"
+name: "deafness"
+---
+code: "N943"
+name: "premenstrual symptoms"
+---
+code: "L918"
+name: "skin tag"
+---
+code: "R102"
+name: "rectal pain"
+---
+code: "H66"
+name: "infected middle ear"
+---
+code: "N946"
+name: "menstrual pain"
+---
+code: "S05"
+name: "eye injury"
+---
+code: "K047"
+name: "dental abscess"
+---
+code: "R190"
+name: "abdominal mass"
+---
+code: "B373"
+name: "vaginal thrush"
+---
+code: "N390"
+name: "chronic urinary infection"
+---
+code: "N069"
+name: "rheumatoid arthritis"
+---
+code: "L05"
+name: "pilonidal sinus"
+---
+code: "B37"
+name: "candida infection"
+---
+code: "F31"
+name: "bipolar disorder"
+---
+code: "R53"
+name: "fatigability"
+---
+code: "R17"
+name: "jaundice"
+---
+code: "M32"
+name: "sle"
+---
+code: "O03"
+name: "miscarriage"
+---
+code: "M255"
+name: "joint strain"
+---
+code: "C71"
+name: "cerebral tumour"
+---
+code: "H919"
+name: "hearing loss"
+---
+code: "L80"
+name: "vitiligo"
+---
+code: "H110"
+name: "pterygium"
+---
+code: "B35"
+name: "fungal skin infection"
+---
+code: "E831"
+name: "haemachromatosis"
+---
+code: "T782"
+name: "bee anaphylaxis"
+---
+code: "M255"
+name: "pain in joints"
+---
+code: "J44"
+name: "chronic airways disease"
+---
+code: "N92"
+name: "intermenstrual bleeding"
+---
+code: "Z124"
+name: "pap smear"
+---
+code: "G51"
+name: "facial paralysis"
+---
+code: "F31"
+name: "manic depression"
+---
+code: "M770"
+name: "golfers elbow"
+---
+code: "J02"
+name: "throat infection"
+---
+code: "C25"
+name: "carcinoma pancreas"
+---
+code: "N644"
+name: "breast pain"
+---
+code: "I10"
+name: "systolic hypertension"
+---
+code: "C449"
+name: "skin cancer"
+---
+code: "N61"
+name: "breast infection"
+---
+code: "H612"
+name: "blocked ears"
+---
+code: "Z833"
+name: "fh of diabetes"
+---
+code: "N73"
+name: "pelvic inflammatory disease"
+---
+code: "R51"
+name: "pain in temple"
+---
+code: "N394"
+name: "urgent urination"
+---
+code: "F39"
+name: "mood disorder"
+---
+code: "R50"
+name: "fever"
+---
+code: "S394"
+name: "sprain of ankle"
+---
+code: "M139"
+name: "arthritis"
+---
+code: "E282"
+name: "polycystic ovaries"
+---
+code: "R53"
+name: "general weakness"
+---
+code: "R102"
+name: "genital pain"
+---
+code: "K146"
+name: "sore tongue"
+---
+code: "I802"
+name: "past dvt"
+---
+code: "H111"
+name: "pinguecula"
+---
+code: "M751"
+name: "rotator cuff degeneration"
+---
+code: "L853"
+name: "dry skin"
+---
+code: "N940"
+name: "intermenstrual pain"
+---
+code: "N940"
+name: "mittelschmerz"
+---
+code: "D173"
+name: "lipoma of skin"
+---
+code: "M758"
+name: "shoulder pain"
+---
+code: "D589"
+name: "hereditary haemolytic anaemia"
+---
+code: "H444"
+name: "hypotony"
+---
+code: "J039"
+name: "recurrent tonsillitis"
+---
+code: "K146"
+name: "lingual nerve myalgia"
+---
+code: "J02"
+name: "sore throat"
+---
+code: "B351"
+name: "fungal toenail infection"
+---
+code: "B081"
+name: "molluscum contagiosum"
+---
+code: "K069"
+name: "disease of gums"
+---
+code: "J310"
+name: "nasal congestion"
+---
+code: "G049"
+name: "encephalitis"
+---
+code: "K120"
+name: "oral ulcers"
+---
+code: "M6304"
+name: "hand infection"
+---
+code: "B24"
+name: "aids"
+---
+code: "A09"
+name: "travellers diarrhoea"
+---
+code: "O60"
+name: "premature labour"
+---
+code: "Z970"
+name: "artifical eye"
+---
+code: "Z970"
+name: "glass eye"
+---
+code: "R05"
+name: "allergic cough"
+---
+code: "E11"
+name: "non insulin dependent diabetes"
+---
+code: "R208"
+name: "chronic skin itch"
+---
+code: "R21"
+name: "allergic rash"
+---
+code: "Z202"
+name: "acute pyelonephritis"
+---
+code: "Z123"
+name: "breast examination"
+---
+code: "L03"
+name: "staph skin infection"
+---
+code: "Z765"
+name: "fabrication"
+---
+code: "C56"
+name: "ovarian cancer"
+---
+code: "N200"
+name: "renal calculi"
+---
+code: "D649"
+name: "anaemia"
+---
+code: "L984"
+name: "skin ulcer not healing"
+---
+code: "K12"
+name: "angular stomatitis"
+---
+code: "J02"
+name: "pharyngitis"
+---
+code: "L814"
+name: "slightly pigmented lesion"
+---
+code: "R50"
+name: "fever"
+---
+code: "K13"
+name: "cheilitis"
+---
+code: "J351"
+name: "hypertrophy tonsils"
+---
+code: "J351"
+name: "tonsillar hypertrophy"
+---
+code: "K529"
+name: "colitis"
+---
+code: "R945"
+name: "abnormal lfts"
+---
+code: "R945"
+name: "elevated lfts"
+---
+code: "R060"
+name: "shortness of breath"
+---
+code: "J18"
+name: "pneumonia"
+---
+code: "I10"
+name: "elevated blood pressure"
+---
+code: "I83"
+name: "varicose veins of leg"
+---
+code: "L030"
+name: "infected toenail"
+---
+code: "J20"
+name: "bronchitis"
+---
+code: "D25"
+name: "fibroid"
+---
+code: "D25"
+name: "leiomyoma of uterus"
+---
+code: "M60"
+name: "myositis"
+---
+code: "J389"
+name: "laryngofissure"
+---
+code: "M7966"
+name: "leg pains"
+---
+code: "G40"
+name: "fitting"
+---
+code: "D06"
+name: "abnormal pap smear"
+---
+code: "B372"
+name: "monilia infection of skin"
+---
+code: "D232"
+name: "benign neoplasm of ear"
+---
+code: "I64"
+name: "cerebrovascular accident"
+---
+code: "C80"
+name: "malignant neoplasm"
+---
+code: "R234"
+name: "scaly lesion"
+---
+code: "D649"
+name: "mild anaemia"
+---
+code: "R398"
+name: "urgency"
+---
+code: "I730"
+name: "raynaud's disease"
+---
+code: "K51"
+name: "ulcerating colitis"
+---
+code: "J46"
+name: "acute asthma attack"
+---
+code: "G258"
+name: "restless legs syndrome"
+---
+code: "L309"
+name: "dermatitis"
+---
+code: "M4782"
+name: "neck arthritis"
+---
+code: "A15"
+name: "tuberculosis"
+---
+code: "I82"
+name: "past blood clot"
+---
+code: "L818"
+name: "non pigmented lesion"
+---
+code: "K85"
+name: "acute pancreatitis"
+---
+code: "K861"
+name: "chronic pancreatitis"
+---
+code: "K860"
+name: "alcoholic pancreatitis"
+---
+code: "K863"
+name: "pseudocyst"
+---
+code: "K122"
+name: "oral infection"
+---
+code: "M7257"
+name: "plantar fasciitis"
+---
+code: "B49"
+name: "fungal infection"
+---
+code: "H10"
+name: "conjunctivitis"
+---
+code: "Z300"
+name: "contraception"
+---
+code: "H669"
+name: "chronic otitis media"
+---
+code: "M626"
+name: "muscle strain"
+---
+code: "S51"
+name: "open wound on forearm"
+---
+code: "S41"
+name: "open wound on upper arm"
+---
+code: "K920"
+name: "vomit blood"
+---
+code: "I10"
+name: "high blood pressure"
+---
+code: "M544"
+name: "back pain with radiating symptoms"
+---
+code: "L030"
+name: "infected nail"
+---
+code: "Z246"
+name: "hepatitis b immunisation"
+---
+code: "H669"
+name: "middle ear infection"
+---
+code: "Z8642"
+name: "past history of iv drug use"
+---
+code: "R410"
+name: "confusion"
+---
+code: "N63"
+name: "breast lump"
+---
+code: "H024"
+name: "blepharoptosis"
+---
+code: "Z231"
+name: "immunisation against typhoid fever"
+---
+code: "L82"
+name: "seborrhoeic wart"
+---
+code: "N19"
+name: "renal failure"
+---
+code: "I634"
+name: "embolic cva"
+---
+code: "H654"
+name: "chronic ear infection"
+---
+code: "L02"
+name: "skin abscess"
+---
+code: "F40"
+name: "phobic disorder"
+---
+code: "Z124"
+name: "routine pap"
+---
+code: "N841"
+name: "endocervical polyps"
+---
+code: "Z33"
+name: "pregnancy"
+---
+code: "Z238"
+name: "meningococcal immunisation"
+---
+code: "R104"
+name: "infantile colic"
+---
+code: "Z921"
+name: "prevention of blood clotting"
+---
+code: "M353"
+name: "polymylagia rheumatica"
+---
+code: "Z237"
+name: "prevention of whooping cough"
+---
+code: "E66"
+name: "morbid obesity"
+---
+code: "L290"
+name: "anal itch"
+---
+code: "L290"
+name: "pruritis ani"
+---
+code: "M255"
+name: "joint pain"
+---
+code: "R53"
+name: "general tiredness"
+---
+code: "H360"
+name: "diabetic retinopathy"
+---
+code: "A60"
+name: "recurrent genital herpes"
+---
+code: "R21"
+name: "rash on penis"
+---
+code: "H028"
+name: "foreign body in eye"
+---
+code: "L70"
+name: "severe acne"
+---
+code: "F79"
+name: "mental retardation"
+---
+code: "N12"
+name: "renal tubular acidosis"
+---
+code: "H041"
+name: "dry eyes"
+---
+code: "B24"
+name: "hiv infection"
+---
+code: "K86"
+name: "pancreatitis"
+---
+code: "B351"
+name: "onychomycosis"
+---
+code: "Z921"
+name: "anti-coagulation"
+---
+code: "T143"
+name: "soft tissue sprain"
+---
+code: "Z720"
+name: "smoker"
+---
+code: "F410"
+name: "panic attacks"
+---
+code: "N20"
+name: "renal stones"
+---
+code: "K122"
+name: "mouth infection"
+---
+code: "L22"
+name: "diaper rash"
+---
+code: "S934"
+name: "ankle sprain"
+---
+code: "M6782"
+name: "supraspinatus tendonitis"
+---
+code: "R268"
+name: "loss of balance"
+---
+code: "T141"
+name: "animal bite"
+---
+code: "R21"
+name: "rash on the chin"
+---
+code: "E03"
+name: "under-active thyroid gland"
+---
+code: "R634"
+name: "weight reduction"
+---
+code: "M624"
+name: "contractures"
+---
+code: "T30"
+name: "burns"
+---
+code: "K047"
+name: "tooth abscess"
+---
+code: "S720"
+name: "fractured neck of femur"
+---
+code: "M678"
+name: "plica syndrome"
+---
+code: "H045"
+name: "blocked lacrimal duct"
+---
+code: "L292"
+name: "vulval itch"
+---
+code: "L292"
+name: "pruritus vulvae"
+---
+code: "B373"
+name: "vaginal candidiasis"
+---
+code: "D682"
+name: "factor v leiden deficiency"
+---
+code: "G43"
+name: "migraine headaches"
+---
+code: "R392"
+name: "pre-renal failure"
+---
+code: "S81"
+name: "leg wound"
+---
+code: "I10"
+name: "uncomplicated hypertension"
+---
+code: "A53"
+name: "syphilis"
+---
+code: "Z834"
+name: "family history of hypercholesterolaemia"
+---
+code: "M796"
+name: "proximal limb myalgia"
+---
+code: "R467"
+name: "garrulousness"
+---
+code: "Z00"
+name: "medical checkup"
+---
+code: "H160"
+name: "eye ulcer"
+---
+code: "I42"
+name: "cardiomyopathy"
+---
+code: "K221"
+name: "ulcerative oesophagitis"
+---
+code: "Z719"
+name: "education/counselling"
+---
+code: "D22"
+name: "dysplastic naevus syndrome"
+---
+code: "F113"
+name: "narcotic withdrawal"
+---
+code: "Z940"
+name: "renal transplant"
+---
+code: "M316"
+name: "temporal arteritis"
+---
+code: "B00"
+name: "herpetic infection"
+---
+code: "H60"
+name: "ear canal infection"
+---
+code: "L031"
+name: "infected foot"
+---
+code: "F61"
+name: "personality disorder"
+---
+code: "M796"
+name: "calf pain"
+---
+code: "C61"
+name: "prostate cancer"
+---
+code: "N93"
+name: "dysfunctional uterine bleeding"
+---
+code: "M255"
+name: "arthritic pains"
+---
+code: "C43"
+name: "melanoma"
+---
+code: "R521"
+name: "chronic severe pain"
+---
+code: "N951"
+name: "hot flushes"
+---
+code: "H571"
+name: "sore eyes"
+---
+code: "L290"
+name: "perianal itching"
+---
+code: "N930"
+name: "postcoital bleeding"
+---
+code: "R620"
+name: "developmental delay"
+---
+code: "R31"
+name: "bloody urine"
+---
+code: "D22"
+name: "benign compound naevus"
+---
+code: "A630"
+name: "condylomata acuminata"
+---
+code: "L853"
+name: "dry rash"
+---
+code: "D50"
+name: "iron deficiency anaemia"
+---
+code: "E283"
+name: "oestrogen deficiency"
+---
+code: "N920"
+name: "menstruation excessive"
+---
+code: "K80"
+name: "gall stones"
+---
+code: "S534"
+name: "sprain in elbow"
+---
+code: "L984"
+name: "chronic ulcer skin"
+---
+code: "K25"
+name: "stomach ulcer"
+---
+code: "K25"
+name: "gastric ulcer"
+---
+code: "R14"
+name: "bowel upset"
+---
+code: "F39"
+name: "affective psychosis"
+---
+code: "I20"
+name: "chest tightness"
+---
+code: "H01"
+name: "eyelid inflammation"
+---
+code: "B370"
+name: "oral candida"
+---
+code: "N76"
+name: "vaginal infection"
+---
+code: "M071"
+name: "psoriatic arthritis"
+---
+code: "M071"
+name: "arthritis mutilans"
+---
+code: "Z292"
+name: "antibiotic prophylaxis"
+---
+code: "R05"
+name: "productive cough"
+---
+code: "R21"
+name: "generalized rash"
+---
+code: "N009"
+name: "acute glomerulonephritis"
+---
+code: "J44"
+name: "chronic obstructive airways disease"
+---
+code: "Z959"
+name: "aortic valve replacement"
+---
+code: "Z710"
+name: "mother worried"
+---
+code: "Z71"
+name: "health education"
+---
+code: "H118"
+name: "conjunctival ulcer"
+---
+code: "F312"
+name: "bipolar psychosis"
+---
+code: "G45"
+name: "tia"
+---
+code: "I82"
+name: "deep vein thrombosis"
+---
+code: "Z730"
+name: "burn-out"
+---
+code: "Z911"
+name: "noncompliance"
+---
+code: "R30"
+name: "pain with urination"
+---
+code: "M13"
+name: "acute inflammatory arthritis"
+---
+code: "C18"
+name: "carcinoma colon"
+---
+code: "L449"
+name: "papules on skin"
+---
+code: "H101"
+name: "allergic conjunctivitis"
+---
+code: "N92"
+name: "menorrhagia"
+---
+code: "R21"
+name: "localized rash"
+---
+code: "Z733"
+name: "stress"
+---
+code: "L0302"
+name: "infected toe"
+---
+code: "A39"
+name: "meningococcus"
+---
+code: "I10"
+name: "mild hypertension"
+---
+code: "I88"
+name: "non-specific lymphadenitis"
+---
+code: "S832"
+name: "acute damage meniscus of knee"
+---
+code: "J348"
+name: "nasal ulcer"
+---
+code: "B370"
+name: "oral thrush"
+---
+code: "Z639"
+name: "family stress"
+---
+code: "E281"
+name: "moderate androgenisation"
+---
+code: "D23"
+name: "pigmented bcc"
+---
+code: "A09"
+name: "bowel infection"
+---
+code: "E03"
+name: "myxedema"
+---
+code: "B373"
+name: "candida of vagina"
+---
+code: "R042"
+name: "haemoptysis"
+---
+code: "K210"
+name: "reflux oesophagitis"
+---
+code: "Z000"
+name: "complete medical examination"
+---
+code: "R60"
+name: "oedema"
+---
+code: "H601"
+name: "ear lobe infection"
+---
+code: "Z090"
+name: "post-operative examination"
+---
+code: "T07"
+name: "trauma"
+---
+code: "H601"
+name: "external ear infection"
+---
+code: "K120"
+name: "mouth ulcer"
+---
+code: "N952"
+name: "senile vaginitis"
+---
+code: "L71"
+name: "acne rosacea"
+---
+code: "R937"
+name: "hot spot on bone scan"
+---
+code: "Z725"
+name: "unprotected sex"
+---
+code: "Z113"
+name: "reassurance regarding std"
+---
+code: "L23"
+name: "allergic dermatitis"
+---
+code: "C34"
+name: "carcinoma lung"
+---
+code: "H664"
+name: "otitis media with otorrhoea"
+---
+code: "J157"
+name: "mycoplasma chest infection"
+---
+code: "R26"
+name: "poor mobility/gait"
+---
+code: "M7967"
+name: "painful foot"
+---
+code: "J02"
+name: "acute pharyngitis"
+---
+code: "N30"
+name: "bladder infection"
+---
+code: "M791"
+name: "myalgia"
+---
+code: "H350"
+name: "hypertensive retinopathy"
+---
+code: "B373"
+name: "clinical thrush"
+---
+code: "R103"
+name: "testicular pain"
+---
+code: "B370"
+name: "oral moniliasis"
+---
+code: "M791"
+name: "muscle pain"
+---
+code: "K137"
+name: "disease of mouth"
+---
+code: "L304"
+name: "rash under the breast"
+---
+code: "N944"
+name: "period pain"
+---
+code: "M925"
+name: "osgood-schlatter disease"
+---
+code: "R520"
+name: "severe pain"
+---
+code: "H571"
+name: "ocular pain"
+---
+code: "Z251"
+name: "prevention of influenza"
+---
+code: "R14"
+name: "abdominal distension"
+---
+code: "E1442"
+name: "diabetic peripheral neuropathy"
+---
+code: "L210"
+name: "cradle cap"
+---
+code: "L29"
+name: "itchy skin"
+---
+code: "G41"
+name: "status epilepticus"
+---
+code: "C20"
+name: "carcinoma rectum"

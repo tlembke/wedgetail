@@ -1,8 +1,39 @@
 
 <div class='wedgetail-form'>
 <% form_tag :action => 'create' do %>
+ 
+<%= error_messages_for 'message' %>
 
- <%= render :partial => 'form' %>
+<!--[form:message]-->
+<fieldset>
+	
+<% if(@recipient) %>
+	<legend>New message for  <%= @recipient.full_name %></legend>
+	<%= hidden_field 'message', 'recipient_id',:value=>@recipient.wedgetail %>
+<% else %>
+	<legend>New message</legend>
+	<b>To: </b>
+	<% 
+	if @user.role==5
+		@recipients = User.find(:all, :order => "family_name,given_names",:conditions=>"role<5 and patient_post=0 and wedgetail != @user.wedgetail") 
+	else
+		@recipients = User.find(:all, :order => "family_name,given_names",:conditions=>"(role <5 or role=6) and wedgetail != '@user.wedgetail'")
+	end
+	%>
+	<%= collection_select('message',:recipient_id, @recipients, :wedgetail, :family_name_given_names) %>
+
+<% end %>
+<br><%= "Regarding: "+@re.full_name if @re %>
+<%= hidden_field 'message', 'thread',:value=>params[:thread] %>
+<%= hidden_field 'message', 're',:value=>params[:re_id] %>
+<p><label for="message_subject">Subject</label><br/>
+<%= text_field 'message', 'subject',:size=>60 %></p>
+
+<p><label for="message_content">Body</label><br/>
+
+<%= text_area 'message', 'content',:rows=>5,:cols=>60  %></p>
+</fieldset>
+<!--[eoform:message]-->
 
   <%= submit_tag "Send" %>
 <% end %>

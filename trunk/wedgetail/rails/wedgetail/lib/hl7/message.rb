@@ -57,13 +57,15 @@ module HL7
     def self.parse (text)
       msg = HL7::Message.new()
       segments = text.split("\r")
+      @aegments = []
+      return if segments.length == 0
       @seg_sep = "\r"
       if segments.length == 1
         # hmm, not using \r as separator, try \n
         segments = text.split("\n")
         @seg_sep = "\n"
       end
-      if segments[1][0] == "\n"
+      if segments.length > 1 and segments[1][0] == "\n"
         # using \r\n evidently
         segments = text.split("\r\n")
         @seg_sep = "\r\n"
@@ -232,15 +234,6 @@ module HL7
       submsgs << HL7::Message.new(thismsg)
       return submsgs
     end  
-  
-    # serialise back to HL7 format
-    def to_hl7(range=nil)
-      if range.nil?
-        segs = @segments.map {|x| x.to_hl7}
-      else
-        segs = @segments[range].map {|x| x.to_hl7}
-      end
-    end
 
     # the number instances of a particular segment in the message
     def number_of(seg)
@@ -249,39 +242,6 @@ module HL7
       return count
     end
 
-    # true if multiple MSH segments in this message
-    def multi?
-      return number_of("MSH")>1
-    end
-  
-    # divide the message by its MSG segments
-    def divide
-      submsgs = []
-      thismsg = []
-      first = true
-      @segments.each do |seg|
-        if seg[0].to_s == "MSH"
-          if first
-            first = false
-          else
-            submsgs << HL7::Message.new(thismsg)
-            thismsg = []
-          end
-        end
-        thismsg << seg
-      end
-      submsgs << HL7::Message.new(thismsg)
-      return submsgs
-    end  
-  
-    # serialise back to HL7 format
-    def to_hl7(range=nil)
-      if range.nil?
-        segs = @segments.map {|x| x.to_hl7}
-      else
-        segs = @segments[range].map {|x| x.to_hl7}
-      end
-    end
     
     # form a standard MSH segment
     def standard_msh

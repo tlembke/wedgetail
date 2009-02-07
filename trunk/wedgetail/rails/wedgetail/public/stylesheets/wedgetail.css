@@ -282,3 +282,38 @@ div.error {
     border: 1px solid #eee;
     color: #ddd;
 }
+
+div#notes_surrounder
+{ 
+  position:relative;
+}
+
+textarea#narrative_content { 
+                width:100%;
+                height:20em;
+}
+
+div#notes_completions { 
+                        position:absolute;
+                        top:5ex;
+                        left:5ex;
+                        background-color:yellow;
+                        z-index: 1;
+                        }
+
+span.compl_letter { 
+                    font-size: large;
+                    font-weight: bold;
+                    font-family: monospace;
+                    
+                    }
+span.compl_type { 
+                  font-size: small;
+                  font-style: italic;
+                  }
+}
+
+table.pbslist { 
+                border-collapse: collapse;
+   
+ }

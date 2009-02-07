@@ -1,0 +1,212 @@
+# the specialties of medicine 
+# this list is a superset of all AMC-recongised specialties
+---
+code: "1.3.6.1.4.1.18298.3.3.1"
+name: "physician"
+---
+code: "1.3.6.1.4.1.18298.3.3.2"
+name: "surgeon"
+---
+code: "1.3.6.1.4.1.18298.3.3.3.1"
+name: "general practitioner" # for cross-referral
+---
+code: "1.3.6.1.4.1.18298.3.3.4"
+name: "psychiatrist"
+---
+code: "1.3.6.1.4.1.18298.3.3.4.1"
+name: "general/adult psychiatrist"
+---
+code: "1.3.6.1.4.1.18298.3.3.4.2"
+name: "child psychiatrist"
+---
+code: "1.3.6.1.4.1.18298.3.3.4.3"
+name: "geriatric psychiatrist"
+---
+code: "1.3.6.1.4.1.18298.3.3.4.4"
+name: "forensic psychiatrist"
+---
+code: "1.3.6.1.4.1.18298.3.3.4.5"
+name: "consultation-liaison psychiatrist"
+---
+code: "1.3.6.1.4.1.18298.3.3.4.6"
+name: "neuropsychiatrist"
+---
+code: "1.3.6.1.4.1.18298.3.3.4.7"
+name: "addiction psychiatrist"
+---
+code: "1.3.6.1.4.1.18298.3.3.4.8"
+name: "medical psychotherapist"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.1"
+name: "general physician"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.2"
+name: "cardiologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.2.1"
+name: "interventional cardiologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.2.2"
+name: "echocardiologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.2.3"
+name: "electrophysiologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.3"
+name: "geriatrician"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.4"
+name: "respiratory physician"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.5"
+name: "neurologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.6"
+name: "oncologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.7"
+name: "clinical haematologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.8"
+name: "gastroenterologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.9"
+name: "rheumatologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.10"
+name: "immunologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.11"
+name: "geneticist"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.12"
+name: "pharmacologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.13"
+name: "endocrinologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.14"
+name: "infectious diseases physician"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.15"
+name: "nephrologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.16"
+name: "palliative care physician"
+---
+code: "1.3.6.1.4.1.18298.3.3.1.17"
+name: "nuclear medicine physician"
+---
+code: "1.3.6.1.4.1.18298.3.3.2.1"
+name: "general surgeon"
+---
+code: "1.3.6.1.4.1.18298.3.3.2.2"
+name: "thyroid surgeon"
+---
+code: "1.3.6.1.4.1.18298.3.3.2.3"
+name: "bowel surgeon"
+---
+code: "1.3.6.1.4.1.18298.3.3.2.4"
+name: "maxillo-facial surgeon"
+---
+code: "1.3.6.1.4.1.18298.3.3.2.5"
+name: "breast surgeon"
+---
+code: "1.3.6.1.4.1.18298.3.3.2.6"
+name: "hepato-biliary surgeon"
+---
+code: "1.3.6.1.4.1.18298.3.3.2.7"
+name: "neurosurgeon"
+---
+code: "1.3.6.1.4.1.18298.3.3.2.8"
+name: "cardiothoracic surgeon"
+---
+code: "1.3.6.1.4.1.18298.3.3.2.9"
+name: "ENT surgeon"
+---
+code: "1.3.6.1.4.1.18298.3.3.2.10"
+name: "urologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.2.11"
+name: "orthopaedic surgeon"
+---
+code: "1.3.6.1.4.1.18298.3.3.2.11.1"
+name: "hand surgeon"
+---
+code: "1.3.6.1.4.1.18298.3.3.2.12"
+name: "vascular surgeon"
+---
+code: "1.3.6.1.4.1.18298.3.3.2.11.2"
+name: "shoulder surgeon"
+---
+code: "1.3.6.1.4.1.18298.3.3.2.13"
+name: "plastic surgeon"
+---
+code: "1.3.6.1.4.1.18298.3.3.2.14"
+name: "paediatric surgeon"
+---
+code: "1.3.6.1.4.1.18298.3.3.5"
+name: "ophthalmologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.6"
+name: "paediatrician"
+---
+code: "1.3.6.1.4.1.18298.3.3.7"
+name: "obstetrician/gynaecologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.7.1"
+name: "obstetrician (active)"
+---
+code: "1.3.6.1.4.1.18298.3.3.7.2"
+name: "gynaecologist (no obstetrics)"
+---
+code: "1.3.6.1.4.1.18298.3.3.7.3"
+name: "gynaecologic ultrasonographer"
+---
+code: "1.3.6.1.4.1.18298.3.3.7.4"
+name: "gynaeco-oncologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.7.5"
+name: "urogynaecologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.7.6"
+name: "maternal-foetal medicine specialist"
+---
+code: "1.3.6.1.4.1.18298.3.3.7.7"
+name: "infertility specialist"
+---
+code: "1.3.6.1.4.1.18298.3.3.8"
+name: "rehabilitation physician"
+---
+code: "1.3.6.1.4.1.18298.3.3.9"
+name: "epidemiologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.10"
+name: "occupational physician"
+---
+code: "1.3.6.1.4.1.18298.3.3.11"
+name: "anaesthetist"
+---
+code: "1.3.6.1.4.1.18298.3.3.11.1"
+name: "anaesthetist (operative)"
+---
+code: "1.3.6.1.4.1.18298.3.3.11.2"
+name: "pain specialist"
+---
+code: "1.3.6.1.4.1.18298.3.3.11.3"
+name: "intensivist"
+---
+code: "1.3.6.1.4.1.18298.3.3.12"
+name: "dermatologist"
+---
+code: "1.3.6.1.4.1.18298.3.3.13"
+name: "hospital-based specialties"
+---
+code: "1.3.6.1.4.1.18298.3.3.13.1"
+name: "emergency medicine"
+---
+code: "1.3.6.1.4.1.18298.3.3.13.2"
+name: "medical administrator"
+---
+code: "1.3.6.1.4.1.18298.3.3.13.3"
+name: "hospital resident"

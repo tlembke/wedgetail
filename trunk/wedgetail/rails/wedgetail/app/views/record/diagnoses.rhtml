@@ -1,0 +1,7 @@
+<h1>Diagnoses</h1>
+<table border=1 id="diagslist">
+<tr><th>Disease</th><th>Comments</th><th>Diagnosed On</th></tr>
+<% @diagnoses.each do |diag| %>
+<tr><td><%= diag.name %></td><td><%= diag.text %></td><td><%= diag.narr.created_at.strftime("%d/%m/%Y") %></td></tr>
+<% end %>
+</table>

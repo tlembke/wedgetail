@@ -26,8 +26,7 @@
 		<p> 
 			<label for="user_email">Email:</label> 
 			<%= form.text_field :email, :size => 40 %> 
-		</p>
-		
+                </p>
 		<p> 
 			<label for="user_role">Role:</label> 
 			<% if @user.role==1 %>
@@ -38,7 +37,10 @@
 				<%= form.select (:role, [	['Health Provider',4]])%> 
 			<% end %>
 		</p>
-		
+			<p><label for="user_provider">Provider number:</label>
+			<%= form.text_field :provider, :size=>40 %></p>
+			<p><label for="user_provider">Prescriber number:</label>
+			<%= form.text_field :prescriber, :size=>40 %></p>
 		<p> 
 	<% if @user.role<=2 %>
 			<label for="team_wedgetail">Team:</label> 

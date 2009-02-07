@@ -1,5 +1,8 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 one:
-  id: 1
-two:
-  id: 2
+  acktype: "AA"
+  ack: ""
+  acked_at: <%= "2009-1-1 00:00".to_time %>
+  narrative_id: 1
+  status: 100
+  recipient_id: "12346"

@@ -1,0 +1,10 @@
+Dear Wedgetail
+
+This is a test message to check web upload and forwarding
+of messages.
+
+Re: Bloggs, Jack, DOB 2/1/1960
+
+Yours sincerely,
+
+Unit Test Script

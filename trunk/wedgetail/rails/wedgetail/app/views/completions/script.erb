@@ -1,0 +1,161 @@
+// This is a Javascript file processed by Rails
+
+completion_digits = ['1','2','3','4','5','6','7','8','9','0','`',
+		     '#','$','%','^','&'];
+
+completions = [<%= @completions.map {|comp| comp.javascript_line }.sort.join(",") %> ];
+
+current_completions = [];
+
+document.observe("dom:loaded",function (e) {
+	var tb = $('narrative_content');
+	tb.focus();
+	if (typeof(tb.selectionStart) != "undefined") // Firefox or compatible only
+	    tb.observe("keyup",function (e2) {
+		    var tb = $('narrative_content');
+		    var back = findBack(tb);
+		    var word = tb.value.substring(back,tb.selectionStart);
+		    if (checkCompletions(tb,word,back))
+			showCompletions(tb,word);
+			});
+});
+    
+
+
+function checkCompletions(tb,word,back)
+{
+    for(i=0;i<current_completions.length;i++)
+	if(ends_with(word,completion_digits[i]))
+	    {
+		$('notes_completions').innerHTML = "";
+		getCompletion(current_completions[i].name,back);
+		current_completions = [];
+		return false;
+	    }
+    return true;
+}
+
+function showCompletions(tb,word)
+{
+    var html = "";
+
+    current_completions = [];
+    if(word.length>2)
+	for(i=0;i<completions.length && current_completions.length<16;i++)
+	    if(starts_with(completions[i].name,word))
+		{
+		    html = html.concat('<tr><td><span class="compl_letter">',completion_digits[current_completions.length],
+				       '</span></td><td><span class="compl_type">',completions[i].typ,
+				       '</span></td><td><span class="compl_text">',completions[i].name,'</span></td></tr>');
+		    current_completions.push(completions[i]);
+		}
+    $('notes_completions').setStyle(calcPosition(tb));
+    $('notes_completions').innerHTML = "<table>"+html+"</table>";
+}
+
+function calcPosition(obj)
+{
+    var left = obj.selectionEnd;
+    var top=0;
+    var linestart=0;
+
+    for(i=0;i<left;i++)
+	if(obj.value[i] == "\n")
+	    {
+		top=top+1;
+		linestart=i;
+	    }
+    left=left-linestart+1;
+    top=0.8+(top*1.15); // fudge factor
+    return {left:left+"ex",top:top+"em"};
+}
+
+function starts_with(str1,str2)
+{
+    return str1.substr(0,str2.length) == str2;
+}
+
+function ends_with(str1,str2)
+{
+    return str1.substring(str1.length-str2.length) == str2;
+}
+
+function findBack(obj)
+{
+    var ws = " \t\r\n ";
+    var i = obj.selectionStart;
+    if (i>0)
+	i--;
+    while (i > 0 && ws.search(obj.value[i]) == -1)
+	i--;
+    if (ws.search(obj.value[i]) > -1 && i<obj.selectionStart)
+	i++;
+    return i;
+}
+
+function insertAtCaret(text, back) 
+
+{ 
+    obj = $('narrative_content');
+    obj.value = obj.value.substr(0, back) 
+	+ text 
+	+ obj.value.substr(obj.selectionEnd, obj.value.length); 
+    obj.selectionStart = back+text.length;
+    obj.selectionEnd = back+text.length;
+}
+
+// "export" so subwindows can call this function
+// called as opener.globalInsertAtCaret
+var globalInsertAtCaret = this.insertAtCaret;
+
+function getCompletion(code,back)
+{
+    new Ajax.Request('/completions/code_value',{
+	    method:'post',
+		parameters:{wedgetail:$('narrative_wedgetail').value,code:code,narr:$('narrative_content').value},
+	    onSuccess: function(transport){
+		json = transport.responseJSON;
+		switch (json.action) {
+		case "REPLACE":
+		    insertAtCaret("{"+code+";"+json.text+"} ",back);
+		    $('notes_comment').innerHTML = json.comment;
+		    break;
+		case "POPUP":
+		    insertAtCaret("",back);
+		    win = window.open("","","width=100 height=200");
+		    win.location = document.location.protocol + "//" + document.location.host + json.url;
+		    break;
+		    // there is, of course, scope to add other actions here
+		}
+	    }})
+}
+
+//courtesy of quirksmode.org
+// we may need to store the fudge factors used in calcPosition
+function createCookie(name,value,days) {
+	if (days=="forever") {
+	    var expires = "; expires=Fri, 1 Jan 2100 00:00:00 GMT";
+	}
+	else if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+
+function eraseCookie(name) {
+	createCookie(name,"",-1);
+}

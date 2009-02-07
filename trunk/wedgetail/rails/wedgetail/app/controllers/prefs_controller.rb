@@ -1,7 +1,7 @@
 # for handling server preferences. Accessible by admin (role=1 or 2) only
 class PrefsController < ApplicationController
   before_filter :redirect_to_ssl, :authenticate
-  layout "record"
+  layout "standard"
 
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
@@ -9,7 +9,7 @@ class PrefsController < ApplicationController
          :redirect_to => { :action => :list }
   def index
     authorize :admin
-    render :action=> 'show' if (@authorized)
+    render :action=> 'show' if @authorized
   end
 
   def show

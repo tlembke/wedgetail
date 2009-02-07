@@ -1,0 +1,9 @@
+<h1>Outgoing Messages</h1>
+<table border=1 id="om_table">
+<tr><th>Recipient</th><th>Status</th></tr>
+<% @outgoings.each do |om| %>
+
+   <tr><td><%= om.recipient.full_name %> (<%= om.recipient.email %>)</td><td><%= om.status_line %></td></tr>
+
+<% end %>
+</table>
