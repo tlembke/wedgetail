@@ -1,5 +1,5 @@
 <table><tr><td valign=middle><%= show_icon("contact-new","/login/guest/"+ @patient.wedgetail,"Guest access card","Create a Guest Access Card","large") -%></td>
-<td><%= button_to 'Creat a one-time use Guest Pass', :controller=>"login",:action => 'guest', :wedgetail => @patient.wedgetail %></td></tr></table>
+<td><%= button_to 'Create a one-time use Guest Pass', :controller=>"login",:action => 'guest', :wedgetail => @patient.wedgetail %></td></tr></table>
 <pre><p>You can create a 'Guest Access Card' which provides a username and password for someone to access your record on one occasion only.
 This is designed to be used when you are visiting a health provider who is not registered with the wedgetail System, or for emergency use.
 For your records and for audit purposes, you should record the person to whom you give a guest card in the table below.
