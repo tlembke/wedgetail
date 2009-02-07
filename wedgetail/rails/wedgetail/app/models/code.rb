@@ -76,8 +76,9 @@ class Code < ActiveRecord::Base
           else
             v = Code.connection.quote(value.to_yaml)
           end
-          by = Code.connection.quote(Time.now)
-          Code.connection.execute("INSERT INTO codes ('code','name','values','type','created_at') VALUES (#{c},#{n},#{v},#{t},#{by})")
+          c_at = Code.connection.quote(Time.now)
+          columns = ['code','name','values','type','created_at'].map {|x| Code.connection.quote_column_name(x)}.join(',')
+          Code.connection.execute("INSERT INTO codes (#{columns}) VALUES (#{c},#{n},#{v},#{t},#{c_at})")
         end
       end
     end
