@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :results
+
   map.resources :item_numbers
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -24,7 +26,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/service.wsdl', :action => 'wsdl'
 
   # Install the default route as the lowest priority.
-  map.connect ':controller/:action/:id.:format'
+  
   map.connect 'page/:page/',
               :controller => "page",
               :action => "show"
@@ -48,6 +50,8 @@ ActionController::Routing::Routes.draw do |map|
               :controller => "ajax"
  map.connnect 'consultations/:action/:id',
               :controller => "consultations"
+
   map.connect ':controller/:action/:wedgetail'
-  map.connect ':controller/:action/:id'
+  map.connect ':controller/:action/:id.:format'
+  
 end
