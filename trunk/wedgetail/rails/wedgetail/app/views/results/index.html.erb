@@ -1,0 +1,38 @@
+<h1>Listing results</h1>
+
+<table>
+  <tr>
+    <th>Wedgetail</th>
+    <th>Surname</th>
+    <th>Given name</th>
+    <th>Dob</th>
+    <th>Date</th>
+    <th>Name</th>
+    <th>Loinc</th>
+    <th>Value</th>
+    <th>Lab text</th>
+	<th>Comment</th>
+  </tr>
+
+<% @results.each do |result| %>
+  <tr>
+    <td><%=h result.wedgetail %></td>
+    <td><%=h result.surname %></td>
+    <td><%=h result.given_name %></td>
+    <td><%=h result.dob %></td>
+    <td><%=h result.date %></td>
+    <td><%=h result.name %></td>
+    <td><%=h result.loinc %></td>
+    <td><%=h result.value %></td>
+    <td><%=h result.lab_text %></td>
+	<td><%=h result.comment %></td>
+    <td><%= link_to 'Show', result %></td>
+    <td><%= link_to 'Edit', edit_result_path(result) %></td>
+    <td><%= link_to 'Destroy', result, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New result', new_result_path %>
