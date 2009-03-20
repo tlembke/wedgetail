@@ -53,5 +53,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect ':controller/:action/:wedgetail'
   map.connect ':controller/:action/:id.:format'
+  map.connect ':controller/:action'
   
 end
