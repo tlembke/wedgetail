@@ -22,50 +22,64 @@ class ApplicationController < ActionController::Base
   # If not, allow log in
   def authenticate
     unless @redirect_flag==1
-      unless @user=User.find_by_id(session[:user_id]) 
-        # Not currently logged in
-        # Save original destination so can return when logged in
-        session[:original_uri] = request.request_uri 
-        # Check to see if there are any users. If not, create Admin
-        if User.count==0
-          User.create(:username => 'admin', :family_name=>"Admin", :given_names=> "", :password => 'admin',:password_confirmation => 'admin',:role=>2,:wedgetail=>1)
-          @user=User.find_by_wedgetail(1)
-          session[:user_id] = @user.id 
-          session[:expires_at] = Pref.time_out.minutes.from_now
-          flash[:notice] = "Server ID required"
-          redirect_to(:controller => "prefs", :action => "edit", :id =>1)
-        else
-          flash[:notice] = "Please log in" 
-          redirect_to(:controller => "login", :action => "login") 
+      respond_to do |format| 
+        format.html do
+            unless @user=User.find_by_id(session[:user_id]) 
+                # Not currently logged in
+                # Save original destination so can return when logged in
+                session[:original_uri] = request.request_uri 
+                # Check to see if there are any users. If not, create Admin
+                if User.count==0
+                  User.create(:username => 'admin', :family_name=>"Admin", :given_names=> "", :password => 'admin',:password_confirmation => 'admin',:role=>2,:wedgetail=>1)
+                  @user=User.find_by_wedgetail(1)
+                  session[:user_id] = @user.id 
+                  session[:expires_at] = Pref.time_out.minutes.from_now
+                  flash[:notice] = "Server ID required"
+                  redirect_to(:controller => "prefs", :action => "edit", :id =>1)
+                else
+                  flash[:notice] = "Please log in" 
+                  redirect_to(:controller => "login", :action => "login") 
+                end
+            else
+                # alredy logged in
+                unless session[:expires_at]
+                  session[:expires_at] = Pref.time_out.minutes.from_now
+                end
+                @time_left = (session[:expires_at] - Time.now).to_i 
+                unless @time_left > 0
+                  if @user.role==7
+                    # once only guest user
+                    @user.update_attribute(:role,8)
+                  end
+                  session[:user_id] = nil  
+                  flash[:notice] = "Session Timed Out" 
+                  session[:original_uri] = request.request_uri 
+                  erase_render_results
+                  redirect_to(:controller => "login", :action => "login") 
+                end 
+                session[:expires_at] = Pref.time_out.minutes.from_now
+            end
+            @authorized = false
+            true
+            
         end
-      else
-        # alredy logged in
-        unless session[:expires_at]
-          session[:expires_at] = Pref.time_out.minutes.from_now
+        format.xml do 
+            user = authenticate_with_http_basic do |login, password| 
+              User.authenticate(login, password) 
+            end 
+            if user 
+              @user = user 
+              @authorised = false
+              true
+            else 
+              request_http_basic_authentication 
+            end 
         end
-        @time_left = (session[:expires_at] - Time.now).to_i 
-        unless @time_left > 0
-          if @user.role==7
-            # once only guest user
-            @user.update_attribute(:role,8)
-          end
-          session[:user_id] = nil  
-          flash[:notice] = "Session Timed Out" 
-          session[:original_uri] = request.request_uri 
-          erase_render_results
-          redirect_to(:controller => "login", :action => "login") 
-        end 
-        #session[:expires_at] = Pref.time_out.minutes.from_now
-        session[:expires_at] = Pref.time_out.minutes.from_now
       end
-      @authorized = false
-      true
+   
     end
+  
   end
-  
-
-  
-  
   # Check to see if access allowed to requested page
   # if not, redirect
   def authorize_only(role,&block)
@@ -114,7 +128,7 @@ class ApplicationController < ActionController::Base
           output.write("\t")
           output.write(line.send(x))
         end
-        output.write("\r\n")
+        output.write("\r\t\n")
       end
     end
   end
