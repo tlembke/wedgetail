@@ -1,5 +1,5 @@
 class ResultsController < ApplicationController
-  
+  before_filter :redirect_to_ssl, :authenticate
   layout "standard"
   
   # GET /results
@@ -10,6 +10,7 @@ class ResultsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @results }
+      format.yaml { render :text => @result.to_yaml} 
     end
   end
 
@@ -20,7 +21,8 @@ class ResultsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @result }
+      format.xml  { render :xml => @result } 
+      format.yaml { render :text => @result.to_yaml} 
     end
   end
 
@@ -44,15 +46,17 @@ class ResultsController < ApplicationController
   # POST /results.xml
   def create
     @result = Result.new(params[:result])
-
     respond_to do |format|
       if @result.save
         flash[:notice] = 'Result was successfully created.'
         format.html { redirect_to(@result) }
         format.xml  { render :xml => @result, :status => :created, :location => @result }
+        format.yaml { render :text => @result.to_yaml} 
       else
+        flash[:notice] = 'Result was not saved!'
         format.html { render :action => "new" }
         format.xml  { render :xml => @result.errors, :status => :unprocessable_entity }
+        format.yaml { render :to_yaml => @result, :status => :created, :location => @result } 
       end
     end
   end
