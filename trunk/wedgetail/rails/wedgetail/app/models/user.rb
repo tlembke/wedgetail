@@ -137,7 +137,7 @@ class User < ActiveRecord::Base
     # 3 Access to only health providers in selected list(white list)
     # 4 Access to nobody except me
     firewall=false
-    if self.access==1
+    if self.access==1 or self.access==''
       if applicant.role!=5 or applicant.wedgetail==self.wedgetail
         firewall = true
       end
