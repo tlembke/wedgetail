@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :patients, :key => :wedgetail
+
+  map.resources :narratives
+
   map.resources :results
 
   map.resources :item_numbers
@@ -19,7 +23,7 @@ ActionController::Routing::Routes.draw do |map|
                                         
 
  
- map.connect '', :controller => 'record', :action => 'list'
+ map.connect '', :controller => 'patients', :action => 'index'
 
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'

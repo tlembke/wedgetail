@@ -67,7 +67,10 @@ class Narrative < ActiveRecord::Base
             str
           end
         end
-    end
+        else
+          MessageProcessor.make_html_from_text(content)
+        end
+    
   end
 
   # used to control the message-viewing control.
@@ -86,11 +89,11 @@ class Narrative < ActiveRecord::Base
         end
       elsif content_type=='text/yaml'
         message = content_yaml
-	if narrative_type_id == 10
+	      if narrative_type_id == 10
           partial = "form"
         elsif narrative_type_id == 11
           partial = "script"
-	elsif narrative_type_id == 12
+	      elsif narrative_type_id == 12
           partial = "disease"
         else
           raise "cannot determine partial for yaml narrative type %s" % content_type_id
@@ -117,8 +120,14 @@ class Narrative < ActiveRecord::Base
   
   def author
     author_name=""
-    @author=User.find_by_wedgetail(self.created_by,:order=>"created_at desc")
-    author_name=@author.full_name if @author
+    if @author=User.find_by_wedgetail(self.created_by,:order=>"created_at desc")
+      author_name=@author.full_name if @author
+      user_team=User.find_by_wedgetail(@author.team)
+      if user_team
+          author_name+=", " if author_name!="" and user_team.family_name !=""
+          author_name+= user_team.family_name
+      end
+    end
     return author_name
   end
   
