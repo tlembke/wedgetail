@@ -1,0 +1,32 @@
+<p>
+  <b>Wedgetail:</b>
+  <%=h @narrative.wedgetail %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%=h @narrative.date %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%=h @narrative.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%=h @narrative.content %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%=h @narrative.narrative_type_id %>
+</p>
+
+<p>
+  <b>C Type:</b>
+  <%=h @narrative.content_type %>
+</p>
+
+<%= link_to 'Edit', edit_narrative_path(@narrative) %> |
+<%= link_to 'Back', narratives_path %>

@@ -1,0 +1,33 @@
+<h1>Listing narratives</h1>
+
+<table>
+  <tr>
+	<th>Date</th>
+    <th>Patient</th>
+    <th>Title</th>
+    <th>Content</th>
+    <th>Type</th>
+    <th>C Type</th>
+	<th>Created By</th>
+ </tr>
+
+<% @narratives.each do |narrative| %>
+
+  <tr>
+	<td><%=h narrative.narrative_date %></td>
+	<td><%=h narrative.wedgetail %></td>
+    <td><%=h narrative.title %></td>
+    <td><%=h narrative.content %></td>
+    <td><%=h narrative.narrative_type_id %></td>
+    <td><%=h narrative.content_type %></td>
+	<td><%=h narrative.created_by %></td>
+    <td><%= link_to 'Show', narrative %></td>
+    <td><%= link_to 'Edit', edit_narrative_path(narrative) %></td>
+    <td><%= link_to 'Destroy', narrative, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New narrative', new_narrative_path %>

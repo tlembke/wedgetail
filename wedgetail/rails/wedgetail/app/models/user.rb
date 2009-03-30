@@ -132,9 +132,15 @@ class User < ActiveRecord::Base
 
   #check firewall access
   def firewall(applicant)
+    # 1 Access to all health professionals registered with Wedgetail (default)
+    # 2 Access to all health providers except those is selected list (black list)
+    # 3 Access to only health providers in selected list(white list)
+    # 4 Access to nobody except me
     firewall=false
-    if self.access==1 or self.access=='' or self.access==nil
-      firewall = true
+    if self.access==1
+      if applicant.role!=5 or applicant.wedgetail==self.wedgetail
+        firewall = true
+      end
     elsif self.access==4
       firewall= true if self.wedgetail==applicant.wedgetail
     elsif self.access==2
@@ -194,6 +200,27 @@ class User < ActiveRecord::Base
     r+= town+" "+postcode
     return r
   end
+  
+  def find_authorised_patients(family_name="",given_names="",dob="")
+    # returns array of patients that user is authorised to find
+    @ok_patients=[]
+    sdob=""
+    unless dob.to_s ==""
+      sdob= " and dob = '"+ dob+"'"
+    end
+    # must have at least family_name
+    if family_name.to_s !=""
+      @all_patients = User.find(:all,:order => "family_name,wedgetail DESC, created_at DESC", :conditions => ["visibility=? and family_name like ? and (given_names like ? or known_as like ?)  and role=5"+sdob, true,family_name+"%",given_names.to_s+"%",given_names.to_s+"%"])
+      for each_patient in @all_patients
+        if each_patient.firewall(self)
+          @ok_patients << each_patient
+        end
+      end
+    end
+    return @ok_patients
+  end
+
+
 
   def self.find_fuzzy(familyname,firstname,dob,medicare)
     
