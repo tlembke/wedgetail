@@ -6,6 +6,6 @@
 
 <ul id="patients" title="Patients" selected='true'>
   <% for patient in @patients %>
-    <li><%= link_to patient.full_name, patient_path(patient.wedgetail), :target=>"_self" %>
+    <li><%= link_to patient.full_name, patient_path(patient.wedgetail), :target=>"_self" %></li>
   <% end %>
 </ul>
