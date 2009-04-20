@@ -1,6 +1,6 @@
 class PatientsController < ApplicationController
   before_filter :redirect_to_ssl, :authenticate
-  layout "standard"
+  layout "patients"
   
   # GET /patients
   # GET /patients.xml
@@ -24,15 +24,10 @@ class PatientsController < ApplicationController
     @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
     
       
-      if @patient.role!=5
-        redirect_to :action => :list
-      end
-      if !@patient
+      if !@patient or @patient.role!=5
         flash[:notice]='Patient not found'
-        redirect_to :action => :list
-      elsif not @patient.hatched 
+      elsif !@patient.hatched 
         flash[:notice]='Patient not yet registered'
-        render(:action=> :unconfirmed)
       else
         authorize_only(:patient) {@patient.wedgetail == @user.wedgetail}
         authorize_only(:temp) { @patient.wedgetail == @user.wedgetail.from(6)}
@@ -53,7 +48,13 @@ class PatientsController < ApplicationController
       end
      
     respond_to do |format|
-      format.html
+      format.html{
+        if !@patient or @patient.role!=5
+          redirect_to :action=>:index
+        elsif ! @patient.hatched
+          render :action=>:unconfirmed
+        end
+      }
       format.iphone {render :layout=> 'layouts/application.iphone.erb'}# index.iphone.erb 
       format.xml  { render :xml => @patient }
     end
@@ -62,8 +63,9 @@ class PatientsController < ApplicationController
   # GET /patients/new
   # GET /patients/new.xml
   def new
-    @patient = User.new
 
+    authorize :user
+    @patient = User.new
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @patient }

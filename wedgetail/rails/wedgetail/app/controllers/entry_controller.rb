@@ -49,7 +49,7 @@ class EntryController < ApplicationController
         flash[:background_print_narrative] = @narrative.id if p
         @narrative.sendout
         flash[:notice] = 'Narrative was successfully created.'
-        redirect_to :controller => 'record', :action => 'show', :wedgetail => @narrative.wedgetail
+        redirect_to patient_url(@narrative.wedgetail)
       else
         @completions = true
         redirect_to :action => 'new',:wedgetail=> @narrative.wedgetail
