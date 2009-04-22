@@ -16,7 +16,7 @@
 <%= show_icon("system-log-out","/login/logout","Logout","Logout","","medium")%>
 </p>
 <p> 
-<%= show_icon("system-users","/record/list","Patients","Patients","Search for patients","medium") unless @user.role >4%>
+<%= show_icon("system-users","/patients","Patients","Patients","Search for patients","medium") unless @user.role >4%>
 </p> 
 <p> 
 <%= show_icon("Physician","/login/list_users","Users","Users","Edit and Add new users","medium") if @user.role<4 %>
