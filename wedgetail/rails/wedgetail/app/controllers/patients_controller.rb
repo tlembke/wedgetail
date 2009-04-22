@@ -97,7 +97,7 @@ class PatientsController < ApplicationController
       respond_to do |format|
         if @patient.save
           flash[:notice] = 'Patient was successfully created.'
-          format.html { redirect_to patients_url(@patient.wedgetail)}
+          format.html { redirect_to patient_url(@patient.wedgetail)}
           format.xml  { render :xml => @patient.wedgetail, :status => :created }
         else
           format.html { render :action => :new,:layout=>'layouts/standard'}
