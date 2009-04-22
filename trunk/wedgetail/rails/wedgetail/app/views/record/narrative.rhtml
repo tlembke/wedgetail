@@ -8,7 +8,7 @@
 		<br>
 		<%= "Created by "+ @narrative.author + "<br>" if @narrative.author && @narrative.author!=""%>
 		<%= link_to 'Update this '+ @narrative.narrative_type.narrative_type_name, :controller=>'entry',:action=>'new',:wedgetail=>@patient.wedgetail,:narrative=>@narrative.id %>
-		<%= link_to 'Outgoing Messages',:action=>'outgoings',:id=>@narrative.id,:wedgetail=>@patient.wedgetail %>
+	
 	</fieldset>
 <% end %>
 </div>
