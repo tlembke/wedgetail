@@ -67,7 +67,7 @@ class PatientsController < ApplicationController
     authorize :user
     @patient = User.new
     respond_to do |format|
-      format.html # new.html.erb
+      format.html {render :layout=>'layouts/standard'} # new.html.erb
       format.xml  { render :xml => @patient }
     end
   end
@@ -82,9 +82,13 @@ class PatientsController < ApplicationController
   def create
       authorize :user
       @patient = User.new(params[:patient])
-      # generate temporary wedgetail number
-      wedgetail_number=WedgePassword.make("H")
-      @patient.wedgetail=wedgetail_number
+      if params[:ihi]!=""
+        @patient.wedgetail=params[:ihi]
+      else
+        # generate temporary wedgetail number
+        wedgetail_number=WedgePassword.make("H")
+        @patient.wedgetail=wedgetail_number
+      end
       @patient.username = @patient.wedgetail
       @patient.role=5
       @patient.hatched=false
@@ -93,7 +97,7 @@ class PatientsController < ApplicationController
       respond_to do |format|
         if @patient.save
           flash[:notice] = 'Patient was successfully created.'
-          format.html { redirect_to :action => :show, :wedgetail => @patient.wedgetail}
+          format.html { redirect_to patients_url(@patient.wedgetail)}
           format.xml  { render :xml => @patient.wedgetail, :status => :created }
         else
           format.html { render :action => :new,:layout=>'layouts/standard'}

@@ -13,7 +13,9 @@ class ApplicationController < ActionController::Base
     # iPhone sub-domain request 
     # request.format = :iphone if iphone_subdomain? 
     # Detect from iPhone user-agent 
-    request.format = :iphone if iphone_user_agent? 
+    if iphone_user_agent? 
+      request.format = :iphone
+    end
   end 
     # Request from an iPhone or iPod touch? 
     # (Mobile Safari user agent) 
