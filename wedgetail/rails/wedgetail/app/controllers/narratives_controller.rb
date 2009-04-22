@@ -15,7 +15,28 @@ class NarrativesController < ApplicationController
   # GET /narratives/1
   # GET /narratives/1.xml
   def show
-    @narrative = Narrative.find(params[:id])
+    # if type defined, show all of that type
+    # otherwise, show only specified narrative
+    if params[:type]
+      @narratives=Narrative.find(:all, :conditions=>["wedgetail=? and narrative_type_id=?",params[:id],params[:type]], :order=>"narrative_date DESC,created_at DESC")
+      @narrativeType=NarrativeType.find(params[:type])
+      @title=@narrativeType.narrative_type_name.pluralize
+      @wedgetail=params[:id]
+    else
+      @narrative=Narrative.find(params[:id])
+      @title=@narrative.narrative_type.narrative_type_name
+      @wedgetail=@narrative.wedgetail
+      @narratives=Array.new
+      @narratives << @narrative
+    end
+    @patient=User.find_by_wedgetail(@wedgetail,:order =>"created_at DESC") 
+    authorize_only (:patient) {@wedgetail == @user.wedgetail}
+    authorize_only (:temp) {@wedgetail == @user.wedgetail.from(6)}
+    authorize_only(:leader){@patient.firewall(@user)}
+    authorize_only(:user){@patient.firewall(@user)}
+    authorize :admin
+    @audit=Audit.create(:patient=>@wedgetail,:user_wedgetail=>@user.wedgetail)
+    OutgoingMessage.check_view(@user,@narrative) if @narrative
 
     respond_to do |format|
       format.html # show.html.erb

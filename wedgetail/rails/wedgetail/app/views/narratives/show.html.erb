@@ -1,32 +1,25 @@
-<p>
-  <b>Wedgetail:</b>
-  <%=h @narrative.wedgetail %>
-</p>
+<div class="wedgetail-form">
+	<fieldset>
+		<legend>Patient Details</legend>
+	<h3><%= h(@patient.family_name+", "+@patient.given_names)-%>
+	<%= h(" \""+@patient.known_as+ "\"")	unless @patient.known_as.blank? -%>
+	</h3>
+	<b>DOB</b>  <%= @patient.dob.day %>/<%= @patient.dob.month%>/<%= @patient.dob.year-%>
+	&nbsp; &nbsp;<b>Address</b>  <%= @patient.address_line+", "+@patient.town%>
+	</fieldset>
+</div>
 
-<p>
-  <b>Date:</b>
-  <%=h @narrative.date %>
-</p>
+<div class="wedgetail-form">
+<h1><%= @title %></h1>
+<% for @narrative in @narratives %>
+	<fieldset>
+		<legend><%= @narrative.narrative_date.strftime("%d/%m/%y")%>   <%= @narrative.title-%></legend>	
+		<% content, partial = @narrative.convert %>
+				<%= render(:partial=>partial,:object=>content)%>
+		<br><hr><br>
+		<%= "Created by "+ @narrative.author + "<br>" if @narrative.author && @narrative.author!=""%>
 
-<p>
-  <b>Title:</b>
-  <%=h @narrative.title %>
-</p>
-
-<p>
-  <b>Content:</b>
-  <%=h @narrative.content %>
-</p>
-
-<p>
-  <b>Type:</b>
-  <%=h @narrative.narrative_type_id %>
-</p>
-
-<p>
-  <b>C Type:</b>
-  <%=h @narrative.content_type %>
-</p>
-
-<%= link_to 'Edit', edit_narrative_path(@narrative) %> |
-<%= link_to 'Back', narratives_path %>
+		
+	</fieldset>
+<% end %>
+</div>
