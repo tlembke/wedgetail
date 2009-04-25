@@ -6,7 +6,7 @@ include Open3
 
 class LoginController < ApplicationController
   before_filter :redirect_to_ssl
-  before_filter :authenticate, :except =>[:login,:logout]
+  before_filter :authenticate, :except =>[:login,:logout,:check]
   layout "standard"
 
   def add_user
@@ -49,6 +49,28 @@ class LoginController < ApplicationController
         @newuser = User.new 
       end
     end 
+  end
+  
+  def check
+    respond_to do |format|
+        format.xml{
+          testuser = authenticate_with_http_basic do |login, password| 
+            @username=login
+            User.authenticate(login, password) 
+          end 
+          if testuser
+            @status = "Confirmed"
+          else 
+            testuser=User.find_by_username(@username)
+            if testuser
+              @status="Incorrect password"
+            else
+              @status="Unknown user"
+            end
+          end
+          render :xml => @status, :layout=>'layouts/blank.erb',:template => 'login/check.xml.erb'
+        }
+      end
   end
 
   def login 
