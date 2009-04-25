@@ -53,7 +53,7 @@ class LoginController < ApplicationController
   
   def check
     respond_to do |format|
-        format.xml{
+        format.any(:xml, :text){
           testuser = authenticate_with_http_basic do |login, password| 
             @username=login
             User.authenticate(login, password) 
