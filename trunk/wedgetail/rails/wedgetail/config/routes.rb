@@ -1,9 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :patients, :key => :wedgetail
+  map.resources :actions
+
+  map.resources :result_tickets, :collection => { :check => :post } 
+
+  map.resources :users
+
+  map.resources :patients, :key => :wedgetail, :has_many => :results
+  
+  map.resources :results, :only => [:create, :new]
 
   map.resources :narratives
-
-  map.resources :results
 
   map.resources :item_numbers
 

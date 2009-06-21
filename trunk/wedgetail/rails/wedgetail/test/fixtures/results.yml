@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  wedgetail: MyString
+  surname: MyString
+  given_name: MyString
+  dob: 2009-03-21
+  date: 2009-03-21
+  name: MyString
+  loinc: MyString
+  value: MyString
+  lab_text: MyString
+
+two:
+  wedgetail: MyString
+  surname: MyString
+  given_name: MyString
+  dob: 2009-03-21
+  date: 2009-03-21
+  name: MyString
+  loinc: MyString
+  value: MyString
+  lab_text: MyString

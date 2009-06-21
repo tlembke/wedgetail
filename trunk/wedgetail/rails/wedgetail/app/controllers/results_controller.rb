@@ -1,11 +1,12 @@
 class ResultsController < ApplicationController
   before_filter :redirect_to_ssl, :authenticate
+  before_filter :find_patient, :except=> [:create, :new]
   layout "standard"
   
   # GET /results
   # GET /results.xml
   def index
-    @results = Result.all
+    @results = Result.find_all_by_wedgetail(@patient.wedgetail)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -49,7 +50,7 @@ class ResultsController < ApplicationController
     respond_to do |format|
       if @result.save
         flash[:notice] = 'Result was successfully created.'
-        format.html { redirect_to(@result) }
+        format.html { redirect_to(patient_results_url(:patient_id=>@result.wedgetail,:id=>@result.id)) }
         format.xml  { render :xml => @result, :status => :created, :location => @result }
         format.yaml { render :text => @result.to_yaml} 
       else
@@ -89,4 +90,12 @@ class ResultsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  private 
+    def find_patient
+      @wedgetail = params[:patient_id] 
+      return(redirect_to(patients_url)) unless @wedgetail
+      @patient = User.find_by_wedgetail(@wedgetail) 
+    end 
+  
 end
