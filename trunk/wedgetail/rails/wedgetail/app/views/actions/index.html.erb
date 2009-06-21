@@ -1,0 +1,21 @@
+<div class="wedgetail-form"> 
+	<fieldset> 
+		<legend>Results and actions checker</legend>
+		<% form_tag actions_path, :method => :get do %> 
+			<p> <table>
+				<tr>
+				<td>
+				<label for="ticket">Enter your ticket code:</label> </td><td>
+				<%= text_field_tag :ticket, params[:ticket] %>
+				</td>
+				</tr>
+			
+				<tr>
+				<td colspan=2 align=center><%= submit_tag "Enter" %> 
+				</td>
+				</tr>
+				</table>
+			</p> 
+		<% end %> 
+	</fieldset> 
+</div>
