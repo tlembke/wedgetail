@@ -1,38 +1,39 @@
+<div class="wedgetail-form">
+	<fieldset>
+		<legend>Patient Details</legend>
+	<h3><%= h(@patient.family_name+", "+@patient.given_names)-%>
+	<%= h(" \""+@patient.known_as+ "\"")	unless @patient.known_as.blank? -%>
+	</h3>
+	<b>DOB</b>  <%= @patient.dob.day %>/<%= @patient.dob.month%>/<%= @patient.dob.year-%>
+	&nbsp; &nbsp;<b>Address</b>  <%= @patient.address_line+", "+@patient.town%>
+	</fieldset>
+</div>
+
 <h1>Listing results</h1>
 
-<table>
+<table border=1>
   <tr>
-    <th>Wedgetail</th>
-    <th>Surname</th>
-    <th>Given name</th>
-    <th>Dob</th>
+
     <th>Date</th>
     <th>Name</th>
-    <th>Loinc</th>
     <th>Value</th>
-    <th>Lab text</th>
+
 	<th>Comment</th>
   </tr>
 
 <% @results.each do |result| %>
   <tr>
-    <td><%=h result.wedgetail %></td>
-    <td><%=h result.surname %></td>
-    <td><%=h result.given_name %></td>
-    <td><%=h result.dob %></td>
+
     <td><%=h result.date %></td>
     <td><%=h result.name %></td>
-    <td><%=h result.loinc %></td>
     <td><%=h result.value %></td>
-    <td><%=h result.lab_text %></td>
+
 	<td><%=h result.comment %></td>
-    <td><%= link_to 'Show', result %></td>
-    <td><%= link_to 'Edit', edit_result_path(result) %></td>
-    <td><%= link_to 'Destroy', result, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', patient_result_path(:patient_id=>result.wedgetail, :id => result.id) %></td>
+
   </tr>
 <% end %>
 </table>
+<%= link_to 'New result',new_result_path%>
 
 <br />
-
-<%= link_to 'New result', new_result_path %>
