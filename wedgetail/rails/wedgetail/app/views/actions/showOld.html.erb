@@ -1,0 +1,33 @@
+<p>
+  <b>Result ref:</b>
+  <%=h @action.result_ref %>
+</p>
+
+<p>
+  <b>Test date:</b>
+  <%=h @action.test_date %>
+</p>
+
+<p>
+  <b>Action code:</b>
+  <%=h @action.action_code %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%=h @action.comment %>
+</p>
+
+<p>
+  <b>Patient ref:</b>
+  <%=h @action.patient_ref %>
+</p>
+
+<p>
+  <b>Last flag:</b>
+  <%=h @action.last_flag %>
+</p>
+
+
+<%= link_to 'Edit', edit_action_path(@action) %> |
+<%= link_to 'Back', actions_path %>
