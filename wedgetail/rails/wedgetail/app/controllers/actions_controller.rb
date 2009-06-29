@@ -59,12 +59,27 @@ class ActionsController < ApplicationController
   # POST /actions.xml
   def create
       @errors=[]
-      for action in params[:action_list][:action]
-        @new_action = Action.new(action)
+      # for some reason, the @action in params[:action_list][:action] 
+      # doesn't work for one action only.
+      # so check first
+      if params[:action_list][:action].length==1
+        @action=params[:action_list][:action]
+        @new_action = Action.new(@action)
         unless @new_action.save
             @errors<< @new_action.errors
         end
+      else
+        for @action in params[:action_list][:action]
+            @new_action = Action.new(@action)
+            unless @new_action.save
+                @errors<< @new_action.errors
+            end
+        end
       end
+      # don't kow how to catch parsing exception, but this doesn;t work
+      #rescue REXML::ParseException
+      #    @errors<<"XML parsing error"
+      #end
     @errors<<"No errors" if @errors.length==0
     respond_to do |format|
         format.xml { render :xml => @errors, :template => 'actions/actions.xml.builder' }
