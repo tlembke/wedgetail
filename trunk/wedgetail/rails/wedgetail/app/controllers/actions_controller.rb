@@ -62,10 +62,10 @@ class ActionsController < ApplicationController
       # for some reason, the @action in params[:action_list][:action] 
       # doesn't work for one action only.
       # so check first
-      if params[:action_list][:action].length==1
-        @action=params[:action_list][:action]
-        @new_action = Action.new(@action)
-        unless @new_action.save
+      
+      unless params[:action_list][:action][0]
+        @new_action = Action.new(params[:action_list][:action])
+            unless @new_action.save
             @errors<< @new_action.errors
         end
       else
