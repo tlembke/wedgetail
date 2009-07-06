@@ -12,15 +12,15 @@ There is more than one result associated with this ticket<p>
 <table border=1>
   <tr>
     <th align=left>Test date</th>
-    <th align=left>Message</th>
+    
     <th align=left>Comment</th>
   </tr>
 <% last_flag=0 %>
 <% @actions.each do |action| %>
   <tr>
-    <td align=left><%=h action.test_date %></td>
-    <td align=left><%=h @code[action.action_code.to_i-1] %></td>
-    <td align=left><%=h action.comment %></td>
+    <td align=left valign=top><%=h action.test_date %></td>
+    <% #<td align=left><%=h @code[action.action_code.to_i-1] </td> %>
+    <td align=left><%= displayComment(action.comment) %></td>
 	</tr>
 	<% last_flag=1 if action.last_flag %>
 <% end %>

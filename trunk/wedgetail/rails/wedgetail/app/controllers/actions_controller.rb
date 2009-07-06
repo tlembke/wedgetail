@@ -65,7 +65,8 @@ class ActionsController < ApplicationController
       
       unless params[:action_list][:action][0]
         @new_action = Action.new(params[:action_list][:action])
-            unless @new_action.save
+        
+        unless @new_action.save
             @errors<< @new_action.errors
         end
       else
@@ -85,6 +86,7 @@ class ActionsController < ApplicationController
         format.xml { render :xml => @errors, :template => 'actions/actions.xml.builder' }
     end
   end
+  
 
   # PUT /actions/1
   # PUT /actions/1.xml
