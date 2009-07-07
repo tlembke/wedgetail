@@ -42,10 +42,24 @@ class ResultTicketsController < ApplicationController
   def create
    
     @result_ticket = ResultTicket.new(params[:result_ticket])
-
+    old=false
+    if @RT=ResultTicket.find(:first,:conditions=>["result_ref=?",@result_ticket.result_ref])
+      old=true
+      @result_ticket.ticket=@RT.ticket
+    end
+    if ! @result_ticket.ticket
+        finished=1
+        while finished!=nil
+          @ticket=WedgePassword.random_password(10)
+          # see if it is unique - will be not nil
+          finished=ResultTicket.find_by_ticket(@ticket)
+        end
+        @result_ticket.ticket=@ticket
+     
+    end
+   
     respond_to do |format|
-      if @result_ticket.save
-        flash[:notice] = 'ResultTicket was successfully created.'
+      if old or @result_ticket.save
         format.html { redirect_to(@result_ticket) }
         format.xml  { render :xml => @result_ticket, :status => :created, :location => @result_ticket }
       else
