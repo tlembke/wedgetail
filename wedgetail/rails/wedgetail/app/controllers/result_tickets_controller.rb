@@ -61,7 +61,7 @@ class ResultTicketsController < ApplicationController
     respond_to do |format|
       if old or @result_ticket.save
         format.html { redirect_to(@result_ticket) }
-        format.xml  { render :xml => @result_ticket, :status => :created, :location => @result_ticket }
+        format.xml  { render :xml => @result_ticket, :status => :created, :template => 'result_tickets/result_ticket.xml.builder'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @result_ticket.errors, :status => :unprocessable_entity }
