@@ -55,6 +55,25 @@ class ActionsController < ApplicationController
     @action = Action.find(params[:id])
   end
 
+
+  def save_or_update_action(action)
+    @new_action = Action.new(action)
+    if @new_action.identifier!=''
+      @check=Action.find(:first,:conditions=>["result_ref=? and identifier=?",@new_action.result_ref,@new_action.identifier])
+      if @check
+        unless @check.update_attributes(action)
+            @errors<< @check.errors
+        end
+      else
+        unless @new_action.save
+            @errors<< @new_action.errors
+        end
+      end
+    end
+  
+  end
+
+
   # POST /actions
   # POST /actions.xml
   def create
@@ -64,17 +83,12 @@ class ActionsController < ApplicationController
       # so check first
       
       unless params[:action_list][:action][0]
-        @new_action = Action.new(params[:action_list][:action])
-        
-        unless @new_action.save
-            @errors<< @new_action.errors
-        end
+        #@new_action = Action.new(params[:action_list][:action])
+        save_or_update_action(params[:action_list][:action])
       else
+        
         for @action in params[:action_list][:action]
-            @new_action = Action.new(@action)
-            unless @new_action.save
-                @errors<< @new_action.errors
-            end
+            save_or_update_action(@action)
         end
       end
       # don't kow how to catch parsing exception, but this doesn;t work
