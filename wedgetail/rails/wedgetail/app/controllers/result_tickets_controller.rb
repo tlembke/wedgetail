@@ -43,7 +43,7 @@ class ResultTicketsController < ApplicationController
    
     @result_ticket = ResultTicket.new(params[:result_ticket])
     old=false
-    if @RT=ResultTicket.find(:first,:conditions=>["result_ref=?",@result_ticket.result_ref])
+    if @RT=ResultTicket.find(:first,:conditions=>["request_set=?",@result_ticket.request_set])
       old=true
       @result_ticket.ticket=@RT.ticket
     end
@@ -61,7 +61,7 @@ class ResultTicketsController < ApplicationController
     respond_to do |format|
       if old or @result_ticket.save
         format.html { redirect_to(@result_ticket) }
-        format.xml  { render :xml => @result_ticket, :status => :created, :template => 'result_tickets/result_ticket.xml.builder'}
+        format.xml  { render :xml => @result_ticket, :status => :created, :template => 'result_tickets/result_ticket.xml.builderrequest_set'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @result_ticket.errors, :status => :unprocessable_entity }
@@ -76,8 +76,8 @@ class ResultTicketsController < ApplicationController
    
     result_ticket_list = params[:result_ticket_list]
     @return_list=[]
-    for result_ref in result_ticket_list[:result_ref]
-      @return_list << result_ref if ResultTicket.find(:first,:conditions => ["result_ref= ?",result_ref])
+    for request_set in result_ticket_list[:request_set]
+      @return_list << request_set if ResultTicket.find(:first,:conditions => ["request_set= ?",request_set])
     end
     respond_to do |format|
 

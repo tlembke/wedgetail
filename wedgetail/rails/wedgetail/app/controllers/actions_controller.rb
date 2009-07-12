@@ -23,7 +23,7 @@ class ActionsController < ApplicationController
     @result=ResultTicket.find_by_ticket(params[:id])
     
     if @result
-      @actions=Action.find(:all,:conditions=>["result_ref=?",@result.result_ref])
+      @actions=Action.find(:all,:conditions=>["request_set=?",@result.request_set])
     end
     @code=["No further action required for this result","Please call to discuss these results","Please make an urgent appointment to discuss results"]
     
@@ -59,7 +59,7 @@ class ActionsController < ApplicationController
   def save_or_update_action(action)
     @new_action = Action.new(action)
     if @new_action.identifier!=''
-      @check=Action.find(:first,:conditions=>["result_ref=? and identifier=?",@new_action.result_ref,@new_action.identifier])
+      @check=Action.find(:first,:conditions=>["request_set=? and identifier=?",@new_action.request_set,@request_setnew_action.identifier])
       if @check
         unless @check.update_attributes(action)
             @errors<< @check.errors
