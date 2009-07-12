@@ -8,7 +8,7 @@
 
 <% @result_tickets.each do |result_ticket| %>
   <tr>
-    <td><%=h result_ticket.result_ref %></td>
+    <td><%=h result_ticket.request_set %></td>
     <td><%=h result_ticket.ticket %></td>
     <td><%= link_to 'Show', result_ticket %></td>
     <td><%= link_to 'Edit', edit_result_ticket_path(result_ticket) %></td>
