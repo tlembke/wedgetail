@@ -59,7 +59,7 @@ class ActionsController < ApplicationController
   def save_or_update_action(action)
     @new_action = Action.new(action)
     if @new_action.identifier!=''
-      @check=Action.find(:first,:conditions=>["request_set=? and identifier=?",@new_action.request_set,@request_setnew_action.identifier])
+      @check=Action.find(:first,:conditions=>["request_set=? and identifier=?",@new_action.request_set,@new_action.identifier])
       if @check
         unless @check.update_attributes(action)
             @errors<< @check.errors
