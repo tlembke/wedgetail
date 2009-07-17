@@ -404,7 +404,7 @@ class MessageProcessor
       logger.warn "Stopping abiword"
       start=file.index('<body>')
       ende=file.index('</body>',start)
-      file=file[start+6..ende]
+      file=file[start+6..ende-1]
       if txt
         return [file,plaintext]
       else
