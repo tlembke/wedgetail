@@ -9,7 +9,9 @@ There is more than one result associated with this ticket<p>
 
 <% end %>
 <h3>Summary</h3>
+
 <table border=1>
+
 	<tr>
     <th align=left>Test date</th>
     
@@ -51,7 +53,7 @@ There is more than one result associated with this ticket<p>
     <td align=left valign=top><a name="<%= action.identifier %>"><%=h action.test_date.strftime("%d/%m/%y") %></td>
     <% #<td align=left><%=h @code[action.action_code.to_i-1] </td> %>
     <td align=left>
-		<% if action.name!=""%>
+		<% if action.name and action.name!=""%>
 		<h4><%= action.name %></h4>
 		<% end %>
 		<% if action.comment!=""%>	
