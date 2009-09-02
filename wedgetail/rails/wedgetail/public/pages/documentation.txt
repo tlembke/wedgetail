@@ -7,9 +7,11 @@ FAQs for patients and providers will be provided 'soon'.
 <h4>PDFs</h4>
 The following pdfs are available for download:
 <blockquote>
-<a href="/docs/Wedgetail_Consent.pdf">Wedgetail Consent Form</a><br>
+<a href="/docs/Wedgetail_consent_form-patients.pdf">Wedgetail Consent Form (Patients)</a><br>
+<a href="/docs/Wedgetail_consent_form-health_provider.pdf">Wedgetail Consent Form (Health Providers)</a><br>
 <a href="/docs/Patient_info.pdf">Patient Information on Wedgetail</a><br>
 <a href="/docs/What_is_Wedgetail.pdf">What is Wedgetail?</a><br>
+<a href="/docs/Wedgetail_policy_document.pdf">Wedgetail Policy Document</a><br>
 <a href="/docs/Provider_info.pdf">Information for Health Providers</a><br>
 <a href="/docs/Privacy_and_Security.pdf">Privacy and Security</a><br>
 </blockquote>
