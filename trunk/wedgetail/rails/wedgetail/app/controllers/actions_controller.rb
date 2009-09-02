@@ -1,5 +1,6 @@
 class ActionsController < ApplicationController
   layout "standard"
+
   
   # GET /actions
   # GET /actions.xml
@@ -77,6 +78,7 @@ class ActionsController < ApplicationController
   # POST /actions
   # POST /actions.xml
   def create
+
       @errors=[]
       # for some reason, the @action in params[:action_list][:action] 
       # doesn't work for one action only.
@@ -99,6 +101,8 @@ class ActionsController < ApplicationController
     respond_to do |format|
         format.xml { render :xml => @errors, :template => 'actions/actions.xml.builder' }
     end
+ 
+
   end
   
 

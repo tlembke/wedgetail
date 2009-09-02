@@ -17,8 +17,8 @@ disclosure of Information to people who log in or otherwise authenticate using c
 
 2.
 In this agreement:
-(a)	“Information” includes any information which relates to me and my interactions with any Health Provider. It typically includes information identifying medical history and other relevant health information. I understand that Information is likely to include “personal information”, “sensitive information” and “health information” within the meaning of the Commonwealth Privacy Act and NSW Health Records Information Privacy Act (and similar definitions in other State and Territory legislation); and
-“Wedgetail Guidelines” means the most current version of all guidelines published by the Wedgetail Provider from time to time for the use and/or operation of Wedgetail Online. The Wedgetail Guidelines may relate to any aspect of the operation of Wedgetail Online, including: how data may be uploaded to, stored in, or accessed or copied from it; in what circumstances data can be uploaded to or accessed from Wedgetail Online; and how people interact with Wedgetail Online.
+(a)	"Information" includes any information which relates to me and my interactions with any Health Provider. It typically includes information identifying medical history and other relevant health information. I understand that Information is likely to include "personal information", "sensitive information" and "health information" within the meaning of the Commonwealth Privacy Act and NSW Health Records Information Privacy Act (and similar definitions in other State and Territory legislation); and
+"Wedgetail Guidelines" means the most current version of all guidelines published by the Wedgetail Provider from time to time for the use and/or operation of Wedgetail Online. The Wedgetail Guidelines may relate to any aspect of the operation of Wedgetail Online, including: how data may be uploaded to, stored in, or accessed or copied from it; in what circumstances data can be uploaded to or accessed from Wedgetail Online; and how people interact with Wedgetail Online.
 
 3.	To the extent permitted by law the Wedgetail Provider, and each other person who is involved in or associated with the provision of Wedgetail Online has no liability to me in relation to any interaction with Wedgetail Online by me, or by any other person, including where the operation of Wedgetail is not consistent with the Wedgetail Guidelines or with my expectations.
 
@@ -28,6 +28,6 @@ I understand that I have been asked for this consent by a Health Provider and th
 By signing below I agree to be bound by the Wedgetail Guidelines and this agreement. I acknowledge that I have read the following: 
 (a)	Wedgetail Information for Patients
 (b)	Wedgetail Privacy and Security
-(c)	Wedgetail Guidelines – About The Wedgetail System
+(c)	Wedgetail Guidelines - About The Wedgetail System
 
 4.	I have been given the opportunity to ask any questions regarding Shared Electronic Health Records to clarify my understanding of Wedgetail and to seek legal advice on this agreement.
