@@ -30,11 +30,11 @@ class ApplicationController < ActionController::Base
   
   def redirect_to_ssl
 
-      #@redirect_flag=0
-      #unless (request.ssl? or local_request? or not Pref.use_ssl) 
-      #  @redirect_flag=1
-      #  redirect_to :protocol => "https://"  
-      #end
+      @redirect_flag=0
+      unless (request.ssl? or local_request? or not Pref.use_ssl) 
+        @redirect_flag=1
+        redirect_to :protocol => "https://"  
+      end
        
   end
   
