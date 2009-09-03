@@ -56,7 +56,8 @@
 	&nbsp; &nbsp;<b>Address</b>  <%= @patient.address_line+", "+@patient.town%>
 	</fieldset>
 </div>
-<%= link_to "Summary",{:controller=>:record,:action=>:show,:wedgetail=>@patient.wedgetail} %> |
+
+<%= link_to 'Summary', patient_path(@patient.wedgetail) %>|
 <%= link_to "Encounters",{:controller=>:record,:action=>:narrative,:type=>4,:wedgetail=>@patient.wedgetail} %> |
 <%= link_to "Results", patient_results_path(:patient_id=>@patient.wedgetail) %> |
 <%= link_to "Letters",{:controller=>:record,:action=>:narrative,:type=>8,:wedgetail=>@patient.wedgetail} %> |
