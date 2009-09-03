@@ -24,6 +24,7 @@ class NarrativesController < ApplicationController
       @wedgetail=params[:id]
     else
       @narrative=Narrative.find(params[:id])
+      @narrative.narrative_type_id=14 unless @narrative.narrative_type_id
       @title=@narrative.narrative_type.narrative_type_name
       @wedgetail=@narrative.wedgetail
       @narratives=Array.new

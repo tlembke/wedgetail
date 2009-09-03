@@ -34,7 +34,7 @@ class PatientsController < ApplicationController
         authorize_only(:leader){@patient.firewall(@user)}
         authorize_only(:user){@patient.firewall(@user)}
         authorize :admin
-        @narratives=Narrative.find(:all, :conditions=>["wedgetail=?",params[:wedgetail]], :order=>"created_at DESC")
+        @narratives=Narrative.find(:all, :conditions=>["narrative_type_id IS NOT NULL and wedgetail=?",params[:wedgetail]], :order=>"created_at DESC")
         @audit=Audit.create(:patient=>params[:wedgetail],:user_wedgetail=>@user.wedgetail)
         @special=Array.new
         @count=Array.new
