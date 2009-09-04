@@ -1,0 +1,35 @@
+<table>
+<% unless ref.rf1.disposition.blank? %>
+  <tr><th>Type: </th><td> <% for d in ref.rf1.disposition %><%= d.text %><% end %></td></tr>
+<% end %>
+<% unless ref.rf1.category.blank? %>
+  <tr><th>Category: </th><td> <%= ref.rf1.category.text %></td></tr>
+<% end %>
+<% unless ref.rf1.status.blank? %>
+  <tr><th>Status: </th><td> <%= ref.rf1.status.text %></td></tr>
+<% end %>
+<% unless ref.rf1.process_date.blank? %>
+  <tr><th>Date: </th><td> <%= ref.rf1.process_date.strftime %></td></tr>
+<% end %>
+<% ref.each("PRD") do |prd|
+     for role in prd.role
+       case role.identifier
+       when "RP" %>
+         <tr><th>Referrer: </th><td> <% prd.name.each { |x| %><%= x.prefix %> <%= x.given_name %> <%= x.family_name.surname %> <% } %>
+                                    (<% prd.provider_identifiers.each { |id| %><%= id.id_number %>  <% } %>)</td></tr>
+<%     when "PP" %>
+         <tr><th>GP: </th><td> <% prd.name.each { |x| %><%= x.prefix %> <%= x.given_name %> <%= x.family_name.surname %> <% } %>
+                                    (<% prd.provider_identifiers.each { |id| %><%= id.id_number %>  <% } %>)</td></tr>
+<%     when "CP" %>
+         <tr><th>Consultant: </th><td> <% prd.name.each { |x| %><%= x.prefix %> <%= x.given_name %> <%= x.family_name.surname %> <% } %>
+                                    (<% prd.provider_identifiers.each { |id| %><%= id.id_number %>  <% } %>)</td></tr>
+<%     when "RT" %>
+         <tr><th>Referree: </th><td> <% prd.name.each { |x| %><%= x.prefix %> <%= x.given_name %> <%= x.family_name.surname %> <% } %>
+                                    (<% prd.provider_identifiers.each { |id| %><%= id.id_number %>  <% } %>)</td></tr>
+
+<%     end
+     end 
+   end %>
+</table>
+<p>
+<% ref.each("OBR") { |obr| %><%= render(:partial=>"obr",:object=>obr) %><% } %>
