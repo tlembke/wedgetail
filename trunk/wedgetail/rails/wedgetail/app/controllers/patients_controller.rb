@@ -38,7 +38,7 @@ class PatientsController < ApplicationController
         @audit=Audit.create(:patient=>params[:wedgetail],:user_wedgetail=>@user.wedgetail)
         @special=Array.new
         @count=Array.new
-        @displayOrder=[1,2,5,3,4,8,7,9,6]
+        @displayOrder=[1,2,5,3,4,8,9,6]
         j=1
         for i in @displayOrder
           @special[j]=Narrative.find(:first, :conditions=>["wedgetail=? and narrative_type_id=?",params[:wedgetail],i], :order=>"narrative_date DESC,created_at DESC") 
