@@ -24,7 +24,7 @@ There is more than one result associated with this ticket<p>
 	    <td align=left valign=top><%=h action.test_date.strftime("%d/%m/%y") %></td>
 	    <% #<td align=left><%=h @code[action.action_code.to_i-1] </td> %>
 	    <td align=left><%= h action.name %>&nbsp;<a href='#<%=action.identifier %>'>(view)</a></td>
-			<td align=left><%= h action.action_code %>
+			<td align=left><%= h action.action_code %></td>
 		</tr>
 		<% last_flag=1 if action.last_flag %>
 	<% end %>
