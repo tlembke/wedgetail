@@ -38,7 +38,7 @@ There is more than one result associated with this ticket<p>
 	Please continue to check back.
 	<% end %>
 
-</table>
+
 <h3>Details</h3>
 <table border=1>
   <tr>
@@ -50,7 +50,6 @@ There is more than one result associated with this ticket<p>
 <% @actions.each do |action| %>
   <tr>
     <td align=left valign=top><a name="<%= action.identifier %>"><%=h action.test_date.strftime("%d/%m/%y") %></td>
-    <% #<td align=left><%=h @code[action.action_code.to_i-1] </td> %>
     <td align=left>
 		<% if action.name and action.name!=""%>
 		<h4><%= action.name %></h4>
