@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :actions
+  map.resources :actions, :only => [:index,:show,:create]
 
-  map.resources :result_tickets, :collection => { :check => :post } 
+  map.resources :result_tickets, :only => [:create], :collection => { :check => :post } 
 
   map.resources :users
 
