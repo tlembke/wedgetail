@@ -108,7 +108,7 @@ class PatientsController < ApplicationController
   def create
       authorize :user
       @patient = User.new(params[:patient])
-      if params[:ihi]!=""
+      if params[:ihi] and params[:ihi]!=""
         @patient.wedgetail=params[:ihi]
       else
         # generate temporary wedgetail number
