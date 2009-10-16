@@ -42,19 +42,10 @@ class ActionsController < ApplicationController
 
   # GET /actions/new
   # GET /actions/new.xml
-  def new
-    @action = Action.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @action }
-    end
-  end
 
   # GET /actions/1/edit
-  def edit
-    @action = Action.find(params[:id])
-  end
+
 
 
   def save_or_update_action(action)
