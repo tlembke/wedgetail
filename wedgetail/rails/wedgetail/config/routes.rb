@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :localmaps, :only => [:create, :index]
+
   map.resources :actions, :only => [:index,:show,:create]
 
   map.resources :result_tickets, :only => [:create], :collection => { :check => :post } 

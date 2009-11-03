@@ -1,4 +1,7 @@
 xml.instruct!
+if @message
+  xml.message(@message)
+end
 xml.patients{
   for patient in @patients
     xml.patient do
@@ -6,6 +9,9 @@ xml.patients{
       xml.given_names(patient.given_names)
       xml.dob(patient.dob)
       xml.wedgetail(patient.wedgetail)
+      xml.medicare(patient.medicare)
+      xml.address_line(patient.address_line)
+      xml.town(patient.town)
     end
   end
 }

@@ -64,17 +64,46 @@ class NarrativesController < ApplicationController
   # POST /narratives
   # POST /narratives.xml
   def create
-    @narrative = Narrative.new(params[:narrative])
-    @narrative.created_by=@user.wedgetail
-
+    authorize :user
+    failflag=""
+    
+    if params[:narrative][:localID]
+      @localID=params[:narrative][:localID]
+      params[:narrative].delete("localID")
+      unless params[:narrative][:wedgetail]
+        #wedgetail not specified so need to find
+        if @localmap=Localmap.get(@user,@localID)
+          #patient with that localID exists - good.Get wedgetail
+          @wedgetail=@localmap.wedgetail
+        else
+          # no localmap so can't create narrative
+          failflag="Error 1: No map for specified localID"
+        end
+      end
+    end
+    if failflag==""
+      @narrative = Narrative.new(params[:narrative])
+      @narrative.created_by=@user.wedgetail
+      if @wedgetail
+        @narrative.wedgetail=@wedgetail
+      end
+      unless User.find_by_wedgetail(@narrative.wedgetail) 
+        failflag="Error 2:Patient with that wedgetail not found"
+      end
+    end
+    
     respond_to do |format|
-      if @narrative.save
+      if failflag=="" and @narrative.save
         flash[:notice] = 'Narrative was successfully created.'
+        @message="Narrative created"
+         @narratives=[@narrative]
         format.html { redirect_to(@narrative) }
-        format.xml  { render :xml => @narrative, :status => :created, :location => @narrative }
+        format.xml  { render :xml => @narratives, :template => 'narratives/narratives.xml.builder',:status => :created }
       else
+        @message=failflag
+        @narratives=[@narrative]
         format.html { render :action => "new" }
-        format.xml  { render :xml => @narrative.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @narratives, :template => 'narratives/narratives.xml.builder', :status => :unprocessable_entity }
       end
     end
   end
