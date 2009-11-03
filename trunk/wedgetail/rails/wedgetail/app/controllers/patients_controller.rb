@@ -107,27 +107,85 @@ class PatientsController < ApplicationController
   # POST /patients.xml
   def create
       authorize :user
-      @patient = User.new(params[:patient])
-      if params[:ihi] and params[:ihi]!=""
-        @patient.wedgetail=params[:ihi]
-      else
-        # generate temporary wedgetail number
-        wedgetail_number=WedgePassword.make("H")
-        @patient.wedgetail=wedgetail_number
+      # have to delete localID attribute as it is not in Users model
+      # and will generate an unknow attribute error
+      failflag=""
+      force=""
+      
+      # first check to see if 'force' in place
+      if params[:patient][:force]=="true"
+        force="true"
+        params[:patient].delete("force")
       end
-      @patient.username = @patient.wedgetail
-      @patient.role=5
-      @patient.hatched=false
-      @patient.created_by=@user.wedgetail
+        
+      # see if patient with that localID has already been created by this user
+      if params[:patient][:localID]
+        @localID=params[:patient][:localID]
+        params[:patient].delete("localID")
+        if @localmap=Localmap.get(@user,@localID)
+          #patient with that localID already exists - don't create
+          failflag="Error 01: Patient with that localID already created"
+          @patient=User.find_by_wedgetail(@localmap.wedgetail)
+          @patients=[@patient]
+        end
+      end
+          # see if that patient already has a wedgetail record, unless force is true
+      unless force=="true"
+          if failflag==""
+            conditions="family_name=? and dob=?",params[:patient][:family_name],params[:patient][:dob]
+            @patients=User.find(:all,:conditions=>conditions,:order=>'created_at DESC')
+            if @patients.length>0
+                failflag="Error 02: Patient possibly already created"
+            end
+          end
+      end
+          
+  
 
-      respond_to do |format|
-        if @patient.save
-          flash[:notice] = 'Patient was successfully created.'
-          format.html { redirect_to patient_url(@patient.wedgetail)}
-          format.xml  { render :xml => @patient.wedgetail, :status => :created }
+      
+
+      
+      
+      if failflag==""
+        @patient = User.new(params[:patient])
+        if params[:ihi] and params[:ihi]!=""
+          @patient.wedgetail=params[:ihi]
+        else
+          # generate temporary wedgetail number
+          wedgetail_number=WedgePassword.make("H")
+          @patient.wedgetail=wedgetail_number
+        end
+        @patient.username = @patient.wedgetail
+        @patient.role=5
+        @patient.hatched=false
+        @patient.created_by=@user.wedgetail
+      end
+
+       respond_to do |format|
+        if failflag=="" and @patient.save
+          failflag=@patient.errors
+          if @localID
+            @team=@user.wedgetail
+            @team=@user.team if @user.team !="" and @user.team !='0' and @user.team !=NULL
+            Localmap.create(:team=>@team,:localID=>@localID,:wedgetail=>@patient.wedgetail)
+          end
+          
+          format.html { 
+            flash[:notice] = 'Patient was successfully created.'
+            redirect_to patient_url(@patient.wedgetail)
+          }
+          format.xml  { 
+            @message="Patient Created"
+            @patients=[@patient]
+            render :xml => @patients, :template => 'patients/patients.xml.builder', :status => :created 
+          }
         else
           format.html { render :action => :new,:layout=>'layouts/standard'}
-          format.xml  { render :xml => @patient.errors, :status => :unprocessable_entity }
+          format.xml  {
+            @message=failflag
+                render :xml => @patients, :template => 'patients/patients.xml.builder',:status => :unprocessable_entity 
+          }
+              
         end
       end
   end
