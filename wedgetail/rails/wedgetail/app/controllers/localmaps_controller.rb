@@ -1,5 +1,6 @@
 class LocalmapsController < ApplicationController
-  before_filter :redirect_to_ssl, :authenticate
+  before_filter :redirect_to_ssl
+  before_filter :authenticate, :except =>[:logincheck]
   
   # GET /localmaps
   # GET /localmaps.xml
@@ -116,5 +117,18 @@ class LocalmapsController < ApplicationController
       format.html { redirect_to(localmaps_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def logincheck
+      user = authenticate_with_http_basic do |login, password| 
+          User.authenticate(login, password) 
+        end 
+        if user 
+          @message="Authentication correct"
+        else 
+          @message="Authentication failed"
+        end 
+        render :xml => @message
+
   end
 end

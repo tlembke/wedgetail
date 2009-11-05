@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :localmaps, :only => [:create, :index]
+  map.resources :localmaps, :only => [:create, :index, :logincheck], :collection => { :logincheck => :get }
 
   map.resources :actions, :only => [:index,:show,:create]
 
