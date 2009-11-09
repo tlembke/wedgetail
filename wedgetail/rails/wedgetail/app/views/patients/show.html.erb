@@ -6,7 +6,10 @@
 				<td><%= narrative.narrative_date.strftime("%d/%m/%y")%></td>
 				<td><%= narrative.narrative_type.narrative_type_name if narrative.narrative_type%></td> 
 				<td><%= narrative.title%></td>	
-				<td><%= link_to 'Show',narrative %></td>
+				<td><%= link_to 'Show',narrative_path(:id=> narrative) %></td>
 			</tr>
 		<% end %>
 		</table>
+		
+
+	

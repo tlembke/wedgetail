@@ -14,7 +14,7 @@
 				<br><hr><br>
 				<%= "Created by "+ @thisNarrative.author + "<br>" if @thisNarrative.author && @thisNarrative.author!=""%>
 				<%= link_to 'Update this '+ @thisNarrative.narrative_type.narrative_type_name, :controller=>'entry',:action=>'new',:wedgetail=>@patient.wedgetail,:narrative=>@thisNarrative.id %>
-				<%= link_to 'Show All '+ @thiscount.to_s + ' ' + @thisNarrative.narrative_type.narrative_type_name.pluralize, :action => 'narrative', :type=>@thisNarrative.narrative_type_id, :wedgetail=>@patient.wedgetail if @thiscount>1 %>
+				<%= link_to 'Show All '+ @thiscount.to_s + ' ' + @thisNarrative.narrative_type.narrative_type_name.pluralize, patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>@thisNarrative.narrative_type_id) if @thiscount>1 %>
 			</fieldset>
 		</td>
 	</tr>

@@ -1,10 +1,17 @@
 class NarrativesController < ApplicationController
   before_filter :redirect_to_ssl, :authenticate
-  layout "standard"
+  layout "patients"
   # GET /narratives
   # GET /narratives.xml
   def index
-    @narratives = Narrative.all
+    @patient=User.find_by_wedgetail(params[:patient_id],:order =>"created_at DESC") 
+    if @patient and params[:type]
+      @narratives=Narrative.find(:all, :conditions=>["wedgetail=? and narrative_type_id=?",@patient.wedgetail,params[:type]], :order=>"narrative_date DESC,created_at DESC")
+      @narrativeType=NarrativeType.find(params[:type])
+      @title=@narrativeType.narrative_type_name.pluralize
+    else
+      afjkdakfakb
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -12,32 +19,30 @@ class NarrativesController < ApplicationController
     end
   end
 
-  # GET /narratives/1
+  # GET /patients/:patient_id/narratives/:id
   # GET /narratives/1.xml
+
+
+
+
   def show
-    # if type defined, show all of that type
-    # otherwise, show only specified narrative
-    if params[:type]
-      @narratives=Narrative.find(:all, :conditions=>["wedgetail=? and narrative_type_id=?",params[:id],params[:type]], :order=>"narrative_date DESC,created_at DESC")
-      @narrativeType=NarrativeType.find(params[:type])
-      @title=@narrativeType.narrative_type_name.pluralize
-      @wedgetail=params[:id]
-    else
+    # show only specified narrative
       @narrative=Narrative.find(params[:id])
       @narrative.narrative_type_id=14 unless @narrative.narrative_type_id
       @title=@narrative.narrative_type.narrative_type_name
+      @patient=User.find_by_wedgetail(@narrative.wedgetail,:order =>"created_at DESC")
       @wedgetail=@narrative.wedgetail
       @narratives=Array.new
       @narratives << @narrative
-    end
-    @patient=User.find_by_wedgetail(@wedgetail,:order =>"created_at DESC") 
-    authorize_only (:patient) {@wedgetail == @user.wedgetail}
-    authorize_only (:temp) {@wedgetail == @user.wedgetail.from(6)}
-    authorize_only(:leader){@patient.firewall(@user)}
-    authorize_only(:user){@patient.firewall(@user)}
-    authorize :admin
-    @audit=Audit.create(:patient=>@wedgetail,:user_wedgetail=>@user.wedgetail)
-    OutgoingMessage.check_view(@user,@narrative) if @narrative
+
+    
+        authorize_only (:patient) {@wedgetail == @user.wedgetail}
+        authorize_only (:temp) {@wedgetail == @user.wedgetail.from(6)}
+        authorize_only(:leader){@patient.firewall(@user)}
+        authorize_only(:user){@patient.firewall(@user)}
+        authorize :admin
+        @audit=Audit.create(:patient=>@wedgetail,:user_wedgetail=>@user.wedgetail)
+        OutgoingMessage.check_view(@user,@narrative) if @narrative
 
     respond_to do |format|
       format.html # show.html.erb

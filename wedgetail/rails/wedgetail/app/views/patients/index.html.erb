@@ -1,10 +1,6 @@
 <div class="wedgetail-form"> 
 	<fieldset> 
 		<legend>Search</legend>
-		Host is <%= request.host %><p>
-		<% if request.host.starts_with?("demo")%>
-		This is a demo
-		<% end %>
 		<% form_tag patients_path, :method => :get do %> 
 			<p> <table>
 				<tr>

@@ -1,33 +1,17 @@
-<h1>Listing narratives</h1>
-
-<table>
-  <tr>
-	<th>Date</th>
-    <th>Patient</th>
-    <th>Title</th>
-    <th>Content</th>
-    <th>Type</th>
-    <th>C Type</th>
-	<th>Created By</th>
- </tr>
-
-<% @narratives.each do |narrative| %>
-
-  <tr>
-	<td><%=h narrative.narrative_date %></td>
-	<td><%=h narrative.wedgetail %></td>
-    <td><%=h narrative.title %></td>
-    <td><%=h narrative.content %></td>
-    <td><%=h narrative.narrative_type_id %></td>
-    <td><%=h narrative.content_type %></td>
-	<td><%=h narrative.created_by %></td>
-    <td><%= link_to 'Show', narrative %></td>
-    <td><%= link_to 'Edit', edit_narrative_path(narrative) %></td>
-    <td><%= link_to 'Destroy', narrative, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<div class="wedgetail-form">
+<h1><%= @title %></h1>
+<% for @narrative in @narratives %>
+	<fieldset>
+		<legend><%= @narrative.narrative_date.strftime("%d/%m/%y")%>   <%= @narrative.title-%></legend>	
+		<% content, partial = @narrative.convert %>
+				<%= render(:partial=>partial,:object=>content)%>
+		<br>
+		<%= "Created by "+ @narrative.author + "<br>" if @narrative.author && @narrative.author!=""%>
+		<%= link_to 'Update this '+ @narrative.narrative_type.narrative_type_name, :controller=>'entry',:action=>'new',:wedgetail=>@patient.wedgetail,:narrative=>@narrative.id %>
+	
+	</fieldset>
 <% end %>
-</table>
+</div>
 
-<br />
 
-<%= link_to 'New narrative', new_narrative_path %>
+<%= link_to "Back ", :controller=> :patients, :action=> :show, :id=>@patient.wedgetail %>

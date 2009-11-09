@@ -58,12 +58,11 @@
 </div>
 
 <%= link_to 'Summary', patient_path(@patient.wedgetail) %>|
-<%= link_to "Encounters",{:controller=>:record,:action=>:narrative,:type=>4,:wedgetail=>@patient.wedgetail} %> |
-<%= link_to "Results", patient_results_path(:patient_id=>@patient.wedgetail) %> |
-<%= link_to "Letters",{:controller=>:record,:action=>:narrative,:type=>8,:wedgetail=>@patient.wedgetail} %> |
-<%= link_to "Discharges",{:controller=>:record,:action=>:narrative,:type=>3,:wedgetail=>@patient.wedgetail} %> |
-<%= link_to "Medications",{:controller=>:record,:action=>:medications,:wedgetail=>@patient.wedgetail} %> |
-<%= link_to "Diagnoses",{:controller=>:record,:action=>:diagnoses,:wedgetail=>@patient.wedgetail} %>
+<%= link_to "Encounters",patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>4) %> |
+<%= link_to "Letters",patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>8) %> |
+<%= link_to "Discharges",patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>3) %> |
+<%= link_to "Medications",patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>2) %> 
+
 
 			<%= yield :layout %>
 
@@ -90,15 +89,15 @@
 
 <% if @user.role<5%>
 
-<p><%= show_icon("address-book-new","/record/edit/"+ @patient.wedgetail,"","Edit Demograhics","Edit demographic details for" + @patient.full_name,"large") %></p>
+<p><%= show_icon("address-book-new","/patients/edit/"+ @patient.wedgetail,"","Edit Demograhics","Edit demographic details for" + @patient.full_name,"large") %></p>
 <p><%= show_icon("accessories-text-editor","/entry/new/"+ @patient.wedgetail,"","Clinical Entry","Add clinical entry about " + @patient.full_name,"large") %></p>
 
 <% end %>
 
 <%if @user.role<=5 %>
-<p><%= show_icon("edit-paste","/record/audit/"+ @patient.wedgetail,"","Audit","Show all users who have accessed this record","large") %></p>
+<p><%= show_icon("edit-paste","/patients/audit/"+ @patient.wedgetail,"","Audit","Show all users who have accessed this record","large") %></p>
 <p><%= show_icon("preferences-system","/login/password/"+ @patient.wedgetail,"","Preferences","Change preferences for " + @patient.full_name,"large") %></p>
-<p><%= show_icon("contact-new","/record/guests/"+ @patient.wedgetail,"","Guests","Create a Guest Access Card and manage previous guests","large")%></p>
+<p><%= show_icon("contact-new","/patients/guests/"+ @patient.wedgetail,"","Guests","Create a Guest Access Card and manage previous guests","large")%></p>
 
 <% end %>
 

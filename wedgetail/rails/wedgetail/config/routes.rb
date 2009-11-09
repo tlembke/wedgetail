@@ -7,9 +7,13 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :users
 
-  map.resources :patients, :key => :wedgetail, :has_many => :results
+  map.resources :patients, :key => :wedgetail, :has_many => :narratives
+  
+
   
   map.resources :results, :only => [:create, :new]
+  
+  
 
   map.resources :narratives
 
