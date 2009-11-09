@@ -158,6 +158,7 @@ class PatientsController < ApplicationController
         @patient.username = @patient.wedgetail
         @patient.role=5
         @patient.hatched=false
+        @patient.hatched=true if request.host.starts_with?("demo")
         @patient.created_by=@user.wedgetail
       end
 
