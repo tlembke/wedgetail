@@ -17,7 +17,7 @@ class WedgeMailer < ActionMailer::Base
     @from       = Pref.email
     @sent_on    = Time.now
     @headers    = {'Auto-Submitted'=>'auto-generated'} # RFC 3834
-    
+
   end
   
   # error report to the wedgemail developer (Ian Haywood)
