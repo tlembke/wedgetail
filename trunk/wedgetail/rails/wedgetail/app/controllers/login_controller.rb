@@ -228,9 +228,9 @@ class LoginController < ApplicationController
       if @useredit.update_attributes(params[:useredit])
           flash[:notice] = 'Preferences updated.'
           if(@user.role==5 or (@user.role<3 and @useredit.wedgetail!=@user.wedgetail))
-            redirect_to :controller => 'record',:action=>'show',:wedgetail=>@useredit.wedgetail
+            redirect_to :controller => 'patients',:wedgetail=>@useredit.wedgetail
           else
-            redirect_to :controller => 'record'
+            redirect_to :controller => 'patients'
           end
       else  
         if @useredit.role==5
