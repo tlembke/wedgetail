@@ -39,14 +39,18 @@ class User < ActiveRecord::Base
     end
     unless provider.blank?
       # algorithm obtained from http://www.medicareaustralia.gov.au/provider/vendors/files/IDI-formats.pdf, pages 11-12
-      check = 0
-      [3,5,8,4,2,1].each_with_index {|mul,i| check+=provider[i..i].to_i*mul }
-      plv = provider[6]-48
-      plv-=7 if plv > 10
-      check+=plv*6
-      check = check % 11
-      check = ['Y','X','W','T','L','K','J','H','F','B','A'][check]
-      errors.add(:provider,"Provider number not valid (failed checksum)") unless check == provider[7..7]
+      if provider.length<7
+        errors.add(:provider,"Provider number not valid")
+      else
+        check = 0
+        [3,5,8,4,2,1].each_with_index {|mul,i| check+=provider[i..i].to_i*mul }
+        plv = provider[6]-48
+        plv-=7 if plv > 10
+        check+=plv*6
+        check = check % 11
+        check = ['Y','X','W','T','L','K','J','H','F','B','A'][check]
+        errors.add(:provider,"Provider number not valid (failed checksum)") unless check == provider[7..7]
+      end
     end
   end 
  
