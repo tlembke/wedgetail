@@ -1,5 +1,3 @@
-
-
 <div class="wedgetail-form">
 <h1><%= @title %></h1>
 <% for @narrative in @narratives %>
@@ -7,13 +5,10 @@
 		<legend><%= @narrative.narrative_date.strftime("%d/%m/%y")%>   <%= @narrative.title-%></legend>	
 		<% content, partial = @narrative.convert %>
 				<%= render(:partial=>partial,:object=>content)%>
-		<br><hr><br>
+		<br>
 		<%= "Created by "+ @narrative.author + "<br>" if @narrative.author && @narrative.author!=""%>
 		<%= link_to 'Update this '+ @narrative.narrative_type.narrative_type_name, :controller=>'entry',:action=>'new',:wedgetail=>@patient.wedgetail,:narrative=>@narrative.id %>
-		
+	
 	</fieldset>
 <% end %>
 </div>
-
-
-<%= link_to "Back ", :controller=> :patients, :action=> :show, :id=>@patient.wedgetail %>

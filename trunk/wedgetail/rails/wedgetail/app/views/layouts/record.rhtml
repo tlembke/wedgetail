@@ -89,15 +89,15 @@
 
 <% if @user.role<5%>
 
-<p><%= show_icon("address-book-new","/record/edit/"+ @patient.wedgetail,"","Edit Demograhics","Edit demographic details for" + @patient.full_name,"large") %></p>
+<p><%= show_icon("address-book-new","/patients/edit/"+ @patient.wedgetail,"","Edit Demograhics","Edit demographic details for" + @patient.full_name,"large") %></p>
 <p><%= show_icon("accessories-text-editor","/entry/new/"+ @patient.wedgetail,"","Clinical Entry","Add clinical entry about " + @patient.full_name,"large") %></p>
 
 <% end %>
 
 <%if @user.role<=5 %>
-<p><%= show_icon("edit-paste","/record/audit/"+ @patient.wedgetail,"","Audit","Show all users who have accessed this record","large") %></p>
+<p><%= show_icon("edit-paste","/patients/audit/"+ @patient.wedgetail,"","Audit","Show all users who have accessed this record","large") %></p>
 <p><%= show_icon("preferences-system","/login/password/"+ @patient.wedgetail,"","Preferences","Change preferences for " + @patient.full_name,"large") %></p>
-<p><%= show_icon("contact-new","/record/guests/"+ @patient.wedgetail,"","Guests","Create a Guest Access Card and manage previous guests","large")%></p>
+<p><%= show_icon("contact-new","/patients/guests/"+ @patient.wedgetail,"","Guests","Create a Guest Access Card and manage previous guests","large")%></p>
 
 <% end %>
 

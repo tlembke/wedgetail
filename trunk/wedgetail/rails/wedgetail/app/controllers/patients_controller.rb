@@ -61,30 +61,7 @@ class PatientsController < ApplicationController
   end
   
   #display narrative
-  def narrative
-    # if type defined, show all of that type
-    # otherwise, show only specified narrative
-    if params[:type]
-      @narratives=Narrative.find(:all, :conditions=>["wedgetail=? and narrative_type_id=?",params[:id],params[:type]], :order=>"narrative_date DESC,created_at DESC")
-      @narrativeType=NarrativeType.find(params[:type])
-      @title=@narrativeType.narrative_type_name.pluralize
-      @wedgetail=params[:id]
-    else
-      @narrative=Narrative.find(params[:id])
-      @title=@narrative.narrative_type.narrative_type_name
-      @wedgetail=@narrative.wedgetail
-      @narratives=Array.new
-      @narratives << @narrative
-    end
-    @patient=User.find_by_wedgetail(@wedgetail,:order =>"created_at DESC") 
-    authorize_only (:patient) {@wedgetail == @user.wedgetail}
-    authorize_only (:temp) {@wedgetail == @user.wedgetail.from(6)}
-    authorize_only(:leader){@patient.firewall(@user)}
-    authorize_only(:user){@patient.firewall(@user)}
-    authorize :admin
-    @audit=Audit.create(:patient=>@wedgetail,:user_wedgetail=>@user.wedgetail)
-    OutgoingMessage.check_view(@user,@narrative) if @narrative
-  end
+
 
   # GET /patients/new
   # GET /patients/new.xml
@@ -100,8 +77,17 @@ class PatientsController < ApplicationController
 
   # GET /patients/1/edit
   def edit
-    @patient = Patient.find(params[:id])
+    w = params[:wedgetail]
+    authorize_only (:patient) {w == @user.wedgetail}
+    authorize_only (:temp) {w == @user.wedgetail.from(6)}
+    @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC") 
+    authorize_only(:leader){@patient.firewall(@user)}
+    authorize_only(:user){@patient.firewall(@user)}
+    authorize :admin
+    render :layout=>'layouts/standard'
   end
+  
+
 
   # POST /patients
   # POST /patients.xml
@@ -193,20 +179,25 @@ class PatientsController < ApplicationController
 
   # PUT /patients/1
   # PUT /patients/1.xml
+  
   def update
-    @patient = Patient.find(params[:id])
-
-    respond_to do |format|
-      if @patient.update_attributes(params[:patient])
-        flash[:notice] = 'Patient was successfully updated.'
-        format.html { redirect_to(@patient) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @patient.errors, :status => :unprocessable_entity }
-      end
+    w = params[:patient][:wedgetail]
+    authorize_only (:patient) {w == @user.wedgetail}
+    authorize_only (:temp) {w == @user.wedgetail.from(6)}
+    @patient=User.find_by_wedgetail(w,:order =>"created_at DESC") 
+    authorize_only(:leader){@patient.firewall(@user)}
+    authorize_only(:user){@patient.firewall(@user)}
+    authorize :admin
+ 
+    @patient.update_attributes(params[:patient])
+    if @patient.save
+      flash[:notice] = 'Patient was successfully updated.'
+      redirect_to :action => 'show', :id => @patient.wedgetail
+    else
+      render :action => 'edit'
     end
   end
+
 
 
   
@@ -218,7 +209,23 @@ class PatientsController < ApplicationController
     end 
   end
 
+  # show all users who access a patient's information
+  def audit
+     @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
+     authorize_only (:patient) {@patient.wedgetail == @user.wedgetail}
+     authorize :user
+     @audits = Audit.paginate(:page => params[:page],:per_page => 60, :order => 'created_at DESC', :conditions => ["patient=?", params[:wedgetail]])
+  end
 
+  # guests have one time read only access to a particular patient
+  def guests
+    @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
+    if params[:commit]=="Save changes"
+      @thisguest=User.find_by_username(params[:user][:username])
+      @thisguest.update_attributes(:family_name=>params[:user][:family_name],:given_names=>params[:user][:given_names])
+    end 
+    @guests=User.find(:all,:conditions=>["wedgetail LIKE ? and wedgetail !=?","%"+ params[:wedgetail],params[:wedgetail]])
+  end
 
   # generates the consent for new patients, text found in /public/consent.txt
   def consent
