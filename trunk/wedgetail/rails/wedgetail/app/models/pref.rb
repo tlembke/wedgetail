@@ -8,7 +8,8 @@ class Pref < ActiveRecord::Base
       :namespace_id=>{:name=>"HL7 Namespace ID",:default=>"Main Wedgetail Server"},
       :hostname=>{:name=>"Hostname",:default=>"localhost"},
       :email=>{:name=>"Server E-mail Address",:default=>""},
-      :max_sends=>{:name=>"Maximum send attempts",:default=>3}
+      :max_sends=>{:name=>"Maximum send attempts",:default=>3},
+      :host_url=>{:name=>"Host URL",:default=>"wedgetail.org.au"}
     }
   end
 

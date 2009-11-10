@@ -11,12 +11,13 @@ class WedgeMailer < ActionMailer::Base
 
   # notify a recipient of a new wedgetail message (does not contain the message)
   def notify(recipient)
-    @subject    = 'New Wedgetail Message'
-    @body["recipient"]       = recipient
-    @recipients = recipient.email
-    @from       = Pref.email
-    @sent_on    = Time.now
-    @headers    = {'Auto-Submitted'=>'auto-generated'} # RFC 3834
+    subject    'New Wedgetail Message'
+    body       "recipient"=> recipient, "host"=>Pref.host_url
+    # body        :host=>request.host #:host => request.host
+    recipients  recipient.email
+    from        Pref.email
+    sent_on    Time.now
+    #headers    'Auto-Submitted'=>'auto-generated' # RFC 3834
 
   end
   
