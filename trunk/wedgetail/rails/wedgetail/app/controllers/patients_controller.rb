@@ -217,6 +217,39 @@ class PatientsController < ApplicationController
      @audits = Audit.paginate(:page => params[:page],:per_page => 60, :order => 'created_at DESC', :conditions => ["patient=?", params[:wedgetail]])
   end
 
+        # if a user has registered an interest in a patient, they will receive a copy of all new narratives
+   def register
+       wedgetail = params[:wedgetail]
+       @interest=Interest.create(:patient => wedgetail, :user =>@user.wedgetail)
+       text=<<EOF
+<a href="#" onclick="new Ajax.Request('/patients/unregister/#{wedgetail}', 
+{asynchronous:true, evalScripts:true}); return false;">
+<img alt="Internet-news-reader" border="0" id="internet-news-reader" src="/images/icons/tango/large/internet-news-reader.png" valign="middle" />
+<script>new Tip("internet-news-reader",
+"You have been registered to receive HL7 updates on this patient. Click to unregister",{title:'Thanks for registering'});
+</script></a>
+EOF
+            render :update do |page|
+                page.replace_html "register",text
+            end
+     end
+     
+def unregister
+     wedgetail = params[:wedgetail]
+     Interest.delete_all(["patient = '#{wedgetail}' and user='#{@user.wedgetail}'"])
+     text=<<EOF
+<a href="#" 
+onclick="new Ajax.Request('/patients/register/#{wedgetail}', {asynchronous:true, evalScripts:true}); return false;">
+<img alt="Internet-news-reader-x" border="0" id="internet-news-reader-x" src="/images/icons/tango/large/internet-news-reader-x.png" valign="middle" />
+<script>new Tip("internet-news-reader-x",
+"You have been unregistered from receiving updates about this patient. Click to re-register.",{title:'Thanks for unregistering'});
+</script></a>
+EOF
+     render :update do |page|
+     page.replace_html "register", text
+      end
+end 
+
   # guests have one time read only access to a particular patient
   def guests
     @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
