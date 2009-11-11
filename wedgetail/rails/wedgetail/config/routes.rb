@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :contacts
+
+  map.resources :addressbooks
+
   map.resources :localmaps, :only => [:create, :index, :logincheck], :collection => { :logincheck => :get }
 
   map.resources :actions, :only => [:index,:show,:create]
@@ -13,7 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :results, :only => [:create, :new]
   
-  
+  map.resources :messages, :collection => { :out => :get,:archive => :get,:count => :get }
 
   map.resources :narratives
 
