@@ -17,7 +17,7 @@ Messages in <font color='red'>red</font> were sent to the team <%= @user.team_na
 	Date: <%=message.created_at.strftime("%H:%M %d/%m/%y") %>
 	<br>
 	<%= "<div id='message_content_"+message.id.to_s+"'>" %>
-	<%= link_to "Regarding: "+ message.patient.full_name+"<br>",{:controller=>"record",:action=>"show",:wedgetail=>message.re} if message.re.to_s!="" %>
+	<%= link_to "Regarding: "+ message.patient.full_name+"<br>",{:controller=>"patients",:action=>"show",:wedgetail=>message.re} if message.patient and message.re.to_s!="" %>
 	<%= simple_format(message.content) %>
 	</div>
 	<%= link_to_remote "Show/Hide", :url => {:action => "toggle",:id=> message.id,} %> |  

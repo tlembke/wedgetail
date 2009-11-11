@@ -1,4 +1,6 @@
-# for management of patients and display of patient records and narratives
+################################
+# this controller should be deprecated and its methods transferred to patients
+################################
 class RecordController < ApplicationController
      before_filter :redirect_to_ssl, :authenticate
 
