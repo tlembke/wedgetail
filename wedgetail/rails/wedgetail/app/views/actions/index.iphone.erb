@@ -1,0 +1,22 @@
+<div class="toolbar">
+  <h1 id="pageTitle">Results</h1>
+  <a id="backButton" class="button" href="#"></a>
+</div>
+			<% form_tag(actions_path,{ :class => "panel",:redirect=>"true",:target=>'_self',:method => :get,:selected=>"true"}) do %> 
+			<% if flash[:notice] -%> 
+			
+			<div id='dialog'><center><%= flash[:notice] %></center></div> 
+			<% end %>
+  <center><%= image_tag("/images/wedgetail_logo.png") %> </center>
+
+
+  <fieldset>
+			<div class="row">
+				<label for="ticket">Ticket code:</label>
+				<%= text_field_tag :ticket, params[:ticket] %>
+				</div>
+				</fieldset>
+				<%= submit_tag "Enter" %> 
+				</fieldset>
+			</p> 
+		<% end %>
