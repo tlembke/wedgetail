@@ -1,4 +1,8 @@
-<h1>Messages for ticket <%= @ticket %> </h1>
+<div class="toolbar">
+  <h1 id="pageTitle">Results</h1>
+  <a id="backButton" class="button" href="#"></a>
+</div>
+
 <% if @actions.length==0%>
 There are currently no results back for that ticket request<p>
 Please check back tomorrow<p>
@@ -8,9 +12,12 @@ Please check back tomorrow<p>
 There is more than one result associated with this ticket<p>
 
 <% end %>
-<h3>Summary</h3>
 
-<table border=1>
+<div id='summary' class='panel' selected='true'>
+<fieldset>
+<center><h2>Summary</h2></center>
+
+<center><table border=1>
 
 	<tr>
     <th align=left>Test date</th>
@@ -21,14 +28,15 @@ There is more than one result associated with this ticket<p>
 	<% last_flag=0 %>
 	<% @actions.each do |action| %>
 	  <tr>
-	    <td align=left valign=top><%=h action.test_date.strftime("%d/%m/%y") if action.test_date %></td>
+	    <td align=left valign=top><%=h action.test_date.strftime("%d/%m/%y") %></td>
 	    <td align=left><%= h action.name %>&nbsp;<a href='#<%=action.identifier %>'>(view)</a></td>
 			<td align=left><%= h action.action_code %></td>
 		</tr>
 		<% last_flag=1 if action.last_flag %>
 	<% end %>
 	</table>
-
+	</center>
+</fieldset>
 	<br />
 	<% if last_flag ==1%>
 		This series of tests is now complete.<br>
@@ -38,8 +46,9 @@ There is more than one result associated with this ticket<p>
 	Please continue to check back.
 	<% end %>
 
-
-<h3>Details</h3>
+<div id='details' class='panel' selected='true'>
+<fieldset>
+<center><h2>Details</h2></center>
 <table border=1>
   <tr>
     <th align=left>Test date</th>
@@ -49,7 +58,7 @@ There is more than one result associated with this ticket<p>
 <% last_flag=0 %>
 <% @actions.each do |action| %>
   <tr>
-    <td align=left valign=top><a name="<%= action.identifier %>"><%=h action.test_date.strftime("%d/%m/%y")%></td>
+    <td align=left valign=top><a name="<%= action.identifier %>"><%=h action.test_date.strftime("%d/%m/%y") %></td>
     <td align=left>
 		<% if action.name and action.name!=""%>
 		<h4><%= action.name %></h4>
@@ -62,7 +71,8 @@ There is more than one result associated with this ticket<p>
 	<% last_flag=1 if action.last_flag %>
 <% end %>
 </table>
-
+</fieldset>
+</div>
 <br />
 <% if last_flag ==1%>
 	This series of tests is now complete.<br>

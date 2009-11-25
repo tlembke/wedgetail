@@ -6,14 +6,16 @@ class ActionsController < ApplicationController
   # GET /actions.xml
   def index
     @ticket=params[:ticket]
-    respond_to do |format|
-      format.html{
+    
+ 
         if (@ticket)
           redirect_to :action => "show", :id => @ticket
+        else
 
-          
-        end
-      }
+          respond_to do |format|
+            format.html{}
+            format.iphone {render :layout=> 'layouts/application.iphone.erb'}# index.iphone.erb 
+          end
     end
   end
 
@@ -21,23 +23,29 @@ class ActionsController < ApplicationController
   # GET /actions/1.xml
   def show
     @ticket=params[:id]
+
     @result=ResultTicket.find_by_ticket(params[:id])
     
     if @result
       @actions=Action.find(:all,:conditions=>["request_set=?",@result.request_set])
     end
     @code=["No further action required for this result","Please call to discuss these results","Please make an urgent appointment to discuss results"]
-    
+    unless @result
+      flash[:notice] = 'That ticket number is not known.'
+ 
+      redirect_to actions_path
+    end
+    if @result
     respond_to do |format|
       format.html {
-        unless @result
-          flash[:notice] = 'That ticket number is not known.'
-          redirect_to actions_path
-        end
-        
       }# show.html.erb
+      
       format.xml  { render :xml => @action }
+      format.iphone {
+          render :layout=> 'layouts/application.iphone.erb'
+        }# show.iphone.erb
     end
+  end
   end
 
   # GET /actions/new
