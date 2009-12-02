@@ -1,5 +1,6 @@
 class ActionsController < ApplicationController
   layout "standard"
+  before_filter :redirect_to_ssl, :authenticate_optional
 
   
   # GET /actions
@@ -57,6 +58,26 @@ class ActionsController < ApplicationController
 
 
   def save_or_update_action(action)
+
+    if @user  #uploaded has logged in 
+      action[:created_by] = @user.wedgetail
+      if action[:localID]
+        @localID=action[:localID]
+        action.delete("localID")
+        if @localmap=Localmap.get(@user,@localID)
+          action[:wedgetail]=@localmap.wedgetail
+        end
+      end
+      # see if user authorised to access that record
+      patient = User.find_by_wedgetail(action[:wedgetail],:order=>"created_at DESC")
+      if patient and patient.firewall(@user)
+          @notifiees<< action[:wedgetail] if action[:wedgetail]
+      else
+          #user not authorised or patient doesn't exist - send anonymously only
+          action[:wedgetail]=""
+      end
+    end
+    
     @new_action = Action.new(action)
     if @new_action.identifier!=''
       @check=Action.find(:first,:conditions=>["request_set=? and identifier=?",@new_action.request_set,@new_action.identifier])
@@ -82,7 +103,9 @@ class ActionsController < ApplicationController
       # for some reason, the @action in params[:action_list][:action] 
       # doesn't work for one action only.
       # so check first
-      
+      # there may be more than one result per patient, so record all the patients that need to be notified
+      # and send them in a batch at the end => notifiees
+      @notifiees=[]
       unless params[:action_list][:action][0]
         #@new_action = Action.new(params[:action_list][:action])
         save_or_update_action(params[:action_list][:action])
@@ -97,6 +120,15 @@ class ActionsController < ApplicationController
       #    @errors<<"XML parsing error"
       #end
     @errors<<"No errors" if @errors.length==0
+    if @notifiees.length>0
+      for @next in @notifiees
+         @recipient= User.find_by_wedgetail(@next,:order=>"created_at DESC")
+         debugger
+         if @recipient.email.to_s != ""
+             @email=WedgeMailer.deliver_result_notify(@recipient)
+         end
+      end
+    end
     respond_to do |format|
         format.xml { render :xml => @errors, :template => 'actions/actions.xml.builder' }
     end

@@ -199,6 +199,40 @@ class PatientsController < ApplicationController
   end
 
 
+#  GET patients/1/results
+def results
+  # no way for map.resources to use other than :id, which we don't want
+  params[:wedgetail]=params[:id]
+  @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
+  
+    
+    if !@patient or @patient.role!=5
+      flash[:notice]='Patient not found'
+    elsif !@patient.hatched 
+      flash[:notice]='Patient not yet registered'
+    else
+      authorize_only(:patient) {@patient.wedgetail == @user.wedgetail}
+      authorize_only(:temp) { @patient.wedgetail == @user.wedgetail.from(6)}
+      authorize_only(:leader){@patient.firewall(@user)}
+      authorize_only(:user){@patient.firewall(@user)}
+      authorize :admin
+      @actions=Action.find(:all, :conditions=>["wedgetail=?",params[:wedgetail]], :order=>"created_at DESC")
+    end
+   
+  respond_to do |format|
+    format.html{
+      if !@patient or @patient.role!=5
+        redirect_to :action=>:index
+      elsif ! @patient.hatched
+        render :action=>:unconfirmed
+      else
+        render :action=>:results
+      end
+    }
+    format.iphone {render :layout=> 'layouts/application.iphone.erb'}# index.iphone.erb 
+    format.xml  { render :xml => @patient }
+  end
+end
 
   
   def search 

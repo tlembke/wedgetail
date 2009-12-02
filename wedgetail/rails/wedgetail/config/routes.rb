@@ -11,11 +11,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :users
 
-  map.resources :patients, :key => :wedgetail, :has_many => :narratives
+  map.resources :patients, :key => :wedgetail, :has_many => :narratives, :member => { :results => :get}
   
 
   
-  map.resources :results, :only => [:create, :new]
+  #map.resources :results, :only => [:create, :new]
   
   map.resources :messages, :collection => { :out => :get,:archive => :get,:count => :get }
 

@@ -1,5 +1,16 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  def displayComment(comment)
+    if comment
+      if comment.starts_with?("{\\rtf")
+        comment=MessageProcessor.abiwordise("doc.rtf",comment,false)
+        comment=comment.gsub("background:#000000","background:#FFFFFF")
+
+      end
+    end
+    return comment 
+  end
+  
   def show_icon(icon_name,link_path="",link_text='',tooltip_title="",tooltip_text="",icon_size='medium',icon_set='tango',tooltip_extra="")
     
     text_part1=image_tag("icons/"+icon_set+"/"+icon_size+"/"+icon_name+".png",:valign=>"middle",:border=>"0")
