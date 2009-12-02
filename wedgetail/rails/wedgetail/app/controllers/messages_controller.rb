@@ -75,7 +75,7 @@ class MessagesController < ApplicationController
   
   def new
     @message = Message.new
-    @recipient_user=User.find_by_wedgetail(params[:id],:order=>"created_at desc") if params[:id]
+    @recipient=User.find_by_wedgetail(params[:id],:order=>"created_at desc") if params[:id]
     if(params[:re_id])
       @message.re=params[:re_id]
       @re=User.find_by_wedgetail(params[:re_id],:order =>"created_at DESC");
@@ -162,10 +162,11 @@ class MessagesController < ApplicationController
       
         format.html { 
           flash[:notice] = notice
+
           if session[:return]=="patient"
-            redirect_to :controller=>"patients",:action => 'show',:wedgetail=>@message.recipient_id
+            redirect_to :controller=>"patients",:action => 'show',:id=>@message.recipient_id
           elsif session[:return]=="patient_user"
-            redirect_to :controller=>"patients",:action => 'show',:wedgetail=>@message.re
+            redirect_to :controller=>"patients",:action => 'show',:id=>@message.re
           else
             redirect_to :action => 'index'
           end
