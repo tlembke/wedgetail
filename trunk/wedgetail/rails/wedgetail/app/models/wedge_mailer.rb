@@ -21,6 +21,17 @@ class WedgeMailer < ActionMailer::Base
 
   end
   
+  def result_notify(recipient)
+    subject    'New Wedgetail Result'
+    body       "recipient"=> recipient, "host"=>Pref.host_url
+    # body        :host=>request.host #:host => request.host
+    recipients  recipient.email
+    from        Pref.email
+    sent_on     Time.now
+    #headers    'Auto-Submitted'=>'auto-generated' # RFC 3834
+
+  end
+  
   # error report to the wedgemail developer (Ian Haywood)
   def message_error(email,hl7,error)
     @subject = "Wedgetail Got Wedgied"

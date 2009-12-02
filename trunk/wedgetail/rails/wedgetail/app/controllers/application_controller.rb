@@ -101,6 +101,30 @@ class ApplicationController < ActionController::Base
     end
   
   end
+  
+  # used for optional REST login (ie actions controller)
+  # can be accessed anonymously or logged in - handled differently
+  def authenticate_optional
+    unless @redirect_flag==1
+      respond_to do |format| 
+        format.any(:html, :iphone) do    
+            @authorised = false
+        end
+        format.xml do 
+          user = authenticate_with_http_basic do |login, password| 
+            User.authenticate(login, password) 
+          end 
+          if user 
+            @user = user 
+            @authorised = false
+            true
+          end
+        end
+      end
+    end
+  end
+  
+  
   # Check to see if access allowed to requested page
   # if not, redirect
   def authorize_only(role,&block)

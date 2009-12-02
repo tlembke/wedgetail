@@ -49,7 +49,7 @@ There is more than one result associated with this ticket<p>
 <% last_flag=0 %>
 <% @actions.each do |action| %>
   <tr>
-    <td align=left valign=top><a name="<%= action.identifier %>"><%=h action.test_date.strftime("%d/%m/%y")%></td>
+    <td align=left valign=top><a name="<%= action.identifier %>"><%=h action.test_date.strftime("%d/%m/%y")  if action.test_date %></td>
     <td align=left>
 		<% if action.name and action.name!=""%>
 		<h4><%= action.name %></h4>

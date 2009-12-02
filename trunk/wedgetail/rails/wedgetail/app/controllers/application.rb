@@ -1,5 +1,4 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
+# This controller is deprecated and replaced by application_controller.rb
 
 class ApplicationController < ActionController::Base
   # Pick a unique cookie name to distinguish our session data from others'
