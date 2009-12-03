@@ -62,7 +62,7 @@
 <%= link_to "Letters",patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>8) %> |
 <%= link_to "Discharges",patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>3) %> |
 <%= link_to "Medications",patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>2) %> |
-<%= link_to "Results",results_patient_path %>
+<%= link_to "Results",results_patient_path(:id=>@patient.wedgetail) %>
 
 
 			<%= yield :layout %>
