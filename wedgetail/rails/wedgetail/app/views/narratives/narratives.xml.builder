@@ -1,9 +1,9 @@
 xml.instruct!
-if @message
-  xml.message(@message)
-end
 if @narratives.length>0
   xml.narratives{
+    if @message
+      xml.message(@message)
+    end
     for narrative in @narratives
       xml.narrative do
         xml.wedgetail(narrative.wedgetail)
