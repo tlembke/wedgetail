@@ -9,7 +9,9 @@ class Pref < ActiveRecord::Base
       :hostname=>{:name=>"Hostname",:default=>"localhost"},
       :email=>{:name=>"Server E-mail Address",:default=>""},
       :max_sends=>{:name=>"Maximum send attempts",:default=>3},
-      :host_url=>{:name=>"Host URL",:default=>"wedgetail.org.au"}
+      :host_url=>{:name=>"Host URL",:default=>"wedgetail.org.au"},
+      :theme=>{:name=>"Theme",:default=>"wedgetail"},
+      :toolbar=>{:name=>"Toolbar",:default=>"0"},
     }
   end
 
