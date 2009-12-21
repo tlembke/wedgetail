@@ -78,6 +78,7 @@ class LoginController < ApplicationController
     if request.post? 
       user = User.authenticate(params[:name], params[:password])
       if user
+        flash[:notice] = "Successful Log In" 
         if user.role<7 or (user.role==7 and user.access!=1)
           session[:user_id] = user.id
           uri = session[:original_uri] 

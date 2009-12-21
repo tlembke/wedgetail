@@ -38,17 +38,20 @@ class ApplicationController < ActionController::Base
        
   end
   
+
   
   # Check to see if logged in.
   # If not, allow log in
   def authenticate
+    
     unless @redirect_flag==1
       respond_to do |format| 
         format.any(:html, :iphone) do
             unless @user=User.find_by_id(session[:user_id]) 
                 # Not currently logged in
                 # Save original destination so can return when logged in
-                session[:original_uri] = request.request_uri 
+                session[:original_uri] = request.request_uri
+                flash[:notice] = "Successful Log In" 
                 # Check to see if there are any users. If not, create Admin
                 if User.count==0
                   User.create(:username => 'admin', :family_name=>"Admin", :given_names=> "", :password => 'admin',:password_confirmation => 'admin',:role=>2,:wedgetail=>1)
@@ -63,6 +66,7 @@ class ApplicationController < ActionController::Base
                 end
             else
                 # alredy logged in
+                
                 unless session[:expires_at]
                   session[:expires_at] = Pref.time_out.minutes.from_now
                 end

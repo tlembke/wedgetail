@@ -1,6 +1,6 @@
 <div class="wedgetail-form"> 
 	<fieldset> 
-		<legend>Search</legend>
+		<legend>Find patient</legend>
 		<% form_tag patients_path, :method => :get do %> 
 			<p> <table>
 				<tr>
@@ -21,7 +21,7 @@
 				<%= text_field_tag :wedgetail, params[:wedgetail]%>
 				</td></tr>
 				<tr>
-				<td colspan=2 align=center><%= submit_tag "Search" %> 
+				<td colspan=2 align=center><%= submit_tag "Search",:class=>'button' %> 
 				</td>
 				</tr>
 				</table>
