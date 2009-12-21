@@ -5,12 +5,12 @@
   	<% for patient in @patients %>
 		<% classType="list-line-new" %>
 		<% if lastID !=patient.wedgetail %>
-			<tr valign="top" class="<%= classType %>">
+			<tr valign="top" class="<%= cycle("list-line-odd","list-line-even") %>">
 			<td width>
-				<%= "<span class='list-title'><b>" if classType=="list-line-new" %>
+				<span class='list-title'><b>
 				<%= patient.family_name+", "+patient.given_names%>
 					<%= " \""+patient.known_as+ "\""	if patient.known_as and patient.known_as!="" %>
-					<%= "</b></span>"  if classType=="list-line-new" %>
+					<%= "</b></span>"%>
 			</td>
 			<td width>
 			    <% if patient.dob %>
@@ -19,11 +19,11 @@
 			        <b>No DOB</b>
 			    <% end %>
 			</td>			
-  			<td><%= link_to 'Show', patient_path(patient.wedgetail) if classType=="list-line-new"%></td>
+  			<td><%= link_to 'Show', patient_path(patient.wedgetail)%></td>
 
 
   		</tr>
-<% end %>
+		<% end %>
 		<% lastID=patient.wedgetail %>
 		<% end %>
 	</table>

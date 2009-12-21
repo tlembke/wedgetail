@@ -6,7 +6,18 @@ class PatientsController < ApplicationController
   # GET /patients.xml
   def index
     authorize :user
-    @patients = @user.find_authorised_patients(params[:family_name],params[:given_names],params[:dob])  
+    if params[:wedgetail]!=""
+      @patients = User.find(:all,:order => "created_at DESC",:conditions => ["role=5 and wedgetail=?",params[:wedgetail]])
+    else
+      @patients = @user.find_authorised_patients(params[:family_name],params[:given_names],params[:dob])
+    end
+    if @patients.length==0
+      flash[:notice]='Patient not found'
+    else
+      if flash[:notice]=='Patient not found'
+        flash.delete(:notice)
+      end
+    end
     respond_to do |format|
       format.html {render :layout=>'layouts/standard'}
       format.iphone {render :layout=> 'layouts/application.iphone.erb'}# index.iphone.erb 

@@ -11,7 +11,7 @@ class Pref < ActiveRecord::Base
       :max_sends=>{:name=>"Maximum send attempts",:default=>3},
       :host_url=>{:name=>"Host URL",:default=>"wedgetail.org.au"},
       :theme=>{:name=>"Theme",:default=>"wedgetail"},
-      :toolbar=>{:name=>"Toolbar",:default=>"0"},
+      :toolbar=>{:name=>"Toolbar",:default=>true},
     }
   end
 
