@@ -201,10 +201,10 @@ class LoginController < ApplicationController
     else
       if(@user.role==5)
         flash[:notice]="You do not have authority to access that page"
-        redirect_to :controller => 'record',:action=>'show',:wedgetail=>@user.wedgetail
+        redirect_to(patient_path(user.wedgetail))
       else
         flash[:notice]="User not found"
-        redirect_to :controller => 'record'
+        redirect_to :controller => 'patients',:action =>'index'
       end
     end
     if @useredit.role==5
