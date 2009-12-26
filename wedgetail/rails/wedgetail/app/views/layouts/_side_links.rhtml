@@ -25,7 +25,7 @@
 <%= show_icon("go-home","/login/list_teams","Teams","Teams","Manage teams","medium") if @user.role<3 %>
 </p>
 <p>
-<%= show_icon("go-home","/login/edit/%s" % @user.team,"My Team","My Team","Manage My Team Settings","medium") if @user.role == 3 %>
+<%= show_icon("go-home","/login/edit/%s" % @user.team,"My Team","My Team","Manage My Team Settings","medium") if @user.role == 3 and @user.team and @user.team!="" and @user.team!="0"%>
 </p> 
 <p>
 <%= show_icon("network-server","/prefs/edit/","Server Prefs","Server Preferences","Change preferences for this server","medium") if @user.role<2 %>
