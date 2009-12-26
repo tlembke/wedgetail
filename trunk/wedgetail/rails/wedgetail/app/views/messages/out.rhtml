@@ -17,7 +17,7 @@
 	<%= link_to_remote "Show/Hide", :url => {:action => "toggle",:id=> message.id,} %> 
 	<b><%= message.subject%></b>
 	To : <%= message.recipient.full_name %>
-	Date : <%=message.created_at.strftime("%H:%M %d/%m/%y") %>
+	Date : <%=message.created_at.strftime("%H:%M %d/%m/%y") if message.created_at %>
 	<br>
 		<%= link_to "Regarding: "+ message.patient.full_name+"<br>",{:controller=>"record",:action=>"show",:wedgetail=>message.re} if message.re and message.re.to_s!="" %>
 	<%= "<div id='message_content_"+message.id.to_s+"' style='display: none;'>" %>
