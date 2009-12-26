@@ -11,7 +11,7 @@ class PatientsController < ApplicationController
     else
       @patients = @user.find_authorised_patients(params[:family_name],params[:given_names],params[:dob])
     end
-    if @patients.length==0
+    if @patients.length==0 and (params[:family_name] or params[:given_names])
       flash[:notice]='Patient not found'
     else
       if flash[:notice]=='Patient not found'
