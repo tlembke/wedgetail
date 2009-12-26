@@ -262,7 +262,7 @@ class LoginController < ApplicationController
          flash.now[:notice] = "Guest User Created"
     else
       flash.now[:notice] = "Guest User Not Created Due to Error"
-      redirect_to :controller => 'record',:action=>'show',:wedgetail=>@patient.wedgetail
+      redirect_to(patient_path(@patient.wedgetail))
     end
   end
 
@@ -337,7 +337,7 @@ class LoginController < ApplicationController
     authorize :admin # admins can do whatever they like
     if @useredit.update_attributes(params[:useredit])
         flash[:notice] = 'User was successfully updated.'
-        redirect_to :controller=>"record",:action=>"list"
+        redirect_to(patient_path(@useredit.wedgetail))
 
     else
           render :action => 'edit', :wedgetail=>@useredit.wedgetail
