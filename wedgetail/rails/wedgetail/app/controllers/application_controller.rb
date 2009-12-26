@@ -139,11 +139,11 @@ class ApplicationController < ActionController::Base
           flash[:notice] = "You do not have authority to access that page!"
           @redirect =true
           if(@user.role==5)
-            redirect_to :controller => 'record',:action=>'show',:wedgetail=>@user.wedgetail
+            redirect_to(patient_path(@user.wedgetail))
           elsif(@user.role==7)
-            redirect_to :controller => 'record',:action=>'show',:wedgetail=>@user.wedgetail.from(6)
+            redirect_to :controller => 'patients',:action=>'show',:wedgetail=>@user.wedgetail.from(6)
           else
-            redirect_to :controller => 'record'
+            redirect_to :controller => 'patients'
           end
         else
           @authorized = true
