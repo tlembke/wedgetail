@@ -100,9 +100,9 @@ class User < ActiveRecord::Base
   
   def unhatched
     if self.role==1
-      User.find(:all,:conditions=>["role=5 and hatched=0"])
+      User.find(:all,:conditions=>["role=5 and (hatched=0 or hatched='f')"])
     else
-      User.find(:all,:conditions=>["role=5 and hatched=0 and created_by='#{self.wedgetail}'"])
+      User.find(:all,:conditions=>["role=5 and (hatched=0 or hatched='f') and created_by='#{self.wedgetail}'"])
     end
   end
   
