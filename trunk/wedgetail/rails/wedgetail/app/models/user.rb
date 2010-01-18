@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   validates_presence_of :wedgetail
   attr_accessor :password_confirmation 
   validates_confirmation_of :password 
+  validates_format_of :password,:with=>/^.*(?=.{7,})(?=.*[a-z,A-Z])(?=.*[\d\W]).*$/,
+          :message=>"must have a minimum length of seven characters and contain at least one letter and one non letter (eg: a number or special character such as $&*@.,+)." 
   validates_format_of :postcode,:with=>/^[0-9]{4}$/,:message=>"postcode must be 4 digits",:allow_blank=>true
   validates_format_of :prescriber,:with=>/^[0-9]{6,7}$/,:message=>"Prescriber number must be 6-7 digits",:allow_blank=>true
   validates_format_of :provider,:with=>/^[0-9]{6}[0-9A-Z][A-Z]$/,:message=>"Provider number not valid format",:allow_blank=>true
