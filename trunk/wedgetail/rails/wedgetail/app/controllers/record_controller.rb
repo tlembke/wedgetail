@@ -108,7 +108,7 @@ class RecordController < ApplicationController
       end
 
       # note that new patients are assigned a temporary wedgetail number
-      # until their uniqueness is determined by the big wedgie,
+      # until their uniqueness is determined by the administrator,
       # who then 'hatches' them
       def create
         authorize :user
@@ -158,7 +158,7 @@ class RecordController < ApplicationController
         end
       end
 
-      # the nest contains all 'unhatched' patient, awaiting confirmation by big wedgie
+      # the nest contains all 'unhatched' patient, awaiting confirmation by the administrator
       def nest
         authorize :big_wedgie
         @patients=User.find(:all,:conditions=>{:role=>5,:hatched=>false}, :order => "family_name,given_names")

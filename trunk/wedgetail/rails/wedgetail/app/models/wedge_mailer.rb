@@ -402,7 +402,7 @@ EOF
   # infer the user from the e-mail embeds in an X.509 cert
   # returns a User ID object
   def user_from_x509(cert)
-    return 1 unless (cert =~ /email:(.*)/ or cert =~ /emailAddress=([a-zA-Z0-9\.]+@[a-zA-Z0-9\.]+)/) # default to Big Wedgie
+    return 1 unless (cert =~ /email:(.*)/ or cert =~ /emailAddress=([a-zA-Z0-9\.]+@[a-zA-Z0-9\.]+)/) # default to the administrator
     logger.debug "extracted email %s from X.509 certificate " % $1
     u=User.find(:first,:conditions=>["role < 7 and email=? or cert=?",$1,$1],:order => "role DESC")
     raise WedgieError,"No such user with e-mail %s" % $1 if u.nil?

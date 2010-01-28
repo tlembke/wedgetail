@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   attr_accessor :password_confirmation 
   validates_confirmation_of :password 
   validates_format_of :password,:with=>/^.*(?=.{7,})(?=.*[a-z,A-Z])(?=.*[\d\W]).*$/,
-          :message=>"must have a minimum length of seven characters and contain at least one letter and one non letter (eg: a number or special character such as $&*@.,+)." 
+          :message=>"must have a minimum length of seven characters and contain at least one letter and one non letter (eg: a number or special character such as $&*@.,+).",
+          :allow_blank=>true
   validates_format_of :postcode,:with=>/^[0-9]{4}$/,:message=>"postcode must be 4 digits",:allow_blank=>true
   validates_format_of :prescriber,:with=>/^[0-9]{6,7}$/,:message=>"Prescriber number must be 6-7 digits",:allow_blank=>true
   validates_format_of :provider,:with=>/^[0-9]{6}[0-9A-Z][A-Z]$/,:message=>"Provider number not valid format",:allow_blank=>true
@@ -13,7 +14,9 @@ class User < ActiveRecord::Base
           :class_name => "Message",
           :foreign_key => "sender_id",
           :order => "created_at DESC"
-   
+  validates_date :dob, :before => Date.tomorrow, :allow_nil=>true
+  # validates_date_time plugin from: http://svn.viney.net.nz/things/rails/plugins/validates_date_time/    
+  
   def validate 
     errors.add_to_base("Missing password") if hashed_password.blank? 
     errors.add_to_base("must either have a team or an address") if address_line.blank? and team.blank? and role>2 and role!=7
