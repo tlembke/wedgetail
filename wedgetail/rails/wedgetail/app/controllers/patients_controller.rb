@@ -205,6 +205,9 @@ class PatientsController < ApplicationController
       flash[:notice] = 'Patient was successfully updated.'
       redirect_to :action => 'show', :id => @patient.wedgetail
     else
+      if @patient.dob.blank?
+        @patient.dob = @patient.dob_was 
+      end
       render :action => 'edit'
     end
   end

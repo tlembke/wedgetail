@@ -16,7 +16,7 @@ Results Service
 Authentication via Basic HTTP Authentication
 POST to https://wedgetail.org.au/patients
 
-Note that new patient records will not be accessible (will remain 'unhatched') till their consent form is received by the Big Wedgie and details are confirmed.(hatched)
+Note that new patient records will not be accessible (will remain 'unhatched') till their consent form is received by the administrator and details are confirmed.(hatched)
 
 XML format
 <patient>
@@ -115,7 +115,7 @@ d) the patient enters their identifer on the server to view relevant uploaded re
 
 NOTE: Deindentifaction of all information sent to Wedgetail is the responsibility of the client program that is using the service.
 DO NOT send identifying features with your result uploads.
-DO NOT use this service is this is unacceptable or not possible for you.
+DO NOT use this service if this is unacceptable or not possible for you.
 
 4. Upload a request set and ticket identifier to wedgetail.
 POST to http://wedgetail.org.au/result_tickets 
