@@ -174,8 +174,7 @@ class RecordController < ApplicationController
       def hatch
           authorize :big_wedgie
           @new_patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
-          @new_patient.hatched=1
-          @new_patient.save
+          @new_patient.update_attribute(:hatched,1)
           render :update do |page|
               page.replace_html "hatch_"+params[:wedgetail],"<font color=red>Hatched</font>"
               page.replace_html('sb_unhatched_count',@user.unhatched.size.to_s)
