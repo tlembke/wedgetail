@@ -1,0 +1,10 @@
+---
+group: user
+address: 127.0.0.1
+log_file: log/mongrel.log
+port: "8010"
+cwd: /home/user/demo/trunk/wedgetail/rails/wedgetail/
+environment: development
+user: user
+pid_file: tmp/pids/mongrel.pid
+servers: 3

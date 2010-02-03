@@ -3,11 +3,8 @@ class User < ActiveRecord::Base
   validates_presence_of :username 
   validates_presence_of :wedgetail
   attr_accessor :password_confirmation 
-  validates_confirmation_of :password 
-  validates_format_of :password,:with=>/^.*(?=.{7,})(?=.*[a-z,A-Z])(?=.*[\d\W]).*$/,
-          :message=>"must have a minimum length of seven characters and contain at least one letter and one non letter (eg: a number or special character such as $&*@.,+).",
-          :allow_blank=>true
-  # blank password check done below. If done here it breaks the patient preferences page.
+  validates_confirmation_of :password
+  validates_length_of :password, :minimum=>7, :too_short=>"Passsword must be 7 characters"
   validates_format_of :postcode,:with=>/^[0-9]{4}$/,:message=>"postcode must be 4 digits",:allow_blank=>true
   validates_format_of :prescriber,:with=>/^[0-9]{6,7}$/,:message=>"Prescriber number must be 6-7 digits",:allow_blank=>true
   validates_format_of :provider,:with=>/^[0-9]{6}[0-9A-Z][A-Z]$/,:message=>"Provider number not valid format",:allow_blank=>true
@@ -58,6 +55,7 @@ class User < ActiveRecord::Base
         errors.add(:provider,"Provider number not valid (failed checksum)") unless check == provider[7..7]
       end
     end
+    errors.add(:password,"Password must not be dictionary word") if password_in_dict(password)
   end 
  
   
@@ -336,23 +334,32 @@ class User < ActiveRecord::Base
     return pid
   end
 
-  # obtain the full set of codes assigned to this person
-  def codes
-    unless defined? @codes and @codes # this is an expensive computation
-      codes = {}
-      Narrative.find(:all,:conditions=>{:wedgetail=>wedgetail}).map {|narr| narr.clinical_objects}.flatten.each do |obj|
-        codes[obj.code] = obj
-      end
-      @codes = codes.values.delete_if {|obj| obj.delete? }
+  def codes_list(type)
+    q = <<eol
+select
+  codes.*,
+  sub_narratives.mood,
+  sub_narratives.extra,
+  sub_narratives.narrative_id,
+  sub_narratives.authority_code 
+from narratives,sub_narratives,codes
+where
+  narratives.wedgetail = ? and
+  sub_narratives.narrative_id = narrative.id and
+  codes.id = sub_narratives.code_id and
+  codes.type = ?
+order by
+  narratives.id
+eol
+    codes = {}
+    Code.find_by_sql([q,self.wedgetail,type]).each do |subnarr|
+      codes[subnarr.code] = subnarr
     end
-    @codes
+    codes.delete_if { |k,v| v.mood == "N" }
+    codes.values
   end
 
-  def flush_codes
-    @codes = nil
-  end
-
-  private 
+  private
   
   def self.encrypted_password(password, salt) 
     string_to_hash = password + "wibble" + salt # 'wibble' makes it harder to guess 
@@ -363,6 +370,17 @@ class User < ActiveRecord::Base
     self.salt = self.object_id.to_s + rand.to_s 
   end  
   
-
+  @@dict = nil
+  # checks password is in system dictionary
+  # WARNING: this is potentially a slow function
+  def password_in_dict(password)
+    unless @@dict
+      @@dict = {}
+      open('/usr/share/dict/words') do |f|
+        f.each_line {|l| @@dict[l.strip.downcase] = true }
+      end
+    end
+    return @@dict.include?(password.downcase)
+  end
 
 end
