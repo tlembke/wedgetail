@@ -6,7 +6,7 @@ class Narrative < ActiveRecord::Base
   belongs_to :patient
   belongs_to :narrative_type
   has_many :outgoing_messages
-
+  has_many :sub_narratives
 
   # sets narrative from web upload
   # converts word and RTF documents to HTML before upload
