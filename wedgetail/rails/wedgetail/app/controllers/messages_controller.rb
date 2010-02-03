@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
       render :update do |page|
           page.replace_html('message_count',"You have "+pluralize(@user.inbox.size, "unread message"))
           page.visual_effect :toggle_blind, "message_"+@message.id.to_s
-          page.replace_html('sb_message_count',pluralize(@user.inbox.size, "message"))
+          page.replace_html('sb_message_count',@user.inbox.size)
           page.visual_effect :highlight,'sb_message_count'
       end
 

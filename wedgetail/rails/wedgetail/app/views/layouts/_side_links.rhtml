@@ -14,7 +14,7 @@
 </p>
 
 <p>
-	<%= show_icon("internet-mail","/messages/","Messages (#{@user.inbox.size})","Messages","Read and post messages","medium")%>
+	<%= show_icon("internet-mail","/messages/","Messages (<span id='sb_message_count'>#{@user.inbox.size}</span>)","Messages","Read and post messages","medium")%>
 
 <% end %>
 </p>
@@ -29,7 +29,7 @@
 
 <p>
 <% if @user.role==1 and @user.unhatched.size>0 %>
-<%= show_icon("document-open","/record/nest/","Nest (#{@user.unhatched.size})","Nest","Process new patients","medium","tango") %>
+<%= show_icon("document-open","/record/nest/","Nest (<span id='sb_unhatched_count'>#{@user.unhatched.size}</span>)","Nest","Process new patients","medium","tango") %>
 <% end %>
 </p>
 
