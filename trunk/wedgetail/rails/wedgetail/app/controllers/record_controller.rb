@@ -178,7 +178,7 @@ class RecordController < ApplicationController
           @new_patient.save
           render :update do |page|
               page.replace_html "hatch_"+params[:wedgetail],"<font color=red>Hatched</font>"
-              page.replace_html 'sb_unhatched_count', "(" + @user.unhatched.size.to_s + " unhatched)"
+              page.replace_html('sb_unhatched_count',@user.unhatched.size.to_s)
           end
       end    
 
