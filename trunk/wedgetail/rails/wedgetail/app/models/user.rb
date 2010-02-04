@@ -4,7 +4,10 @@ class User < ActiveRecord::Base
   validates_presence_of :wedgetail
   attr_accessor :password_confirmation 
   validates_confirmation_of :password
-  validates_length_of :password, :minimum=>7, :too_short=>"Passsword must be 7 characters"
+  validates_format_of :password,:with=>/^.*(?=.{7,})(?=.*[a-z,A-Z])(?=.*[\d\W]).*$/
+            :message=>"must have a minimum length of seven characters and contain at least one letter and one non letter (eg: a number or special character such as $&*@.,+).",
+            :allow_blank=>true
+  # blank password check done below. If done here it breaks the patient preferences page.
   validates_format_of :postcode,:with=>/^[0-9]{4}$/,:message=>"postcode must be 4 digits",:allow_blank=>true
   validates_format_of :prescriber,:with=>/^[0-9]{6,7}$/,:message=>"Prescriber number must be 6-7 digits",:allow_blank=>true
   validates_format_of :provider,:with=>/^[0-9]{6}[0-9A-Z][A-Z]$/,:message=>"Provider number not valid format",:allow_blank=>true
@@ -22,7 +25,7 @@ class User < ActiveRecord::Base
     # errors.add(:password,"Password confirmation does not match Password") if password  !=  password_confirmation
     errors.add(:postcode,"must not be empty if address") if postcode.blank? and (not address_line.blank?)
     l = User.find(:all,:conditions=>["wedgetail <> ? and username = ?",wedgetail,username])
-    errors.add(:username,"must be unique") unless l.blank? 
+    errors.add(:username,"must be unique") unless l.blank?
     errors.add(:given_names,"real people must have a given name") if (role==5 or role==4) and given_names.blank?
     errors.add(:address_line,"teams must always have an address") if address_line.blank? and role==6
     errors.add(:team,"team captains must have a team") if role==3 and team.blank?
@@ -55,7 +58,7 @@ class User < ActiveRecord::Base
         errors.add(:provider,"Provider number not valid (failed checksum)") unless check == provider[7..7]
       end
     end
-    errors.add(:password,"Password must not be dictionary word") if password_in_dict(password)
+    
   end 
  
   
@@ -370,17 +373,5 @@ eol
     self.salt = self.object_id.to_s + rand.to_s 
   end  
   
-  @@dict = nil
-  # checks password is in system dictionary
-  # WARNING: this is potentially a slow function
-  def password_in_dict(password)
-    unless @@dict
-      @@dict = {}
-      open('/usr/share/dict/words') do |f|
-        f.each_line {|l| @@dict[l.strip.downcase] = true }
-      end
-    end
-    return @@dict.include?(password.downcase)
-  end
 
 end
