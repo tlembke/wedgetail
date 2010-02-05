@@ -1,0 +1,22 @@
+<h1>Wedgetail Statistics</h1>
+<h3>Users</h3>
+<ul>
+<li>Number of patients = <%=@stats[:patients]%>
+<li>Number of users = <%=@stats[:users]%>
+</ul>
+<h3>Views</h3>
+<ul>
+<li>Number of views = <%=@stats[:audits]%>
+<li>Views this week = <%=@stats[:audits_week]%> (<%=@stats[:audits_last_week]%>)
+<li>Views this month = <%=@stats[:audits_month]%> (<%=@stats[:audits_last_month]%>)
+</ul>
+<h3>Results</h3>
+<ul>
+<li>Number of result tickets = <%=@stats[:result_tickets]%>
+<li>Tickets this week = <%=@stats[:result_tickets_week]%> (<%=@stats[:result_tickets_last_week]%>)
+<li>Tickets this month = <%=@stats[:result_tickets_month]%> (<%=@stats[:result_tickets_last_month]%>)
+<li>Number of results uploaded = <%=@stats[:results]%>	
+</ul>
+
+
+<p>
