@@ -1,8 +1,9 @@
 xml.instruct!
-if @message
-  xml.message(@message)
-end
+
 xml.patients{
+  if @message
+    xml.message(@message)
+  end
   for patient in @patients
     xml.patient do
       xml.family_name(patient.family_name)
