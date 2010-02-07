@@ -15,7 +15,7 @@ class StatsController < ApplicationController
               :result_tickets_month=>ResultTicket.count(:conditions => ['created_at > ?', 1.month.ago]),
               :result_tickets_last_week=>ResultTicket.count(:conditions => ['created_at < ? and created_at >?', 1.week.ago, 2.weeks.ago]),
               :result_tickets_last_month=>ResultTicket.count(:conditions => ['created_at < ? and created_at >?', 1.month.ago, 2.months.ago]),
-              :results=>Result.count,
+              :results=>Action.count,
              }
      
   end
