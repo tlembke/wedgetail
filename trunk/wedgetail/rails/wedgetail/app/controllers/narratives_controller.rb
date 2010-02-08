@@ -92,6 +92,9 @@ class NarrativesController < ApplicationController
       if @wedgetail
         @narrative.wedgetail=@wedgetail
       end
+      if ! @narrative.narrative_date or @narrative.narrative_date ==""
+        @narrative.narrative_date=Date.today.to_s
+      end
       unless User.find_by_wedgetail(@narrative.wedgetail) 
         failflag="Error 2:Patient with that wedgetail not found"
       end
