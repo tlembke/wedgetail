@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  result_ref: MyString
+  test_date: 2009-06-21
+  action_code: MyString
+  comment: MyText
+  patient_ref: MyString
+  last_flag: false
+
+two:
+  result_ref: MyString
+  test_date: 2009-06-21
+  action_code: MyString
+  comment: MyText
+  patient_ref: MyString
+  last_flag: false

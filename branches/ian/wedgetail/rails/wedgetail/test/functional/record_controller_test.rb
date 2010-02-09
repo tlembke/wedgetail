@@ -12,6 +12,7 @@ class RecordControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
   end
 
+
   fixtures :users, :narratives, :codes,:audits,:outgoing_messages
 
   # Replace this with your real tests.
@@ -111,4 +112,5 @@ class RecordControllerTest < Test::Unit::TestCase
     assert_equal @response.content_type,'application/pdf'
     assert_response :success
   end
+
 end

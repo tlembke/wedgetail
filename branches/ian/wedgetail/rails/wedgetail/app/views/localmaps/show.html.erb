@@ -1,0 +1,18 @@
+<p>
+  <b>Team:</b>
+  <%=h @localmap.team %>
+</p>
+
+<p>
+  <b>Localid:</b>
+  <%=h @localmap.localID %>
+</p>
+
+<p>
+  <b>Wedgetail:</b>
+  <%=h @localmap.wedgetail %>
+</p>
+
+
+<%= link_to 'Edit', edit_localmap_path(@localmap) %> |
+<%= link_to 'Back', localmaps_path %>

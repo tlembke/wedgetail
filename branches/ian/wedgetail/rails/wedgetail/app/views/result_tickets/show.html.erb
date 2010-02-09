@@ -1,0 +1,13 @@
+<p>
+  <b>Result ref:</b>
+  <%=h @result_ticket.request_set %>
+</p>
+
+<p>
+  <b>Ticket:</b>
+  <%=h @result_ticket.ticket %>
+</p>
+
+
+<%= link_to 'Edit', edit_result_ticket_path(@result_ticket) %> |
+<%= link_to 'Back', result_tickets_path %>

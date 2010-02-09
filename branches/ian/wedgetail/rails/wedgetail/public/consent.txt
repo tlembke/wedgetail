@@ -1,25 +1,33 @@
- 
-I, <patient_full_name> of <patient_address>, born on <patient_dob>, having consented for my medical information to be sent to Wedgetail, the Individual Electronic Health Record, understand the following: 
+Wedgetail Online Patient Consent and Participation Agreement
 
- * I consent to my participation in a twelve month trial of Wedgetail. 
- * My consent is voluntary.   
- * Personal information, including medical history and relevant health information, will be stored on Wedgetail. 
- * This information will be accessed only by those health care providers who are registered with Wedgetail.  
- * If I choose, I am able to limit access to my Individual Electronic Health Record so that only certain health care providers can view, read or add to my record, by selecting access options in the Preferences section of Wedgetail. Assistance with this can be sought by contacting the Wedgetail administrator via email at: wedgetail_admin@nrgpn.org.au. 
- * I can see who has accessed my Individual Electronic Health Record by viewing the access log in the Audit section of Wedgetail. 
- * If I choose, I am able to restrict the content of my personal information that is stored in Wedgetail by informing health providers that I would like to exclude certain episodes of care. 
- * If I wish to make a complaint, I can contact the Wedgetail administrator via email at: wedgetail_admin@nrgpn.org.au. 
- * I may withdraw from Wedgetail at any time by informing the Wedgetail administrator via email at: wedgetail_admin@nrgpn.org.au. 
- * If I decide to withdraw from Wedgetail, my Individual Electronic Health Record data will be kept for medicolegal reasons, but will not be accessible by anyone other than myself. 
- * Wedgetail data will be used for evaluation purposes and may be used for research and published. I will not be personally identified in the data in any way. 
- * My information will not be used for any other purposes without my consent. 
- * The Wedgetail team has secured the server which houses my information against unauthorised access and will continue to do so to the best of their ability. However, I understand that whilst every effort will be made to keep the information secure, there is always some risk associated with online information. 
- 
+I <patient_full_name> of <patient_address>, born on <patient_dob>
+(referred to in the first person below) agree to participate in the current trial of Wedgetail Online on the terms set out below. Where a term is given a defined meaning in the Wedgetail Guidelines it has that meaning in this document.
 
-I have read the information sheets: "Information for patients about Wedgetail, the Individual Electronic Heath Record Service"" and "Wedgetail Privacy and Security"
-(please tick)                                                                                                  
- 
-I have been given the opportunity to ask any questions regarding Individual Electronic Health Records to clarify my understanding of Wedgetail   
-(please tick)                                                                                                                                  
- 
-															
+1.	My participation is voluntary and I may withdraw my participation at any time by giving notice by email to wedgetail_admin@nrgpn.org.au or as otherwise permitted by the Wedgetail Guidelines.
+
+I understand that my participation involves, and I consent to, the operation of Wedgetail Online in accordance with the Wedgetail Guidelines as they exist from time to time. In particular and without limiting the scope of this consent, I consent to each of the following to the extent they are contemplated by the Wedgetail Guidelines:
+
+(a)	health providers and other third parties uploading Information to Wedgetail Online;
+Information being stored within Wedgetail Online;
+use, disclosure, storage and access to Information through Wedgetail Online, including use by, disclosure to and access by third parties;
+the provision to Wedgetail Online of Information by Health Providers;
+the retention of all Online Information for an extended period (and for at least 13 years from the last access) whether or not I continue to participate;
+the conduct of research activities;
+disclosure of Information to people who log in or otherwise authenticate using credentials issued to you.
+
+2.
+In this agreement:
+(a)	"Information" includes any information which relates to me and my interactions with any Health Provider. It typically includes information identifying medical history and other relevant health information. I understand that Information is likely to include "personal information", "sensitive information" and "health information" within the meaning of the Commonwealth Privacy Act and NSW Health Records Information Privacy Act (and similar definitions in other State and Territory legislation); and
+"Wedgetail Guidelines" means the most current version of all guidelines published by the Wedgetail Provider from time to time for the use and/or operation of Wedgetail Online. The Wedgetail Guidelines may relate to any aspect of the operation of Wedgetail Online, including: how data may be uploaded to, stored in, or accessed or copied from it; in what circumstances data can be uploaded to or accessed from Wedgetail Online; and how people interact with Wedgetail Online.
+
+3.	To the extent permitted by law the Wedgetail Provider, and each other person who is involved in or associated with the provision of Wedgetail Online has no liability to me in relation to any interaction with Wedgetail Online by me, or by any other person, including where the operation of Wedgetail is not consistent with the Wedgetail Guidelines or with my expectations.
+
+The Wedgetail Administrator excludes all warranties and other conditions to the extent permitted by law. Where warranties or conditions are implied into my relationship with any person as a result of this consent or my participation in Wedgetail Online, then, to the extent permitted by law, that person's liability is limited, at that person's option, to: the payment of the cost of replacement goods or the repair or replacement of the goods (in relation to goods); and the provision of the relevant service again or the payment of the cost of having the service supplied again (in relation to services).
+If I have any cause of action at any time in the future arising out of or relating to this agreement or any of the relationships which flow from it, then I must initiate proceedings to enforce that cause of action within 6 months of that cause of action first arising, whether or not I was aware that the cause of action had arisen. At the end of that 6 month period my cause of action lapses and I cannot enforce it.
+I understand that I have been asked for this consent by a Health Provider and that it is a condition of that Health Provider's access to Wedgetail Online that they must not upload data about me unless I have given this consent.
+By signing below I agree to be bound by the Wedgetail Guidelines and this agreement. I acknowledge that I have read the following: 
+(a)	Wedgetail Information for Patients
+(b)	Wedgetail Privacy and Security
+(c)	Wedgetail Guidelines - About The Wedgetail System
+
+4.	I have been given the opportunity to ask any questions regarding Shared Electronic Health Records to clarify my understanding of Wedgetail and to seek legal advice on this agreement.

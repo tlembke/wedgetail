@@ -13,7 +13,7 @@
 				<%= render(:partial=>partial,:object=>content)%>
 				
 				<br>
-				<%= "Created by "+ @thisNarrative.author + "<br>" if @thisNarrative.author!=""%>
+				<%= "Created by "+ @thisNarrative.author + "<br>" if @thisNarrative.author && @thisNarrative.author!=""%>
 				<%= link_to 'Update this '+ @thisNarrative.narrative_type.narrative_type_name, :controller=>'entry',:action=>'new',:wedgetail=>@patient.wedgetail,:narrative=>@thisNarrative.id %>
 				<%= link_to 'Show All '+ @thiscount.to_s + ' ' + @thisNarrative.narrative_type.narrative_type_name.pluralize, :action => 'narrative', :type=>@thisNarrative.narrative_type_id, :wedgetail=>@patient.wedgetail if @thiscount>1 %>
 			</fieldset>

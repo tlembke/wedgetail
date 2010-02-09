@@ -9,7 +9,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081123035315) do
+ActiveRecord::Schema.define(:version => 20091201193558) do
+
+  create_table "actions", :force => true do |t|
+    t.string   "request_set"
+    t.date     "test_date"
+    t.string   "action_code"
+    t.text     "comment"
+    t.string   "wedgetail"
+    t.boolean  "last_flag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "identifier"
+    t.string   "name"
+    t.string   "created_by"
+  end
 
   create_table "activities", :force => true do |t|
     t.string  "name"
@@ -45,6 +59,14 @@ ActiveRecord::Schema.define(:version => 20081123035315) do
     t.string   "name"
     t.text     "values"
     t.string   "type"
+    t.boolean  "deleted",    :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.string   "team"
+    t.string   "wedgetail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -68,6 +90,14 @@ ActiveRecord::Schema.define(:version => 20081123035315) do
     t.string  "name"
     t.string  "description"
     t.string  "code"
+  end
+
+  create_table "localmaps", :force => true do |t|
+    t.string   "team"
+    t.string   "localID"
+    t.string   "wedgetail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "messages", :force => true do |t|
@@ -113,6 +143,32 @@ ActiveRecord::Schema.define(:version => 20081123035315) do
   create_table "prefs", :force => true do |t|
     t.string "name"
     t.string "value"
+  end
+
+  create_table "result_tickets", :force => true do |t|
+    t.string   "request_set"
+    t.string   "ticket"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "results", :force => true do |t|
+    t.string   "wedgetail"
+    t.string   "surname"
+    t.string   "given_name"
+    t.date     "dob"
+    t.date     "date"
+    t.string   "name"
+    t.string   "loinc"
+    t.string   "value"
+    t.string   "lab_text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "comment"
+    t.string   "posted_by"
+    t.datetime "ack"
+    t.string   "action"
+    t.string   "result_ref"
   end
 
   create_table "users", :force => true do |t|

@@ -1,0 +1,39 @@
+<div class="wedgetail-form">
+	<fieldset>
+		<legend>Patient Details</legend>
+	<h3><%= h(@patient.family_name+", "+@patient.given_names)-%>
+	<%= h(" \""+@patient.known_as+ "\"")	unless @patient.known_as.blank? -%>
+	</h3>
+	<b>DOB</b>  <%= @patient.dob.day %>/<%= @patient.dob.month%>/<%= @patient.dob.year-%>
+	&nbsp; &nbsp;<b>Address</b>  <%= @patient.address_line+", "+@patient.town%>
+	</fieldset>
+</div>
+
+<h1>Listing results</h1>
+
+<table border=1>
+  <tr>
+
+    <th>Date</th>
+    <th>Name</th>
+    <th>Value</th>
+
+	<th>Comment</th>
+  </tr>
+
+<% @results.each do |result| %>
+  <tr>
+
+    <td><%=h result.date %></td>
+    <td><%=h result.name %></td>
+    <td><%=h result.value %></td>
+
+	<td><%=h result.comment %></td>
+    <td><%= link_to 'Show', patient_result_path(:patient_id=>result.wedgetail, :id => result.id) %></td>
+
+  </tr>
+<% end %>
+</table>
+<%= link_to 'New result',new_result_path%>
+
+<br />

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<! patient>
+<html> 
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<title>Wedgetail Shared EHR</title> 
+
+<%= stylesheet_link_tag  Pref.theme,"prototip", :media => "all" %> 
+
+<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag "prototip" %>
+<%= javascript_include_tag "megapop" %>
+
+<% if defined? @completions %>
+<script src="/completions/script" type="text/javascript"></script>
+<% end %>  
+<% if flash[:background_print_narrative] -%>
+  <script type="text/javascript">
+  //<![CDATA[
+    win=window.open("","","width=10 height=10");
+    win.blur();
+    win.document.location = document.location.protocol+'//' + document.location.host + '<%= url_for(:controller=>"entry",:action=>"gen_pdf",:id=>flash[:background_print_narrative]) %>';
+    win.print();
+    win.close();
+  //]]>
+</script>
+<% end %>
+</head> 
+<body>
+	
+<div id="banner"> 
+<img class="logo" src="/images/wedgetail_logo.gif"/>
+<img src="/images/wedgetail_horiz_80.jpg" align=center /> 
+</div> 
+<div id="columns"> 
+<div id="side"> 
+<%= render :partial => 'layouts/side_links' if session[:user_id] and not controller === PageController %>
+
+<br/>  
+ 
+</div> 
+<% if Pref.toolbar==true %>
+<div id='header'>
+<div class="wrapper clearfix">
+
+<ul class='nav'>
+
+        <li class="index"><a href="#" onclick="guideMenu()"; return false; id="guidesMenu">Toolbar</a>
+					          <div id="guides" class="clearfix" style="display: none;">
+					            <hr />
+<%= render :partial => 'layouts/toolbar' %>
+
+					</div>
+</li>
+</ul>
+
+</div>
+</div>
+<% end %>
+<div id="main">  
+
+<% if flash[:notice] -%> 
+<div id="notice"><%= flash[:notice] %></div> 
+<% end -%> 
+
+<table width=99% valign=top>
+	<tr>
+		<td width=90% valign=top>
+
+<div class="wedgetail-form">
+	<fieldset>
+		<legend>Patient Details</legend>
+	<h3><%= h(@patient.family_name+", "+@patient.given_names)-%>
+	<%= h(" \""+@patient.known_as+ "\"")	unless @patient.known_as.blank? -%>
+	</h3>
+	<b>DOB</b>  <%= @patient.dob.day %>/<%= @patient.dob.month%>/<%= @patient.dob.year-%>
+	&nbsp; &nbsp;<b>Address</b>  <%= @patient.address_line+", "+@patient.town%>
+	</fieldset>
+</div>
+
+<%= link_to 'Summary', patient_path(@patient.wedgetail) %>|
+<%= link_to "Encounters",patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>4) %> |
+<%= link_to "Letters",patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>8) %> |
+<%= link_to "Discharges",patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>3) %> |
+<%= link_to "Medications",patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>2) %> |
+<%= link_to "Results",results_patient_path(:id=>@patient.wedgetail) %>
+
+
+			<%= yield :layout %>
+
+			</td>
+<% unless  Pref.toolbar ==true %>
+<td valign='top'>
+<%= render :partial => 'layouts/toolbar' %>
+
+</div>
+</td>
+<% end %>
+</tr>
+</table>
+</div> 
+</div> 
+</body> 
+</html>
+

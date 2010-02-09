@@ -1,0 +1,22 @@
+<h1>Listing result_tickets</h1>
+
+<table>
+  <tr>
+    <th>Result ref</th>
+    <th>Ticket</th>
+  </tr>
+
+<% @result_tickets.each do |result_ticket| %>
+  <tr>
+    <td><%=h result_ticket.request_set %></td>
+    <td><%=h result_ticket.ticket %></td>
+    <td><%= link_to 'Show', result_ticket %></td>
+    <td><%= link_to 'Edit', edit_result_ticket_path(result_ticket) %></td>
+    <td><%= link_to 'Destroy', result_ticket, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New result_ticket', new_result_ticket_path %>

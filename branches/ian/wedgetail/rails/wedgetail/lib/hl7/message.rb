@@ -214,7 +214,7 @@ module HL7
     def multi?
       return number_of("MSH")>1
     end
-  
+
     # divide the message by its MSG segments
     def divide
       submsgs = []
@@ -234,15 +234,18 @@ module HL7
       submsgs << HL7::Message.new(thismsg)
       return submsgs
     end  
+  
+    # serialise back to HL7 format
+    def to_hl7(range=nil)
+      if range.nil?
+        segs = @segments.map {|x| x.to_hl7}
+      else
+        segs = @segments[range].map {|x| x.to_hl7}
+      end
+      submsgs << HL7::Message.new(thismsg)
+      return submsgs
+    end  
 
-    # the number instances of a particular segment in the message
-    def number_of(seg)
-      count = 0
-      @segments.each {|s| count += 1 if s[0].to_s == seg}
-      return count
-    end
-
-    
     # form a standard MSH segment
     def standard_msh
       msh = HL7::Msh.new

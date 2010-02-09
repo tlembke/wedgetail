@@ -1,0 +1,19 @@
+<div class="toolbar">
+  <a id="blueButton" class="button" href="<%= patients_path %>" target="_self">Search</a>
+   <h1 id="pageTitle"></h1>
+  </div>
+<div class='panel' title="<%= @patient.full_name %>" selected='true'>
+  <%= render(:partial => "special") %>
+
+  		<table border=1>
+  		<% for narrative in @narratives %>
+  			<tr>
+  				<td><%= narrative.narrative_date.strftime("%d/%m/%y")%></td>
+  				<td><%= narrative.narrative_type.narrative_type_name %></td> 
+  				<td><%= narrative.title%></td>	
+  				<td><%= link_to 'Show', :action => 'narrative', :id=> narrative %></td>
+  			</tr>
+  		<% end %>
+  		</table>
+</div>
+  

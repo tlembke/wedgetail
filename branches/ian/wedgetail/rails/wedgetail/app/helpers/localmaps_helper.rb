@@ -1,0 +1,2 @@
+module LocalmapsHelper
+end

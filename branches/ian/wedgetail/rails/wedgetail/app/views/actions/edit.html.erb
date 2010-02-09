@@ -1,0 +1,36 @@
+<h1>Editing action</h1>
+
+<% form_for(@action) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :result_ref %><br />
+    <%= f.text_field :result_ref %>
+  </p>
+  <p>
+    <%= f.label :test_date %><br />
+    <%= f.date_select :test_date %>
+  </p>
+  <p>
+    <%= f.label :action_code %><br />
+    <%= f.text_field :action_code %>
+  </p>
+  <p>
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </p>
+  <p>
+    <%= f.label :patient_ref %><br />
+    <%= f.text_field :patient_ref %>
+  </p>
+  <p>
+    <%= f.label :last_flag %><br />
+    <%= f.check_box :last_flag %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @action %> |
+<%= link_to 'Back', actions_path %>

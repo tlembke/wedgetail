@@ -327,7 +327,7 @@ class MessageProcessor
         r[:postcode] = $3
       end
       if /medicare: ?([0-9\-\/ ]+)/i =~ file
-        r[:medicare] = $1.delete(" -/")
+        r[:medicare] = $1
       end
       if /CRN: ?([0-9\-\/ ]+)/i =~ file
         r[:crn] = $1.delete(" -/")
@@ -404,7 +404,7 @@ class MessageProcessor
       logger.warn "Stopping abiword"
       start=file.index('<body>')
       ende=file.index('</body>',start)
-      file=file[start+6..ende]
+      file=file[start+6..ende-1]
       if txt
         return [file,plaintext]
       else

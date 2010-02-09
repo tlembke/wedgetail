@@ -1,107 +1,23 @@
+/* Wedgetail default CSS*/
+/* Version 1.0 */
+
 /* Global styles */
-
-/* START:notice */
-#notice {
-  border: 2px solid red;
-  padding: 1em;
-  margin-bottom: 2em;
-  background-color: #f0f0f0;
-  font: bold smaller sans-serif;
-}
-/* END:notice */
-
-/* Styles for record/list */
-
-#patient-list .list-title {
-	color:        #244;
-	font-weight:  bold;
-	font-size:    larger;
-}
-
-#patient-list .list-image {
-  width:        60px;
-  height:       70px;
-}
-
-
-#patient-list .list-actions {
-  font-size:    x-small;
-  text-align:   right;
-  padding-left: 1em;
-}
-
-#patient-list .list-line-new {
-  background:   #e0f8f8;
-}
-
-#patient-list .list-line-old {
-  background:   #f8b0f8;
-  font-size:   x-small;
-}
-
-
-/* Styles for main page */
-
-#banner {
- /* background: #a0aeb9; */
-  background: #00677E;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-bottom: 2px black solid;
-  font: small-caps 40px/40px "Times New Roman", serif;
-  /* color: #5d442b; */
-  /* color: #FFA100;   */
-  color: #ffffff;
-
-  text-align: center;
-}
-
-#record .timer p{
-	font-size:    x-small;
-  	text-align:   right;
-	color: #5d442b;
-	font:  sans-serif;
-}
-
-#banner .logo {
-	position: absolute;
-	top: 5pt;
-	left: 5px;
-	float: none;
-}
-
+/* columns is block below banner and consists of side, main and toolbar */
 #columns {
   background: #000000;
+  position: absolute;
+  width: 100%;
 }
 
-#main {
-  margin-left: 10em;
-  padding-top: 4ex;
-  padding-left: 2em;
-  background: white;
+#columns ul, ol, td, p ,body{
+  font-family: arial, verdana, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
 }
 
-#side {
-
-  padding-top: 4em;
-  padding-left: 1em;
-  padding-bottom: 1em;
-  width: 9em;
-  /* background: #141; 
-  background: #FFA100; */
-  background: #000000;
-  /* color: #bfb; 
-  color: #00677E;*/
-  color: #FFA100;
-  float: left;
-}
-
-#side a {
-  /* color: #bfb; 
-  color: #00677E; */
-  color: #FFA100;
-  font-size: small;
-}
+#columns a { color: #000; }
+#columns a:visited { color: #666; }
+#columns a:hover { color: #fff; background-color:#000; }
 
 h1 {
   font:  150% sans-serif;
@@ -116,50 +32,95 @@ h2 {
 }
 
 
-
-#record  .entry {
-  border-bottom: 1px dotted #77d;
-}
-
-#record  .title {
-  font-size: 120%;
-  font-family: sans-serif;
-}
-
-#record .entry img {
-  width: 75px;
-  float: left;
+/* notice (flash) */
+#notice {
+  border: 2px solid red;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold smaller sans-serif;
+  width: 80%
 }
 
 
-#record .entry h3 {
- margin-bottom: 2px;
- color: #227;
+
+/* patient list */
+/* displayed after patient search - is paginated */
+#patient-list .list-title {
+	color:        #244;
+	font-weight:  bold;
 }
 
-#record .entry p {
- margin-top: 0px; 
- margin-bottom: 0.8em; 
+
+#patient-list .list-actions {
+  font-size:    x-small;
+  text-align:   right;
+  padding-left: 1em;
 }
 
-#record .entry .price-line {
+#patient-list .list-line-odd {
+  background:   #e0f8f8;
 }
 
-#record .entry .add-to-cart {
-  position: relative;
+#patient-list .list-line-even {
+  background: #eaeaea;
 }
 
-#record .entry  .price {
-  color: #44a;
-  font-weight: bold;
-  margin-right: 2em;
+
+/* banner */
+
+#banner {
+  background: #00677E;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px black solid;
+  font: small-caps 40px/40px "Times New Roman", serif;
+  color: #ffffff;
+  text-align: center;
 }
 
-/* START:inline */
-#record .entry form, #record .entry form div {
-  display: inline;
+.logo {
+	position: absolute;
+	top: 1 px;
+	left: 5px;
+	padding-bottom: 4;
+	z-index: 100;
 }
-/* END:inline */
+
+
+
+
+#main {
+  margin-left: 10em;
+  padding-top: 4ex;
+  padding-left: 2em;
+  background: white;
+}
+
+/* left menubar */
+#side {
+
+  padding-top: 4em;
+  padding-left: 1em;
+  padding-bottom: 1em;
+  width: 9em;
+  background: #000000;
+  color: #FFA100;
+  position: absolute;
+  left: 0;
+}
+
+#side a{
+  color: #FFA100;
+  font-size: small;
+}
+#side a:visited{
+	color: #FFA100;
+}
+
+
+
+/* patient_demo may be deprecated - needs checking */
 
 #patient_demo{
 	width: 400px;
@@ -170,10 +131,7 @@ h2 {
 	background-color: #cccccc;
 }
 
-
-
-
-
+/* medication chart used for Ian's autocomplete function */
 
 #medication_chart {
 	float: right;
@@ -186,8 +144,11 @@ h2 {
 	background-color: #f0f0f0;
 }
 
+/* forms */
+
 .wedgetail-form fieldset {
   background: #efe;
+  width:  90%;
 }
 
 
@@ -197,19 +158,23 @@ h2 {
   font-family: sans-serif;
   padding: 0.2em 1em;
 }
-/*
-.wedgetail-form label {
-  width: 5em;
-  float: left;
-  text-align: right;
-  margin-right: 0.5em;
-  display: block;
-}
-*/
-.wedgetail-form .submit {
-  margin-left: 5.5em;
-}
 
+.wedgetail-form input.button {
+  margin-left: 10em;
+  color: #000000; 
+  background-color: #FFA100; 
+  border: 2px outset #000000;
+  padding: 2px 20px 2px 20px;
+	border-radius: 1em;
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+
+
+}
+.wedgetail-form input.button:hover {
+	background-color: #000;
+	color: #FFA100;
+}
 /* The error box */
 
 .fieldWithErrors {
@@ -253,6 +218,8 @@ div.error {
 	color: red;
 }
 
+/* for pagination plug-in */
+
 .pagination {
     padding: 3px;
     margin: 3px;
@@ -283,6 +250,97 @@ div.error {
     color: #ddd;
 }
 
+/* the rest all is navbar and toolbar popup stuff*/
+.nav {margin: 0; padding: 0;}
+.nav li {display: inline; list-style: none;}
+
+
+.wrapper {
+	text-align: left;
+	margin: 0 0 0 0;
+	}
+
+
+#header .nav {
+  background: #FFFFFF;
+  text-align: right;
+}
+
+#header .nav li {margin: 0 0;}
+#header .nav a {color: #FFF; text-decoration: none;}
+#header .nav a:hover {text-decoration: underline;}
+
+#header .nav .index {
+	padding: 0.5em 0.5em 0.5em 1.5em;
+	border-radius: 1em;
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	background: #980905;
+	
+}
+
+.nav li {display: inline; list-style: none;}
+
+
+#header .nav li {margin: 0 1.5em 0 1.5em;}
+#header .nav a {color: #fff; text-decoration: none;}
+#header .nav a:hover {text-decoration: underline;}
+
+#header .nav .index a {
+	background: #980905 url(http://wedgetail.org.au/images/nav_arrow.gif) no-repeat right top; 
+	padding-right: 1em;	
+	position: relative;
+	z-index: 15;
+	padding-bottom: 0.125em;
+}
+
+#guides {
+	width: 5em;
+	display: block;
+	background: #980905;
+	border-radius: 1em;
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	-webkit-box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.25);
+	-moz-box-shadow: rgba(0,0,0,0.25) 0.25em 0.25em 1em;
+	color: #f1938c;
+	padding: 1.5em 2em;
+	position: absolute;
+	z-index: 10;
+	top: -0.5em;
+	right: 0;
+	padding-top: 2em;
+}
+
+#guides dt, #guides dd {
+	font-weight: normal;
+	font-size: 0.722em;
+	margin: 0;
+	padding: 0;
+}
+#guides dt {padding:0; margin: 0.5em 0 0;}
+#guides a {color: #FFF; background: none !important;}
+#guides .L, #guides .R {float: left; width: 50%; margin: 0; padding: 0;}
+#guides .R {float: right;}
+#guides hr {
+	display: block;
+	border: none;
+	height: 1px;
+	color: #f1938c;
+	background: #f1938c;
+}
+/* Clearing
+--------------------------------------- */
+
+
+
+.clearfix {display: inline-block;}
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+.clear { clear:both; }
+
+
+/* also used in auto-complete */
 div#notes_surrounder
 { 
   position:relative;

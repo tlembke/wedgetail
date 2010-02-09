@@ -1,0 +1,20 @@
+<h1>Editing result_ticket</h1>
+
+<% form_for(@result_ticket) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :request_set %><br />
+    <%= f.text_field :request_set %>
+  </p>
+  <p>
+    <%= f.label :ticket %><br />
+    <%= f.text_field :ticket %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @result_ticket %> |
+<%= link_to 'Back', result_tickets_path %>

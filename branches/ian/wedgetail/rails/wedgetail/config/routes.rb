@@ -1,4 +1,26 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :contacts
+
+  map.resources :addressbooks
+
+  map.resources :localmaps, :only => [:create, :index, :logincheck], :collection => { :logincheck => :get }
+
+  map.resources :actions, :only => [:index,:show,:create]
+
+  map.resources :result_tickets, :only => [:create], :collection => { :check => :post } 
+
+  map.resources :users
+
+  map.resources :patients, :key => :wedgetail, :has_many => :narratives, :member => { :results => :get}
+  
+
+  
+  #map.resources :results, :only => [:create, :new]
+  
+  map.resources :messages, :collection => { :out => :get,:archive => :get,:count => :get }
+
+  map.resources :narratives
+
   map.resources :item_numbers
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -17,14 +39,14 @@ ActionController::Routing::Routes.draw do |map|
                                         
 
  
- map.connect '', :controller => 'record', :action => 'list'
+ map.connect '', :controller => 'patients', :action => 'index'
 
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
   map.connect ':controller/service.wsdl', :action => 'wsdl'
 
   # Install the default route as the lowest priority.
-  map.connect ':controller/:action/:id.:format'
+  
   map.connect 'page/:page/',
               :controller => "page",
               :action => "show"
@@ -48,6 +70,9 @@ ActionController::Routing::Routes.draw do |map|
               :controller => "ajax"
  map.connnect 'consultations/:action/:id',
               :controller => "consultations"
+
   map.connect ':controller/:action/:wedgetail'
-  map.connect ':controller/:action/:id'
+  map.connect ':controller/:action/:id.:format'
+  map.connect ':controller/:action'
+  
 end

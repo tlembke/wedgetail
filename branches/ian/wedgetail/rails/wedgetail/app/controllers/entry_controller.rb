@@ -44,12 +44,27 @@ class EntryController < ApplicationController
     begin
       @narrative = Narrative.new(params[:narrative])
       @narrative.created_by=@user.wedgetail
+<<<<<<< .working
+      p = @narrative.can_print?
+      upload_ok=true
+      if params[:narrative][:uploaded_narrative]!=""
+        file = params[:narrative][:uploaded_narrative]
+        content_type=file.content_type.chomp
+        if content_type!="text/plain"
+          flash[:notice] = 'Sorry, only plain text files currently supported'
+          upload_ok=false
+        end
+      end
+      if upload_ok and @narrative.save
+=======
       p = @narrative.can_print?
       if @narrative.save
         flash[:background_print_narrative] = @narrative.id if p
+>>>>>>> .merge-right.r229
         @narrative.sendout
+        flash[:background_print_narrative] = @narrative.id if p
         flash[:notice] = 'Narrative was successfully created.'
-        redirect_to :controller => 'record', :action => 'show', :wedgetail => @narrative.wedgetail
+        redirect_to patient_url(@narrative.wedgetail)
       else
         @completions = true
         redirect_to :action => 'new',:wedgetail=> @narrative.wedgetail
@@ -103,4 +118,5 @@ class EntryController < ApplicationController
     @narrative = Narrative.find(params[:id])
     send_data(@narrative.printout.Output, :filename => "wedgetail.pdf", :type => "application/pdf")
   end
+
 end

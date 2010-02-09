@@ -1,0 +1,7 @@
+<div class='wedgetail-form'>
+<% form_tag :action => 'create',:collection => @patient do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag "Create" %>
+<% end %>
+</div>
+<%= link_to 'Back', :action => 'list' %>

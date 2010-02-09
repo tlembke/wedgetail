@@ -3,15 +3,22 @@ class User < ActiveRecord::Base
   validates_presence_of :username 
   validates_presence_of :wedgetail
   attr_accessor :password_confirmation 
-  validates_confirmation_of :password 
+  validates_confirmation_of :password
+  validates_format_of :password,:with=>/^.*(?=.{7,})(?=.*[a-z,A-Z])(?=.*[\d\W]).*$/,
+            :message=>"must have a minimum length of seven characters and contain at least one letter and one non letter (eg: a number or special character such as $&*@.,+).",
+            :allow_blank=>true
+  # blank password check done below. If done here it breaks the patient preferences page.
   validates_format_of :postcode,:with=>/^[0-9]{4}$/,:message=>"postcode must be 4 digits",:allow_blank=>true
   validates_format_of :prescriber,:with=>/^[0-9]{6,7}$/,:message=>"Prescriber number must be 6-7 digits",:allow_blank=>true
   validates_format_of :provider,:with=>/^[0-9]{6}[0-9A-Z][A-Z]$/,:message=>"Provider number not valid format",:allow_blank=>true
+
   has_many :outbox,
           :class_name => "Message",
           :foreign_key => "sender_id",
           :order => "created_at DESC"
-   
+  validates_date :dob, :before => Date.tomorrow, :allow_nil=>true
+  # validates_date_time plugin from: http://svn.viney.net.nz/things/rails/plugins/validates_date_time/    
+  
   def validate 
     errors.add_to_base("Missing password") if hashed_password.blank? 
     errors.add_to_base("must either have a team or an address") if address_line.blank? and team.blank? and role>2 and role!=7
@@ -19,7 +26,7 @@ class User < ActiveRecord::Base
     # errors.add(:password,"Password confirmation does not match Password") if password  !=  password_confirmation
     errors.add(:postcode,"must not be empty if address") if postcode.blank? and (not address_line.blank?)
     l = User.find(:all,:conditions=>["wedgetail <> ? and username = ?",wedgetail,username])
-    errors.add(:username,"must be unique") unless l.blank? 
+    errors.add(:username,"must be unique") unless l.blank?
     errors.add(:given_names,"real people must have a given name") if (role==5 or role==4) and given_names.blank?
     errors.add(:address_line,"teams must always have an address") if address_line.blank? and role==6
     errors.add(:team,"team captains must have a team") if role==3 and team.blank?
@@ -39,14 +46,18 @@ class User < ActiveRecord::Base
     end
     unless provider.blank?
       # algorithm obtained from http://www.medicareaustralia.gov.au/provider/vendors/files/IDI-formats.pdf, pages 11-12
-      check = 0
-      [3,5,8,4,2,1].each_with_index {|mul,i| check+=provider[i..i].to_i*mul }
-      plv = provider[6]-48
-      plv-=7 if plv > 10
-      check+=plv*6
-      check = check % 11
-      check = ['Y','X','W','T','L','K','J','H','F','B','A'][check]
-      errors.add(:provider,"Provider number not valid (failed checksum)") unless check == provider[7..7]
+      if provider.length<7
+        errors.add(:provider,"Provider number not valid")
+      else
+        check = 0
+        [3,5,8,4,2,1].each_with_index {|mul,i| check+=provider[i..i].to_i*mul }
+        plv = provider[6]-48
+        plv-=7 if plv > 10
+        check+=plv*6
+        check = check % 11
+        check = ['Y','X','W','T','L','K','J','H','F','B','A'][check]
+        errors.add(:provider,"Provider number not valid (failed checksum)") unless check == provider[7..7]
+      end
     end
   end 
  
@@ -96,9 +107,9 @@ class User < ActiveRecord::Base
   
   def unhatched
     if self.role==1
-      User.find(:all,:conditions=>["role=5 and hatched=0"])
+      User.find(:all,:conditions=>["role=5 and (hatched=0 or hatched='f')"])
     else
-      User.find(:all,:conditions=>["role=5 and hatched=0 and created_by='#{self.wedgetail}'"])
+      User.find(:all,:conditions=>["role=5 and (hatched=0 or hatched='f') and created_by='#{self.wedgetail}'"])
     end
   end
   
@@ -132,9 +143,15 @@ class User < ActiveRecord::Base
 
   #check firewall access
   def firewall(applicant)
+    # 1 Access to all health professionals registered with Wedgetail (default)
+    # 2 Access to all health providers except those is selected list (black list)
+    # 3 Access to only health providers in selected list(white list)
+    # 4 Access to nobody except me
     firewall=false
     if self.access==1 or self.access=='' or self.access==nil
-      firewall = true
+      if applicant.role!=5 or applicant.wedgetail==self.wedgetail
+        firewall = true
+      end
     elsif self.access==4
       firewall= true if self.wedgetail==applicant.wedgetail
     elsif self.access==2
@@ -194,10 +211,28 @@ class User < ActiveRecord::Base
     r+= town+" "+postcode
     return r
   end
+  
+  def find_authorised_patients(family_name="",given_names="",dob="")
+    # returns array of patients that user is authorised to find
+    @ok_patients=[]
+    sdob=""
+    unless dob.to_s ==""
+      sdob= " and dob = '"+ dob+"'"
+    end
+    # must have at least family_name
+    if family_name.to_s !=""
+      @all_patients = User.find(:all,:order => "family_name,wedgetail DESC, created_at DESC", :conditions => ["visibility=? and family_name like ? and (given_names like ? or known_as like ?)  and role=5"+sdob, true,family_name+"%",given_names.to_s+"%",given_names.to_s+"%"])
+      for each_patient in @all_patients
+        if each_patient.firewall(self)
+          @ok_patients << each_patient
+        end
+      end
+    end
+    return @ok_patients
+  end
 
-  def self.find_fuzzy(familyname,firstname,dob,medicare)
-    
-    medicare.delete! " -" if medicare
+  def self.find_fuzzy(familyname,firstname,dob,medicare)    
+    medicare.delete! " -/" if medicare
     familyname.gsub!(%q('),%q(\\\'))
     firstname.gsub!(%q('),%q(\\\'))
     sdob = dob.strftime "%Y-%-m-%-d" # use date that works with database
@@ -299,23 +334,33 @@ class User < ActiveRecord::Base
     return pid
   end
 
-  # obtain the full set of codes assigned to this person
-  def codes
-    unless defined? @codes and @codes # this is an expensive computation
-      codes = {}
-      Narrative.find(:all,:conditions=>{:wedgetail=>wedgetail}).map {|narr| narr.clinical_objects}.flatten.each do |obj|
-        codes[obj.code] = obj
-      end
-      @codes = codes.values.delete_if {|obj| obj.delete? }
+  def codes_list(type)
+    q = <<eol
+select
+  codes.*,
+  sub_narratives.mood,
+  sub_narratives.extra,
+  sub_narratives.narrative_id,
+  sub_narratives.authority_code 
+from narratives,sub_narratives,codes
+where
+  narratives.wedgetail = ? and
+  sub_narratives.narrative_id = narrative.id and
+  codes.id = sub_narratives.code_id and
+  codes.type = ?
+order by
+  narratives.id
+eol
+    codes = {}
+    Code.find_by_sql([q,self.wedgetail,type]).each do |subnarr|
+      codes[subnarr.code] = subnarr
     end
-    @codes
+    codes.delete_if { |k,v| v.mood == "N" }
+    codes.values
   end
 
-  def flush_codes
-    @codes = nil
-  end
+  private
 
-  private 
   
   def self.encrypted_password(password, salt) 
     string_to_hash = password + "wibble" + salt # 'wibble' makes it harder to guess 
@@ -326,6 +371,5 @@ class User < ActiveRecord::Base
     self.salt = self.object_id.to_s + rand.to_s 
   end  
   
-
 
 end

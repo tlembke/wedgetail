@@ -1,0 +1,15 @@
+<%= render(:partial => "special") %>
+
+		<table border=1>
+		<% for narrative in @narratives %>
+			<tr>
+				<td><%= narrative.narrative_date.strftime("%d/%m/%y") if narrative.narrative_date%></td>
+				<td><%= narrative.narrative_type.narrative_type_name if narrative.narrative_type%></td> 
+				<td><%= narrative.title%></td>	
+				<td><%= link_to 'Show',narrative_path(:id=> narrative) %></td>
+			</tr>
+		<% end %>
+		</table>
+		
+
+	

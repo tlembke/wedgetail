@@ -5,53 +5,60 @@
 <% if @user.role<7 %>
 
 <p>
-	<%= show_icon("internet-mail","/messages/","Messages","Messages","Read and post messages","medium")%>
+<p> 
+<%= show_icon("system-users","/patients","Patients","Patients","Search for patients","medium") unless @user.role >4%>
+</p>
 
-<br>
-	<span id="sb_message_count">
-	<%= pluralize(@user.inbox.size, "message")%>
-	</span></p>
-<% end %>
-<p> 
-<%= show_icon("system-log-out","/login/logout","Logout","Logout","","medium")%>
-</p>
-<p> 
-<%= show_icon("system-users","/record/list","Patients","Patients","Search for patients","medium") unless @user.role >4%>
-</p> 
-<p> 
-<%= show_icon("Physician","/login/list_users","Users","Users","Edit and Add new users","medium") if @user.role<4 %>
-</p>
-<p> 
-<%= show_icon("go-home","/login/list_teams","Teams","Teams","Manage teams","medium") if @user.role<3 %>
-</p>
-<p>
-<%= show_icon("go-home","/login/edit/%s" % @user.team,"My Team","My Team","Manage My Team Settings","medium") if @user.role == 3 %>
-</p> 
-<p>
-<%= show_icon("network-server","/prefs/edit/","Server Prefs","Server Preferences","Change preferences for this server","medium") if @user.role<2 %>
-</p>
+
 <p>
 <%= show_icon("document-save","/entry/upload/","Upload File","File Upload","Upload clinical narrative","medium") if @user.role<5 %>
 </p>
+
+<p>
+	<%= show_icon("internet-mail","/messages/","Messages (<span id='sb_message_count'>#{@user.inbox.size}</span>)","Messages","Read and post messages","medium")%>
+
+<% end %>
+</p>
+
+<p> 
+<%= show_icon("Physician","/login/list_users","Users","Users","Edit and Add new users","medium") if @user.role<4 %>
+</p>
+
+<p> 
+<%= show_icon("go-home","/login/list_teams","Teams","Teams","Manage teams","medium") if @user.role<3 %>
+</p>
+
 <p>
 <% if @user.role==1 and @user.unhatched.size>0 %>
-<%= show_icon("document-open","/record/nest/","Nest","Nest","Process new patients","medium","tango") %><br>
-<span id="sb_unhatched_count">
-(<%= @user.unhatched.size %> unhatched)
-</span>
+<%= show_icon("document-open","/record/nest/","Nest (<span id='sb_unhatched_count'>#{@user.unhatched.size}</span>)","Nest","Process new patients","medium","tango") %>
 <% end %>
-</p><p>
-<% if @user.role>2 and @user.role<5 and @user.unhatched.size>0 %>
-	<%= show_icon("document-open","/record/mynest/","Nest","Nest","Show new patients","medium","tango") %><br>
-
-		(<%= @user.unhatched.size %> unhatched)
-
-
-<% end %>
-</p><p>
-<%= link_to "Documentation", :controller=>'page'%>
 </p>
+
+<p>
+<% if @user.role>2 and @user.role<5 and @user.unhatched.size>0 %>
+	<%= show_icon("document-open","/record/mynest/","Nest (#{@user.unhatched.size})","Nest","Show new patients","medium","tango") %>	
+<% end %>
+</p>
+
+<p>
+<%= show_icon("go-home","/login/edit/%s" % @user.team,"My Team","My Team","Manage My Team Settings","medium") if @user.role == 3 and @user.team and @user.team!="" and @user.team!="0"%>
+</p> 
+
+<p>
+<%= show_icon("network-server","/prefs/edit/","Server Prefs","Server Preferences","Change preferences for this server","medium") if @user.role<2 %>
+</p>
+
+<p>
+<%= link_to "Documentation", :controller=>'page'%>
+
+</p>
+
+<p> 
+<%= show_icon("system-log-out","/login/logout","Logout","Logout","","medium")%>
+</p>
+
 <p><small>
 version 0.1
 r80
-</small></p>
+</small></p
+
