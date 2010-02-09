@@ -1,0 +1,29 @@
+
+<% if @patients && @patients.length>0 %>
+
+<%= render(:partial => "patientlist") %> 
+
+<% else %>
+<div class="toolbar">
+  <h1 id="pageTitle"></h1>
+</div>
+
+<form  title="Search" class="panel" selected="true" action="<%= patients_path %>" method="get" redirect="true">
+  <center><%= image_tag("/images/wedgetail_logo.png") %> </center>
+  <fieldset>
+    <div class="row">
+      <label>Surname</label>
+      <input type="text" name="family_name"/>
+    </div>
+
+    <div class="row">
+      <label>First Name</label>
+      <input type="text" name="given_names"/>
+    </div>
+  </fieldset>
+  <a class="whiteButton" type="submit" value="search" href="#" method='get' target="#">Search</a>
+
+<% end %>
+
+
+

@@ -1,12 +1,14 @@
 <div id='intro-text'>
-	Wedgetail is an shared individual electronic health record.
-	Click here for <%= link_to 'information about Wedgetail', :controller => 'page'%><p>
+	Wedgetail is an shared individual electronic health record.<p>
+	Click here for <%= link_to 'information about Wedgetail', :controller => 'page'%><br>
+	Click here if you are looking for the <%= link_to 'Wedgetail results service', :controller => 'actions' %><p>
 	
 </div>
 <div id='login-form'>
 <div class="wedgetail-form"> 
 	<fieldset> 
 		<legend>Please Log In</legend>
+			If you are looking up a result, please do not log in but <%= link_to 'click here', :controller => 'actions' %>
 		<% form_tag do %> 
 			<p> 
 				<label for="username">Username:</label> 
@@ -17,7 +19,8 @@
 				<%= password_field_tag :password, params[:password] %> 
 			</p> 
 			<p> 
-				<%= submit_tag "Login" %> 
+			
+				<%= submit_tag "Login",:class=>'button' %> 
 			</p> 
 		<% end %> 
 	</fieldset> 

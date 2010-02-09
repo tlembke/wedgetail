@@ -1,4 +1,6 @@
-# for management of patients and display of patient records and narratives
+################################
+# this controller should be deprecated and its methods transferred to patients
+################################
 class RecordController < ApplicationController
      before_filter :redirect_to_ssl, :authenticate
 
@@ -58,7 +60,7 @@ class RecordController < ApplicationController
           authorize_only(:leader){@patient.firewall(@user)}
           authorize_only(:user){@patient.firewall(@user)}
           authorize :admin
-          @narratives=Narrative.find(:all, :conditions=>["wedgetail=?",params[:wedgetail]], :order=>"created_at DESC")
+          @narratives=Narrative.find(:all, :conditions=>["narrative_type_id IS NOT NULL and wedgetail=?",params[:wedgetail]], :order=>"created_at DESC")
           @audit=Audit.create(:patient=>params[:wedgetail],:user_wedgetail=>@user.wedgetail)
           @special=Array.new
           @count=Array.new
@@ -106,7 +108,7 @@ class RecordController < ApplicationController
       end
 
       # note that new patients are assigned a temporary wedgetail number
-      # until their uniqueness is determined by the big wedgie,
+      # until their uniqueness is determined by the administrator,
       # who then 'hatches' them
       def create
         authorize :user
@@ -117,6 +119,7 @@ class RecordController < ApplicationController
         @patient.username = @patient.wedgetail
         @patient.role=5
         @patient.hatched=false
+        @patient.hatched=true if request.host.starts_with?("demo")
         @patient.created_by=@user.wedgetail
        	begin 
           @patient.save! 
@@ -155,7 +158,7 @@ class RecordController < ApplicationController
         end
       end
 
-      # the nest contains all 'unhatched' patient, awaiting confirmation by big wedgie
+      # the nest contains all 'unhatched' patient, awaiting confirmation by the administrator
       def nest
         authorize :big_wedgie
         @patients=User.find(:all,:conditions=>{:role=>5,:hatched=>false}, :order => "family_name,given_names")
@@ -171,11 +174,10 @@ class RecordController < ApplicationController
       def hatch
           authorize :big_wedgie
           @new_patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
-          @new_patient.hatched=1
-          @new_patient.save
+          @new_patient.update_attribute(:hatched,1)
           render :update do |page|
               page.replace_html "hatch_"+params[:wedgetail],"<font color=red>Hatched</font>"
-              page.replace_html 'sb_unhatched_count', "(" + @user.unhatched.size.to_s + " unhatched)"
+              page.replace_html('sb_unhatched_count',@user.unhatched.size.to_s)
           end
       end    
 

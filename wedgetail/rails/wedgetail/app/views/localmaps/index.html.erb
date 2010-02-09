@@ -1,0 +1,24 @@
+<h1>Listing localmaps</h1>
+
+<table>
+  <tr>
+    <th>Team</th>
+    <th>Localid</th>
+    <th>Wedgetail</th>
+  </tr>
+
+<% @localmaps.each do |localmap| %>
+  <tr>
+    <td><%=h localmap.team %></td>
+    <td><%=h localmap.localID %></td>
+    <td><%=h localmap.wedgetail %></td>
+    <td><%= link_to 'Show', localmap %></td>
+    <td><%= link_to 'Edit', edit_localmap_path(localmap) %></td>
+    <td><%= link_to 'Destroy', localmap, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New localmap', new_localmap_path %>

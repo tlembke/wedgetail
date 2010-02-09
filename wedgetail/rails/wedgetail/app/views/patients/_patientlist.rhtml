@@ -1,0 +1,36 @@
+<div id="patient-list">
+	<h1>Patients</h1>
+	<table cellpadding="5" cellspacing="0" border="0">
+		<% lastID="0"%>
+  	<% for patient in @patients %>
+		<% classType="list-line-new" %>
+		<% if lastID !=patient.wedgetail %>
+			<tr valign="top" class="<%= cycle("list-line-odd","list-line-even") %>">
+			<td width>
+				<span class='list-title'><b>
+				<%= patient.family_name+", "+patient.given_names%>
+					<%= " \""+patient.known_as+ "\""	if patient.known_as and patient.known_as!="" %>
+					<%= "</b></span>"%>
+			</td>
+			<td width>
+			    <% if patient.dob %>
+				<%= patient.dob.day %>/<%= patient.dob.month%>/<%= patient.dob.year%>
+			    <% else %>
+			        <b>No DOB</b>
+			    <% end %>
+			</td>			
+  			<td><%= link_to 'Show', patient_path(patient.wedgetail)%></td>
+
+
+  		</tr>
+		<% end %>
+		<% lastID=patient.wedgetail %>
+		<% end %>
+	</table>
+
+</div>
+
+<p>
+
+
+<br/>

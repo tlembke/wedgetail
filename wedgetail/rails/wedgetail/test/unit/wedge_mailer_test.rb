@@ -5,8 +5,8 @@ class WedgeMailerTest < Test::Unit::TestCase
   CHARSET = "utf-8"
 
   include ActionMailer::Quoting
-  fixtures :users,:prefs,:narratives,:codes
-  
+  fixtures :users,:prefs,:narratives,:codes  
+
   def setup
     ActionMailer::Base.delivery_method = :test
     ActionMailer::Base.perform_deliveries = true
@@ -28,13 +28,9 @@ class WedgeMailerTest < Test::Unit::TestCase
   end
 
   def test_receive
-    text = <<eom
-Re: Potter, Harry, dob: 11/8/1994
-
-This is a unit test message
-eom
-    m = WedgeMailer.crypto_deliver(1,text,"text/plain",:x509,"ihaywood@iinet.net.au")
-    WedgeMailer.receive(m.encoded)
+    Dir.glob("#{FIXTURES_PATH}/wedge_mailer/*.email") do |fname|
+      WedgeMailer.receive(open(fname).read)
+    end
     n = Narrative.find_by_wedgetail(users(:harry).wedgetail)
     assert /unit test/ =~ n.content
   end

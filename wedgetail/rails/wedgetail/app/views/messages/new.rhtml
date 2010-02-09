@@ -38,5 +38,5 @@
   <%= submit_tag "Send" %>
 <% end %>
 </div>
-<%= link_to 'Back', :controller=> 'admin', :action => 'show', :identifier=>params[:re_id] if params[:re_id]%><p>
+<%= link_to 'Back', :controller=> 'patients', :action => 'show', :id=>params[:re_id] if params[:re_id]%><p>
 <%= link_to 'Back', :controller=> 'messages' if !params[:re_id]%><p>

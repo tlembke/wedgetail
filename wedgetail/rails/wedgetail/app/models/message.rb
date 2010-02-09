@@ -22,4 +22,6 @@ class Message < ActiveRecord::Base
   def recipient
     @recipient=User.find_by_wedgetail(self.recipient_id,:order=>"created_at DESC")
   end
+  
+
 end

@@ -7,7 +7,8 @@ Wedgetail has the following features.
 Any SQL database can be used and it is written in the open source language <a href='http://www.rubyonrails.org/'>Ruby on Rails.</a>
 The wedgetail code is downloadable from <a href='http://code.google.com/p/wedgetail/'>Google Code.</a>
 </blockquote><blockquote>
-<h3>Standards Based</h3>As far as possible, Wedegtail aims to comply with Australian standards, as determined by <a href='http://nehta.gov.au'>NEHTA</a>.
+<h3>Standards Based</h3>As far as possible, Wedegtail aims to comply with Australian standards, as determined by <a href='http://nehta.gov.au'>NEHTA</a>.<br>
+It can send and receive HL7 messages, and uses X.509 or PGP as encryption tools.
 </blockquote>
 <blockquote><h3>Patient Centred</h3>
 Wedgetail is patient controlled - patients determine who has access to their records, adn are able to view an 'audit trail' of all those who have accessed their information

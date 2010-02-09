@@ -6,7 +6,7 @@ include Open3
 
 class LoginController < ApplicationController
   before_filter :redirect_to_ssl
-  before_filter :authenticate, :except =>[:login,:logout]
+  before_filter :authenticate, :except =>[:login,:logout,:check]
   layout "standard"
 
   def add_user
@@ -50,12 +50,35 @@ class LoginController < ApplicationController
       end
     end 
   end
+  
+  def check
+    respond_to do |format|
+        format.any(:xml, :text){
+          testuser = authenticate_with_http_basic do |login, password| 
+            @username=login
+            User.authenticate(login, password) 
+          end 
+          if testuser
+            @status = "Confirmed"
+          else 
+            testuser=User.find_by_username(@username)
+            if testuser
+              @status="Incorrect password"
+            else
+              @status="Unknown user"
+            end
+          end
+          render :xml => @status, :layout=>'layouts/blank.erb',:template => 'login/check.xml.erb'
+        }
+      end
+  end
 
   def login 
     session[:user_id] = nil
     if request.post? 
       user = User.authenticate(params[:name], params[:password])
       if user
+        flash[:notice] = "Successful Log In" 
         if user.role<7 or (user.role==7 and user.access!=1)
           session[:user_id] = user.id
           uri = session[:original_uri] 
@@ -65,9 +88,10 @@ class LoginController < ApplicationController
           user.update_attribute(:access, 1)
           user.wedgetail=user.wedgetail.from(6) if user.role==7
           if (user.role==5 or user.role==7)
-            redirect_to(:controller => "record", :action => "show", :wedgetail =>user.wedgetail)
+            #redirect_to(:controller => "record", :action => "show", :wedgetail =>user.wedgetail)
+            redirect_to(patient_path(user.wedgetail))
           else
-            redirect_to(uri || { :controller =>"record", :action => "list"})  
+            redirect_to(uri || patients_path)  
           end
         else
              user.update_attribute(:role,8)
@@ -76,7 +100,12 @@ class LoginController < ApplicationController
       else 
         flash[:notice] = "Invalid user/password combination" 
       end 
-    end 
+    else
+        respond_to do |format|
+          format.html {render :layout=>'layouts/standard'}
+          format.iphone {render :layout=> 'layouts/application.iphone.erb'}# index.iphone.erb 
+        end
+    end
   end 
 
   def load_certificate
@@ -172,10 +201,10 @@ class LoginController < ApplicationController
     else
       if(@user.role==5)
         flash[:notice]="You do not have authority to access that page"
-        redirect_to :controller => 'record',:action=>'show',:wedgetail=>@user.wedgetail
+        redirect_to(patient_path(user.wedgetail))
       else
         flash[:notice]="User not found"
-        redirect_to :controller => 'record'
+        redirect_to :controller => 'patients',:action =>'index'
       end
     end
     if @useredit.role==5
@@ -200,9 +229,9 @@ class LoginController < ApplicationController
       if @useredit.update_attributes(params[:useredit])
           flash[:notice] = 'Preferences updated.'
           if(@user.role==5 or (@user.role<3 and @useredit.wedgetail!=@user.wedgetail))
-            redirect_to :controller => 'record',:action=>'show',:wedgetail=>@useredit.wedgetail
+            redirect_to :controller => 'patients',:wedgetail=>@useredit.wedgetail
           else
-            redirect_to :controller => 'record'
+            redirect_to :controller => 'patients'
           end
       else  
         if @useredit.role==5
@@ -233,7 +262,7 @@ class LoginController < ApplicationController
          flash.now[:notice] = "Guest User Created"
     else
       flash.now[:notice] = "Guest User Not Created Due to Error"
-      redirect_to :controller => 'record',:action=>'show',:wedgetail=>@patient.wedgetail
+      redirect_to(patient_path(@patient.wedgetail))
     end
   end
 
@@ -308,7 +337,7 @@ class LoginController < ApplicationController
     authorize :admin # admins can do whatever they like
     if @useredit.update_attributes(params[:useredit])
         flash[:notice] = 'User was successfully updated.'
-        redirect_to :controller=>"record",:action=>"list"
+        redirect_to(patient_path(@useredit.wedgetail))
 
     else
           render :action => 'edit', :wedgetail=>@useredit.wedgetail

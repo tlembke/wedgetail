@@ -1,0 +1,32 @@
+		<div id='register'>
+	<% if @user.role<5%>
+		<% if @user.interest(@patient.wedgetail) %>
+<p><%= link_to_remote(show_icon("internet-news-reader","","","Interest","You have registered your interest in receiving updates about this patient. Click to unregister your interest and you will no longer receive HL7 updates as they are received","large","tango","closeButton: true"), :url => {:action => "unregister",:wedgetail=>@patient.wedgetail}) %></p>
+		<% else %>
+<p><%= link_to_remote(show_icon("internet-news-reader-x","","","Interest","You have not registered your interest in receiving updates about this patient. Click to register your interest and you will receive HL7 updates as they are received","large","tango","closeButton: true"), :url => {:action => "register",:wedgetail=>@patient.wedgetail}) %></p>
+
+		<% end %>
+	<% end %>
+</div>
+<p><%= show_icon("mail-reply-patient","/messages/new/"+ @patient.wedgetail+"?return=patient","","Message to Patient","Click to send a message to "+ @patient.full_name,"large") if @user.role<5 %></p>
+
+
+
+<p><%= show_icon("mail-user","/messages/new/?re_id="+@patient.wedgetail+"&return=patient_user","","Message About Patient","Click to send a message about " + @patient.full_name + "  to another user","large") if @user.role<5%></p><p>
+<%= show_icon("mail-user","/messages/new/?re_id="+@patient.wedgetail+"&return=patient_user","","Message","Click to send a message to a user","large") if @user.role==5 %></p>
+
+
+<% if @user.role<5%>
+
+<p><%= show_icon("accessories-text-editor","/entry/new/"+ @patient.wedgetail,"","Clinical Entry","Add clinical entry about " + @patient.full_name,"large") %></p>
+
+<% end %>
+
+
+<% if @user.role==5 or @user.role < 3%>
+<p><%= show_icon("edit-paste","/patients/audit/"+ @patient.wedgetail,"","Audit","Show all users who have accessed this record","large") %></p>
+<p><%= show_icon("address-book-new","/patients/edit/"+ @patient.wedgetail,"","Edit Demograhics","Edit demographic details for" + @patient.full_name,"large") %></p>
+<p><%= show_icon("preferences-system","/login/password/"+ @patient.wedgetail,"","Preferences","Change preferences for " + @patient.full_name,"large") %></p>
+<p><%= show_icon("contact-new","/patients/guests/"+ @patient.wedgetail,"","Guests","Create a Guest Access Card and manage previous guests","large")%></p>
+
+<% end %>

@@ -1,0 +1,11 @@
+<div class="toolbar">
+  <a id="blueButton" class="button" href="patients" target="_self">Search</a>
+  <h1 id="pageTitle"></h1>
+  
+</div>
+
+<ul id="patients" title="Patients" selected='true'>
+  <% for patient in @patients %>
+    <li><%= link_to patient.full_name, patient_path(patient.wedgetail), :target=>"_self" %></li>
+  <% end %>
+</ul>

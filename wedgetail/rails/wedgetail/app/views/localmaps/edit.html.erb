@@ -1,0 +1,24 @@
+<h1>Editing localmap</h1>
+
+<% form_for(@localmap) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :team %><br />
+    <%= f.text_field :team %>
+  </p>
+  <p>
+    <%= f.label :localID %><br />
+    <%= f.text_field :localID %>
+  </p>
+  <p>
+    <%= f.label :wedgetail %><br />
+    <%= f.text_field :wedgetail %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @localmap %> |
+<%= link_to 'Back', localmaps_path %>
