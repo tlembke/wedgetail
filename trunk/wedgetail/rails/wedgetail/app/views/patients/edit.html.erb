@@ -34,7 +34,7 @@ M <%= f.radio_button :sex, 1 %>
 F <%= f.radio_button :sex, 2 %>
 </p>
 <p>
-<%= f.label :DOB %><br />
+<%= f.label(:DOB, "DOB") %><br />
 	<%= f.date_select 'dob',:order=>[:day,:month,:year], :start_year => Time.now.year - 110, :end_year => Time.now.year  %>
 </p>	<p>
 	<%= f.label :email %><br />
@@ -47,11 +47,11 @@ F <%= f.radio_button :sex, 2 %>
 <%= f.text_field :medicare %>
 <p>
 </p> <p>
-<%= f.label :dva %><br />
+<%= f.label(:dva, "DVA") %><br />
 <%= f.text_field :dva %>
 <p>
 </p> <p>
-<%= f.label :crn %><br />
+<%= f.label(:crn, "CRN") %><br />
 <%= f.text_field :crn %>
 <p>
 

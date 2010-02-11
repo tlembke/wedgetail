@@ -76,7 +76,7 @@
 
 
 <p>
-	<label for="patient_dob">Dob</label><br/>
+	<label for="patient_dob">DOB</label><br/>
 	<%= date_select('patient', 'dob',:order=>[:day,:month,:year],:start_year => Time.now.year - 110, 
 				:prompt => { :day => "day", :month => "month", :year => "year" }, :end_year => Time.now.year)  %>
 </p>

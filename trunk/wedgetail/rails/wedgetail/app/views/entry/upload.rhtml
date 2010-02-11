@@ -17,23 +17,31 @@ document.observe("dom:loaded",function (e) {
  			:url=> {:action => 'upload'},
 			:html=>{:multipart=>true}) do |form| %>
 <%= error_messages_for 'upload' %>
+
 <p>
-<label for="narrative_content">Upload Text</label><br/>
-  <%= form.text_area(:text, :style=>'width: 99%', :rows=>4) %><br/>
-  You can cut and paste documents into this textbox. They must contain a line like
+  You can use the browse button to upload files or alternatively just copy and paste into the textbox below.<br/>
+</p>
+<p>
+  Files and text must contain a line like:
+</p>
   <pre>
-Re: Bloggs, Joe DOB 1/1/1970
+  Re: Bloggs, Joe DOB 1/1/1970
   </pre>
   or 
   <pre>
-wedgetail: nnnnn
+  wedgetail: nnnnn
+  (where <tt>nnnn</tt> is the wedgetail number)
   </pre>
-  where <tt>nnnn</tt> is the wedgetail number.<br/>
 </p>
 <p>
   <label for="narrative_content">File select</label><br/>	
   <%=form.file_field("file")%><br/>
-  This can be a Word .DOC or a plain text file. PIT or HL7 file format is also accepted.
+  This can be a Word .DOC or a plain text file. PIT or HL7 file format is also accepted.<br/>
+</p>
+<p>
+<label for="narrative_content">Upload Text</label><br/>
+  <%= form.text_area(:text, :style=>'width: 99%', :rows=>4) %><br/>
+
 </p>
 <p>
   <b>Note: </b> you can add a document that does not contain the Re: line by searching for that patient and clicking 'Add Clinical Entry'
