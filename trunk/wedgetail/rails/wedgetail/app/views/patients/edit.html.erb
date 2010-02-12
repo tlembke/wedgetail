@@ -10,49 +10,64 @@
 
 <p> <%= f.label :family_name %><br /> 
 <%= f.text_field :family_name %>
-</p> <p>
-<%= f.label :given_names %><br />
-<%= f.text_field :given_names %>
-</p> <p>
-	 <%= f.label :known_as %><br />
-	 <%= f.text_field :known_as %>
-	</p> <p>
-	 <%= f.label :address_line %><br />
-	 <%= f.text_field :address_line %>
-	</p> <p>
-		<%= f.label :town %><br />
-		<%= f.text_field :town %>
-	</p> <p>
-<%= f.label :state %><br />
-<%= f.select :state, %w{ NSW VIC QLD SA WA TAS NT ACT } %>
-</p> <p>
-<%= f.label :postcode %><br />
-<%= f.text_field :postcode %>
-<p>
-<%= f.label "Gender" %><br />
-M <%= f.radio_button :sex, 1 %>
-F <%= f.radio_button :sex, 2 %>
 </p>
 <p>
-<%= f.label(:DOB, "DOB") %><br />
-	<%= f.date_select 'dob',:order=>[:day,:month,:year], :start_year => Time.now.year - 110, :end_year => Time.now.year  %>
-</p>	<p>
-	<%= f.label :email %><br />
-	<%= f.text_field :email %>
-	<p>
-
-
-</p> <p>
-<%= f.label :medicare %><br />
-<%= f.text_field :medicare %>
+  <%= f.label :given_names %><br />
+  <%= f.text_field :given_names %>
+</p>
 <p>
-</p> <p>
-<%= f.label(:dva, "DVA") %><br />
-<%= f.text_field :dva %>
+  <%= f.label :known_as %><br />
+  <%= f.text_field :known_as %>
+</p>
 <p>
-</p> <p>
-<%= f.label(:crn, "CRN") %><br />
-<%= f.text_field :crn %>
+  <%= f.label(:address_line, "Address line 1") %><br />
+  <%= f.text_field :address_line %>
+</p>
+<p>
+  <%= f.label :address_line_2 %><br />
+  <%= f.text_field :address_line_2 %>
+</p>
+<p>
+  <%= f.label :town %><br />
+  <%= f.text_field :town %>
+</p>
+<p>
+  <%= f.label :state %><br />
+  <%= f.select :state, %w{ NSW VIC QLD SA WA TAS NT ACT } %>
+</p>
+<p>
+  <%= f.label :postcode %><br />
+  <%= f.text_field :postcode %>
+<p>
+  <%= f.label "Gender" %><br />
+  M <%= f.radio_button :sex, 1 %>
+  F <%= f.radio_button :sex, 2 %>
+</p>
+<p>
+  <%= f.label(:DOB, "DOB") %><br />
+  <%= f.date_select 'dob',:order=>[:day,:month,:year], :start_year => Time.now.year - 110, :end_year => Time.now.year  %>
+</p>
+<p>
+  <%= f.label(:phone, "Phone (home)") %><br />
+  <%= f.text_field :phone %>
+</p>	
+<p>
+  <%= f.label :email %><br />
+  <%= f.text_field :email %>
+</p>
+<p>
+  <%= f.label :medicare %><br />
+  <%= f.text_field :medicare %>
+<p>
+</p>
+<p>
+  <%= f.label(:dva, "DVA") %><br />
+  <%= f.text_field :dva %>
+<p>
+</p>
+<p>
+  <%= f.label(:crn, "CRN") %><br />
+  <%= f.text_field :crn %>
 <p>
 
 <% if(@user.role<5 && params[:action]!="edit") %> 
