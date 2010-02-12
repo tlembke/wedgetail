@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
           redirect_to(:controller => "login", :action => "login") 
         end
       else
-        # alredy logged in
+        # already logged in
         unless session[:expires_at]
           session[:expires_at] = Pref.time_out.minutes.from_now
         end

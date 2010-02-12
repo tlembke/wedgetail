@@ -78,12 +78,11 @@ class LoginController < ApplicationController
     if request.post? 
       user = User.authenticate(params[:name], params[:password])
       if user
-        flash[:notice] = "Successful Log In" 
+        # flash[:notice] = "Successful Log In" 
         if user.role<7 or (user.role==7 and user.access!=1)
           session[:user_id] = user.id
           uri = session[:original_uri] 
           session[:original_uri] = nil
-          #session[:expires_at] = Pref.time_out.minutes.from_now
           session[:expires_at] = Pref.time_out.minutes.from_now
           user.update_attribute(:access, 1)
           user.wedgetail=user.wedgetail.from(6) if user.role==7
@@ -94,24 +93,24 @@ class LoginController < ApplicationController
             redirect_to(uri || patients_path)  
           end
         else
-             user.update_attribute(:role,8)
-             flash[:notice] = "Guest user expired"
+          user.update_attribute(:role,8)
+          flash[:notice] = "Guest user expired"
         end
       else 
         flash[:notice] = "Invalid user/password combination" 
       end 
     else
-        respond_to do |format|
-          format.html {render :layout=>'layouts/standard'}
-          format.iphone {render :layout=> 'layouts/application.iphone.erb'}# index.iphone.erb 
-        end
+      respond_to do |format|
+        format.html {render :layout=>'layouts/standard'}
+        format.iphone {render :layout=> 'layouts/application.iphone.erb'}# index.iphone.erb 
+      end
     end
   end 
 
   def load_certificate
-      authorize_only (:user) {@useredit.wedgetail == @user.wedgetail}
-      authorize_only (:leader) {@useredit.wedgetail == @user.wedgetail}
-      authorize :admin  # apart from admin
+    authorize_only (:user) {@useredit.wedgetail == @user.wedgetail}
+    authorize_only (:leader) {@useredit.wedgetail == @user.wedgetail}
+    authorize :admin  # apart from admin
     content = params[:certificate_upload][:certificate]
     if content.respond_to? :original_filename
       content = content.read
@@ -186,7 +185,7 @@ class LoginController < ApplicationController
  
   
   def toggle_list
-       render :update do |page|
+    render :update do |page|
       page.visual_effect :toggle_blind, "greylist" 
     end
   end
@@ -221,45 +220,45 @@ class LoginController < ApplicationController
   end 
   
   def update_password
-      @useredit = User.find_by_wedgetail(params[:useredit][:wedgetail],:order=>"created_at DESC")
-      authorize_only (:patient) {@useredit.wedgetail == @user.wedgetail} # everyone can only edit themselves
-      authorize_only (:user) {@useredit.wedgetail == @user.wedgetail}
-      authorize_only (:leader) {@useredit.wedgetail == @user.wedgetail}
-      authorize :admin #apart from admin
-      if @useredit.update_attributes(params[:useredit])
-          flash[:notice] = 'Preferences updated.'
-          if(@user.role==5 or (@user.role<3 and @useredit.wedgetail!=@user.wedgetail))
-            redirect_to :controller => 'patients',:wedgetail=>@useredit.wedgetail
-          else
-            redirect_to :controller => 'patients'
-          end
-      else  
-        if @useredit.role==5
-          @useredit.access=1 if @useredit.access==nil or @useredit.access=="0"
-          @currentlist=User.find(:all,:conditions=>["firewalls.patient_wedgetail='#{@useredit.wedgetail}'"],:joins=>"inner join firewalls on users.wedgetail=firewalls.user_wedgetail")
-        else
-          @currentlist=[]
-        end
-        @listname="Access List"
-        render :action => 'password', :wedgetail=>@useredit.wedgetail
+    @useredit = User.find_by_wedgetail(params[:useredit][:wedgetail],:order=>"created_at DESC")
+    authorize_only (:patient) {@useredit.wedgetail == @user.wedgetail} # everyone can only edit themselves
+    authorize_only (:user) {@useredit.wedgetail == @user.wedgetail}
+    authorize_only (:leader) {@useredit.wedgetail == @user.wedgetail}
+    authorize :admin #apart from admin
+    if @useredit.update_attributes(params[:useredit])
+      flash[:notice] = 'Preferences updated.'
+      if(@user.role==5 or (@user.role<3 and @useredit.wedgetail!=@user.wedgetail))
+        redirect_to :controller => 'patients',:wedgetail=>@useredit.wedgetail
+      else
+        redirect_to :controller => 'patients'
       end
+    else  
+      if @useredit.role==5
+        @useredit.access=1 if @useredit.access==nil or @useredit.access=="0"
+        @currentlist=User.find(:all,:conditions=>["firewalls.patient_wedgetail='#{@useredit.wedgetail}'"],:joins=>"inner join firewalls on users.wedgetail=firewalls.user_wedgetail")
+      else
+        @currentlist=[]
+      end
+      @listname="Access List"
+      render :action => 'password', :wedgetail=>@useredit.wedgetail
+    end
   end
   
   # a guest has once-only read access to the creating patient's record
   def guest
-     @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
-     authorize_only (:patient) {@patient.wedgetail == @user.wedgetail}
-     authorize :admin
-     @newuser = User.new
+    @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
+    authorize_only (:patient) {@patient.wedgetail == @user.wedgetail}
+    authorize :admin
+    @newuser = User.new
      
-     @newuser.username= WedgePassword.username_make("G")
-     @newuser.password= WedgePassword.random_password(6)
-     @newuser.family_name="Guest "+@newuser.username
-     @newuser.wedgetail=@newuser.username + @patient.wedgetail
-     @newuser.role=7
-     if @newuser.save 
-         render(:layout => "layouts/guestcard")
-         flash.now[:notice] = "Guest User Created"
+    @newuser.username= WedgePassword.username_make("G")
+    @newuser.password= WedgePassword.random_password(6)
+    @newuser.family_name="Guest "+@newuser.username
+    @newuser.wedgetail=@newuser.username + @patient.wedgetail
+    @newuser.role=7
+    if @newuser.save 
+      render(:layout => "layouts/guestcard")
+      flash.now[:notice] = "Guest User Created"
     else
       flash.now[:notice] = "Guest User Not Created Due to Error"
       redirect_to(patient_path(@patient.wedgetail))
@@ -274,13 +273,13 @@ class LoginController < ApplicationController
     authorize :admin  # apart from admin
     @currentlist=User.find(:all,:conditions=>["firewalls.patient_wedgetail='#{@useredit.wedgetail}'"],:joins=>"inner join firewalls on users.wedgetail=firewalls.user_wedgetail")
     if ! params.has_key? :show   or params[:show]=="Team"
-        @search_type="Team"
-        @next_search="Individual"
-        @allusers=User.find(:all,:conditions=>["role=6"])
+      @search_type="Team"
+      @next_search="Individual"
+      @allusers=User.find(:all,:conditions=>["role=6"])
     else
-        @search_type="Individual"
-        @next_search="Team"
-        @allusers=User.find(:all,:conditions=>["role=3 or role=4"])
+      @search_type="Individual"
+      @next_search="Team"
+      @allusers=User.find(:all,:conditions=>["role=3 or role=4"])
     end
     @listname="greylist"
     @listname="blacklist" if @useredit.access==2
@@ -289,42 +288,37 @@ class LoginController < ApplicationController
 
   # add a user to greylist
   def select_user
-      authorize_only (:patient) {params[:useredit] == @user.wedgetail} # everyone can only edit themselves
-      authorize :admin  # apart from admin
-      @useredit=User.find_by_wedgetail(params[:useredit])
-      @listname="greylist"
-      @listname="blacklist" if @useredit.access==2
-      @listname="whitelist" if @useredit.access==3
-      @choice=User.find_by_wedgetail(params[:wedgetail])
-      @ok=Firewall.find(:all,:conditions=>["patient_wedgetail=? and user_wedgetail=?",params[:useredit],params[:wedgetail]])
-      if @ok.size>0
-        # remove selected
-        Firewall.delete_all(["patient_wedgetail=? and user_wedgetail=?",params[:useredit],params[:wedgetail]])
-        @new_term="Add"
-        @choice_name=@choice.family_name_given_names
-      else
-        # add seleted
-        @ok=Firewall.new
-        @ok.user_wedgetail=params[:wedgetail]
-        @ok.patient_wedgetail=params[:useredit]
-        @ok.save
-        @new_term="Remove"
-        @choice_name="<font color='red'>"+ @choice.family_name_given_names + "</font>"
-      end
+    authorize_only (:patient) {params[:useredit] == @user.wedgetail} # everyone can only edit themselves
+    authorize :admin  # apart from admin
+    @useredit=User.find_by_wedgetail(params[:useredit])
+    @listname="greylist"
+    @listname="blacklist" if @useredit.access==2
+    @listname="whitelist" if @useredit.access==3
+    @choice=User.find_by_wedgetail(params[:wedgetail])
+    @ok=Firewall.find(:all,:conditions=>["patient_wedgetail=? and user_wedgetail=?",params[:useredit],params[:wedgetail]])
+    if @ok.size>0
+      # remove selected
+      Firewall.delete_all(["patient_wedgetail=? and user_wedgetail=?",params[:useredit],params[:wedgetail]])
+      @new_term="Add"
+      @choice_name=@choice.family_name_given_names
+    else
+      # add seleted
+      @ok=Firewall.new
+      @ok.user_wedgetail=params[:wedgetail]
+      @ok.patient_wedgetail=params[:useredit]
+      @ok.save
+      @new_term="Remove"
+      @choice_name="<font color='red'>"+ @choice.family_name_given_names + "</font>"
+    end
       
-      @currentlist=User.find(:all,:conditions=>["firewalls.patient_wedgetail='#{@useredit.wedgetail}'"],:joins=>"inner join firewalls on users.wedgetail=firewalls.user_wedgetail")
+    @currentlist=User.find(:all,:conditions=>["firewalls.patient_wedgetail='#{@useredit.wedgetail}'"],:joins=>"inner join firewalls on users.wedgetail=firewalls.user_wedgetail")
       
-      render :update do |page|
-          #page.replace_html "old_wedge_"+params[:wedgetail],new_wedgetail
-          page.replace_html("command_"+params[:wedgetail],link_to_remote(@new_term, :url => {:action => "select_user",:wedgetail=> params[:wedgetail],:useredit=>params[:useredit]}))
-          page.replace_html("name_"+params[:wedgetail],@choice_name)
-          page.replace_html("greylist",render(:partial => "firewall_current"))
-          
-
-      
-
-      end
-
+    render :update do |page|
+      #page.replace_html "old_wedge_"+params[:wedgetail],new_wedgetail
+      page.replace_html("command_"+params[:wedgetail],link_to_remote(@new_term, :url => {:action => "select_user",:wedgetail=> params[:wedgetail],:useredit=>params[:useredit]}))
+      page.replace_html("name_"+params[:wedgetail],@choice_name)
+      page.replace_html("greylist",render(:partial => "firewall_current"))
+    end
   end
   
   def update
@@ -336,11 +330,10 @@ class LoginController < ApplicationController
     # team leaders can edit patients, themselves, users of their team and the team itself
     authorize :admin # admins can do whatever they like
     if @useredit.update_attributes(params[:useredit])
-        flash[:notice] = 'User was successfully updated.'
-        redirect_to(patient_path(@useredit.wedgetail))
-
+      flash[:notice] = 'User was successfully updated.'
+      redirect_to(patient_path(@useredit.wedgetail))
     else
-          render :action => 'edit', :wedgetail=>@useredit.wedgetail
+      render :action => 'edit', :wedgetail=>@useredit.wedgetail
     end
 
   end

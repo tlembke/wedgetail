@@ -33,10 +33,18 @@
 
 <p>
 	<label for="patient_address_line">
-		Address line
+		Address line 1
 	</label>
 	<br/>
 	<%= text_field 'patient', 'address_line'  %>
+</p>
+
+<p>
+	<label for="patient_address_line_2">
+		Address line 2
+	</label>
+	<br/>
+	<%= text_field 'patient', 'address_line_2'  %>
 </p>
 
 <p>
@@ -79,6 +87,14 @@
 	<label for="patient_dob">DOB</label><br/>
 	<%= date_select('patient', 'dob',:order=>[:day,:month,:year],:start_year => Time.now.year - 110, 
 				:prompt => { :day => "day", :month => "month", :year => "year" }, :end_year => Time.now.year)  %>
+</p>
+
+<p>
+	<label for="patient_phone">
+		Phone (home)
+	</label>
+	<br/>
+	<%= text_field 'patient', 'phone'  %>
 </p>
 
 <p>
