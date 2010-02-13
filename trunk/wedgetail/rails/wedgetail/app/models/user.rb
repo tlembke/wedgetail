@@ -58,9 +58,22 @@ class User < ActiveRecord::Base
         errors.add(:provider,"Provider number not valid (failed checksum)") unless check == provider[7..7]
       end
     end
+    unless phone.blank?
+      validate_phone = self.phone_before_type_cast.gsub(/[^0-9]/,"")
+      if !validate_phone.nil? and validate_phone.length != 10
+        errors.add("phone", "number is not correct. The full 10 digits including area code must be specified.")
+      end
+    end 
   end 
  
-  
+  # Phone number. Remove any non numeric chars before save and format on find. 
+  def before_save
+    self.phone_before_type_cast.gsub!(/[^0-9]/,"") if !self.phone.nil?
+  end 
+  def after_find
+    self.phone = "(#{self.phone_before_type_cast[0..1]}) #{self.phone_before_type_cast[2..5]} #{self.phone_before_type_cast[6..9]}" if !self.phone.blank? and self.phone_before_type_cast.length == 10
+  end
+ 
   def is_listed(patient_wedgetail)
     is_listed=false
     @ok=Firewall.find(:all,:conditions=>["patient_wedgetail='#{patient_wedgetail}' and user_wedgetail='#{self.wedgetail}'"])
