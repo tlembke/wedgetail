@@ -6,7 +6,7 @@ class PatientsController < ApplicationController
   # GET /patients.xml
   def index
     authorize :user
-    if params[:wedgetail]!=""
+    if params[:wedgetail] and params[:wedgetail]!=""
       @patients = User.find(:all,:order => "created_at DESC",:conditions => ["role=5 and wedgetail=?",params[:wedgetail]])
     else
       @patients = @user.find_authorised_patients(params[:family_name],params[:given_names],params[:dob])
