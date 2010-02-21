@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
   validates_format_of :postcode,:with=>/^[0-9]{4}$/,:message=>"postcode must be 4 digits",:allow_blank=>true
   validates_format_of :prescriber,:with=>/^[0-9]{6,7}$/,:message=>"Prescriber number must be 6-7 digits",:allow_blank=>true
   validates_format_of :provider,:with=>/^[0-9]{6}[0-9A-Z][A-Z]$/,:message=>"Provider number not valid format",:allow_blank=>true
-
   has_many :outbox,
           :class_name => "Message",
           :foreign_key => "sender_id",
@@ -360,7 +359,6 @@ eol
   end
 
   private
-
   
   def self.encrypted_password(password, salt) 
     string_to_hash = password + "wibble" + salt # 'wibble' makes it harder to guess 
