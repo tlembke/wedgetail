@@ -156,6 +156,7 @@ module HL7
       end
       segs.join("\r")+"\r"
     end
+
     
     # as for to_hl7 but add MLLP marker bytes
     def to_mllp(range)
