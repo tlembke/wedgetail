@@ -181,7 +181,6 @@ class PatientsController < ApplicationController
           format.html { render :action => :new,:layout=>'layouts/standard'}
           format.xml  {
             if failflag==""
-              debugger
               failflag=@patient.errors.each_full {|msg| p msg}
             end
             
