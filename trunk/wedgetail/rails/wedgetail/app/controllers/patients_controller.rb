@@ -161,7 +161,7 @@ class PatientsController < ApplicationController
 
        respond_to do |format|
         if failflag=="" and @patient.save
-          failflag=@patient.errors
+          
           if @localID
             @team=@user.wedgetail
             @team=@user.team if @user.team !="" and @user.team !='0' and @user.team !=NULL
@@ -180,6 +180,11 @@ class PatientsController < ApplicationController
         else
           format.html { render :action => :new,:layout=>'layouts/standard'}
           format.xml  {
+            if failflag==""
+              debugger
+              failflag=@patient.errors.each_full {|msg| p msg}
+            end
+            
             @message=failflag
                 render :xml => @patients, :template => 'patients/patients.xml.builder',:status => :unprocessable_entity 
           }
