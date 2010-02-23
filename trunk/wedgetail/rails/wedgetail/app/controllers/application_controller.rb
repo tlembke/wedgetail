@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   # Pick a unique cookie name to distinguish our session data from others'
-  session :session_key => '_wedgetail_session_id'
+  # session :session_key => '_wedgetail_session_id'
   before_filter :adjust_format_for_iphone 
   helper_method :iphone_user_agent?
 
@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
                 flash[:notice] = "Successful Log In" 
                 # Check to see if there are any users. If not, create Admin
                 if User.count==0
-                  User.create(:username => 'admin', :family_name=>"Admin", :given_names=> "", :password => 'admin',:password_confirmation => 'admin',:role=>2,:wedgetail=>1)
+                  User.create(:username => 'admin', :family_name=>"Admin", :given_names=> "", :password => 'passw0rd',:password_confirmation => 'passw0rd',:role=>2,:wedgetail=>1)
                   @user=User.find_by_wedgetail(1)
                   session[:user_id] = @user.id 
                   session[:expires_at] = Pref.time_out.minutes.from_now
@@ -132,7 +132,7 @@ class ApplicationController < ActionController::Base
   # Check to see if access allowed to requested page
   # if not, redirect
   def authorize_only(role,&block)
-    role = {:big_wedgie=>1,:admin=>2,:leader=>3,:user=>4,:patient=>5,:temp=>7}[role]
+    role = {:big_wedgie=>1,:admin=>2,:leader=>3,:user=>4,:patient=>5,:temp=>7,:inactive=>10}[role]
     if (@user.role==role)
       if (block)
         if (! block.call)
@@ -143,7 +143,7 @@ class ApplicationController < ActionController::Base
           elsif(@user.role==7)
             redirect_to :controller => 'patients',:action=>'show',:wedgetail=>@user.wedgetail.from(6)
           else
-            redirect_to :controller => 'patients'
+              redirect_to :controller => 'patients'
           end
         else
           @authorized = true
