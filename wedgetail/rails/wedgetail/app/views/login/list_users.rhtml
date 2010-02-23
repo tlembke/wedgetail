@@ -7,8 +7,8 @@
 		<td><%=@role[user.role]%></td>
 		<td><%= user.last_access%></td>
 		<td><%= link_to "Edit",:action => 'edit',:wedgetail=>user.wedgetail %></td>
+		<td><%= link_to "Inactivate",{:action => 'inactivate',:wedgetail=>user.wedgetail},{:confirm => "Are you sure (no undo)?"} if user.role !=10 %></td>
  	</tr>
 	<% end %> 
 </table>
 <%= link_to "Add user", :controller => 'login', :action => 'add_user' %> 
-

@@ -181,6 +181,9 @@ class LoginController < ApplicationController
 
   def edit
     @useredit=User.find_current(params[:wedgetail])
+    authorize_only (:user) {@useredit.wedgetail == @user.wedgetail} # users can edit themselves
+    authorize_only (:leader) { @useredit.team == @user.team  || @useredit.wedgetail == @user.team }
+    authorize :admin #apart from admin
   end
  
   
@@ -193,6 +196,7 @@ class LoginController < ApplicationController
   # for changing a patients/users password and access firewall
   def password
     if @useredit=User.find_by_wedgetail(params[:wedgetail],:order=>"created_at DESC")
+      # @useredit is the patient, if these is one
       authorize_only (:patient) {@useredit.wedgetail == @user.wedgetail} # everyone can only edit themselves
       authorize_only (:user) {@useredit.wedgetail == @user.wedgetail}
       authorize_only (:leader) {@useredit.wedgetail == @user.wedgetail}
@@ -200,7 +204,7 @@ class LoginController < ApplicationController
     else
       if(@user.role==5)
         flash[:notice]="You do not have authority to access that page"
-        redirect_to(patient_path(user.wedgetail))
+        redirect_to(patient_path(@user.wedgetail))
       else
         flash[:notice]="User not found"
         redirect_to :controller => 'patients',:action =>'index'
@@ -338,6 +342,22 @@ class LoginController < ApplicationController
 
   end
   
+  def inactivate
+    # @useredit is the User being edited and @user is the current user
+    @useredit=User.find_current(params[:wedgetail])
+    authorize_only (:user) {@useredit.wedgetail == @user.wedgetail} # users can edit themselves
+    authorize_only (:leader) { @useredit.team == @user.team  || @useredit.wedgetail == @user.team }
+    authorize :admin # admins can do whatever they like
+    # team leaders can edit patients, themselves, users of their team and the team itself
+    authorize :admin # admins can do whatever they like
+    if @useredit.update_attribute(:role,10)
+      flash[:notice] = 'User was successfully inactivated.'
+    else
+      flash[:notice] = 'Error when inactivated user.'
+    end
+    redirect_to :action => 'list_users'
+
+  end
 
   def list_users
     authorize :leader
@@ -345,9 +365,9 @@ class LoginController < ApplicationController
       @thisteam=@user.team
       @all_users=User.find(:all, :conditions => ["(role = 4 or role =3) and team = '#{@thisteam}'"])     
     else
-      @all_users = User.find(:all,:conditions => ["role<5"], :order => "role") 
+      @all_users = User.find(:all,:conditions => ["role<5 or role=10"], :order => "role") 
     end
-    @role = ["","big_wedgie","admin","team leader","provider","patient","team"]
+    @role = ["","big_wedgie","admin","team leader","provider","patient","team","guest","","","inactive"]
   end
  
   def list_teams
