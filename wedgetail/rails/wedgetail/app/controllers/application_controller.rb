@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
   # session :session_key => '_wedgetail_session_id'
   before_filter :adjust_format_for_iphone 
   helper_method :iphone_user_agent?
-
+  filter_parameter_logging "password"
+ 
   private 
   
   def adjust_format_for_iphone 
