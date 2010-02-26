@@ -110,7 +110,8 @@ class PatientsController < ApplicationController
       force=""
       
       # first check to see if 'force' in place
-      if params[:patient][:force]=="true"
+      
+      if params[:patient][:force] and params[:patient][:force]=="true"
         force="true"
         params[:patient].delete("force")
       end
@@ -164,7 +165,7 @@ class PatientsController < ApplicationController
           
           if @localID
             @team=@user.wedgetail
-            @team=@user.team if @user.team !="" and @user.team !='0' and @user.team !=NULL
+            @team=@user.team if @user.team and @user.team !="" and @user.team !='0'
             Localmap.create(:team=>@team,:localID=>@localID,:wedgetail=>@patient.wedgetail)
           end
           
