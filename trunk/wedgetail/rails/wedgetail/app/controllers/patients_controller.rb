@@ -183,12 +183,13 @@ class PatientsController < ApplicationController
             if failflag==""
               failflag=@patient.errors.each_full {|msg| p msg}
             end
-            
-            @message=failflag
-                # used to send :status => :unprocessable_entity but this returns a 422 error 
-                # and DOTNET failed without being able to read it
-                render :xml => @patients, :template => 'patients/patients.xml.builder'
           
+            @message=failflag
+            logger.error failflag
+            # used to send :status => :unprocessable_entity but this returns a 422 error 
+            # and DOTNET failed without being able to read it
+            render :xml => @patients, :template => 'patients/patients.xml.builder'
+          }
               
         end
       end
