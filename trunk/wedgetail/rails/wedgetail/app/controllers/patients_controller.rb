@@ -110,7 +110,6 @@ class PatientsController < ApplicationController
       force=""
       
       # first check to see if 'force' in place
-      
       if params[:patient][:force] and params[:patient][:force]=="true"
         force="true"
         params[:patient].delete("force")
@@ -186,8 +185,10 @@ class PatientsController < ApplicationController
             end
             
             @message=failflag
-                render :xml => @patients, :template => 'patients/patients.xml.builder',:status => :unprocessable_entity 
-          }
+                # used to send :status => :unprocessable_entity but this returns a 422 error 
+                # and DOTNET failed without being able to read it
+                render :xml => @patients, :template => 'patients/patients.xml.builder'
+          
               
         end
       end
