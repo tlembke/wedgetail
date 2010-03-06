@@ -15,31 +15,33 @@ class Narrative < ActiveRecord::Base
     # Nothing yet
     #name=base_part_of(narrative_field.original_filename)
     if narrative_field!=""
-      content_type=narrative_field.content_type.chomp
-      content=narrative_field.read
+      self.content_type=narrative_field.content_type.chomp
+      self.content=narrative_field.read
       if content.starts_with?("MSH|") or content.starts_with?("FHS|")
         raise WedgieError,"This interface should not be used to upload HL7 -- use Upload File on the left-hand menu instead"
       end
-      # this is when someone is manaully associating a Word or RTF file with a patient
-      # so we don't need to parse it for a Re: line
-      # but we do want to convert to HTML
-      case content_type
-        when 'application/msword','application/x-msword','application/x-ms-word'
-          self.content = MessageProcessor.make_html_from_doc(file)
-          self.content_type='text/html'
-        when 'application/rtf','application/x-rtf','text/rtf'
-          self.content = MessageProcessor.make_html_from_rtf(file)
-          self.content_type='text/html'
-        else
-          self.content = content
-          self.content_type = content_type
-      end
+      convert_docs
     else
       self.content_type="text/x-clinical"
-    end
-    
+    end    
   end
-  
+
+
+  def convert_docs
+    # this is when someone is manaully associating a Word or RTF file with a patient
+    # so we don't need to parse it for a Re: line
+    # but we do want to convert to HTML
+    case content_type
+    when 'application/msword','application/x-msword','application/x-ms-word'
+      self.content = MessageProcessor.make_html_from_doc(file)
+      self.content_type='text/html'
+    when 'application/rtf','application/x-rtf','text/rtf'
+      self.content = MessageProcessor.make_html_from_rtf(file)
+      self.content_type='text/html'
+    end
+  end
+
+
   # return some form of HTML
   # in particular if we are RTF-inside-PIT the necessary conversion is done
   # Note: does not convert HL7

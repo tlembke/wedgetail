@@ -22,6 +22,7 @@ class PatientsController < ApplicationController
       format.html {render :layout=>'layouts/standard'}
       format.iphone {render :layout=> 'layouts/application.iphone.erb'}# index.iphone.erb 
       format.xml { render :xml => @patients, :template => 'patients/patients.xml.builder' }
+      format.text { render_text_data(@patients,[:wedgetail,:family_name,:given_names,:dob,:address_line,:town,:postcode,:medicare]) }
     end
   end
 
@@ -136,12 +137,6 @@ class PatientsController < ApplicationController
             end
           end
       end
-          
-  
-
-      
-
-      
       
       if failflag==""
         @patient = User.new(params[:patient])
@@ -177,21 +172,20 @@ class PatientsController < ApplicationController
             @patients=[@patient]
             render :xml => @patients, :template => 'patients/patients.xml.builder', :status => :created 
           }
+          format.text { render_text_ok } 
         else
+          if failflag==""
+            failflag=@patient.errors.each_full {|msg| p msg}
+          end
           format.html { render :action => :new,:layout=>'layouts/standard'}
-          format.xml  {
-            if failflag==""
-              failflag=@patient.errors.each_full {|msg| p msg}
-            end
-          
+          format.xml {
             @message=failflag
             logger.error failflag
             # used to send :status => :unprocessable_entity but this returns a 422 error 
-            # and DOTNET failed without being able to read it
-            render :xml => @patients, :template => 'patients/patients.xml.builder'
+            # which causes .NET to throw an exception
+            render :xml => @patients, :template => 'patients/patients.xml.builder' #,:status => :unprocessable_entity 
           }
-              
-        end
+          format.text { render_text_error(failflag) }
       end
   end
 
@@ -261,6 +255,7 @@ end
     respond_to do |format|
       format.html # search.html.erb 
       format.xml { render :xml => @patients, :template => 'patients/patients.xml.builder' }
+      format.text { render_text_data(@patients,[:wedgetail,:family_name,:given_names,:dob,:address_line,:town,:postcode,:medicare]) }
     end 
   end
 
