@@ -89,7 +89,7 @@ class ApplicationController < ActionController::Base
             true
             
         end
-        format.xml do 
+        format.any(:text,:xml,:yaml) do 
             user = authenticate_with_http_basic do |login, password| 
               User.authenticate(login, password) 
             end 
@@ -115,7 +115,7 @@ class ApplicationController < ActionController::Base
         format.any(:html, :iphone) do    
             @authorised = false
         end
-        format.xml do 
+        format.any(:xml,:text,:yaml) do 
           user = authenticate_with_http_basic do |login, password| 
             User.authenticate(login, password) 
           end 
@@ -169,20 +169,39 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def render_list (fields,list)
+  def render_text_data(data,fields)
   # render a list of objects, fields is a list of symbols on the objects in list
-    render :content_type=>'text/plain',:status=>200,:text=>proc do |response,output|
-      list.each do |line|
-        output.write(line.send(fields[0]))
-        fields[1..-1].each do |x| 
-          output.write("\t")
-          output.write(line.send(x))
+    first = true
+    render :content_type=>'text/plain',:status=>200,:text=>Proc.new { |response,output|
+      data.each do |line|
+        if first
+          first=false
+        else
+          output.write("\n")
         end
-        output.write("\r\t\n")
+        first2= true
+        fields.each do |x|
+          if first2
+            first2=false
+          else
+            output.write("\t")
+          end
+          y = line.send(x)
+          if y.is_a? Date
+            output.write(y.strftime("%Y-%m-%d"))
+          else
+            output.write(y)
+          end
+        end
       end
-    end
+    }
   end
   
+  def render_text_ok
+    render :content_type=>'text/plain',:status=>200,:text=>"OK"
+  end
 
-
+  def render_text_error(error)
+    render :content_type=>'text/plain',:status=>:unprocessable_entity,:text=>error
+  end
 end

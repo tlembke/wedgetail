@@ -16,6 +16,7 @@ class NarrativesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @narratives }
+      format.text { render_text_data(@narratives,[:id,:type,:title,:content_type,:narrative_date]) }
     end
   end
 
@@ -99,19 +100,22 @@ class NarrativesController < ApplicationController
         failflag="Error 2:Patient with that wedgetail not found"
       end
     end
-    
+    @narrative.convert_docs
     respond_to do |format|
       if failflag=="" and @narrative.save
+        @narrative.sendout 
         flash[:notice] = 'Narrative was successfully created.'
         @message="Narrative created"
          @narratives=[@narrative]
         format.html { redirect_to(@narrative) }
         format.xml  { render :xml => @narratives, :template => 'narratives/narratives.xml.builder',:status => :created }
+        format.text { render_text_ok }
       else
         @message=failflag
         @narratives=[@narrative]
         format.html { render :action => "new" }
-        format.xml  { render :xml => @narratives, :template => 'narratives/narratives.xml.builder', :status => :unprocessable_entity }
+        format.xml  { render :xml => @narratives, :template => 'narratives/narratives.xml.builder'  } #, :status => :unprocessable_entity }
+        format.text { render_text_error (failflag) }
       end
     end
   end
