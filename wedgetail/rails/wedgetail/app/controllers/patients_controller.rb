@@ -154,7 +154,7 @@ class PatientsController < ApplicationController
         @patient.created_by=@user.wedgetail
       end
 
-       respond_to do |format|
+      respond_to do |format|
         if failflag=="" and @patient.save
           
           if @localID
@@ -186,8 +186,9 @@ class PatientsController < ApplicationController
             render :xml => @patients, :template => 'patients/patients.xml.builder' #,:status => :unprocessable_entity 
           }
           format.text { render_text_error(failflag) }
-      end
-  end
+        end # if
+      end # respond_to
+  end # def
 
   # PUT /patients/1
   # PUT /patients/1.xml
