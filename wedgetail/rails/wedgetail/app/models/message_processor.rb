@@ -154,6 +154,7 @@ class MessageProcessor
       patient = User.find_by_wedgetail(data[:wedgetail],:order=>"created_at DESC")
       raise WedgieError, 'wedgetail no %s not valid' % data[:wedgetail] unless data[:wedgetail]
       data[:narrative_date] ||= Time.now
+      data[:narrative_type_id]= 14  unless data[:narrative_type_id]
       d = {:wedgetail=>data[:wedgetail],:content_type=>content_type,:content=>file,:created_by=>user_id,:narrative_type_id=>data[:narrative_type_id],:narrative_date=>data[:narrative_date]}
       if plaintext
         d[:plaintext] = plaintext

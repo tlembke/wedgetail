@@ -19,7 +19,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :messages, :collection => { :out => :get,:archive => :get,:count => :get }
 
-  map.resources :narratives
+  map.resources :narratives, :member=> { :download => :get } 
 
   map.resources :item_numbers
 

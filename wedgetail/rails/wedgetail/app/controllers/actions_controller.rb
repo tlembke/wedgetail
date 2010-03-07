@@ -123,7 +123,6 @@ class ActionsController < ApplicationController
     if @notifiees.length>0
       for @next in @notifiees
          @recipient= User.find_by_wedgetail(@next,:order=>"created_at DESC")
-         debugger
          if @recipient.email.to_s != ""
              @email=WedgeMailer.deliver_result_notify(@recipient)
          end

@@ -16,8 +16,8 @@ class OutgoingMessage < ActiveRecord::Base
   def sendout(recip=nil,max_sends=nil)
     max_sends ||= Pref.max_sends
     recip ||= recipient
-    unless recipient.team.blank? or recipient.team == "0"
-      recipient = User.find_by_wedgetail(recipient.team)
+    unless recip.team.blank? or recip.team == "0"
+      recip = User.find_by_wedgetail(recip.team)
     end
     begin
       case recip.crypto_pref

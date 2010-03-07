@@ -24,7 +24,33 @@ class NarrativesController < ApplicationController
   # GET /narratives/1.xml
 
 
+  def download
+      @narrative=Narrative.find(params[:id])
+      if @narrative.data==""
+        flash[:notice] = 'Narrative not suitable to download.'
+        redirect_to(@narrative)
+      end
+      
 
+
+    
+        authorize_only (:patient) {@wedgetail == @user.wedgetail}
+        authorize_only (:temp) {@wedgetail == @user.wedgetail.from(6)}
+        authorize_only(:leader){@patient.firewall(@user)}
+        authorize_only(:user){@patient.firewall(@user)}
+        authorize :admin
+        @audit=Audit.create(:patient=>@wedgetail,:user_wedgetail=>@user.wedgetail)
+        
+         send_data(@narrative.data,
+                :filename => @narrative.content, 
+                :type => @narrative.content_type, 
+                :disposition => "inline"
+                )
+       
+        
+        
+      
+  end
 
   def show
     # show only specified narrative
@@ -90,6 +116,13 @@ class NarrativesController < ApplicationController
     if failflag==""
       @narrative = Narrative.new(params[:narrative])
       @narrative.created_by=@user.wedgetail
+      # check if rtf
+     
+      if @narrative.content.starts_with? "{\\rtf"
+        html_text=MessageProcessor.make_html_text_from_rtf(@narrative.content)
+        @narrative.content=html_text
+        @narrative.content_type="text/html"
+      end
       if @wedgetail
         @narrative.wedgetail=@wedgetail
       end

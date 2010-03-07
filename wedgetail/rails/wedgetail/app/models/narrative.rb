@@ -38,6 +38,11 @@ class Narrative < ActiveRecord::Base
     when 'application/rtf','application/x-rtf','text/rtf'
       self.content = MessageProcessor.make_html_from_rtf(file)
       self.content_type='text/html'
+    when 'image.png','image.jpg','image.gif','application/pdf'
+      name=sanitize_filename(narrative_field.original_filename)
+      self.data=content
+      self.content_type = content_type
+      self.content = name
     end
   end
 
