@@ -27,6 +27,7 @@ class NarrativesController < ApplicationController
   def download
       @patient=User.find_by_wedgetail(params[:patient_id],:order =>"created_at DESC") 
       @narrative=Narrative.find(params[:id])
+       @patient=User.find_by_wedgetail(@narrative.wedgetail,:order =>"created_at DESC") 
       if @narrative.data==""
         flash[:notice] = 'Narrative not suitable to download.'
         redirect_to(@narrative)
