@@ -13,33 +13,34 @@ class Narrative < ActiveRecord::Base
   # uploading via this method does not do patient-name matching
   def uploaded_narrative=(narrative_field)
     # Nothing yet
-    #name=base_part_of(narrative_field.original_filename)
+    name=narrative_field.original_filename
+    file=narrative_field
     if narrative_field!=""
       self.content_type=narrative_field.content_type.chomp
       self.content=narrative_field.read
       if content.starts_with?("MSH|") or content.starts_with?("FHS|")
         raise WedgieError,"This interface should not be used to upload HL7 -- use Upload File on the left-hand menu instead"
       end
-      convert_docs
+      convert_docs(name)
     else
       self.content_type="text/x-clinical"
     end    
   end
 
 
-  def convert_docs
+  def convert_docs(name)
     # this is when someone is manaully associating a Word or RTF file with a patient
     # so we don't need to parse it for a Re: line
     # but we do want to convert to HTML
     case content_type
     when 'application/msword','application/x-msword','application/x-ms-word'
-      self.content = MessageProcessor.make_html_from_doc(file)
+      self.data=self.content
+      self.content = MessageProcessor.make_html_from_doc(content)
       self.content_type='text/html'
     when 'application/rtf','application/x-rtf','text/rtf'
-      self.content = MessageProcessor.make_html_from_rtf(file)
+      self.content = MessageProcessor.make_html_from_rtf(content)
       self.content_type='text/html'
-    when 'image.png','image.jpg','image.gif','application/pdf'
-      name=sanitize_filename(narrative_field.original_filename)
+    when 'image/png','image/jpg','image/gif','application/pdf'
       self.data=content
       self.content_type = content_type
       self.content = name
@@ -105,6 +106,8 @@ class Narrative < ActiveRecord::Base
         else
           raise "cannot determine partial for yaml narrative type %s" % content_type_id
         end
+      elsif content_type=='application/pdf' or content_type=='image/jpg' or content_type=='image/png' or content_type=='image/gif' 
+        partial = 'file'
       else
         message = to_html
         partial = 'pit'
