@@ -2,7 +2,7 @@
 <h1><%= @title %></h1>
 <% for @narrative in @narratives %>
 	<fieldset>
-		<legend><%= @narrative.narrative_date.strftime("%d/%m/%y")%>   <%= @narrative.title-%></legend>	
+		<legend><%= @narrative.narrative_date.strftime("%d/%m/%y") if @narrative.narrative_date %>   <%= @narrative.title-%></legend>	
 		<% content, partial = @narrative.convert %>
 				<%= render(:partial=>partial,:object=>content)%>
 		<br>

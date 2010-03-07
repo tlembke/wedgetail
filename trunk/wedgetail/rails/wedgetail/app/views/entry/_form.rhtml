@@ -15,8 +15,8 @@
 <div id="notes_completions"></div>
 <div id="notes_comment"></div>
 </div>
-You can <b>either</b> upload a plain text file by selecting it<br>
-<%=form.file_field("uploaded_narrative")%>  or<br>
+You can <b>either</b> upload a plain text, rtf, doc, jpg, gif or pdf file by selecting it<br>
+<%=form.file_field("uploaded_narrative")%> or<br>
 <b>Or</b> enter text in the field above<br></p>
 <p><label for="narrative_narrative_type">Narrative type</label><br/>
 <%= form.collection_select('narrative_type_id', @narrative_type, :id, :narrative_type_name)  %></p>
