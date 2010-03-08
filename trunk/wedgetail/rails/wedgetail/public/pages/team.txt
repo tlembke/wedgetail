@@ -5,11 +5,12 @@ We need programmers, testers, and documenters.
 
 The team consists of 
 <blockquote>
-Cati Smith
-Ian Haywood
-David Guest
 Tony Lembke
+David Guest
+Ian Haywood
+Cati Smith
+Martin Morgan
 </blockquote>
 
-The support of the <a href='http://nrgpn.org.au'>Northern Rivers General Practice Network</a> is gratefully acknowledged.
+The support of the <a href='http://www.nrgpn.org.au'>Northern Rivers General Practice Network</a> is gratefully acknowledged.
 
