@@ -118,13 +118,6 @@ class NarrativesController < ApplicationController
     if failflag==""
       @narrative = Narrative.new(params[:narrative])
       @narrative.created_by=@user.wedgetail
-      # check if rtf
-     
-      if @narrative.content.starts_with? "{\\rtf"
-        html_text=MessageProcessor.make_html_text_from_rtf(@narrative.content)
-        @narrative.content=html_text
-        @narrative.content_type="text/html"
-      end
       if @wedgetail
         @narrative.wedgetail=@wedgetail
       end
