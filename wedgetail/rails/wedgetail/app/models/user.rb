@@ -228,7 +228,7 @@ class User < ActiveRecord::Base
     # returns array of patients that user is authorised to find
     @ok_patients=[]
     sdob=""
-    unless dob.to_s ==""
+    unless dob.to_s == ""
       sdob= " and dob = '"+ dob+"'"
     end
     # must have at least family_name

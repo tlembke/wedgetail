@@ -1,0 +1,19 @@
+<table>
+  <tr><th>Name</th><th>Since Year</th><th>Status</th></th></tr>
+
+  <% diagnoseslist.each { |diagnosis| %>
+    <tr>
+      <td><%= diagnosis['name'] %></td>
+      <td><%= diagnosis['year'] %></td>
+      <td>
+	<%= case diagnosis['status'] 
+	        when 1 then "confirmed"
+	        when 2 then "probable"
+	        when 3 then "suspected"
+	        when 4 then "<b>disproven</b>" 
+            end %>
+      </td>
+     
+    </tr>    
+  <% } %>
+</table>

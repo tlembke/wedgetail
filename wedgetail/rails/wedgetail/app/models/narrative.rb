@@ -28,7 +28,7 @@ class Narrative < ActiveRecord::Base
   end
 
 
-  def convert_docs(name)
+  def convert_docs(name="noname")
     # this is when someone is manaully associating a Word or RTF file with a patient
     # so we don't need to parse it for a Re: line
     # but we do want to convert to HTML
@@ -84,7 +84,8 @@ class Narrative < ActiveRecord::Base
   # used to control the message-viewing control.
   # returns +[message,partial]+
   # For HL7 +message+ is the parsed HL7 object, +partial+ is the HL7 message type.
-  # For all others +message+ is the same as value and +partial+ is the string "pit"
+  # For YAML +message+ is the YAML-parsed object (usually a list of hashes) and +partial+ is based on the narrative type
+  # For all others +message+ is the HTML and +partial+ is the string "pit"
   def convert
     begin
       if content_type == 'application/edi-hl7'
@@ -96,13 +97,15 @@ class Narrative < ActiveRecord::Base
           message = 'Parsing error - HL7 has no MSH segment'
         end
       elsif content_type=='text/yaml'
-        message = content_yaml
-	      if narrative_type_id == 10
-          partial = "form"
+        message = YAML.load(content)
+        if narrative_type_id == 10
+          partial = "yaml_form"
         elsif narrative_type_id == 11
-          partial = "script"
-	      elsif narrative_type_id == 12
-          partial = "disease"
+          partial = "yaml_script"
+	elsif narrative_type_id == 12
+          partial = "diagnoseslist"
+        elsif narrative_type_id == 2
+          partial = "medslist"
         else
           raise "cannot determine partial for yaml narrative type %s" % content_type_id
         end

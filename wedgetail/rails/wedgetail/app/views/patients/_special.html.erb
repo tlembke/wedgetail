@@ -9,7 +9,7 @@
 				<legend><%=@thisNarrative.narrative_type.narrative_type_name%></legend>
 				<h1><%= @thisNarrative.narrative_date.strftime("%d/%m/%y") if @thisNarrative.narrative_date%>   <%= @thisNarrative.title-%></h1>
 				<% content, partial = @thisNarrative.convert %>
-				<%= render(:partial=>partial,:object=>content)%>
+				<%= render(:partial=>'narratives/'+partial,:object=>content)%>
 				
 				<br><hr><br>
 				<%= "Created by "+ @thisNarrative.author + "<br>" if @thisNarrative.author && @thisNarrative.author!=""%>

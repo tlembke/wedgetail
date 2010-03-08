@@ -1,6 +1,8 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 
+require 'yaml'
+
 class ApplicationController < ActionController::Base
   # Pick a unique cookie name to distinguish our session data from others'
   # session :session_key => '_wedgetail_session_id'
@@ -170,7 +172,8 @@ class ApplicationController < ActionController::Base
   end
 
   def render_text_data(data,fields)
-  # render a list of objects, fields is a list of symbols on the objects in list
+  # render a list of objects as traditional UNIX-style tab-separated fields, one recrd per line
+  # fields is a list of symbols, data a list of objects, the symbols are members of the objects
     first = true
     render :content_type=>'text/plain',:status=>200,:text=>Proc.new { |response,output|
       data.each do |line|
@@ -192,6 +195,30 @@ class ApplicationController < ActionController::Base
           else
             output.write(y)
           end
+        end
+      end
+    }
+  end
+
+  def render_text_yaml(data,fields)
+    # also outputs UNIX-style tabs-and-newlines, but data is a YAML document
+    data = YAML.load(data)
+    first = true
+    render :content_type=>'text/plain',:status=>200,:text=>Proc.new { |response,output|
+      data.each do |line|
+        if first
+          first=false
+        else
+          output.write("\n")
+        end
+        first2=true
+        fields.each do |x|
+          if first2
+            first2=false
+          else
+            output.write("\t")
+          end
+          output.write(line[x])
         end
       end
     }
