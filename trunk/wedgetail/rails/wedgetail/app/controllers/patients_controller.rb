@@ -22,7 +22,7 @@ class PatientsController < ApplicationController
       format.html {render :layout=>'layouts/standard'}
       format.iphone {render :layout=> 'layouts/application.iphone.erb'}# index.iphone.erb 
       format.xml { render :xml => @patients, :template => 'patients/patients.xml.builder' }
-      format.text { render_text_data(@patients,[:wedgetail,:family_name,:given_names,:dob,:address_line,:town,:postcode,:medicare]) }
+      format.text { render_text_data(@patients,[:wedgetail,:family_name,:given_names,:known_as,:dob,:sex,:address_line,:town,:postcode,:medicare]) }
     end
   end
 
@@ -256,7 +256,7 @@ end
     respond_to do |format|
       format.html # search.html.erb 
       format.xml { render :xml => @patients, :template => 'patients/patients.xml.builder' }
-      format.text { render_text_data(@patients,[:wedgetail,:family_name,:given_names,:dob,:address_line,:town,:postcode,:medicare]) }
+      format.text { render_text_data(@patients,[:wedgetail,:family_name,:given_names,:known_as,:dob,:sex,:address_line,:town,:postcode,:medicare]) }
     end 
   end
 

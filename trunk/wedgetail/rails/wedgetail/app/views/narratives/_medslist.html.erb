@@ -1,0 +1,14 @@
+<table>
+  <tr><th>Name</th><th>Form/Strength</th><th>Instructions</th><th>Quantity</th><th>Repeats</th><th>Authority</th></tr>
+
+  <% medslist.each { |med| %>
+    <tr>
+      <td><%= med['name'] %></td>
+      <td><%= med['strength'] %></td>
+      <td><%= med['instructions'] %></td>
+      <td><%= med['quantity'] %></td>
+      <td><%= med['repeats'] %></td>
+      <td><%= med['authority'] %></td>
+    </tr>    
+  <% } %>
+</table>

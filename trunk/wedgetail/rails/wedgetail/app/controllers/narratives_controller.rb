@@ -10,13 +10,13 @@ class NarrativesController < ApplicationController
       @narrativeType=NarrativeType.find(params[:type])
       @title=@narrativeType.narrative_type_name.pluralize
     else
-      afjkdakfakb
+      raise WedgieError,'not correct parameters'
     end
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @narratives }
-      format.text { render_text_data(@narratives,[:id,:type,:title,:content_type,:narrative_date]) }
+      format.text { render_text_data(@narratives,[:id,:narrative_type_id,:title,:content_type,:narrative_date]) }
     end
   end
 
@@ -76,6 +76,60 @@ class NarrativesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @narrative }
+      format.text {
+        if @narrative.content_type == 'text/yaml'
+          case @narrative.narrative_type_id
+            when 2 # medication chart
+            render_text_yaml(@narrative.content,["name","strength","instructions","quantity","repeats","authority"])
+            when 12 # disease list
+            render_text_yaml(@narrative.content,["name","year","status"])
+            else
+            render_text_error("Cannot render narrative as text")
+          end
+        else
+          render_text_error("Cannot render narrative as text")
+        end
+      }
+    end
+  end
+
+
+def show_as_html
+    # show only specified narrative
+      @narrative=Narrative.find(params[:id])
+      @narrative.narrative_type_id=14 unless @narrative.narrative_type_id
+      @title=@narrative.narrative_type.narrative_type_name
+      @patient=User.find_by_wedgetail(@narrative.wedgetail,:order =>"created_at DESC")
+      @wedgetail=@narrative.wedgetail
+      @narratives=Array.new
+      @narratives << @narrative
+
+    
+        authorize_only (:patient) {@wedgetail == @user.wedgetail}
+        authorize_only (:temp) {@wedgetail == @user.wedgetail.from(6)}
+        authorize_only(:leader){@patient.firewall(@user)}
+        authorize_only(:user){@patient.firewall(@user)}
+        authorize :admin
+        @audit=Audit.create(:patient=>@wedgetail,:user_wedgetail=>@user.wedgetail)
+        OutgoingMessage.check_view(@user,@narrative) if @narrative
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @narrative }
+      format.text {
+        if @narrative.content_type == 'text/yaml'
+          case @narrative.narrative_type_id
+            when 2 # medication chart
+            render_text_yaml(@narrative.content,["name","strength","instructions","quantity","repeats","authority"])
+            when 12 # disease list
+            render_text_yaml(@narrative.content,["name","year","certainty"])
+            else
+            render_text_error("Cannot render narrative as text")
+          end
+        else
+          render_text_error("Cannot render narrative as text")
+        end
+      }
     end
   end
 
