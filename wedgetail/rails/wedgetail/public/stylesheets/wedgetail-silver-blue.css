@@ -1,0 +1,422 @@
+/* Wedgetail default CSS*/
+/* Version 1.0 */
+
+/* Global styles */
+/* columns is block below banner and consists of side, main and toolbar */
+
+
+
+#columns {
+  background: #FFFFFF;
+  position: absolute;
+  width: 99%;
+}
+
+#columns ul, ol, td, p ,body{
+  font-family: arial, verdana, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+#columns a { color: #000; }
+#columns a:visited { color: #666; }
+#columns a:hover { color: #fff; background-color:#000; }
+
+h1 {
+  font:  150% sans-serif;
+  color: #226;
+  /* border-bottom: 3px dotted #77d; */
+}
+h2 {
+  font:  150% sans-serif;
+  /* color: #226;  */
+  border: 2px  solid #77d;;
+
+}
+
+
+/* notice (flash) */
+#notice {
+  border: 2px solid green;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold smaller sans-serif;
+  width: 80%
+}
+
+
+
+/* patient list */
+/* displayed after patient search - is paginated */
+#patient-list .list-title {
+	color:        #244;
+	font-weight:  bold;
+}
+
+
+#patient-list .list-actions {
+  font-size:    x-small;
+  text-align:   right;
+  padding-left: 1em;
+}
+
+#patient-list .list-line-odd {
+  background:   #e0f8f8;
+}
+
+#patient-list .list-line-even {
+  background: #eaeaea;
+}
+
+
+/* banner */
+
+.banner {
+  background: url('../images/wedgetail-silver-blue/banner-grey-2x100.png') repeat-x left top;
+  height: 100px;
+
+}
+
+.banner-logo {
+  background: url('../images/wedgetail-silver-blue/wedgetail_horiz_80-trans.png') 50% 20% no-repeat;
+  text-indent: -9999px;
+  height: 80px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+
+
+#main {
+  margin-left: 10em;
+  padding-top: 4ex;
+  padding-left: 2em;
+  background: white;
+}
+
+/* left menubar */
+#side {
+
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-bottom: 1em;
+  width: 9em;
+  background: #FFFFFF;
+  color: #FFA100;
+  position: absolute;
+  left: 0;
+}
+
+#side a{
+  color: #FFA100;
+  font-size: small;
+}
+#side a:visited{
+	color: #FFA100;
+}
+
+#side a.side-button {
+    border: none;
+    background: transparent url('../images/wedgetail-silver-blue/button-up.png') no-repeat top left;
+	width: 110px;
+	height: 35px;
+	display:block !important;
+	display:inline-block;
+	text-align: center;
+	text-decoration: none;
+	color: #FFFFFF;
+	line-height: 30px;
+}
+#side a.side-button:hover {
+    background: transparent url('../images/wedgetail-silver-blue/button-hover.png') no-repeat top left;
+	color: #A9F5F2;
+	line-height: 30px;
+	outline: none;				/* hide dotted outline in FireFox  */
+}
+#side a.side-button:active {
+    background: transparent url('../images/wedgetail-silver-blue/button-down.png') no-repeat top left;
+	color: #A9F5F2;
+	line-height: 31px;
+}
+
+
+.menu{
+list-style-type: none;
+margin: 0;
+padding: 0;
+margin-bottom:1em;
+width: 180px; /* width of menu */
+}
+
+.menu li {
+	margin-bottom: 5px;
+	
+}
+
+label-block {
+    display: block;
+    width: 150px;
+    float: left;
+    margin: 2px 4px 6px 4px;
+    text-align: right;
+}
+
+
+/* patient_demo may be deprecated - needs checking */
+
+#patient_demo{
+	width: 400px;
+	border: 2px solid #5d442b;
+	padding: 7px;
+	padding-bottom: 12px;
+	margin-bottom: 20px;
+	background-color: #cccccc;
+}
+
+/* medication chart used for Ian's autocomplete function */
+
+#medication_chart {
+	float: right;
+	clear: right;
+	width: 400px;
+	border: 2px solid red;
+	padding: 7px;
+	padding-bottom: 12px;
+	margin-bottom: 20px;
+	background-color: #f0f0f0;
+}
+
+/* forms */
+
+.wedgetail-form fieldset {
+  background: #E0F8E0;
+  width:  90%;
+}
+
+
+.wedgetail-form legend {
+  color: #dfd;
+  background: #00677E;
+  font-family: sans-serif;
+  padding: 0.2em 1em;
+}
+
+.wedgetail-form input.button {
+  margin-left: 10em;
+  color: #000000; 
+  background-color: #FFA100; 
+  border: 2px outset #000000;
+  padding: 2px 20px 2px 20px;
+	border-radius: 1em;
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+
+
+}
+.wedgetail-form input.button:hover {
+	background-color: #000;
+	color: #FFA100;
+}
+/* The error box */
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+div.error {
+	font-weight: bold;
+	color: red;
+}
+
+/* for pagination plug-in */
+
+.pagination {
+    padding: 3px;
+    margin: 3px;
+}
+.pagination a {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #aaaadd;
+    text-decoration: none;
+    color: #000099;
+}
+.pagination a:hover, .pagination a:active {
+    border: 1px solid #000099;
+    color: #000;
+}
+.pagination span.current {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #000099;
+    font-weight: bold;
+    background-color: #000099;
+    color: #FFF;
+}
+.pagination span.disabled {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #eee;
+    color: #ddd;
+<<<<<<< .mine
+}
+
+/* the rest all is navbar and toolbar popup stuff*/
+.nav {margin: 1 0 0 0; padding: 0;}
+.nav li {display: inline; list-style: none;}
+
+
+.wrapper {
+	text-align: left;
+	margin: 0 0 0 0;
+	}
+
+
+#header .nav {
+  background: #FFFFFF;
+  text-align: right;
+}
+
+#header .nav li {margin: 0 0;}
+#header .nav a {color: #FFF; text-decoration: none;}
+#header .nav a:hover {text-decoration: underline;}
+
+#header .nav .index {
+	padding: 0.5em 0.5em 0.5em 1.5em;
+	border-radius: 1em;
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	background: #980905;
+	
+}
+
+.nav li {display: inline; list-style: none;}
+
+
+#header .nav li {margin: 0 1.5em 0 1.5em;}
+#header .nav a {color: #fff; text-decoration: none;}
+#header .nav a:hover {text-decoration: underline;}
+
+#header .nav .index a {
+	background: #980905 url(http://wedgetail.org.au/images/nav_arrow.gif) no-repeat right top; 
+	padding-right: 1em;	
+	position: relative;
+	z-index: 15;
+	padding-bottom: 0.125em;
+}
+
+#guides {
+	width: 5em;
+	display: block;
+	background: #980905;
+	border-radius: 1em;
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	-webkit-box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.25);
+	-moz-box-shadow: rgba(0,0,0,0.25) 0.25em 0.25em 1em;
+	color: #f1938c;
+	padding: 1.5em 2em;
+	position: absolute;
+	z-index: 10;
+	top: -0.5em;
+	right: 0;
+	padding-top: 2em;
+}
+
+#guides dt, #guides dd {
+	font-weight: normal;
+	font-size: 0.722em;
+	margin: 0;
+	padding: 0;
+}
+#guides dt {padding:0; margin: 0.5em 0 0;}
+#guides a {color: #FFF; background: none !important;}
+#guides .L, #guides .R {float: left; width: 50%; margin: 0; padding: 0;}
+#guides .R {float: right;}
+#guides hr {
+	display: block;
+	border: none;
+	height: 1px;
+	color: #f1938c;
+	background: #f1938c;
+}
+/* Clearing
+--------------------------------------- */
+
+
+
+.clearfix {display: inline-block;}
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+.clear { clear:both; }
+
+
+/* also used in auto-complete */
+div#notes_surrounder
+{ 
+  position:relative;
+}
+
+textarea#narrative_content { 
+                width:98%;
+                height:20em;
+}
+
+div#notes_completions { 
+                        position:absolute;
+                        top:5ex;
+                        left:5ex;
+                        background-color:yellow;
+                        z-index: 1;
+                        }
+
+span.compl_letter { 
+                    font-size: large;
+                    font-weight: bold;
+                    font-family: monospace;
+                    
+                    }
+span.compl_type { 
+                  font-size: small;
+                  font-style: italic;
+                  }
+}
+
+table.pbslist { 
+                border-collapse: collapse;
+   
+ }

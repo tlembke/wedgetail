@@ -10,6 +10,33 @@ module ApplicationHelper
     end
     return comment 
   end
+
+  def show_button(icon_name,link_path="",link_text='',tooltip_title="",tooltip_text="",icon_size='medium',icon_set='tango',tooltip_extra="")
+    
+    text_part1=""
+    if link_text!=""
+      text_part1+=link_text
+    end
+    if link_path!=""
+      text_part1=link_to(text_part1,link_path)
+    end
+    
+    text_part1="<a class=side-button href=#{link_path} id=#{icon_name}><span>#{link_text}</span></a>"
+    text_part2=""
+    ttt_text=""
+
+    if (tooltip_text!="" or tooltip_title!="")
+      ttt_text=",{"
+      if (tooltip_title!="")
+        ttt_text+="title:'"+tooltip_title+"', "
+      end
+
+      ttt_text+=tooltip_extra+"}"
+      text_part2="\n<script>new Tip(\""+icon_name+"\",\""+tooltip_text+"\""+ttt_text+");</script>\n"
+    end
+    return text_part1+text_part2
+  end
+
   
   def show_icon(icon_name,link_path="",link_text='',tooltip_title="",tooltip_text="",icon_size='medium',icon_set='tango',tooltip_extra="")
     
