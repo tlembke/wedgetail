@@ -29,10 +29,12 @@
 </head> 
 <body>
 	
-<div id="banner"> 
-<img class="logo" src="/images/wedgetail_logo.gif"/>
-<img src="/images/wedgetail_horiz_80.jpg" align=center /> 
-</div> 
+<div class="banner">	
+  <div class="banner-logo">
+  	<h1>Wedgetail</h1>
+  </div>
+</div>
+
 <div id="columns"> 
 <div id="side"> 
 <%= render :partial => 'layouts/side_links' if session[:user_id] and not controller === PageController %>
