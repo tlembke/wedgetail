@@ -13,4 +13,5 @@
   <%= submit_tag "Create" %>
 <% end %>
 
-<%= link_to 'Back', :controller=>'record',:action => 'show',:wedgetail=>@narrative.wedgetail %>
+<%= link_to 'Back', :controller=>'patients',:action => 'show', :id=>@patient.wedgetail %>
+
