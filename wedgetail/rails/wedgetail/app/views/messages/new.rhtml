@@ -35,14 +35,14 @@
 </fieldset>
 <!--[eoform:message]-->
 
-  <%= submit_tag "Send" %>
+  <br/><%= submit_tag "Send" %>
 <% end %>
-</div>
+</div><p>
 <% if params[:return] == "patient" %>
-  <%= link_to 'Back', :controller=> 'patients', :action => 'show', :id=>@recipient.wedgetail%><p>
+  <%= link_to 'Back', :controller=> 'patients', :action => 'show', :id=>@recipient.wedgetail%>
 <% elsif params[:re_id] %>
-  <%= link_to 'Back', :controller=> 'patients', :action => 'show', :id=>params[:re_id]%><p>
+  <%= link_to 'Back', :controller=> 'patients', :action => 'show', :id=>params[:re_id]%>
 <% else %>
-  <%= link_to 'Back', :controller=> 'messages' %><p>
+  <%= link_to 'Back', :controller=> 'messages' %>
 <% end %>	
-
+</p>
