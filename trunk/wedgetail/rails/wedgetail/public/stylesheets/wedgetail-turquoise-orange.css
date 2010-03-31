@@ -45,6 +45,11 @@ h2 {
   width: 80%
 }
 
+/* error (flash) */
+#notice.error {
+  border: 2px solid red;
+  background-color: #f0f0f0;
+}
 
 
 /* patient list */
@@ -156,11 +161,19 @@ width: 116px; /* width of menu */
 	
 }
 
-label-block {
+.label-block label {
     display: block;
     width: 150px;
     float: left;
     margin: 2px 4px 6px 4px;
+    text-align: right;
+}
+
+.block-5em label {
+    display: block;
+    width: 5em;
+    float: left;
+    margin-right: 0.5em;
     text-align: right;
 }
 

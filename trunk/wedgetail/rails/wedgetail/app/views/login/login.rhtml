@@ -10,18 +10,19 @@
 		<legend>Please Log In</legend>
 			If you are looking up a result, please do not log in but <%= link_to 'click here', :controller => 'actions' %>
 		<% form_tag do %> 
-			<p> 
-				<label for="username">Username:</label> 
-				<%= text_field_tag :name, params[:name] %> 
+		  <div class="block-5em">
+		    <p> 
+			  <label for="username">Username:</label> 
+			  <%= text_field_tag :name, params[:name] %> 
 			</p> 
 			<p> 
-				<label for="password">Password:</label> 
-				<%= password_field_tag :password, params[:password] %> 
+			  <label for="password">Password:</label> 
+			  <%= password_field_tag :password, params[:password] %> 
 			</p> 
-			<p> 
-			
-				<%= submit_tag "Login",:class=>'button' %> 
-			</p> 
+		  </div>
+		  <p>
+		    <%= submit_tag "Login",:class=>'button' %> 
+		  </p> 
 		<% end %> 
 	</fieldset> 
 </div>
