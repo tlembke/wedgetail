@@ -5,7 +5,7 @@ module ApplicationHelper
       if comment.starts_with?("{\\rtf")
         comment=MessageProcessor.abiwordise("doc.rtf",comment,false)
         comment=comment.gsub("background:#000000","background:#FFFFFF")
-
+        comment=comment.gsub("color:#ffffff","color:#000000")
       end
     end
     return comment 
@@ -37,6 +37,9 @@ module ApplicationHelper
     return text_part1+text_part2
   end
 
+  
+
+  
   
   def show_icon(icon_name,link_path="",link_text='',tooltip_title="",tooltip_text="",icon_size='medium',icon_set='tango',tooltip_extra="")
     
