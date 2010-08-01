@@ -1,20 +1,20 @@
 <div class="wedgetail-form">
 <table width=100%>
-	<% for  @thisNarrative in  @special%>
-	<% if @thisNarrative%>
-	<% @thiscount=@count[@thisNarrative.narrative_type_id]%>
+	<% for  @narrative in  @special%>
+	<% if @narrative%>
+	<% @thiscount=@count[@narrative.narrative_type_id]%>
 	<tr>
 		<td>
 			<fieldset>
-				<legend><%=@thisNarrative.narrative_type.narrative_type_name%></legend>
-				<h1><%= @thisNarrative.narrative_date.strftime("%d/%m/%y") if @thisNarrative.narrative_date%>   <%= @thisNarrative.title-%></h1>
-				<% content, partial = @thisNarrative.convert %>
+				<legend><%=@narrative.narrative_type.narrative_type_name%></legend>
+				<h1><%= @narrative.narrative_date.strftime("%d/%m/%y") if @narrative.narrative_date%>   <%= @narrative.title-%></h1>
+				<% content, partial = @narrative.convert %>
 				<%= render(:partial=>'narratives/'+partial,:object=>content)%>
 				
 				<br><hr><br>
-				<%= "Created by "+ @thisNarrative.author + "<br>" if @thisNarrative.author && @thisNarrative.author!=""%>
-				<%= link_to 'Update this '+ @thisNarrative.narrative_type.narrative_type_name, :controller=>'entry',:action=>'new',:wedgetail=>@patient.wedgetail,:narrative=>@thisNarrative.id %>
-				<%= link_to 'Show All '+ @thiscount.to_s + ' ' + @thisNarrative.narrative_type.narrative_type_name.pluralize, patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>@thisNarrative.narrative_type_id) if @thiscount>1 %>
+				<%= "Created by "+ @narrative.author + "<br>" if @narrative.author && @narrative.author!=""%>
+				<%= link_to 'Update this '+ @narrative.narrative_type.narrative_type_name, :controller=>'entry',:action=>'new',:wedgetail=>@patient.wedgetail,:narrative=>@narrative.id %>
+				<%= link_to 'Show All '+ @thiscount.to_s + ' ' + @narrative.narrative_type.narrative_type_name.pluralize, patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>@narrative.narrative_type_id) if @thiscount>1 %>
 			</fieldset>
 		</td>
 	</tr>
