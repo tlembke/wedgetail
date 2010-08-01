@@ -91,7 +91,7 @@ class ApplicationController < ActionController::Base
                   redirect_to(:controller => "login", :action => "login") 
                 end 
                 session[:expires_at] = Pref.time_out.minutes.from_now
-                if @user.theme!="" and @user.theme!="default"
+                if @user.theme and @user.theme!="" and @user.theme!="default"
                     @chosen_theme=@user.theme
                 end
              
