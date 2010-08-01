@@ -58,11 +58,6 @@ class NarrativesController < ApplicationController
     # show only specified narrative
       @narrative=Narrative.find(params[:id])
       @narrative.narrative_type_id=14 unless @narrative.narrative_type_id
-      if @narrative.narrative_type.narrative_type_name
-        @title=@narrative.narrative_type.narrative_type_name
-      else
-        @title="record"
-      end
       @patient=User.find_by_wedgetail(@narrative.wedgetail,:order =>"created_at DESC")
       @wedgetail=@narrative.wedgetail
       @narratives=Array.new
