@@ -9,7 +9,7 @@
 				<%= render(:partial=>partial,:object=>content)%>
 		<br><hr><br>
 		<%= "Created by "+ @narrative.author + "<br>" if @narrative.author && @narrative.author!=""%>
-		<%= if @narrative.narrative_type%>
+		<% if @narrative.narrative_type%>
 		<%= link_to 'Update this '+ @narrative.narrative_type.narrative_type_name, :controller=>'entry',:action=>'new',:wedgetail=>@patient.wedgetail,:narrative=>@narrative.id %>
 		<% else %>
 				<%= link_to 'Update this record', :controller=>'entry',:action=>'new',:wedgetail=>@patient.wedgetail,:narrative=>@narrative.id %>
