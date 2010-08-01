@@ -12,16 +12,46 @@ module ApplicationHelper
   end
 
   def show_button(icon_name,link_path="",link_text='',tooltip_title="",tooltip_text="",icon_size='medium',icon_set='tango',tooltip_extra="")
-    
+    @theme=Theme.find_by_css(@chosen_theme)
     text_part1=""
-    if link_text!=""
-      text_part1+=link_text
+    if @theme.button==0
+      return show_icon(icon_name,link_path,link_text,tooltip_title,tooltip_text,icon_size,icon_set,tooltip_extra)
+    else
+      text_part1="<a class=side-button href=#{link_path} id=#{icon_name}><span>#{link_text}</span></a>"
+      text_part2=""
+      ttt_text=""
+      if (tooltip_text!="" or tooltip_title!="")
+        ttt_text=",{"
+        if (tooltip_title!="")
+          ttt_text+="title:'"+tooltip_title+"', "
+        end
+        ttt_text+=tooltip_extra+"}"
+        text_part2="\n<script>new Tip(\""+icon_name+"\",\""+tooltip_text+"\""+ttt_text+");</script>\n"
+      end
+   
+      return text_part1+text_part2
     end
-    if link_path!=""
-      text_part1=link_to(text_part1,link_path)
+  end
+
+  def show_buttonOld(icon_name,link_path="",link_text='',tooltip_title="",tooltip_text="",icon_size='medium',icon_set='tango',tooltip_extra="")
+    @theme=Theme.find_by_css(@chosen_theme)
+    text_part1=""
+    if @theme.button==0
+      text_part1=image_tag("icons/"+icon_set+"/"+icon_size+"/"+icon_name+".png",:valign=>"middle",:border=>"0")
+      text_part1="<span id=\'"+icon_name+"\'>"+text_part1+"</span>"
+      if link_text!=""
+        text_part1+=link_text
+      end
+      if link_path!=""
+        text_part1=link_to(text_part1,link_path)
+      end
+    else
+      text_part1="<a class=side-button href=#{link_path} id=#{icon_name}><span>#{link_text}</span></a>"
     end
     
-    text_part1="<a class=side-button href=#{link_path} id=#{icon_name}><span>#{link_text}</span></a>"
+
+    
+    
     text_part2=""
     ttt_text=""
 
@@ -34,10 +64,9 @@ module ApplicationHelper
       ttt_text+=tooltip_extra+"}"
       text_part2="\n<script>new Tip(\""+icon_name+"\",\""+tooltip_text+"\""+ttt_text+");</script>\n"
     end
+    
     return text_part1+text_part2
   end
-
-  
 
   
   

@@ -24,7 +24,7 @@
 <li><%= show_button("prefs","/login/password/#{@user.wedgetail}","Preferences") if @user.role == 5 %></li>	
 <li><%= show_button("prefs","/login/edit/#{@user.wedgetail}","Preferences") if @user.role <= 4 %></li>
 <li><%= show_button("network-server","/prefs/edit/","Server Prefs","Server Preferences","Change preferences for this server","medium") if @user.role<2 %></li>
-<li><%= show_button("Doco","/page","Documentation")%></li>
+<li><%= show_button("document-new","/page","Documentation","Documentation","About Wedgetail and Support","medium")%></li>
 <li><%= show_button("system-log-out","/login/logout","Logout","Logout","","medium")%></li>
 
 </ul>

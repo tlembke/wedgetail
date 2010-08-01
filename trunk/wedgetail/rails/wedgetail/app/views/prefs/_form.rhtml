@@ -9,7 +9,9 @@
   <% if val[:default] == false or val[:default] == true %>
     <%= check_box 'pref', key.to_s %> 
   <% elsif val[:name] == "Theme" %>
-    <%= select('pref', key.to_s, { "Turquoise-orange" => "wedgetail-turquoise-orange", "Silver-blue" => "wedgetail-silver-blue"})%>
+	
+    <%= select('pref',key.to_s, @themes)%>
+
   <% else %>
     <%= text_field 'pref', key.to_s,:size=>'25',:maxlength=>'255'  %>
     <% if @errors[key] %>

@@ -2,11 +2,11 @@ class ConditionsController < ApplicationController
   # GET /conditions
   # GET /conditions.xml
   def index
-    @conditions = Condition.find(:all)
+    @conditions = Condition.all
 
     respond_to do |format|
-      format.html # index.rhtml
-      format.xml  { render :xml => @conditions.to_xml }
+      format.html # index.html.erb
+      format.xml  { render :xml => @conditions }
     end
   end
 
@@ -16,17 +16,23 @@ class ConditionsController < ApplicationController
     @condition = Condition.find(params[:id])
 
     respond_to do |format|
-      format.html # show.rhtml
-      format.xml  { render :xml => @condition.to_xml }
+      format.html # show.html.erb
+      format.xml  { render :xml => @condition }
     end
   end
 
   # GET /conditions/new
+  # GET /conditions/new.xml
   def new
     @condition = Condition.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @condition }
+    end
   end
 
-  # GET /conditions/1;edit
+  # GET /conditions/1/edit
   def edit
     @condition = Condition.find(params[:id])
   end
@@ -38,12 +44,12 @@ class ConditionsController < ApplicationController
 
     respond_to do |format|
       if @condition.save
-        flash[:notice] = 'Condition was successfully created.'
-        format.html { redirect_to condition_url(@condition) }
-        format.xml  { head :created, :location => condition_url(@condition) }
+        flash[:notice] = 'condition was successfully created.'
+        format.html { redirect_to(@condition) }
+        format.xml  { render :xml => @condition, :status => :created, :location => @condition }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @condition.errors.to_xml }
+        format.xml  { render :xml => @Condition.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -54,13 +60,13 @@ class ConditionsController < ApplicationController
     @condition = Condition.find(params[:id])
 
     respond_to do |format|
-      if @condition.update_attributes(params[:condition])
-        flash[:notice] = 'Condition was successfully updated.'
-        format.html { redirect_to condition_url(@condition) }
+      if @Condition.update_attributes(params[:condition])
+        flash[:notice] = 'condition was successfully updated.'
+        format.html { redirect_to(@condition) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @condition.errors.to_xml }
+        format.xml  { render :xml => @Condition.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -69,10 +75,10 @@ class ConditionsController < ApplicationController
   # DELETE /conditions/1.xml
   def destroy
     @condition = Condition.find(params[:id])
-    @condition.destroy
+    @Condition.destroy
 
     respond_to do |format|
-      format.html { redirect_to conditions_url }
+      format.html { redirect_to(conditions_url) }
       format.xml  { head :ok }
     end
   end

@@ -5,7 +5,11 @@
 		<legend>Enter <%= "Provider" if (@useredit.role<6) %><%= "Team" if (@useredit.role==6) %>   Details</legend> 
 		<% form_for (:useredit,:url=> {:action => 'update'}) do |form| %> 
 		<%= form.hidden_field :wedgetail%>
+		<p>
 
+    <label for="user_theme">Theme:</label>
+  <%= form.select(:theme, @themes,{:include_blank => 'Default'})%>
+	</p>
 		<% if @useredit.role==6 %>
 		<p> 
 			<label for="user_family_name">Team Name:</label> 

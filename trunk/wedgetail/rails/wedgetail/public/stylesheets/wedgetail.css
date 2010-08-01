@@ -4,7 +4,7 @@
 /* Global styles */
 /* columns is block below banner and consists of side, main and toolbar */
 #columns {
-  background: #FFFFFF;
+  background: #000000;
   position: absolute;
   width: 100%;
 }
@@ -69,7 +69,7 @@ h2 {
 
 /* banner */
 
-#banner {
+.banner {
   background: #00677E;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -79,10 +79,22 @@ h2 {
   text-align: center;
 }
 
+.banner-logo {
+  background: url('../images/wedgetail_horiz_80.jpg') 50% 20% no-repeat;
+  text-indent: -9999px;
+  height: 80px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+
 .logo {
+	background: url('../images/wedgetail_logo.gif') 50% 20% no-repeat;
 	position: absolute;
-	top: 1 px;
-	left: 5px;
+	top:  15px;
+	left: 25px;
+	height: 121px;
+	width: 121px;
 	padding-bottom: 4;
 	z-index: 100;
 }
@@ -118,6 +130,19 @@ h2 {
 	color: #FFA100;
 }
 
+.menu{
+
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	margin-bottom:1em;
+
+
+}
+.menu li {
+	margin-bottom: 5px;
+	
+}
 
 
 /* patient_demo may be deprecated - needs checking */
@@ -217,6 +242,43 @@ div.error {
 	font-weight: bold;
 	color: red;
 }
+
+/* for clinical entry autocompletions */
+div#notes_surrounder
+{ 
+  position:relative;
+}
+
+textarea#narrative_content { 
+                width:99%;
+                height:20em;
+}
+
+div#notes_completions { 
+                        position:absolute;
+                        top:5ex;
+                        left:5ex;
+                        background-color:yellow;
+                        z-index: 1;
+                        }
+
+span.compl_letter { 
+                    font-size: large;
+                    font-weight: bold;
+                    font-family: monospace;
+                    
+                    }
+span.compl_type { 
+                  font-size: small;
+                  font-style: italic;
+                  }
+}
+
+table.pbslist { 
+                border-collapse: collapse;
+   
+ }
+
 
 /* for pagination plug-in */
 

@@ -9,6 +9,7 @@ class PrefsController < ApplicationController
          :redirect_to => { :action => :list }
   def index
     authorize :admin
+    
     render :action=> 'show' if @authorized
   end
 
@@ -17,6 +18,7 @@ class PrefsController < ApplicationController
   end
 
   def edit
+    @themes = Theme.find(:all, :order => "name").map {|u| [u.name, u.css] }
     authorize :admin
   end
 

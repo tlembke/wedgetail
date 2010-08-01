@@ -181,6 +181,7 @@ class LoginController < ApplicationController
 
   def edit
     @useredit=User.find_current(params[:wedgetail])
+    @themes=Theme.find(:all, :order => "name").map {|u| [u.name, u.css] }
     authorize_only (:user) {@useredit.wedgetail == @user.wedgetail} # users can edit themselves
     authorize_only (:leader) { @useredit.team == @user.team  || @useredit.wedgetail == @user.team }
     authorize :admin #apart from admin

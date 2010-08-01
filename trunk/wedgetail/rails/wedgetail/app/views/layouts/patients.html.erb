@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
 <title>Wedgetail Shared EHR</title> 
 
-<%= stylesheet_link_tag  Pref.theme,"prototip", :media => "all" %> 
+<%= stylesheet_link_tag  @chosen_theme,"prototip", :media => "all" %> 
 
 <%= javascript_include_tag :defaults %>
 <%= javascript_include_tag "prototip" %>
@@ -30,9 +30,8 @@
 <body>
 	
 <div class="banner">	
-  <div class="banner-logo">
-  	<h1>Wedgetail</h1>
-  </div>
+  <div class="banner-logo"></div>
+  <div class="logo"></div>
 </div>
 
 <div id="columns"> 
@@ -42,13 +41,15 @@
 <br/>  
  
 </div> 
-<% if (Pref.toolbar==true) and (@patient.hatched) %>
 <div id='header'>
+<% if (@patient.hatched and Pref.toolbar==true) %>
 <div class="wrapper clearfix">
-
 <ul class='nav'>
-
-        <li class="index"><a href="#" onclick="guideMenu()"; return false; id="guidesMenu">Toolbar</a>
+	 <li class="index"><a href="#" onclick="guideMenu()"; return false; id="guidesMenu">Toolbar</a>
+						          <div id="guides" class="clearfix" style="display: none;">
+						            <hr />
+	<%= render :partial => 'layouts/toolbar' %>
+ <li class="index"><a href="#" onclick="guideMenu()"; return false; id="guidesMenu">Toolbar</a>
 					          <div id="guides" class="clearfix" style="display: none;">
 					            <hr />
 <%= render :partial => 'layouts/toolbar' %>
@@ -58,15 +59,17 @@
 </ul>
 
 </div>
-</div>
-<% end %>
-<div id="main">  
 
+<% end %>
+</div>
+
+<div id="main">  
 <% if flash[:notice] -%> 
 <div id="notice"><%= flash[:notice] %></div> 
 <% end -%> 
 
 <table width=99% valign=top>
+
 	<tr>
 		<td width=90% valign=top>
 
@@ -80,7 +83,7 @@
 	&nbsp; &nbsp;<b>Address</b>  <%= @patient.address_line+", "+@patient.town%>
 	</fieldset>
 </div>
-
+ 
 <%= link_to 'Summary', patient_path(@patient.wedgetail) %>|
 <%= link_to "Encounters",patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>4) %> |
 <%= link_to "Letters",patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>8) %> |
