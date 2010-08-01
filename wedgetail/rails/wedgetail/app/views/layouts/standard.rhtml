@@ -1,11 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <! standard>
+
 <html> 
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
 <title>Wedgetail Shared EHR</title> 
-<%= stylesheet_link_tag  Pref.theme,"prototip", :media => "all" %> 
+<%= stylesheet_link_tag  @chosen_theme,"prototip", :media => "all" %> 
 
 <%= javascript_include_tag :defaults %>
 <%= javascript_include_tag "prototip" %>
@@ -32,9 +33,8 @@
 
 	
 <div class="banner">	
-  <div class="banner-logo">
-  	<h1>Wedgetail</h1>
-  </div>
+ <div class="banner-logo"></div>
+	  <div class="logo"></div>
 </div>
 	
 <div id="columns"> 
@@ -46,7 +46,6 @@
 </div> 
 
 <div id="main">  
-
 <% if flash[:notice] -%> 
 <div id="notice"><%= flash[:notice] %></div> 
 <% end -%> 

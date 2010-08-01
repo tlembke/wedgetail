@@ -1,5 +1,20 @@
-<%= render(:partial => "special") %>
+<p><span id='wall_show'><%= link_to_remote "Show Progress Wall", :url => {:action => "toggle",:div=> "wall"} %></span>
+<span id='wall_hide' style="display: none"><%= link_to_remote "Hide Progress Wall", :url => {:action => "toggle",:div=> "wall"} %></span>
 
+<div id="wall" style="display: none">
+	<h1>Progress Wall</h1>
+	 <% form_remote_tag :url => { :action => 'add_post', :id=>@patient.wedgetail } do %>
+	 <%= text_area_tag :post,"",:cols=>60,:rows=>3 %></p>
+		<%= submit_tag "Add Post" %>
+	<% end %>
+	<hr>
+	<div id='built_wall'>
+<%= render(:partial => "wall") %>
+</div>
+</div>
+<div id="special">
+<%= render(:partial => "special") %>
+</div>
 		<table border=1>
 		<% for narrative in @narratives %>
 			<tr>

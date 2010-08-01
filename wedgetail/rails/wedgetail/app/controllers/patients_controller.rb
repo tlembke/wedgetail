@@ -57,8 +57,10 @@ class PatientsController < ApplicationController
           @count[i]= Narrative.count(:all,:conditions=>["wedgetail='#{params[:wedgetail]}' and narrative_type_id='#{i}'"])
           j=j+1
         end
+        @wall=get_wall(@patient.wedgetail)
       end
      
+   
     respond_to do |format|
       format.html{
         if !@patient or @patient.role!=5
@@ -69,6 +71,25 @@ class PatientsController < ApplicationController
       }
       format.iphone {render :layout=> 'layouts/application.iphone.erb'}# index.iphone.erb 
       format.xml  { render :xml => @patient }
+    end
+  end
+  
+  
+  def get_wall(wedgetail)
+        @wall=Narrative.find(:all, :conditions=>["wedgetail=? and narrative_type_id=18",wedgetail], :order=>"narrative_date DESC,created_at DESC") 
+  end
+  
+  def add_post
+    @narrative = Narrative.new(:wedgetail=>params[:wedgetail],:content=>params[:post],:narrative_type_id=>18)
+    @narrative.created_by=@user.wedgetail
+    if ! @narrative.narrative_date or @narrative.narrative_date ==""
+      @narrative.narrative_date=Date.today.to_s
+    end
+    @narrative.save
+    @wall=get_wall(params[:wedgetail])
+    
+    render :update do |page|
+       page.replace_html("built_wall", :partial => "wall", :object => @wall)
     end
   end
   
@@ -359,5 +380,12 @@ end
 
 
     pdf.Output 
+  end
+  
+  def toggle
+    render :update do |page|
+      page.visual_effect :toggle_blind, params[:div]
+      page.toggle params[:div]+'_show',params[:div]+'_hide'
+    end
   end
 end
