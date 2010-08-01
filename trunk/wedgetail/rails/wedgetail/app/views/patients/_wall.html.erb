@@ -1,0 +1,6 @@
+<% for @post in @wall %>
+	  <%= @post.content%><br>
+		<%= "<font size=-1>"+@post.narrative_date.strftime("%d/%m/%y")+"</font>" if @post.narrative_date%>
+		<%= "  <font size=-1><b>"+ @post.author + "</b></font>" if @post.author and @post.author!=""%>
+		<hr>
+<% end %>
