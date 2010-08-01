@@ -76,11 +76,11 @@ class PatientsController < ApplicationController
   
   
   def get_wall(wedgetail)
-        @wall=Narrative.find(:all, :conditions=>["wedgetail=? and narrative_type_id=18",wedgetail], :order=>"narrative_date DESC,created_at DESC") 
+        @wall=Narrative.find(:all, :conditions=>["wedgetail=? and narrative_type_id=17",wedgetail], :order=>"narrative_date DESC,created_at DESC") 
   end
   
   def add_post
-    @narrative = Narrative.new(:wedgetail=>params[:wedgetail],:content=>params[:post],:narrative_type_id=>18)
+    @narrative = Narrative.new(:wedgetail=>params[:wedgetail],:content=>params[:post],:narrative_type_id=>17)
     @narrative.created_by=@user.wedgetail
     if ! @narrative.narrative_date or @narrative.narrative_date ==""
       @narrative.narrative_date=Date.today.to_s
