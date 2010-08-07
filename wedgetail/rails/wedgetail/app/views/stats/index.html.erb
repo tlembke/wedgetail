@@ -4,13 +4,13 @@
 <li>Number of patients = <%=@stats[:patients]%>
 <li>Number of users = <%=@stats[:users]%>
 </ul>
-<h3>Views</h3>
+<h3>Patient record views</h3>
 <ul>
 <li>Number of views = <%=@stats[:audits]%>
 <li>Views this week = <%=@stats[:audits_week]%> (<%=@stats[:audits_last_week]%>)
 <li>Views this month = <%=@stats[:audits_month]%> (<%=@stats[:audits_last_month]%>)
 </ul>
-<h3>Results</h3>
+<h3>Total Results</h3>
 <ul>
 <li>Number of result tickets = <%=@stats[:result_tickets]%>
 <li>Tickets this week = <%=@stats[:result_tickets_week]%> (<%=@stats[:result_tickets_last_week]%>)
@@ -18,6 +18,19 @@
 <li>Number of results uploaded = <%=@stats[:results]%>
 <li>Results this week = <%=@stats[:result_week]%> (<%=@stats[:result_last_week]%>)
 <li>Results this month = <%=@stats[:result_month]%> (<%=@stats[:result_last_month]%>)	
+<li>Number of results viewed = <%=@stats[:results_viewed]%>
+<li>Results viewed this week = <%=@stats[:result_viewed_week]%> (<%=@stats[:result_viewed_last_week]%>)
+<li>Results viewed this month = <%=@stats[:result_viewed_month]%> (<%=@stats[:result_viewed_last_month]%>)
+</ul>
+<h3>My Results</h3>
+<ul>
+<li>Number of results uploaded by me= <%=@stats[:results_me]%>
+<li>My Results this week = <%=@stats[:result_me_week]%> (<%=@stats[:result_me_last_week]%>)
+<li>My Results this month = <%=@stats[:result_me_month]%> (<%=@stats[:result_me_last_month]%>)	
+<li>Number of my results viewed = <%=@stats[:results_me_viewed]%>
+<li>My Results viewed this week = <%=@stats[:result_me_viewed_week]%> (<%=@stats[:result_me_viewed_last_week]%>)
+<li>My Results viewed this month = <%=@stats[:result_me_viewed_month]%> (<%=@stats[:result_me_viewed_last_month]%>)
+
 </ul>
 
 
