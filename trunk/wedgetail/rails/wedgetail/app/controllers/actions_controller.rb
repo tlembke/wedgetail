@@ -37,16 +37,19 @@ class ActionsController < ApplicationController
       redirect_to actions_path
     end
     if @result
-    respond_to do |format|
-      format.html {
-      }# show.html.erb
+      for @action in @actions
+        @action.update_attribute(:viewed, 1)
+      end
+      respond_to do |format|
+        format.html {
+          }# show.html.erb
       
-      format.xml  { render :xml => @action }
-      format.iphone {
-          render :layout=> 'layouts/application.iphone.erb'
+        format.xml  { render :xml => @action }
+        format.iphone {
+            render :layout=> 'layouts/application.iphone.erb'
         }# show.iphone.erb
+      end
     end
-  end
   end
 
   # GET /actions/new
@@ -122,7 +125,7 @@ class ActionsController < ApplicationController
     @errors<<"No errors" if @errors.length==0
     if @notifiees.length>0
       for @next in @notifiees
-         @recipient= User.find_by_wedgetail(@next,:order=>"created_at DESC")
+         @recipient= User.find_by_wedgetail(@next,:order=>"created_at DESC")                
          if @recipient.email.to_s != ""
              @email=WedgeMailer.deliver_result_notify(@recipient)
          end
