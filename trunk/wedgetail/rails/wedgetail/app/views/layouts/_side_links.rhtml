@@ -20,7 +20,7 @@
 <li><%= show_button("document-open","/record/mynest/","Nest (#{@user.unhatched.size})","Nest","Show new patients","medium","tango") %></li>
 <% end %>
 
-<li><%= show_buttton("go-home","/login/edit/%s" % @user.team,"My Team","My Team","Manage My Team Settings","medium") if @user.role == 3 and @user.team and @user.team!="" and @user.team!="0"%></li>
+<li><%= show_button("go-home","/login/edit/#{@user.team}","My Team","My Team","Manage My Team Settings","medium") if @user.role == 3 and @user.team and @user.team!="" and @user.team!="0"%></li>
 <li><%= show_button("prefs","/login/password/#{@user.wedgetail}","Preferences") if @user.role == 5 %></li>	
 <li><%= show_button("prefs","/login/edit/#{@user.wedgetail}","Preferences") if @user.role <= 4 %></li>
 <li><%= show_button("network-server","/prefs/edit/","Server Prefs","Server Preferences","Change preferences for this server","medium") if @user.role<2 %></li>
