@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   # blank password check done below. If done here it breaks the patient preferences page.
   validates_format_of :postcode,:with=>/^[0-9]{4}$/,:message=>"postcode must be 4 digits",:allow_blank=>true
   validates_format_of :prescriber,:with=>/^[0-9]{6,7}$/,:message=>"Prescriber number must be 6-7 digits",:allow_blank=>true
-  validates_format_of :provider,:with=>/^[0-9]{6}[0-9A-Z][A-Z]$/,:message=>"Provider number not valid format",:allow_blank=>true
+  validates_format_of :provider,:with=>/^[0-9]{6}[A-Z]$/,:message=>"Provider number not valid format",:allow_blank=>true
   has_many :outbox,
           :class_name => "Message",
           :foreign_key => "sender_id",
@@ -43,21 +43,21 @@ class User < ActiveRecord::Base
         errors.add(:medicare,"not a valid Medicare number")
       end
     end
-    unless provider.blank?
+    #unless provider.blank?
       # algorithm obtained from http://www.medicareaustralia.gov.au/provider/vendors/files/IDI-formats.pdf, pages 11-12
-      if provider.length<7
-        errors.add(:provider,"Provider number not valid")
-      else
-        check = 0
-        [3,5,8,4,2,1].each_with_index {|mul,i| check+=provider[i..i].to_i*mul }
-        plv = provider[6]-48
-        plv-=7 if plv > 10
-        check+=plv*6
-        check = check % 11
-        check = ['Y','X','W','T','L','K','J','H','F','B','A'][check]
-        errors.add(:provider,"Provider number not valid (failed checksum)") unless check == provider[7..7]
-      end
-    end
+    #  if provider.length<7
+    #    errors.add(:provider,"Provider number not valid")
+    #  else
+    #    check = 0
+    #    [3,5,8,4,2,1].each_with_index {|mul,i| check+=provider[i..i].to_i*mul }
+    #   plv = provider[6]-48
+    #    plv-=7 if plv > 10
+    #    check+=plv*6
+    #    check = check % 11
+    #    check = ['Y','X','W','T','L','K','J','H','F','B','A'][check]
+    #    errors.add(:provider,"Provider number not valid (failed checksum)") unless check == provider[7..7]
+    #  end
+   # end
     unless phone.blank?
       validate_phone = self.phone_before_type_cast.gsub(/[^0-9]/,"")
       if !validate_phone.nil? and validate_phone.length != 10

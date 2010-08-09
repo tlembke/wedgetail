@@ -338,7 +338,7 @@ class LoginController < ApplicationController
       flash[:notice] = 'User was successfully updated.'
       redirect_to(patient_path(@useredit.wedgetail))
     else
-      @useredit=User.find_current(params[:wedgetail])
+      
       @themes=Theme.find(:all, :order => "name").map {|u| [u.name, u.css] }
       render :action => 'edit', :wedgetail=>@useredit.wedgetail
     end
