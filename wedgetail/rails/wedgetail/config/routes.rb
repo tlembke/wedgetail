@@ -1,17 +1,21 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :conditions
+
   map.resources :contacts
 
   map.resources :addressbooks
 
   map.resources :localmaps, :only => [:create, :index, :logincheck], :collection => { :logincheck => :get }
 
-  map.resources :actions, :only => [:index,:show,:create]
+  map.resources :actions, :only => [:index,:show,:create],:collection => { :check => :post }
 
   map.resources :result_tickets, :only => [:create], :collection => { :check => :post } 
 
   map.resources :users
+  
+  map.resources :stats
 
-  map.resources :patients, :key => :wedgetail, :has_many => :narratives, :member => { :results => :get}
+  map.resources :patients, :key => :wedgetail, :has_many => [:narratives,:conditions], :member => { :results => :get}
   
 
   
