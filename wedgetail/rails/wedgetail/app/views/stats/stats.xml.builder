@@ -1,0 +1,9 @@
+xml.instruct!
+xml.stats{
+  xml.total(@stats[:results_me])
+  xml.this_week(@stats[:result_me_week])
+  xml.this_month(@stats[:result_me_month])
+  xml.viewed(@stats[:results_me_viewed])
+  xml.viewed_this_week(@stats[:result_me_viewed_week])
+  xml.viewed_this_month(@stats[:result_me_viewed_month])
+}

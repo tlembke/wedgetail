@@ -40,6 +40,11 @@ class StatsController < ApplicationController
               
               
              }
+             respond_to do |format|
+               format.html 
+               format.iphone {render :layout=> 'layouts/application.iphone.erb'}# index.iphone.erb 
+               format.xml { render :xml => @stats, :template => 'stats/stats.xml.builder' }
+            end
      
   end
 end
