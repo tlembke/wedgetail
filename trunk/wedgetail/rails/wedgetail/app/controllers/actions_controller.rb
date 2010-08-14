@@ -167,4 +167,35 @@ class ActionsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  # POST /actions/check
+  # POST /actions/check.xml
+  def check
+  
+    action_check_list = params[:action_check_list]
+    @return_list=[]
+    for request_set in action_check_list[:request_set]
+      @actions=Action.find(:all,:conditions => ["request_set= ?",request_set])
+      if @actions.length>0
+          for @action in @actions
+            result={
+              :request_set=>request_set,
+              :identifer=>@action.identifier,
+              :viewed=>@action.viewed
+            }
+            @return_list<<result
+          end
+      end
+      
+    end
+    
+
+  
+    respond_to do |format|
+
+        format.html 
+        format.xml { render :xml => @return_list, :template => 'actions/check.xml.builder' }
+      
+    end
+  end
 end
