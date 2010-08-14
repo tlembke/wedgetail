@@ -182,6 +182,7 @@ class ActionsController < ApplicationController
             result={
               :request_set=>@action.request_set,
               :identifer=>@action.identifier,
+              :name=>@action.name,
               :test_date=>@action.test_date,
               :viewed=>@action.viewed
             }
