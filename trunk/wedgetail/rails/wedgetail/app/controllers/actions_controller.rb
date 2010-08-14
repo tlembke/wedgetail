@@ -175,16 +175,18 @@ class ActionsController < ApplicationController
     action_check_list = params[:action_check_list]
     @return_list=[]
     for request_set in action_check_list[:request_set]
-      @actions=Action.find(:all,:conditions => ["request_set= ?",request_set])
-      if @actions.length>0
+      unless request_set.include?("%") and request_set.length<7 # prevent fishing
+        @actions=Action.find(:all,:conditions => ["request_set LIKE ?",request_set])
+        if @actions.length>0
           for @action in @actions
             result={
-              :request_set=>request_set,
+              :request_set=>@action.request_set,
               :identifer=>@action.identifier,
               :viewed=>@action.viewed
             }
             @return_list<<result
           end
+        end
       end
       
     end
