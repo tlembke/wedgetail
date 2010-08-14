@@ -5,6 +5,7 @@ xml.results{
     xml.result do
       xml.request_set(@next_result[:request_set])
       xml.identifier(@next_result[:identifier])
+      xml.name(@next_result[:name])
       xml.test_date(@next_result[:test_date])
       xml.viewed(@next_result[:viewed])
     end
