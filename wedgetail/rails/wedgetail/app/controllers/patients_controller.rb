@@ -1,6 +1,7 @@
 class PatientsController < ApplicationController
   before_filter :redirect_to_ssl, :authenticate
   layout "patients"
+  auto_complete_for :condition, :name
   
   # GET /patients
   # GET /patients.xml
@@ -50,14 +51,16 @@ class PatientsController < ApplicationController
         @audit=Audit.create(:patient=>params[:wedgetail],:user_wedgetail=>@user.wedgetail)
         @special=Array.new
         @count=Array.new
-        @displayOrder=[1,2,5,12,3,4,8,9,6]
+        @displayOrder=[1,2,5,12,3,8,9,6]
         j=1
         for i in @displayOrder
           @special[j]=Narrative.find(:first, :conditions=>["wedgetail=? and narrative_type_id=?",params[:wedgetail],i], :order=>"narrative_date DESC,created_at DESC") 
           @count[i]= Narrative.count(:all,:conditions=>["wedgetail='#{params[:wedgetail]}' and narrative_type_id='#{i}'"])
           j=j+1
         end
-        @wall=get_wall(@patient.wedgetail)
+        @wall=get_wall(@patient.wedgetail,0)
+        # get patients conditions
+        @conditions=@patient.conditions
       end
      
    
@@ -75,23 +78,54 @@ class PatientsController < ApplicationController
   end
   
   
-  def get_wall(wedgetail)
-        @wall=Narrative.find(:all, :conditions=>["wedgetail=? and narrative_type_id=17",wedgetail], :order=>"narrative_date DESC,created_at DESC") 
+  def get_wall(wedgetail,condition_id)
+        condition_text="wedgetail='"+wedgetail+"'"
+        condition_text+=" and narrative_type_id!=18 and condition_id="+condition_id unless condition_id==0
+        @wall=Narrative.find(:all, :conditions=>[condition_text], :order=>"narrative_date DESC,created_at DESC") 
   end
   
   def add_post
-    @narrative = Narrative.new(:wedgetail=>params[:wedgetail],:content=>params[:post],:narrative_type_id=>17)
+    @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
+    authorize_only (:patient) {params[:wedgetail] == @user.wedgetail}
+    authorize_only (:temp) {params[:wedgetail] == @user.wedgetail.from(6)}
+    authorize_only(:leader){@patient.firewall(@user)}
+    authorize_only(:user){@patient.firewall(@user)}
+    authorize :admin
+    @narrative = Narrative.new(:wedgetail=>params[:wedgetail],:content=>params[:post],:narrative_type_id=>17,:condition_id=>params[:condition_id])
     @narrative.created_by=@user.wedgetail
     if ! @narrative.narrative_date or @narrative.narrative_date ==""
       @narrative.narrative_date=Date.today.to_s
     end
     @narrative.save
-    @wall=get_wall(params[:wedgetail])
+    @wall=get_wall(params[:wedgetail],params[:condition_id])
     
     render :update do |page|
        page.replace_html("built_wall", :partial => "wall", :object => @wall)
     end
   end
+  
+  def add_condition
+
+      @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
+      authorize_only(:leader){@patient.firewall(@user)}
+      authorize_only(:user){@patient.firewall(@user)}
+      authorize :admin
+      @new_condition=params[:condition]
+      unless @condition=Condition.find(:first, :conditions=>["name=?",@new_condition[:name]]) # already exists
+        @condition = Condition.create(:name=>@new_condition[:name])
+      end
+      # see if patient already linked to that condition (can't have it twice)
+      unless PatientsCondition.find(:first, :conditions=>["wedgetail=? and condition_id=?",@patient.wedgetail,@condition.id])
+          PatientsCondition.create(:wedgetail=>@patient.wedgetail,:condition_id=>@condition.id)
+      end
+      @conditions=@patient.conditions
+      render :update do |page|
+         page.replace_html("conditions_list", :partial => "conditions", :object => @conditions)
+         page[:condition_name].clear
+         page[:condition_name].focus
+      end
+  end
+  
   
   #display narrative
 
@@ -234,6 +268,7 @@ class PatientsController < ApplicationController
       render :action => 'edit'
     end
   end
+
 
 
 #  GET patients/1/results

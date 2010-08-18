@@ -7,6 +7,7 @@ class Narrative < ActiveRecord::Base
   belongs_to :narrative_type
   has_many :outgoing_messages
   has_many :sub_narratives
+  belongs_to :condition
 
   # sets narrative from web upload
   # converts word and RTF documents to HTML before upload
@@ -26,6 +27,7 @@ class Narrative < ActiveRecord::Base
       self.content_type="text/x-clinical"
     end    
   end
+
 
 
   def convert_docs(name="noname")
