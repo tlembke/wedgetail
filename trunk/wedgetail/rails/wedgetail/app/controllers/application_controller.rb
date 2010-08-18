@@ -233,6 +233,8 @@ class ApplicationController < ActionController::Base
     }
   end
   
+
+  
   def render_text_ok
     render :content_type=>'text/plain',:status=>200,:text=>"OK"
   end

@@ -224,6 +224,15 @@ class User < ActiveRecord::Base
     return r
   end
   
+  def conditions
+    @c_ids=PatientsCondition.find(:all, :conditions => ["wedgetail=?",self.wedgetail])
+    @conditions=[]
+    for @c_id in @c_ids
+      @conditions<<Condition.find(:first, :conditions=>["id=?",@c_id.condition_id])
+    end
+    return @conditions
+  end
+  
   def find_authorised_patients(family_name="",given_names="",dob="")
     # returns array of patients that user is authorised to find
     @ok_patients=[]
