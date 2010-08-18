@@ -1,0 +1,22 @@
+
+  <h3><%=h @condition.name %></h3>
+
+<input type="button" id="edit" value="Edit History"/>
+<%= in_place_editor_field :summary, :content, 	{},
+	{:external_control => "edit",:rows=>8, :cols=>80}%>
+
+<p>
+	<span id='wall_show' style="display: none"><%= link_to_remote "Show Progress Wall", :url => {:action => "toggle",:div=> "wall"} %></span>
+	<span id='wall_hide'><%= link_to_remote "Hide Progress Wall", :url => {:action => "toggle",:div=> "wall"} %></span>
+	<div id="wall">
+		<h3><%= @condition.name %> Progress Wall</h3>
+		 <% form_remote_tag :url => { :controller=>'patients',:action => 'add_post', :id=>@patient.wedgetail,:condition_id=>@condition.id } do %>
+		 <%= text_area_tag :post,"",:cols=>60,:rows=>3 %></p>
+			<%= submit_tag "Add Post" %>
+		<% end %>
+  <hr>
+		<div id='built_wall'>
+	<%= render(:partial => "patients/wall") %>
+	</div>
+
+
