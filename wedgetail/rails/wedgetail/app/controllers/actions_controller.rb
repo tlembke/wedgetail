@@ -61,7 +61,7 @@ class ActionsController < ApplicationController
 
 
   def save_or_update_action(action)
-
+    
     if @user  #uploaded has logged in 
       action[:created_by] = @user.wedgetail
       if action[:localID]
@@ -72,12 +72,14 @@ class ActionsController < ApplicationController
         end
       end
       # see if user authorised to access that record
-      patient = User.find_by_wedgetail(action[:wedgetail],:order=>"created_at DESC")
-      if patient and patient.firewall(@user)
-          @notifiees<< action[:wedgetail] if action[:wedgetail]
-      else
-          #user not authorised or patient doesn't exist - send anonymously only
-          action[:wedgetail]=""
+      if action[:wedgetail] and action[:wedgetail]!=""
+        patient = User.find_by_wedgetail(action[:wedgetail],:order=>"created_at DESC")
+        if patient and patient.firewall(@user)
+            @notifiees<< action[:wedgetail] if action[:wedgetail]
+        else
+            #user not authorised or patient doesn't exist - send anonymously only
+            action[:wedgetail]=""
+        end
       end
     end
     
