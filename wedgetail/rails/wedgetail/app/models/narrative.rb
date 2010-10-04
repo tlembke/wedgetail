@@ -136,13 +136,13 @@ class Narrative < ActiveRecord::Base
   def author
     author_name=""
     if @author=User.find_by_wedgetail(self.created_by,:order=>"created_at desc")
-      author_name=@author.full_name if @author
+      author_name=@author.full_name
       user_team=User.find_by_wedgetail(@author.team)
       if user_team
           author_name+=", " if author_name!="" and user_team.family_name !=""
           author_name+= user_team.family_name
       end
-      unless @author.craft.name.blank?
+      if @author.craft and ! @author.craft.name.blank?
         author_name+=" - "+@author.craft.name
       end
     end
