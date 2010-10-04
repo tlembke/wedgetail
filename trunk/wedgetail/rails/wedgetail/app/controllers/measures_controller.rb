@@ -49,7 +49,7 @@ class MeasuresController < ApplicationController
     respond_to do |format|
       if @measure.save
         flash[:notice] = 'Measure was successfully created.'
-        format.html { redirect_to(@measure) }
+        format.html { redirect_to(:action=>"index") }
         format.xml  { render :xml => @measure, :status => :created, :location => @measure }
       else
         format.html { render :action => "new" }

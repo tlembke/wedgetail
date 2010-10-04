@@ -48,7 +48,7 @@ class CraftsController < ApplicationController
     respond_to do |format|
       if @craft.save
         flash[:notice] = 'Craft was successfully created.'
-        format.html { redirect_to(@craft) }
+        format.html { redirect_to(:action=>'index') }
         format.xml  { render :xml => @craft, :status => :created, :location => @craft }
       else
         format.html { render :action => "new" }
