@@ -65,7 +65,7 @@ class CraftsController < ApplicationController
     respond_to do |format|
       if @craft.update_attributes(params[:craft])
         flash[:notice] = 'Craft was successfully updated.'
-        format.html { redirect_to(@craft) }
+        format.html { redirect_to(:action=>'index') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

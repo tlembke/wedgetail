@@ -66,7 +66,7 @@ class MeasuresController < ApplicationController
     respond_to do |format|
       if @measure.update_attributes(params[:measure])
         flash[:notice] = 'Measure was successfully updated.'
-        format.html { redirect_to(@measure) }
+        format.html { redirect_to(:action=>'index') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
