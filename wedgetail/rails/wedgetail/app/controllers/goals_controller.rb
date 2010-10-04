@@ -156,7 +156,7 @@ class GoalsController < ApplicationController
     respond_to do |format|
       if @goal.update_attributes(params[:goal])
         flash[:notice] = 'Goal was successfully updated.'
-        format.html { redirect_to(@goal) }
+        format.html { redirect_to(:action=>"index") }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
