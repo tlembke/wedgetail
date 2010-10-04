@@ -1,12 +1,26 @@
-<% for @post in @wall %>
+<%=link_to_remote '(less <) ',:url=>{:action=>'redraw_wall',:wedgetail=>@patient.wedgetail,:command=>'less',:condition_id=>@wall_info[4],:start=>@wall_info[2],:limit=>@wall_info[3]} if @wall_info[2].to_i>0%>
+
+<%=showCount(@wall_info[1],@wall_info[2],@wall_info[3])%>
+<%=link_to_remote '(> more)',:url=>{:action=>'redraw_wall',:wedgetail=>@patient.wedgetail,:command=>'more',:condition_id=>@wall_info[4],:start=>@wall_info[2],:limit=>@wall_info[3]} if @wall_info[1].to_i>@wall_info[2].to_i+@wall_info[3].to_i%>
+<p>
+	
+<% for @post in @wall_info[0] %>
 		<% if @post.narrative_type_id==17%>
 	  	<%= @post.content%> [post]<br>
 		<% else %>
 			
 			<%= @post.title%><%= " ["+@post.narrative_type.narrative_type_name+"]" if @post.narrative_type %> <%= link_to ' Show',narrative_path(:id=> @post) %><br>
-		<%end %>
+		<% end %>
 		<%= "<font size=-1>"+@post.narrative_date.strftime("%d/%m/%y")+"</font>" if @post.narrative_date%>
   	<%= "  <font size=-1><b>"+ @post.author + "</b></font>" if @post.author and @post.author!=""%>
     <%= "  <font size=-1><b>["+ @post.condition.name + "]</b></font>" if @post.condition_id!=0%>
 		<hr>
+
+		
 <% end %>
+
+<%=link_to_remote '(less <) ',:url=>{:controller=>'patients',:action=>'redraw_wall',:wedgetail=>@patient.wedgetail,:command=>'less',:condition_id=>@wall_info[4],:start=>@wall_info[2],:limit=>@wall_info[3]} if @wall_info[2].to_i>0%>
+
+<%=showCount(@wall_info[1],@wall_info[2],@wall_info[3])%>
+<%=link_to_remote '(> more)',:url=>{:action=>'redraw_wall',:wedgetail=>@patient.wedgetail,:command=>'more',:condition_id=>@wall_info[4],:start=>@wall_info[2],:limit=>@wall_info[3]} if @wall_info[1].to_i>@wall_info[2].to_i+@wall_info[3].to_i%>
+

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-
+  belongs_to :craft
   validates_presence_of :username 
   validates_presence_of :wedgetail
   attr_accessor :password_confirmation 
@@ -70,9 +70,12 @@ class User < ActiveRecord::Base
   def before_save
     self.phone_before_type_cast.gsub!(/[^0-9]/,"") if !self.phone.nil?
   end 
-  def after_find
-    self.phone = "(#{self.phone_before_type_cast[0..1]}) #{self.phone_before_type_cast[2..5]} #{self.phone_before_type_cast[6..9]}" if !self.phone.blank? and self.phone_before_type_cast.length == 10
-  end
+  
+  #def after_find
+  #  if self.phone
+  #    self.phone = "(#{self.phone_before_type_cast[0..1]}) #{self.phone_before_type_cast[2..5]} #{self.phone_before_type_cast[6..9]}" if !self.phone.nil? and !self.phone.blank? and self.phone_before_type_cast.length == 10
+  #  end
+  #end
  
   def is_listed(patient_wedgetail)
     is_listed=false
@@ -198,10 +201,40 @@ class User < ActiveRecord::Base
    team_name=""
    team=User.find_by_wedgetail(:first,self.team)
    if team
-     team_name=User.family_name
+     team_name=team.family_name
    end
    return team_name
  end 
+ 
+ 
+ def team_or_user_name
+   team_name=self.full_name
+   team=User.find_by_wedgetail(:first,self.team)
+   if team
+     team_name=team.family_name
+   end
+   return team_name
+ end
+ 
+ def team_address
+   team=User.find_by_wedgetail(:first,self.team)
+   if team
+     team_address=team.address_line+"<br>"+team.town+" "+team.state+" "+team.postcode
+   else
+     team_address=self.address_line if self.address_line
+     team_address+="<br>"+self.state if self.state
+     team_address+=" "+self.postcode if self.postcode
+   end
+   return team_address
+ end
+ 
+ def team_wedgetail
+   # returns user.wedgetail if no team has been allocated
+   team_wedgetail=self.wedgetail
+   team=User.find_by_wedgetail(:first,self.team)
+   team_wedgetail=team.wedgetail if team
+   return team_wedgetail
+end
  
  def birthdate
    return self.dob.day.to_s + "/" + self.dob.month.to_s + "/" + self.dob.year.to_s
@@ -332,6 +365,9 @@ class User < ActiveRecord::Base
     matches = User.find(:all,:select => "distinct wedgetail,dob,family_name,given_names ", :conditions => ["wedgetail != '#{self.wedgetail}' and ("+conditions+")"])
 
   end
+  
+
+  
   
   # make a HL7 PID segment for this patient
   def make_pid

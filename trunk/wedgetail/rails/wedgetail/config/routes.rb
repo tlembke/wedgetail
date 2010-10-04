@@ -1,5 +1,17 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :careroles
 
+  map.resources :measurevalues
+
+  map.resources :measures
+
+  map.resources :goals
+
+  map.resources :crafts
+
+  map.resources :notes
+
+  map.resources :conditions
 
   map.resources :contacts
 
@@ -11,11 +23,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :result_tickets, :only => [:create], :collection => { :check => :post } 
 
-  map.resources :users
+  map.resources :users, :collection=>{:search=> :get}
   
   map.resources :stats
 
-  map.resources :patients, :key => :wedgetail, :has_many => [:narratives,:conditions], :member => { :results => :get}
+  map.resources :patients, :key => :wedgetail, :has_many => [:narratives,:conditions,:goals], :member => { :results => :get,:team=>:get,:careplan=>:get}
   
 
   

@@ -1,5 +1,6 @@
+<%=render :partial=>"layouts/careplanmenu"%>
 <h1>Listing conditions</h1>
-<table>
+<table border=1>
   <tr>
     <th>Name</th>
     <th>Abbreviation</th>
@@ -9,7 +10,6 @@
   <tr>
     <td><%=h condition.name %></td>
     <td><%=h condition.abbreviation %></td>
-    <td><%= link_to 'Show', condition %></td>
     <td><%= link_to 'Edit', edit_condition_path(condition) %></td>
     <td><%= link_to 'Destroy', condition, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

@@ -1,6 +1,9 @@
 class Message < ActiveRecord::Base
            
-        
+  def rsvp_status
+     # 0=Not confirmed 1= confirmed 2= no care team entry
+      Team.confirmed?(self.re,self.recipient.wedgetail) 
+  end 
   
   def mark_as_read
       self.status=2;

@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
     
     unless @redirect_flag==1
       respond_to do |format| 
-        format.any(:html, :iphone) do
+        format.any(:html, :iphone, :pdf) do
             unless @user=User.find_by_id(session[:user_id]) 
                 # Not currently logged in
                 # Save original destination so can return when logged in
@@ -69,8 +69,15 @@ class ApplicationController < ActionController::Base
                   flash[:notice] = "Server ID required"
                   redirect_to(:controller => "prefs", :action => "edit", :id =>1)
                 else
-                  flash[:notice] = "Please log in" 
-                  redirect_to(:controller => "login", :action => "login") 
+                    flash[:notice] = "Please log in" 
+                    unless request.xhr?
+                      redirect_to(:controller => "login", :action => "login") 
+                    else
+                      session[:original_uri] = nil
+                      render :update do |page| 
+                        page.redirect_to(:controller => "login", :action => "login")
+                      end
+                    end
                 end
             else
                 # alredy logged in
@@ -88,7 +95,16 @@ class ApplicationController < ActionController::Base
                   flash[:notice] = "Session Timed Out" 
                   session[:original_uri] = request.request_uri 
                   erase_render_results
-                  redirect_to(:controller => "login", :action => "login") 
+                  unless request.xhr?
+                    
+                    redirect_to(:controller => "login", :action => "login") 
+                  else
+                    session[:original_uri] = nil
+                    render :update do |page| 
+                      
+                      page.redirect_to(:controller => "login", :action => "login")
+                    end
+                  end
                 end 
                 session[:expires_at] = Pref.time_out.minutes.from_now
                 if @user.theme and @user.theme!="" and @user.theme!="default"
@@ -153,9 +169,24 @@ class ApplicationController < ActionController::Base
           if(@user.role==5)
             redirect_to(patient_path(@user.wedgetail))
           elsif(@user.role==7)
-            redirect_to :controller => 'patients',:action=>'show',:wedgetail=>@user.wedgetail.from(6)
+            unless request.xhr?
+              redirect_to(:controller => 'patients',:action=>'show',:wedgetail=>@user.wedgetail.from(6)) 
+            else
+              session[:original_uri] = nil
+              render :update do |page| 
+                page.redirect_to(:controller => 'patients',:action=>'show',:wedgetail=>@user.wedgetail.from(6))
+              end
+            end
           else
-              redirect_to :controller => 'patients'
+            
+            unless request.xhr?
+              redirect_to(:controller => 'patients') 
+            else
+              session[:original_uri] = nil
+              render :update do |page|
+                  page.redirect_to(:controller => 'patients')
+              end
+            end
           end
         else
           @authorized = true
@@ -171,11 +202,33 @@ class ApplicationController < ActionController::Base
     if (@user.role>role && ! @authorized && ! @redirect)
        flash[:notice] = "You do not have authority to access that page!"
        if(@user.role==5)
-         redirect_to :controller => 'record',:action=>'show',:wedgetail=>@user.wedgetail
+         unless request.xhr?
+           redirect_to(:controller => 'patients',:action=>'show',:wedgetail=>@user.wedgetail) 
+         else
+           session[:original_uri] = nil
+           render :update do |page| 
+             page.redirect_to(:controller => 'patients',:action=>'show',:wedgetail=>@user.wedgetail)
+           end
+         end
        elsif (@user.role==7)
-         redirect_to :controller => 'record',:action=>'show',:wedgetail=>@user.wedgetail.from(6)
+         unless request.xhr?
+           session[:original_uri] = nil
+           redirect_to(:controller => 'patients',:action=>'show',:wedgetail=>@user.wedgetail.from(6)) 
+         else
+           render :update do |page| 
+             session[:original_uri] = nil
+             page.redirect_to(:controller => 'patients',:action=>'show',:wedgetail=>@user.wedgetail.from(6))
+          end
+         end
       else
-         redirect_to :controller => 'record'
+         unless request.xhr?
+           redirect_to(:controller => 'patients') 
+         else
+           render :update do |page| 
+             session[:original_uri] = nil
+             page.redirect_to(:controller => 'patients')
+           end
+         end
        end
     end
   end
@@ -233,11 +286,27 @@ class ApplicationController < ActionController::Base
     }
   end
   
-
+  def get_wall(wedgetail,condition_id=0,start=0,limit=20)
+        condition_text="wedgetail='"+wedgetail+"'"
+        condition_text+=" and narrative_type_id!=18"
+        condition_text+=" and condition_id="+condition_id.to_s unless condition_id.to_i==0
+        @total=Narrative.count :conditions=>condition_text
+        @wall=Narrative.find(:all, :conditions=>[condition_text], :limit=>limit,:offset=>start,:order=>"narrative_date DESC,created_at DESC") 
+        return [@wall,@total,start,limit,condition_id]
+  end
   
+  def simple_format(text, html_options={}, options={})
+      text.gsub!(/\r\n?/, "\n")                    # \r\n and \r -> \n
+      text.gsub!(/\n\n+/, "</p>\n\n")  # 2+ newline  -> paragraph
+      text.gsub!(/([^\n]\n)(?=[^\n])/, '\1<br />') # 1 newline   -> br
+      text
+   end
+   
   def render_text_ok
     render :content_type=>'text/plain',:status=>200,:text=>"OK"
   end
+  
+  
 
   def render_text_error(error)
     render :content_type=>'text/plain',:status=>:unprocessable_entity,:text=>error

@@ -55,7 +55,7 @@ module InPlaceMacrosHelper
     js_options['size'] = options[:size] if options[:size]
     js_options['externalControl'] = "'#{options[:external_control]}'" if options[:external_control]
     js_options['loadTextURL'] = "'#{url_for(options[:load_text_url])}'" if options[:load_text_url]        
-    js_options['ajaxOptions'] = options[:options] if options[:options]
+    js_options['ajaxOptions'] = options[:options] if options[:options] 
     js_options['htmlResponse'] = !options[:script] if options[:script]
     js_options['callback']   = "function(form) { return #{options[:with]} }" if options[:with]
     js_options['clickToEditText'] = %('#{options[:click_to_edit_text]}') if options[:click_to_edit_text]
@@ -74,7 +74,12 @@ module InPlaceMacrosHelper
                    :id => "#{object}_#{method}_#{instance_tag.object.id}_in_place_editor",
                    :class => "in_place_editor_field"}.merge!(tag_options)
     in_place_editor_options[:url] = in_place_editor_options[:url] || url_for({ :action => "set_#{object}_#{method}", :id => instance_tag.object.id })
-    tag = content_tag(tag_options.delete(:tag), h(instance_tag.value(instance_tag.object)),tag_options)
+    if in_place_editor_options[:type]=="simple"
+      tag = content_tag(tag_options.delete(:tag), simple_format(instance_tag.value(instance_tag.object)).sub(/\A<p>/,""),tag_options)
+    else
+      tag = content_tag(tag_options.delete(:tag), h(instance_tag.value(instance_tag.object)),tag_options)
+    end
+    
     return tag + in_place_editor(tag_options[:id], in_place_editor_options)
   end
 end

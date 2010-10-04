@@ -78,7 +78,7 @@ class LoginController < ApplicationController
     if request.post? 
       user = User.authenticate(params[:name], params[:password])
       if user
-        # flash[:notice] = "Successful Log In" 
+        flash[:notice] = false
         if user.role<7 or (user.role==7 and user.access!=1)
           session[:user_id] = user.id
           uri = session[:original_uri] 
@@ -90,12 +90,13 @@ class LoginController < ApplicationController
             #redirect_to(:controller => "record", :action => "show", :wedgetail =>user.wedgetail)
             redirect_to(patient_path(user.wedgetail))
           else
-            redirect_to(uri || patients_path)  
-          end
+              redirect_to(uri || patients_path)  
+            end
         else
           user.update_attribute(:role,8)
           flash[:notice] = "Guest user expired"
         end
+        
       else 
         flash[:notice] = "Invalid user/password combination" 
       end 
