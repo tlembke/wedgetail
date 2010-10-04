@@ -200,7 +200,7 @@ class User < ActiveRecord::Base
  
  def team_name
    team_name=""
-   team=User.find_by_wedgetail(:first,self.team)
+   team=User.find(:first,:conditions=>{:wedgetail=>self.team})
    if team
      team_name=team.family_name
    end
@@ -210,7 +210,7 @@ class User < ActiveRecord::Base
  
  def team_or_user_name
    team_name=self.full_name
-   team=User.find_by_wedgetail(:first,self.team)
+   team=User.find(:first,:conditions=>{:wedgetail=>self.team})
    if team
      team_name=team.family_name
    end
@@ -218,7 +218,7 @@ class User < ActiveRecord::Base
  end
  
  def team_address
-   team=User.find_by_wedgetail(:first,self.team)
+   team=User.find(:first,:conditions=>{:wedgetail=>self.team})
    if team
      team_address=team.address_line+"<br>"+team.town+" "+team.state+" "+team.postcode
    else
