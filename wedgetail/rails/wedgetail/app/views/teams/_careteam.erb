@@ -1,0 +1,34 @@
+<table border=0 cellspacing=10>
+	<% @members.each do |member|%>
+	<tr>
+		<td><%=image_tag('/images/mini_wedge.png') if member.member  and member.member!=""%></td>
+		<td><%= member.name %></td>
+		<td><%= member.craft.name %></td>
+		
+		<td>
+			<% form_remote_tag :url => { :controller=>:patients,:action => 'confirm_team_member', :id=>@patient.wedgetail,:team=>member.id } do %>
+			<% if member.confirmed < 2 %>
+			<%= check_box('check',member.confirmed,{:onclick=>"document.getElementById('confirm_"+member.id.to_s+"').style.display='inline';"}) %>
+
+			<% else %>
+
+			<%= image_tag("/images/checkbox.png",:id=>'checkbox_img_'+member.id.to_s) %>
+			<script>new Tip("checkbox_img_<%=member.id.to_s%>","<%=@confirmed[member.confirmed] %>",{title:'Confirmed', });</script>
+			<% end %>
+			<span id='status_<%=member.id %>'>
+			<% if member.confirmed==1%>
+			<%= "Pending" %>
+			<% else %>
+			<%= link_to "Invite", :controller=>:messages,:action => "invite",:id=>member.member,:re_id=>member.patient if member.member and member.member!="" and member.confirmed==0%>
+			<% end %>
+			</span>
+			<div id='confirm_<%=member.id %>' style='display:none'>
+			<%= select_tag 'confirm', @option_string %>
+			<%= submit_tag 'Add'%>
+			</div>
+			</td>
+			<% end %>
+		</td>
+	</tr>
+	<% end %>
+</table>
