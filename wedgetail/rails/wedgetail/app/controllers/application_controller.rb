@@ -296,9 +296,9 @@ class ApplicationController < ActionController::Base
   end
   
   def simple_format(text, html_options={}, options={})
-      text.gsub!(/\r\n?/, "\n")                    # \r\n and \r -> \n
-      text.gsub!(/\n\n+/, "</p>\n\n")  # 2+ newline  -> paragraph
-      text.gsub!(/([^\n]\n)(?=[^\n])/, '\1<br />') # 1 newline   -> br
+      #text.gsub!(/\r\n?/, "\n")                    # \r\n and \r -> \n
+      #text.gsub!(/\n\n+/, "</p>\n\n")  # 2+ newline  -> paragraph
+      #text.gsub!(/([^\n]\n)(?=[^\n])/, '\1<br />') # 1 newline   -> br
       text
    end
    
