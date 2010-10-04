@@ -1,0 +1,32 @@
+
+
+<% @patient_goals.each do |@goal| %>
+
+
+		<table border=0>
+			<tr>
+				<td>
+					<span id='goal_<%=@goal.id%>_show'>
+						<a href="#" onclick="Element.show('goal_<%=@goal.id%>_detail');Element.show('goal_<%=@goal.id%>_hide');Element.hide('goal_<%=@goal.id%>_show');Element.hide('goal_<%=@goal.id%>_value');return false" style="text-decoration: none;"><%= image_tag("/images/icons/buttons/rightarrow.png", :size => "12x12",:border=>0) %></a>
+					</span>
+					<span id='goal_<%=@goal.id%>_hide' style="display: none">
+						<a href="#" onclick="Element.hide('goal_<%=@goal.id%>_detail');Element.show('goal_<%=@goal.id%>_show');Element.hide('goal_<%=@goal.id%>_hide');Element.show('goal_<%=@goal.id%>_value');return false" style="text-decoration: none;"><%= image_tag("/images/icons/buttons/downarrow.png", :size => "12x12",:border=>0) %></a>
+					</span>				
+				<td>
+			<td id='goal_<%=@goal.id%>_title' style="font-weight: bold;font-size: 125%;">
+				<%= '['+@goal.condition.name+']' if @goal.condition_id!=0%> <%=h @goal.title %>
+			</td>
+			<td  id='goal_<%=@goal.id%>_value' valign='bottom'>
+				<% if @goal.measure_id>0%><%= @goal.measure.name %>  <%= @goal.measure.latest(@patient.wedgetail)%><% end %>
+			</td>
+
+		</tr>
+		</table>
+
+		<div id='goal_<%=@goal.id%>_detail' style="display: none">
+    <%=h @goal.description %>
+		<p>
+		<%= render(:partial => "goals/measures",:object=>@goal) if @goal.measure_id>0%>
+		</div>
+
+<% end %>

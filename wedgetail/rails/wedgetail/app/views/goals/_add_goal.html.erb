@@ -1,0 +1,48 @@
+<script>
+function checkifnew(){
+   returnvalue=true;
+	 el=$('goal_goal_id');
+
+	 if(el.options[el.options.selectedIndex].text=="Create a new goal..."){
+		 returnvalue=false;
+		 document.getElementById('add_goal').style.display="none";
+		 document.getElementById('new_goal').style.display="inline"; 
+	}
+	return returnvalue;
+}
+</script>
+
+<table border=0>
+	<tr>
+		<td><span class='sectionhead'>Goals</span></td>
+		<td>
+	<span id='add_goal_show'><a href='#' onclick="$('add_goal').show();$('add_goal_show').hide();return false;" style="text-decoration: none;"><%= image_tag("/images/icons/buttons/button_blue_add.png", :size => "20x20",:border=>0) %></span></td>
+		</tr>
+</table>
+		
+<div id='add_goal' style="display: none">
+<% form_remote_tag :url => { :controller=>:patients,:action => 'add_goal_to_patient', :id=>@patient.wedgetail,:condition_id=>@condition_id },:before =>"if(checkifnew()==false){return false;}else{Element.show('add_goal_spinner');Element.hide('add_goal_button')};",:complete=>"Element.hide('add_goal_spinner');Element.show('add_goal_button')" do %>
+<%= select("goal",:goal_id, @goals) %>
+<%= submit_tag "Cancel",:onclick=>"$('add_goal').hide();$('add_goal_show').show();return false;" %>
+<%= submit_tag "Add",:id=>"add_goal_button" %>
+<%= image_tag 'loading_star.gif', :id=>'add_goal_spinner', :style=>"display:none;" %>
+<% end %>
+</div>
+
+<div id='new_goal' style="display: none">
+	<b>Add new goal...</b><p>
+	<% form_remote_tag :url => { :controller=>:patients,:action => 'add_new_goal_to_patient', :id=>@patient.wedgetail,:condition_id=>@condition_id},:before =>"Element.show('add_new_goal_spinner');Element.hide('add_new_goal_button');",:complete=>"Element.hide('add_new_goal_spinner');Element.show('add_new_goal_button');"  do %>
+	<table border=0>
+	<tr><td>Goal Title</td><td><%= text_field("newgoal",:title)%></td></tr>
+	<tr><td>Goal Description</td><td><%= text_area("newgoal",:description,{:rows=>5,:cols=>30})%></td></tr>
+	<% if params[:controller]=="goals"%>
+	 <tr><td>Condition</td><td><%=collection_select("newgoal",:condition_id,@conditions,:id,:name, { :include_blank => true } )%></td></tr>
+	<% else %>
+	<input id="newgoal_condition_id" name="newgoal[condition_id]" type="hidden" value="<%=@condition.id%>"/>
+	<% end %>
+	<tr><td>Only for this patient <%= radio_button("newgoal",:universal,1,:select=>true) %></td><td>Add to Goal Menu <%= radio_button("newgoal",:universal,0) %></td></tr>
+	</table>
+	<%= submit_tag "Cancel",:onclick=>"$('new_goal').hide();$('add_goal').show();return false;" %>
+	<%= submit_tag "Add",:id=>"add_new_goal_button" %><%= image_tag 'loading_star.gif', :id=>'add_new_goal_spinner', :style=>"display:none;" %>
+	<% end %>
+</div>

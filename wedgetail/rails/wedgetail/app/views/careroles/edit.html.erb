@@ -1,0 +1,25 @@
+<h1>Editing carerole</h1>
+
+<% form_for(@carerole) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :craft_id %><br />
+    <%= f.collection_select :craft_id,@crafts,:id,:name, {:prompt=>true} %>
+  </p>
+  <p>
+    <%= f.label :goal_id %><br />
+    <%= f.collection_select :goal_id,@goals,:id,:title, {:prompt=>true} %>
+  </p>
+
+  <p>
+    <%= f.label :role %><br />
+    <%= f.text_area :role %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @carerole %> |
+<%= link_to 'Back', careroles_path %>

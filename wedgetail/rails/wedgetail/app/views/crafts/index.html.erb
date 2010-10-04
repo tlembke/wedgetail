@@ -1,0 +1,23 @@
+<%=render :partial=>"layouts/careplanmenu"%>
+<h1>Listing crafts</h1>
+
+<table border=1>
+  <tr>
+    <th>Name</th>
+    <th>Craftgroup</th>
+  </tr>
+
+<% @crafts.each do |craft| %>
+  <tr>
+    <td><%=h craft.name %></td>
+    <td><%=h @cg[craft.craftgroup_id] %></td>
+    <td><%= link_to 'Show', craft %></td>
+    <td><%= link_to 'Edit', edit_craft_path(craft) %></td>
+    <td><%= link_to 'Destroy', craft, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New craft', new_craft_path %>

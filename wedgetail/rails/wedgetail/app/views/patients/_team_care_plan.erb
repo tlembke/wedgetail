@@ -1,0 +1,11 @@
+<span><b>Care Team</b></span><p>
+<table border=0 cellspacing=10>
+	<% @members.each do |member|%>
+	<tr>
+
+		<td><%= member.name %></td>
+		<td><%= member.craft.name %></td>
+
+	</tr>
+	<% end %>
+</table>

@@ -1,0 +1,12 @@
+<b>Measure</b>
+
+<%= @goal.measure.name %><br><b>Target: </b><%= @goal.measure.operator_string %> <%= number_with_precision(@goal.measure.value,@goal.measure.places) %> <%= @goal.measure.units%><br>
+
+<% @rows=Measurevalue.build_table(@patient.wedgetail,@goal.measure_id,15,100) %>
+
+<div id='measurevalues_<%=@goal.measure_id%>'>
+	
+	<%= render(:partial => "measurevalues_care_plan",:object=>@rows) %>
+	
+
+</div>

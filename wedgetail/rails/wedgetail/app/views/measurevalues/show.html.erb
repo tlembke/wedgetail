@@ -1,0 +1,28 @@
+<p>
+  <b>Patient:</b>
+  <%=h @measurevalue.patient %>
+</p>
+
+<p>
+  <b>Measure:</b>
+  <%=h @measurevalue.measure_id %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%=h @measurevalue.value %>
+</p>
+
+<p>
+  <b>Value date:</b>
+  <%=h @measurevalue.value_date %>
+</p>
+
+<p>
+  <b>Created by:</b>
+  <%=h @measurevalue.created_by %>
+</p>
+
+
+<%= link_to 'Edit', edit_measurevalue_path(@measurevalue) %> |
+<%= link_to 'Back', measurevalues_path %>

@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @craft.name %>
+</p>
+
+<p>
+  <b>Craftgroup:</b>
+  <%=h @cg[@craft.craftgroup_id] %>
+</p>
+
+
+<%= link_to 'Edit', edit_craft_path(@craft) %> |
+<%= link_to 'Back', crafts_path %>

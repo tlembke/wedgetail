@@ -1,0 +1,46 @@
+<h1>Care Plan</h1>
+
+	<br>
+
+	<% if @members%>
+	<div class='box'>
+	<%= render(:partial => "team_care_plan") %>
+	</div>
+	<% end %>
+	<p>
+	<p>
+	<div id='created' class='box'>
+		<b>Plan created by </b><br>
+	<%= date_format1(Date.today)%><br>
+	<%= @user.team_or_user_name %><br>
+	<%= @user.team_address %>
+	</div>
+	<hr>
+
+<% if @conditions%>
+<%= render(:partial => "conditions_care_plan.erb") %>
+
+<hr>
+
+<% end %>
+<% if @medication%>
+<%= render(:partial => "medications_care_plan") %>
+<hr>
+
+<% end %>
+<% if @summary%>
+<% @narrative=@summary%>
+<div class='box'>
+<%= render(:partial => "narrative_care_plan") %>
+</div>
+<hr>
+
+<% end %>
+<% if @patient_goals%>
+<%= render(:partial => "goals_care_plan") %>
+<hr>
+
+<% end %>
+	
+	
+	

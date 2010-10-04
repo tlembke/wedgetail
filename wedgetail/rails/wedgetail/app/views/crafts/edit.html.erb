@@ -1,0 +1,20 @@
+<h1>Editing craft</h1>
+
+<% form_for(@craft) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :craftgroup_id %><br />
+    <%= f.select :craftgroup_id, @craftgroups %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @craft %> |
+<%= link_to 'Back', crafts_path %>
