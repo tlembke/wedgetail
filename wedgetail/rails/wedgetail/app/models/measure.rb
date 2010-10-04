@@ -24,7 +24,7 @@ class Measure < ActiveRecord::Base
       text=" ("+self.operator_string+" "+target.to_s+")"
       value=value+text
     end
-    if date
+    if date and @latest
       value=value+" on "+ @latest.value_date.strftime("%d/%m/%y")
     end
     return value
