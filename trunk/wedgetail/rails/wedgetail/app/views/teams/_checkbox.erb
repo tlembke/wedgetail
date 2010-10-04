@@ -1,0 +1,13 @@
+<div id='rsvp'>
+<% confirm_flag=@message.rsvp_status%>
+<% if confirm_flag==1%>
+You have already agreed to participate in this patient's care
+<% elsif confirm_flag ==0 %>
+Please click this button if you agree to collaborate in this patient's care
+<% form_remote_tag :url => { :controller=>:patients,:action => 'rsvp', :wedgetail=>@message.patient.wedgetail } do %>
+<%= submit_tag("I agree to participate in the care of "+@message.patient.full_name) %>
+<% end %>
+<% else %>
+Please reply to this message if you agree to participate in the care of <%= @message.patient.full_name%>
+<% end %>
+</div>

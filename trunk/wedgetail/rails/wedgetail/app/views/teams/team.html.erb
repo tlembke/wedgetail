@@ -1,0 +1,44 @@
+
+<h3>Care Team Members</h3>
+<div id='careteam'>
+<%= render(:partial => "teams/careteam") %>
+</div>
+<hr>
+<script>
+function validate_role(){
+	 returnvalue=true
+	 if(document.getElementById('member_plain_craft_id').options.selectedIndex==0){
+			var el = document.getElementById('new_role');
+			if ( el.style.display == 'none' ) {
+				el.style.display = 'inline';
+				returnvalue= false;
+			}
+			else{
+				
+				if (document.getElementById('member_plain_new_role').value==""){
+					window.alert("You need to enter the new role");
+					returnvalue= false;
+				}
+			}
+		}
+		return returnvalue;
+		
+}
+</script>
+Add a Team Member from Wedgetail
+<% form_remote_tag :url => { :controller=>:patients,:action => 'add_team_member_wedge', :id=>@patient.wedgetail } do %>
+<%= collection_select("member",:member, @allusers, :wedgetail, :family_name_given_names) %>
+<%= submit_tag "Add" %>
+<% end %>
+or Add a Team Member not on Wedgetail
+<% form_remote_tag :url => { :controller=>:patients,:action => 'add_team_member_plain', :id=>@patient.wedgetail },:before =>"if(validate_role()==false){return false;}"  do %>
+Name <%= text_field :member_plain, :name %>
+Role <%= select("member_plain",:craft_id, @crafts,:prompt=>"New Role") %>
+<div id='new_role'  style="display: none">Enter role:<%=text_field :member_plain, :new_role%>
+<%= select("member_plain",:craftgroup_id,@craftgroups) %>	
+</div>
+<%= submit_tag "Add" %>
+<% end %>
+
+
+	
