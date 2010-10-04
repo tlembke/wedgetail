@@ -18,8 +18,7 @@
 	<p>
 	<p>
 	<div id='created' class='box'>
-		<b>Plan created by</b>
-	<%= date_format1(Date.today)%><br>
+		<b>Plan created on <%= date_format1(Date.today)%> by</b>
 	<%= @user.team_or_user_name %><br>
 	<%= @user.team_address %>
 	</div>
