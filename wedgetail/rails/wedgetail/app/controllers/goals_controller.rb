@@ -138,7 +138,7 @@ class GoalsController < ApplicationController
           @goal.patient=""
           @goal.save
         end
-        format.html { redirect_to(@goal) }
+        format.html { redirect_to(:action=>"index") }
         format.xml  { render :xml => @goal, :status => :created, :location => @goal }
       else
         format.html { render :action => "new" }
