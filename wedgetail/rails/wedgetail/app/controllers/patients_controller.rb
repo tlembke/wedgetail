@@ -285,6 +285,7 @@ class PatientsController < ApplicationController
       authorize :admin
       @item=Narrative.create(:wedgetail=>@patient.wedgetail,:narrative_date=>Date.today,:narrative_type_id=>@narrative.narrative_type_id,:content=>params[:value],:created_by=>@user.wedgetail,:content_type=>"text/plain",:condition_id=>@narrative.condition_id)
       @text=@item.content.to_s
+      @text=simple_format(@text)
       @text="-----------" if @text.blank?
       if @item.narrative_type_id!=2
         render :text=>@text
