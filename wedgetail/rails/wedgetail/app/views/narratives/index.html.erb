@@ -1,6 +1,16 @@
-<div class="wedgetail-form">
 <h1><%= @title %></h1>
+<% type=@narratives[0].narrative_type_id%>
+<% if type==2%>
+<% @medication=@narratives[0]%>
+<div id='medications'>
+	<%= render(:partial => "patients/medications") %>
+</div>
+<% end %>
+<div class="wedgetail-form">
+<% count=0%>
 <% for @narrative in @narratives %>
+<% count=count+1%>
+<% unless @narrative.narrative_type_id ==2 and count==1 %>
 	<fieldset>
 		<legend><%= @narrative.narrative_date.strftime("%d/%m/%y") if @narrative.narrative_date %>   <%= @narrative.title-%></legend>	
 		<% content, partial = @narrative.convert %>
@@ -8,9 +18,10 @@
 
 		<br>
 		<%= "Created by "+ @narrative.author + "<br>" if @narrative.author && @narrative.author!=""%>
-		<%= link_to 'Update this '+ @narrative.narrative_type.narrative_type_name, :controller=>'entry',:action=>'new',:wedgetail=>@patient.wedgetail,:narrative=>@narrative.id %>
+		<%= link_to 'Update this '+ @narrative.narrative_type.narrative_type_name, :controller=>'entry',:action=>'new',:wedgetail=>@patient.wedgetail,:narrative=>@narrative.id if type !=2%>
 	
 	</fieldset>
+<% end %>
 <% end %>
 </div>
 

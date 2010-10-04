@@ -14,11 +14,16 @@ Messages in <font color='red'>red</font> were sent to the team <%= @user.team_na
 	<b><%= message.subject%></b>
 	<%="</font>" if message.recipient_id.to_s==@user.team.to_s %>
 	From: <%= message.sender.given_names if message.sender.given_names%> <%= message.sender.family_name if message.sender.family_name %>
+	<%= "("+message.sender.team_name+")" if  message.sender.team_name and message.sender.team_name!=""%>
 	Date: <%=message.created_at.strftime("%H:%M %d/%m/%y") %>
 	<br>
 	<%= "<div id='message_content_"+message.id.to_s+"'>" %>
-	<%= link_to "Regarding: "+ message.patient.full_name+"<br>",{:controller=>"patients",:action=>"show",:wedgetail=>message.re} if message.patient and message.re.to_s!="" %>
-	<%= simple_format(message.content) %>
+	<%= link_to "Regarding: "+ message.patient.full_name+"<br>",patient_path(:id=>message.re) if message.patient and message.re.to_s!="" %>
+	<%= simple_format(message.content.sub("{rsvp}","")) %>
+	<% if message.content.include?("{rsvp}") and message.re%>
+	<% @message=message%>
+	<%= render(:partial => "teams/checkbox",:object=>@message) %>
+	<% end %>
 	</div>
 	<%= link_to_remote "Show/Hide", :url => {:action => "toggle",:id=> message.id,} %> |  
 	<%= link_to_remote 'Reply',

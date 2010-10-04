@@ -2,9 +2,131 @@
 /* Version 1.0 */
 
 /* Global styles */
+
+/* tabnav styles */
+.patient_tabnav{
+border-bottom: 1px solid gray;
+overflow: hidden;
+width: 100%;
+font-size: 14px; /*font of menu text*/
+}
+
+
+.patient_tabnav ul{
+list-style-type: none;
+margin: 0;
+margin-left: 10px; /*offset of first tab relative to page left edge*/
+padding: 0;
+}
+
+.patient_tabnav li{
+float: left;
+margin: 0;
+padding: 0;
+}
+
+.patient_tabnav a{
+float: left;
+position: relative;
+top: 6px; /* 1) Number of pixels to protrude up for selected tab. Should equal (3) MINUS (2) below */
+background: url(../images/tab-blue-left.png) no-repeat left top;
+margin: 0;
+margin-right: 3px; /*Spacing between each tab*/
+padding: 0 0 0 9px;
+text-decoration: none;
+
+}
+
+.patient_tabnav a span{
+float: left;
+position: relative;
+display: block;
+background: url(../images/tab-blue-right.png) no-repeat right top;
+padding: 5px 14px 3px 5px; /* 2) Padding within each tab. The 3rd value, or 3px, should equal (1) MINUS (3) */
+font-weight: bold;
+color: black;
+}
+
+/* Commented Backslash Hack hides rule from IE5-Mac \*/
+.patient_tabnav a span {float:none;}
+/* End IE5-Mac hack */
+
+
+.patient_tabnav .active a{
+background-position: 0 -125px;
+top: 0;
+}
+
+.patient_tabnav .active a span{
+background-position: 100% -125px;
+color: black;
+padding-bottom: 8px; /* 3) Bottom padding of selected tab. Should equal (1) PLUS (2) above */
+top: 0;
+}
+
+.patient_tabnav a:hover{
+background-position: 0% -125px;
+background-color: white;
+top: 0;
+}
+
+.patient_tabnav a:hover span{
+background-color: white;
+background-position: 100% -125px;
+padding-bottom: 8px; /* 3) Bottom padding of selected tab. Should equal (1) PLUS (2) above */
+top: 0;
+}
+
+.patient_tabnav_content {
+	background: #FFFFFF;
+	padding-left: 15px;
+	padding-top: 1px;
+	padding-bottom: 15px;
+	padding-right: 15px;
+	border: 2px solid black;
+	border-top: none;
+	z-index: 2;
+}
+/* conditions */
+
+.condition_name{
+  color: #ffffff;
+  background: #226;
+  font-family: sans-serif;
+  padding: 1em 1em;
+  
+}
+#conditions_list table tbody tr td.condition_name a{
+	color: white;
+}
+#conditions_list table tbody tr td.condition_name a:visited{
+	color: white;
+}
+/* span.sectionhead (similar to h1) and span.expand (hide/show buttons) are for the patients show window */
+span.sectionhead {
+  font:  150% sans-serif;
+  color: #226;
+}
+.expand a {
+  font:  75% sans-serif;
+  color: #226;
+
+}
+
+p.author {
+	font-size: 75%;
+    font-style: italic;
+    background-color:gray;  
+}
+
+div#medications {
+  color: #226;
+  border: 2px solid black;
+  padding: 5px;
+  line-height: 25px;
+  width: 450px;
+}
 /* columns is block below banner and consists of side, main and toolbar */
-
-
 
 #columns {
   background: #FFFFFF;
@@ -21,6 +143,7 @@
 #columns a { color: #000; }
 #columns a:visited { color: #666; }
 #columns a:hover { color: #fff; background-color:#000; }
+
 
 h1 {
   font:  150% sans-serif;
@@ -96,7 +219,7 @@ h2 {
 
 #main {
   margin-left: 10em;
-  padding-top: 4ex;
+  padding-top: 0em;
   padding-left: 2em;
   background: white;
 }
@@ -177,6 +300,22 @@ width: 116px; /* width of menu */
     text-align: right;
 }
 
+/* patient demographic banner */
+
+.patient_banner{
+  color: #ffffff;
+  background: #226;
+  font-family: sans-serif;
+  padding: 1em 1em;
+  
+}
+.patient_name{
+  font-size: 20px;
+}
+
+.dob{
+	margin-right: 20px;
+}
 
 /* patient_demo may be deprecated - needs checking */
 
@@ -306,19 +445,21 @@ div.error {
     margin: 2px;
     border: 1px solid #eee;
     color: #ddd;
-<<<<<<< .mine
 }
 
 /* the rest all is navbar and toolbar popup stuff*/
-.nav {margin: 1 0 0 0; padding: 0;}
+.nav {margin: 5 0 0 0; padding: 0;}
 .nav li {display: inline; list-style: none;}
 
 
 .wrapper {
-	text-align: left;
+	text-align: center;
 	margin: 0 0 0 0;
 	}
 
+#header{
+		text-align: center;
+}
 
 #header .nav {
   background: #FFFFFF;
@@ -346,7 +487,7 @@ div.error {
 #header .nav a:hover {text-decoration: underline;}
 
 #header .nav .index a {
-	background: #980905 url(http://wedgetail.org.au/images/nav_arrow.gif) no-repeat right top; 
+	background: #980905 url(../images/nav_arrow.gif) no-repeat right top; 
 	padding-right: 1em;	
 	position: relative;
 	z-index: 15;
@@ -366,7 +507,7 @@ div.error {
 	padding: 1.5em 2em;
 	position: absolute;
 	z-index: 10;
-	top: -0.5em;
+	top: 0.5em;
 	right: 0;
 	padding-top: 2em;
 }
@@ -388,6 +529,10 @@ div.error {
 	color: #f1938c;
 	background: #f1938c;
 }
+
+
+
+
 /* Clearing
 --------------------------------------- */
 

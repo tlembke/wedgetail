@@ -1,7 +1,8 @@
-
+<p>
+<%= expandable_section("Conditions","show")%>
 <div id="conditions">
-	<table border=1><tr><td>
-	<h1>Conditions</h1>
+	<table border=0><tr><td>
+
 	<div id='conditions_list'>
 <%= render(:partial => "conditions") %>
 </div>
@@ -11,26 +12,34 @@
 <% end %>
 </td></tr></table>
 </div>
-<p><span id='conditions_show' style="display: none"><%= link_to_remote "Show Conditions", :url => {:action => "toggle",:div=> "conditions"} %></span>
-<span id='conditions_hide'><%= link_to_remote "Hide Conditions", :url => {:action => "toggle",:div=> "conditions"} %></span>
-<span id='wall_show'><%= link_to_remote "Show Progress Wall", :url => {:action => "toggle",:div=> "wall"} %></span>
-<span id='wall_hide' style="display: none"><%= link_to_remote "Hide Progress Wall", :url => {:action => "toggle",:div=> "wall"} %></span>
+<hr>
 
-<div id="wall" style="display: none">
-	<h1>Progress Wall</h1>
+<%= expandable_section("Medications","show")%>
+<div id='medications'>
+	<%= render(:partial => "medications") %>
+</div>
+<p>
+	<hr>
+
+	<%= expandable_section("Progress Wall","hide")%>
+
+	<div id="progress_wall" style="display: none">
 	 <% form_remote_tag :url => { :action => 'add_post', :id=>@patient.wedgetail,:condition_id=>0 } do %>
 	 <%= text_area_tag :post,"",:cols=>60,:rows=>3 %></p>
 		<%= submit_tag "Add Post" %>
 	<% end %>
 	<hr>
 	<div id='built_wall'>
-<%= render(:partial => "wall") %>
+<%= render(:partial => "wall",:object=> @wall_info) %>
 </div>
 </div>
+<hr>
+<%= expandable_section("Other Narratives","hide")%>
+<div id="other_narratives" style="display: inline">
 <div id="special">
 <%= render(:partial => "special") %>
 </div>
-
+</div>
 		
 
 	

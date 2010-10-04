@@ -142,6 +142,9 @@ class Narrative < ActiveRecord::Base
           author_name+=", " if author_name!="" and user_team.family_name !=""
           author_name+= user_team.family_name
       end
+      unless @author.craft.name.blank?
+        author_name+=" - "+@author.craft.name
+      end
     end
     return author_name
   end
@@ -301,5 +304,11 @@ class Narrative < ActiveRecord::Base
     obx.result_status = "F"
     hl7 << obx
     hl7
+  end
+  
+  def self.add_post_to_wall(patient,user,content,condition=0)
+    @narrative = Narrative.new(:wedgetail=>patient,:created_by=>user,:content=>content,:narrative_type_id=>17,:condition_id=>condition)
+    @narrative.narrative_date=Date.today.to_s
+    @narrative.save
   end
 end

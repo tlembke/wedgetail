@@ -114,4 +114,48 @@ module ApplicationHelper
     end
   end
  
+  def showCount(total,start,limit)
+    text=''
+    if total.to_i>0
+      total=total.to_i
+      start=start.to_i
+      limit=limit.to_i
+      last=start+limit
+      last=start+limit if limit-start>total
+      last=total if total<last
+      the_start=start+1
+      text="Showing "+the_start.to_s+" to "+last.to_s+" of "+total.to_s
+    end
+  end
+  
+  def expandable_section(display_name,start='show')
+      name=display_name.downcase.gsub(" ","_")
+      
+      if start=='hide'
+        display2='none'
+        display1='inline'
+      else
+        display1='none'
+        display2='inline'       
+      end
+      
+      text="<span class='sectionhead'>#{display_name}</span>\r"
+      #text+="<span id='#{name}_show' class='expand' style='display:#{display1}'>"
+      #text+="<a href='#' onclick=\"$('#{name}','#{name}_show','#{name}_hide').invoke('toggle');return false;\">(Show)</a></span>" 
+      #text+="<span id='#{name}_hide' class='expand' style='display:#{display2}'>"
+      #text+="<a href='#' onclick=\"$('#{name}','#{name}_show','#{name}_hide').invoke('toggle');return false;\">(Hide)</a></span>"
+      text+="<a href='#' id='#{name}_show' class='expand' style='display:#{display1}' onclick=\"$('#{name}','#{name}_show','#{name}_hide').invoke('toggle');return false;\">(Show)</a>" 
+      text+="<a href='#' id='#{name}_hide' class='expand' style='display:#{display2}' onclick=\"$('#{name}','#{name}_show','#{name}_hide').invoke('toggle');return false;\">(Hide)</a></span>"
+
+  end
+  
+  def pdf_image_tag(image, options = {})
+    options[:src] = File.expand_path(RAILS_ROOT) + '/public/images/' + image
+    tag(:img, options)
+  end
+  
+  def pdf_stylesheet_tag(css, options = {})
+    options[:src] = File.expand_path(RAILS_ROOT) + '/public/stylesheets/' + css +".css"
+    tag(:css, options)
+  end
 end

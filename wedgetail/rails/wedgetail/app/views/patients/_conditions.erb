@@ -1,12 +1,19 @@
 <% if @conditions and @conditions.length>0 %>
 
-<table width=100% border=0>
+<table width=100% border=1>
 	<% for  @condition in  @conditions%>
 	<% if @condition%>
 
 	<tr>
-		<td>
-			<%= link_to @condition.name, patient_condition_path(:patient_id=>@patient.wedgetail,:id=>@condition) %></td
+		<td valign=top class='condition_name'>
+			<%= link_to(@condition.name, patient_condition_path(:patient_id=>@patient.wedgetail,:id=>@condition)) %></td
+		</td>
+		<td valign=top>
+				<% @summary=@condition.summary(@patient.wedgetail)%>
+				<% @summary.content="--------" if @summary.content.blank?%>
+				
+				<%= in_place_editor_field :summary, :content, 	{}, {:rows=>8, :cols=>80,:type=>'simple'} %>
+
 		</td>
 	</tr>
 	<%end%>

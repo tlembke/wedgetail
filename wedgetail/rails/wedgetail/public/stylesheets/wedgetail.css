@@ -2,6 +2,30 @@
 /* Version 1.0 */
 
 /* Global styles */
+
+/* span.sectionhead (similar to h1) and span.expand (hide/show buttons) are for the patients show window */
+span.sectionhead {
+  font:  150% sans-serif;
+  color: #226;
+}
+.expand a {
+  font:  75% sans-serif;
+  color: #226;
+
+}
+p.author {
+	font-size: 75%;
+    font-style: italic;
+    background-color:yellow;
+    
+}
+div#medications {
+  color: #226;
+  border: 2px solid black;
+  padding: 5px;
+  line-height: 25px;
+  width:450px;
+}
 /* columns is block below banner and consists of side, main and toolbar */
 #columns {
   background: #000000;
@@ -104,7 +128,7 @@ h2 {
 
 #main {
   margin-left: 10em;
-  padding-top: 4ex;
+  padding-top: 0em;
   padding-left: 2em;
   background: white;
 }
@@ -144,6 +168,22 @@ h2 {
 	
 }
 
+/* patient demographic banner */
+
+.patient_banner{
+  color: #ffffff;
+  background: #226;
+  font-family: sans-serif;
+  padding: 0.2em 1em;
+  
+}
+.patient_name{
+  font-size: 20px;
+}
+
+.dob{
+	margin-right: 20px;
+}
 
 /* patient_demo may be deprecated - needs checking */
 
@@ -314,15 +354,18 @@ table.pbslist {
 }
 
 /* the rest all is navbar and toolbar popup stuff*/
-.nav {margin: 0; padding: 0;}
+.nav {margin: 5 0 0 0 ; padding: 0;}
 .nav li {display: inline; list-style: none;}
 
 
 .wrapper {
-	text-align: left;
+	text-align: center;
 	margin: 0 0 0 0;
 	}
 
+#header{
+		text-align: center;
+}
 
 #header .nav {
   background: #FFFFFF;
@@ -350,8 +393,8 @@ table.pbslist {
 #header .nav a:hover {text-decoration: underline;}
 
 #header .nav .index a {
-	background: #980905 url(http://wedgetail.org.au/images/nav_arrow.gif) no-repeat right top; 
-	padding-right: 1em;	
+	background: #980905 url(../images/nav_arrow.gif) no-repeat right top; 
+	padding-right: 1em;
 	position: relative;
 	z-index: 15;
 	padding-bottom: 0.125em;
@@ -370,7 +413,7 @@ table.pbslist {
 	padding: 1.5em 2em;
 	position: absolute;
 	z-index: 10;
-	top: -0.5em;
+	top: 0.5em;
 	right: 0;
 	padding-top: 2em;
 }

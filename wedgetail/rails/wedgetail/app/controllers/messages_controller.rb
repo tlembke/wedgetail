@@ -73,6 +73,35 @@ class MessagesController < ApplicationController
     end
   end
   
+  
+  def invite
+    @message = Message.new
+    @recipient=User.find_by_wedgetail(params[:id],:order=>"created_at desc") if params[:id]
+    @message.subject="Invitation to participate in Care Plan"
+    if(params[:re_id])
+      @message.re=params[:re_id]
+      @re=User.find_by_wedgetail(params[:re_id],:order =>"created_at DESC");
+    end
+    @mode="invite"
+    @message.content="You are invited to participate in a Care Plan"
+    @message.content+=" for our patient #{@re.full_name}" if params[:re_id]
+    
+    @message.content+=".\rPlease check this box if you agree."
+    @message.content+="{rsvp}\r"
+    
+    @message.content+="Thanks"
+    session[:return]=params[:return]
+    # update team to show pending status
+
+    if @team=Team.find(:first,:conditions=>["patient=? and member=? and confirmed=0",params[:re_id],@recipient.wedgetail])
+      @team.update_attributes(:confirmed => 1)
+      wall=@user.full_name+" has been invited to collaborate in care plan (by wedgetail)"
+      Narrative.add_post_to_wall(params[:re_id],@user.wedgetail,wall)
+    end
+    
+    render :template=>"messages/new.rhtml"
+    
+  end 
   def new
     @message = Message.new
     @recipient=User.find_by_wedgetail(params[:id],:order=>"created_at desc") if params[:id]
