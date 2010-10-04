@@ -1,0 +1,17 @@
+<table class='measures'>
+	<% count=0 %>
+	<%row_count=@rows.count%>
+	<% @rows.each do |@row|%>
+		<% count=count+1%>
+		<tr id='date_<%=@goal.measure_id%>_row_<%=count%>'>
+			<% @row.each do |@set|%>
+				<td><%= date_format1(@set[0]) %></td>
+			<% end %>
+
+		</tr><tr id="value_<%=@goal.measure_id%>_row_<%=count%>">
+		<% @row.each do |@set|%>
+			<td align='center'><%= Measurevalue.color(@set[1],@goal.measure) %></td>
+			<%end%>
+		</tr>
+	<% end %>
+</table>

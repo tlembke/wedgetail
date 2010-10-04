@@ -1,0 +1,25 @@
+<p class='sectionhead'>Health Goals</p>
+<% current_condition=''%>
+<% @patient_goals.each do |@goal| %>
+			<% if @goal.condition_id!=current_condition %>
+				<%= "</div>\r" if current_condition!=""%>
+				<div class='nobreak'>
+				<% current_condition=@goal.condition_id%>
+				<% if @goal.condition_id==0%>
+					<p class='condition_headline'>General Goals</p>
+				<%else %>
+					<p class='condition_headline'><%=@goal.condition.name%> Goals</p>
+				<%end %>
+		<% end %>
+			<p>
+			<span class='goal_title'><%=h @goal.title %></span> 	  
+			<% if @goal.measure_id>0%><span class='goal_latest'><%= @goal.measure.name %> <%= @goal.measure.latest(@patient.wedgetail)%></span><% end %><p>
+
+		<div id='goal_<%=@goal.id%>_detail'>
+    <%=h @goal.description %><p>
+
+		<%= render(:partial => "measures_care_plan",:object=>@goal) if @goal.measure_id>0%>
+		</div>
+		<hr>
+<% end %>
+<%= "</div>" unless current_condition==''%>

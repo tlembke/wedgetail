@@ -1,0 +1,35 @@
+<p>
+  <b>Name:</b>
+  <%=h @measure.name %>
+</p>
+
+<p>
+  <b>Abbreviation:</b>
+  <%=h @measure.abbreviation %>
+</p>
+<p>
+  <b>Description:</b>
+  <%=h @measure.description %>
+</p>
+<p>
+  <b>Target:</b>
+  <%=h @measure.value %>
+</p>
+<p>
+  <b>Units:</b>
+  <%=h @measure.units %>
+</p>
+
+
+<p>
+  <b>Operator:</b>
+  <%=h @measure.operator_string %>
+</p>
+<p>
+  <b>Decimal Places:</b>
+  <%=h @measure.places %>
+</p>
+
+
+<%= link_to 'Edit', edit_measure_path(@measure) %> |
+<%= link_to 'Back', measures_path %>

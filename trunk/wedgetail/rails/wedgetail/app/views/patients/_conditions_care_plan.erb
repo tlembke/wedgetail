@@ -1,0 +1,20 @@
+<% if @conditions and @conditions.length>0 %>
+<p class='sectionhead'>Conditions</p>
+<table width=100% class='conditions'>
+	<% for  @condition in  @conditions%>
+	<% if @condition%>
+
+	<tr>
+		<td valign=top class='condition_name'>
+			<%= @condition.name %></td
+		</td>
+		<td valign=top>
+				<%= simple_format(@condition.summary(@patient.wedgetail).content).sub(/\A<p>/,"")%>
+					<p>
+		</td>
+	</tr>
+	<%end%>
+	<%end%>
+
+</table>
+<% end %>

@@ -4,6 +4,6 @@ class AddViewed < ActiveRecord::Migration
   end
 
   def self.down
-    add_column :actions, :viewed
+    remove_column :actions, :viewed
   end
 end

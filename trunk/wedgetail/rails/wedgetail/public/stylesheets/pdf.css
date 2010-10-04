@@ -1,0 +1,121 @@
+/* patient demographic banner */
+body{
+	font-family: sans-serif;
+}
+h1 {
+  font:  150% sans-serif;
+  color: #226;
+}
+
+hr {
+  border: 0;
+  width: 100%;
+  color: #226;
+  background-color: #226;
+  height: 1px;
+}
+
+.created{
+	float: bottom;
+	
+}
+.sectionhead {
+  font:  150% sans-serif;
+  color: #226;
+}
+.patient_banner{
+  color: #ffffff;
+  background: #226;
+  font-family: sans-serif;
+  padding: 1em 1em;
+  border: 2px solid black;
+  
+}
+.patient_name{
+  font-size: 20px;
+}
+
+.dob{
+	margin-right: 20px;
+}
+.condition_name{
+  color: #ffffff;
+  background: #226;
+  font-family: sans-serif;
+  padding: 1em 1em;
+  
+}
+.author {
+	font-size: 75%;
+    font-style: italic;
+    background-color:gray;  
+}
+
+.medications {
+  color: #226;
+  border: 2px solid black;
+  padding: 5px;
+  line-height: 25px;
+  width: 450px;
+}
+
+.box {
+  border: 2px solid black;
+  padding: 5px;
+}
+
+table.conditions {
+	border-width: 4px;
+	border-spacing: 1px;
+	border-style: solid;
+	border-color: black;
+	border-collapse: collapse;
+
+}
+
+table.conditions td {
+	border-width: 1px;
+	padding: 2px;
+	border-style: solid;
+	border-color: gray;
+	-moz-border-radius: ;
+}
+.condition_headline{
+  color: #ffffff;
+  background: #226;
+  font-family: sans-serif;
+  padding: 0.5em 0.5em;
+  border: 2px solid black;
+  width: 80%;
+  font: 125% sans-serif;
+
+}
+.goal_title{
+ 	  font:  125% sans-serif;
+	  color: #226;
+
+}
+.goal_latest{
+ 	  font:  75% sans-serif italic;
+	  color: #226;
+
+}
+table.measures {
+	border-width: 3px;
+	border-spacing: 1px;
+	border-style: solid;
+	border-color: black;
+	border-collapse: collapse;
+
+}
+
+table.measures td {
+	border-width: 1px;
+	padding: 2px;
+	border-style: solid;
+	border-color: gray;
+	-moz-border-radius: ;
+}
+.nobreak{
+	page-break-inside: avoid;
+}

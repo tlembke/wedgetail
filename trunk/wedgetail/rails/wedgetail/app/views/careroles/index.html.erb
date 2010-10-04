@@ -1,0 +1,28 @@
+<h1>Listing careroles</h1>
+
+<table>
+  <tr>
+    <th>Craft</th>
+    <th>Goal</th>
+    <th>Patient</th>
+    <th>Role</th>
+    <th>Root</th>
+  </tr>
+
+<% @careroles.each do |carerole| %>
+  <tr>
+    <td><%=h carerole.craft.name %></td>
+    <td><%=h carerole.goal.title %></td>
+    <td><%=h carerole.patient_id %></td>
+    <td><%=h carerole.role %></td>
+    <td><%=h carerole.root %></td>
+    <td><%= link_to 'Show', carerole %></td>
+    <td><%= link_to 'Edit', edit_carerole_path(carerole) %></td>
+    <td><%= link_to 'Destroy', carerole, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New carerole', new_carerole_path %>

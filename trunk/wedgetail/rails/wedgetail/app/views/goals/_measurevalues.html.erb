@@ -1,0 +1,21 @@
+<table border=1>
+	<% count=0 %>
+	<%row_count=@rows.count%>
+	<% @rows.each do |@row|%>
+		<% count=count+1%>
+		<tr id='date_<%=@goal.measure_id%>_row_<%=count%>' <%="style='display: none'" if count>1%>>
+			<% @row.each do |@set|%>
+				<td><%= date_format1(@set[0]) %></td>
+			<% end %>
+			<td rowspan=2 id='more_<%=@goal.measure_id%>_row_<%=count%>'>
+			<% if count<row_count%>
+				<a href="#" onclick="$('date_<%=@goal.measure_id%>_row_<%=count+1%>').show();$('value_<%=@goal.measure_id%>_row_<%=count+1%>').show();$('more_<%=@goal.measure_id%>_row_<%=count%>').hide();return false">more...</a>
+				<% end %>
+			</td>
+		</tr><tr id="value_<%=@goal.measure_id%>_row_<%=count%>" <%="style='display: none'" if count>1 %>>
+		<% @row.each do |@set|%>
+			<td align='center'><%= Measurevalue.color(@set[1],@goal.measure) %></td>
+			<%end%>
+		</tr>
+	<% end %>
+</table>

@@ -1,0 +1,37 @@
+<% form_for(@measure) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :abbreviation %><br />
+    <%= f.text_field :abbreviation %>
+  </p>
+ 
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p> 
+<p>
+  <%= f.label :units %><br />
+  <%= f.text_field :units %>
+</p>
+  <p>
+    <%= f.label :target %><br />
+    <%= f.text_field :value %>
+  </p>
+  <p>
+    <%= f.label :operator %><br />
+    <%= f.select :operator, Measure.operators_hash %>
+  </p>
+  <p>
+    <%= f.label :decimal_places %><br />
+    <%= f.select :places,["0","1","2"] %>
+  </p>
+
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>

@@ -1,0 +1,6 @@
+<p class='sectionhead'>Medications</p>
+<div class='medications'>
+<%=simple_format(@medication.content)%>
+
+<p class='author'>Created on <%=date_format1(@medication.created_at)%><%=" by "+ @medication.author if @medication.author && @medication.author!=""%></p>
+</div>

@@ -1,0 +1,12 @@
+<div id="conditions">
+	<table border=0><tr><td>
+
+	<div id='conditions_list'>
+<%= render(:partial => "patients/conditions") %>
+</div>
+ <% form_remote_tag :url => { :action => 'add_condition', :id=>@patient.wedgetail } do %>
+ <%= text_field_with_auto_complete :condition, :name %>
+	<%= submit_tag "Add" %>
+<% end %>
+</td></tr></table>
+</div>

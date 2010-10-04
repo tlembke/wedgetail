@@ -1,0 +1,33 @@
+<%=render :partial=>"layouts/careplanmenu"%>
+<h1>Listing goals</h1>
+
+<table border=1>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Measure</th>
+    <th>Condition</th>
+    <th>Patient</th>
+    <th>Team</th>
+		<th>Active</th>
+  </tr>
+
+<% @goals.each do |goal| %>
+  <tr>
+    <td><%=h goal.title %></td>
+    <td><%=h goal.description %></td>
+    <td><%=h goal.measure.name if goal.measure%></td>
+    <td><%= goal.condition ? goal.condition.name : "General" %></td>
+    <td><%=h goal.patient %></td>
+    <td><%=h goal.team %></td>
+		<td><%=h goal.active %></td>
+    <td><%= link_to 'Show', goal %></td>
+    <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
+    <td><%= link_to 'Destroy', goal, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New goal', new_goal_path %>

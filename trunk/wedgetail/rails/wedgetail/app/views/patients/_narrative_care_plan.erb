@@ -1,0 +1,8 @@
+	<span class='sectionhead'><%=@narrative.narrative_type.narrative_type_name%></span>
+	<h3><%= @narrative.narrative_date.strftime("%d/%m/%y") if @narrative.narrative_date%>   <%= @narrative.title-%></h3>
+	<% content, partial = @narrative.convert %>
+	<%= render(:partial=>'patients/'+partial,:object=>content)%>
+	
+	<br><hr><br>
+	<%= "Created by "+ @narrative.author + "<br>" if @narrative.author && @narrative.author!=""%>
+

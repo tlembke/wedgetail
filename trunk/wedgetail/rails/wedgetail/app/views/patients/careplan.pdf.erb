@@ -1,0 +1,54 @@
+<h1>Care Plan</h1>
+<div class='patient_banner'>
+	<span class='patient_name'><%= h(@patient.family_name+", "+@patient.given_names)-%><%= h(" \""+@patient.known_as+ "\"")	unless @patient.known_as.blank? -%></span>
+
+	&nbsp; &nbsp;<span class='address'><b>Address</b>  <%= @patient.address_line+", "+@patient.town%></span>
+	&nbsp; &nbsp;	<span class='dob'><b>DOB</b>  <%= @patient.dob.day %>/<%= @patient.dob.month%>/<%= @patient.dob.year-%></span>
+	</div>
+	<br>
+	<br>
+	<center><%= pdf_image_tag('wedgetail_vert_250.jpg')%></center>
+	<p>
+	<% if @members%>
+	<div class='box'>
+	<%= render(:partial => "team_care_plan") %>
+	</div>
+	<% end %>
+	<p>
+	<p>
+	<p>
+	<div id='created' class='box'>
+		<b>Plan created by</b>
+	<%= date_format1(Date.today)%><br>
+	<%= @user.team_or_user_name %><br>
+	<%= @user.team_address %>
+	</div>
+	
+
+	<DIV style="page-break-after:always"></DIV>
+<% if @conditions%>
+<%= render(:partial => "conditions_care_plan") %>
+<% end %>
+<p>
+<div class='nobreak'>
+<% if @medication%>
+<%= render(:partial => "medications_care_plan") %>
+</div>
+<DIV style="page-break-after:always"></DIV>
+<% end %>
+<% if @summary%>
+<div class='box'>
+<% @narrative=@summary%>
+<%= render(:partial => "narrative_care_plan") %>
+</div>
+<DIV style="page-break-after:always"></DIV>
+<% end %>
+<% if @patient_goals%>
+<%= render(:partial => "goals_care_plan") %>
+<hr>
+<DIV style="page-break-after:always"></DIV>
+<% end %>
+	
+	
+	
+	

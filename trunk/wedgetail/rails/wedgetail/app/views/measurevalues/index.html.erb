@@ -1,0 +1,28 @@
+<h1>Listing measurevalues</h1>
+
+<table>
+  <tr>
+    <th>Patient</th>
+    <th>Measure</th>
+    <th>Value</th>
+    <th>Value date</th>
+    <th>Created by</th>
+  </tr>
+
+<% @measurevalues.each do |measurevalue| %>
+  <tr>
+    <td><%=h measurevalue.patient %></td>
+    <td><%=h measurevalue.measure_id %></td>
+    <td><%=h measurevalue.value %></td>
+    <td><%=h measurevalue.value_date %></td>
+    <td><%=h measurevalue.created_by %></td>
+    <td><%= link_to 'Show', measurevalue %></td>
+    <td><%= link_to 'Edit', edit_measurevalue_path(measurevalue) %></td>
+    <td><%= link_to 'Destroy', measurevalue, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New measurevalue', new_measurevalue_path %>
