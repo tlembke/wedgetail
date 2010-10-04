@@ -37,16 +37,11 @@ class ConditionsController < ApplicationController
   # GET /conditions
   # GET /conditions.xml
   def index
-
     if @patient and @patient.role!=5
       flash[:notice]='Patient not found'
     elsif @patient and !@patient.hatched 
       flash[:notice]='Patient not yet registered'
     else
-      authorize_only(:patient) {@patient.wedgetail == @user.wedgetail}
-      authorize_only(:temp) { @patient.wedgetail == @user.wedgetail.from(6)}
-      authorize_only(:leader){@patient.firewall(@user)}
-      authorize_only(:user){@patient.firewall(@user)}
       authorize :admin
     end
       respond_to do |format|
