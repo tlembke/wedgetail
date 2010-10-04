@@ -3,7 +3,7 @@
 	<tr>
 		<td><%=image_tag('/images/mini_wedge.png') if member.member  and member.member!=""%></td>
 		<td><%= member.name %></td>
-		<td><%= member.craft.name if member.craft%></td>
+		<td><%= member.craft.name if member.craft_id%></td>
 		
 		<td>
 			<% form_remote_tag :url => { :controller=>:patients,:action => 'confirm_team_member', :id=>@patient.wedgetail,:team=>member.id } do %>
