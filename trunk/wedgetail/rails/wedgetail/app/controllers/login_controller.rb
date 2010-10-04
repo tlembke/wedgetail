@@ -42,8 +42,8 @@ class LoginController < ApplicationController
       @newuser.wedgetail=WedgePassword.make("T")
       @newuser.username=@newuser.wedgetail
       @newuser.role=6
-      @newuser.password=@newuser.object_id.to_s + rand.to_s
-      @newuser.password_confirmation=@newuser.password
+      # @newuser.password=@newuser.object_id.to_s + rand.to_s+"T"
+      #@newuser.password_confirmation=@newuser.password
       if @newuser.save
         flash.now[:notice] = "Team #{@newuser.family_name} created" 
         @newuser = User.new 
