@@ -4,7 +4,7 @@
 	<tr>
 
 		<td><%= member.name %></td>
-		<td><%= member.craft.name %></td>
+		<td><%= member.craft.name if member.craft_id%></td>
 
 	</tr>
 	<% end %>
