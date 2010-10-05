@@ -24,13 +24,20 @@ class ApplicationController < ActionController::Base
     if iphone_user_agent? 
       request.format = :iphone
     end
+    # could do the same for iPad but want that to use normal views currently
+    #maybe one day
   end 
     # Request from an iPhone or iPod touch? 
     # (Mobile Safari user agent) 
   def iphone_user_agent? 
     request.env["HTTP_USER_AGENT"] && 
-    request.env["HTTP_USER_AGENT"][/(Mobile\/.+Safari)/] 
+    request.env["HTTP_USER_AGENT"][/iPhone/] 
   end 
+  
+  def ipad_user_agent? 
+    request.env["HTTP_USER_AGENT"] && 
+    request.env["HTTP_USER_AGENT"][/iPad/] 
+  end
   
   def iphone_subdomain? 
     return request.subdomains.first == "iphone" 
