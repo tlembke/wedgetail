@@ -1,0 +1,4 @@
+<% CalendarDateSelect.format = :iso_date %>
+<%= select_date(@date,:prefix=>@prefix,:order => [:day, :month,:year]) %>
+<%= calendar_date_select_tag(@name,@date,@options)%>
+

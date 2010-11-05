@@ -20,6 +20,18 @@
 
 		<%= render(:partial => "measures_care_plan",:object=>@goal) if @goal.measure_id>0%>
 		</div>
+		<% if @goal.tasks.count>0%>
+		<div class='actions_section'>
+		<span class='subsectionhead'>Actions</span>
+		
+		<ul>
+		<% @goal.tasks.each do |@task| %>
+		<li><b><%= h @task.title %></b> <%= h @task.description %></li>
+		<% end %>
+		</ul>
+		</div>
+		<% end %>
+		
 		<hr>
 <% end %>
 <%= "</div>" unless current_condition==''%>

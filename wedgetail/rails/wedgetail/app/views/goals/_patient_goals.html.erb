@@ -1,4 +1,17 @@
+<script>
+function checkifnewtask(goal){
 
+   returnvalue=true;
+	 el=$('task_'+goal+'_id');
+
+	 if(el.options[el.options.selectedIndex].text=="Create a new action..."){
+		 returnvalue=false;
+		 document.getElementById('add_task_'+goal).style.display="none";
+		 document.getElementById('new_task_'+goal).style.display="inline"; 
+	}
+	return returnvalue;
+}
+</script>
 
 <% @patient_goals.each do |@goal| %>
 
@@ -27,6 +40,14 @@
     <%=h @goal.description %>
 		<p>
 		<%= render(:partial => "goals/measures",:object=>@goal) if @goal.measure_id>0%>
+
+		<div class='actions_section'>
+		<%= render(:partial => "goals/add_task") %>
+		<div id='patient_tasks_<%=@goal.id%>'>
+		<%= render(:partial => "tasks/patient_tasks",:object=>@goal) %>
 		</div>
+		</div>
+		</div>
+	
 
 <% end %>

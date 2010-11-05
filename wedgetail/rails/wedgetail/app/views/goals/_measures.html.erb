@@ -3,9 +3,9 @@
 <%= @goal.measure.name %><br><b>Target: </b><%= @goal.measure.operator_string %> <%= number_with_precision(@goal.measure.value,@goal.measure.places) %> <%= @goal.measure.units%><br>
 <span><a href="#" onclick="document.getElementById('add_measure_<%=@goal.measure_id%>').style.display='inline';return false">Add Measure</a></span>
 <div id='add_measure_<%=@goal.measure_id%>' style="display: none">
- <% form_remote_tag :url => { :controller=>:goals,:action => 'add_measure', :id=>@patient.wedgetail,:measure=>@goal.measure.id },:before =>"Element.show('add_measure_spinner_#{@goal.measure_id}');Element.hide('add_measure_button_#{@goal.measure_id}');",:complete=>"Element.hide('add_measure_spinner_#{@goal.measure_id}');Element.show('add_measure_button_#{@goal.measure_id}');" do %>
+ <% form_remote_tag :url => { :controller=>:goals,:action => 'add_measure', :id=>@patient.wedgetail,:measure=>@goal.measure.id,:goal_id=>@goal.id },:before =>"Element.show('add_measure_spinner_#{@goal.measure_id}');Element.hide('add_measure_button_#{@goal.measure_id}');",:complete=>"Element.hide('add_measure_spinner_#{@goal.measure_id}');Element.show('add_measure_button_#{@goal.measure_id}');" do %>
  <%= text_field :measurevalue, :value ,:size=>5 %>
- <%= select_date(date = Date.today) %>
+ <%= calendar_date_select_popup_tag( "name", "", {},prefix='measure_',suffix=@goal.measure_id.to_s) %> 
  <%= submit_tag "Add",:id=>'add_measure_button_'+@goal.measure_id.to_s %><%= image_tag 'loading_star.gif', :id=>'add_measure_spinner_'+@goal.measure_id.to_s, :style=>"display:none;" %>
 <% end %>
 </div>

@@ -158,4 +158,16 @@ module ApplicationHelper
     options[:src] = File.expand_path(RAILS_ROOT) + '/public/stylesheets/' + css +".css"
     tag(:css, options)
   end
+  
+  def calendar_date_select_popup_tag(name, date, options = {},prefix='Date',suffix='')
+    options[:hidden] = true
+    date=Date.today if date==""
+    prefix=prefix+suffix
+    options[:onchange]= "select_date_change('"+prefix+"',$F(this));"
+    @options=options
+    @name=name
+    @date=date
+    @prefix=prefix
+    render(:partial=>"layouts/calendar_date_select_popup")
+  end
 end
