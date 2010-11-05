@@ -1,0 +1,11 @@
+<div id='edit_task_<%=@task.id%>'>
+	<b>Edit task...</b><p>
+	<% form_remote_tag :url => { :controller=>:tasks,:action => 'save_edit_task', :task_id=>@task.id},:before =>"Element.show('add_new_task_spinner_"+@task.id.to_s+"');Element.hide('task_inline_"+@task.id.to_s+"')",:complete=>"Element.hide('add_new_task_spinner_"+@task.id.to_s+"');Element.hide('task_form_"+@task.id.to_s+"');Element.show('task_inline_"+@task.id.to_s+"')"  do %>
+	<table border=0>
+	<tr><td>Task Title</td><td><%= text_field("task",:title)%></td></tr>
+	<tr><td>Task Description</td><td><%= text_area("task",:description,{:rows=>5,:cols=>30})%></td></tr>
+	</table>
+	 <%= submit_tag "Cancel",:onclick=>"Element.hide('task_form_"+@task.id.to_s+"');Element.show('task_inline_"+@task.id.to_s+"');return false;" %>
+	<%= submit_tag "Add",:id=>"add_new_task_button_"+@task.id.to_s %><%= image_tag 'loading_star.gif', :id=>'add_new_task_spinner_'+@task.id.to_s, :style=>"display:none;" %>
+	<% end %>
+</div>

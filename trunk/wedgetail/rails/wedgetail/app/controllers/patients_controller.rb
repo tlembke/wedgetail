@@ -173,75 +173,81 @@ class PatientsController < ApplicationController
       flash[:notice]="This function not available directly"
       redirect_to(:controller => 'patients')
     else
-    @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
-    authorize_only(:leader){@patient.firewall(@user)}
-    authorize_only(:user){@patient.firewall(@user)}
-    authorize :admin
+      @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
+      authorize_only(:leader){@patient.firewall(@user)}
+      authorize_only(:user){@patient.firewall(@user)}
+      authorize :admin
     
-    @goal=Goal.find(params[:goal][:goal_id])
+      @goal=Goal.find(params[:goal][:goal_id])
 
-    @new_goal=Goal.create(:title=>@goal.title,:description=>@goal.description,:patient=>@patient.wedgetail,:condition_id=>@goal.condition_id,:measure_id=>@goal.measure_id,:active=>1,:parent=>@goal.id)
-    if params[:condition_id] and params[:condition_id]!="0"
-      @patient_goals = Goal.find(:all,:conditions => ["patient=? and active=1 and condition_id=?",@patient.wedgetail,params[:condition_id]]) 
-    else
-      @patient_goals = Goal.find(:all,:conditions => ["patient=? and active=1",@patient.wedgetail],:order =>"condition_id ASC") 
-    end
-     @allgoals = Goal.find(:all,:conditions => ["active=1 and (patient='0' or patient='') and condition_id=?",params[:id]],:order =>"condition_id ASC") 
-    @goals=[]
-    @measurevalues=[]
-    @allgoals.each do |goal|
-      goal.title='['+goal.condition.name+'] '+goal.title
+      @new_goal=Goal.create(:title=>@goal.title,:description=>@goal.description,:patient=>@patient.wedgetail,:condition_id=>@goal.condition_id,:measure_id=>@goal.measure_id,:active=>1,:parent=>@goal.id)
+      if params[:condition_id] and params[:condition_id]!="0"
+        @patient_goals = Goal.find(:all,:conditions => ["patient=? and active=1 and condition_id=?",@patient.wedgetail,params[:condition_id]]) 
+      else
+        @patient_goals = Goal.find(:all,:conditions => ["patient=? and active=1",@patient.wedgetail],:order =>"condition_id ASC") 
+      end
+      @allgoals = Goal.find(:all,:conditions => ["active=1 and (patient='0' or patient='') and condition_id=?",params[:id]],:order =>"condition_id ASC") 
+      @goals=[]
+      @measurevalues=[]
+      @allgoals.each do |goal|
+        goal.title='['+goal.condition.name+'] '+goal.title
       
-      @goals<<goal unless Goal.find(:first,:conditions=>["patient=? and active=1 and parent=?",@patient.wedgetail,goal.id])
+        @goals<<goal unless Goal.find(:first,:conditions=>["patient=? and active=1 and parent=?",@patient.wedgetail,goal.id])
       
-    end
+      end
  
-    if params[:condition_id]=="0"
-      @patient_goals = Goal.find(:all,:conditions => ["patient=? and active=1",@patient.wedgetail],:order =>"condition_id ASC") 
-    else
-      @patient_goals = Goal.find(:all,:conditions => ["patient=? and active=1 and condition_id=?",@patient.wedgetail,params[:condition_id]]) 
-    end
+      if params[:condition_id]=="0"
+        @patient_goals = Goal.find(:all,:conditions => ["patient=? and active=1",@patient.wedgetail],:order =>"condition_id ASC") 
+      else
+        @patient_goals = Goal.find(:all,:conditions => ["patient=? and active=1 and condition_id=?",@patient.wedgetail,params[:condition_id]]) 
+      end
     
     
-    render :update do |page|
-       #page['goal_goal_id'].remove(['goal_goal_id'].selectedindex)
-       page<<"$('goal_goal_id').remove($('goal_goal_id').selectedIndex)"
-       page.replace_html("patient_goals", :partial => "goals/patient_goals", :object => @patient_goals)
+      render :update do |page|
+        #page['goal_goal_id'].remove(['goal_goal_id'].selectedindex)
+        page<<"$('goal_goal_id').remove($('goal_goal_id').selectedIndex)"
+        page.replace_html("patient_goals", :partial => "goals/patient_goals", :object => @patient_goals)
+      end
     end
-  end
   end
   
   def add_new_goal_to_patient
-    @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
-    authorize_only(:leader){@patient.firewall(@user)}
-    authorize_only(:user){@patient.firewall(@user)}
-    authorize :admin
-    @goal=Goal.new(params[:newgoal])
-    @newgoal=Goal.new(params[:newgoal])
-    @goal.team=@user.team_wedgetail
-    @goal.parent=0
-    @goal.active=1
-    @goal.condition_id=0 if params[:newgoal][:condition_id]==""
-   
-    if params[:newgoal][:universal].to_i==0  # not only for this patient
-      @newgoal.team=@user.team_wedgetail
-      @newgoal.parent=0
-      @newgoal.active=1
-      @newgoal.condition_id=0 if params[:newgoal][:condition_id]==""
-      @newgoal.save
-    end
-    @goal.patient=@patient.wedgetail
-    @goal.parent=@newgoal.id
-    @goal.save # save goal for that patient
-    if params[:condition_id]==0
-      @patient_goals = Goal.find(:all,:conditions => ["patient=? and active=1",@patient.wedgetail],:order =>"condition_id ASC") 
+    # this is only called from AJAC
+    unless request.xhr?
+      flash[:notice]="This function not available directly"
+      redirect_to(:controller => 'patients')
     else
-       @patient_goals = Goal.find(:all,:conditions => ["patient=? and active=1 and condition_id=?",@patient.wedgetail,params[:id]]) 
-    end
-    render :update do |page|
+      @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
+      authorize_only(:leader){@patient.firewall(@user)}
+      authorize_only(:user){@patient.firewall(@user)}
+      authorize :admin
+      @goal=Goal.new(params[:newgoal])
+      @newgoal=Goal.new(params[:newgoal])
+      @goal.team=@user.team_wedgetail
+      @goal.parent=0
+      @goal.active=1
+      @goal.condition_id=0 if params[:newgoal][:condition_id]==""
+   
+      if params[:newgoal][:universal].to_i==0  # not only for this patient
+        @newgoal.team=@user.team_wedgetail
+        @newgoal.parent=0
+        @newgoal.active=1
+        @newgoal.condition_id=0 if params[:newgoal][:condition_id]==""
+        @newgoal.save
+      end
+      @goal.patient=@patient.wedgetail
+      @goal.parent=@newgoal.id
+      @goal.save # save goal for that patient
+      if params[:condition_id]=="0"
+        @patient_goals = Goal.find(:all,:conditions => ["patient=? and active=1",@patient.wedgetail],:order =>"condition_id ASC") 
+      else
+        @patient_goals = Goal.find(:all,:conditions => ["patient=? and active=1 and condition_id=?",@patient.wedgetail,params[:condition_id]]) 
+      end
+      render :update do |page|
        page.replace_html("patient_goals", :partial => "goals/patient_goals", :object => @patient_goals)
        page.toggle 'add_goal','new_goal'
        
+      end
     end
   end
   

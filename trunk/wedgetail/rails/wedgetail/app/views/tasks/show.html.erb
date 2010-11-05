@@ -1,0 +1,30 @@
+<p>
+  <b>Title:</b>
+  <%=h @task.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @task.description %>
+</p>
+
+<p>
+  <b>Goal:</b>
+  <%=h @task.goal_id %>
+</p>
+
+<p>
+  <b>Patient:</b>
+  <%=h @task.patient %>
+</p>
+
+<p>
+  <b>Team:</b>
+  <%=h @task.team %>
+</p>
+<p>
+  <b>Active:</b>
+  <%=h @task.active %>
+</p>
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>

@@ -1,0 +1,5 @@
+<ul>
+<% @goal.tasks.each do |@task| %>
+<li><b><%= in_place_editor_field :task, :title,{},{} %></b> <%= in_place_editor_field :task, :description %><%= link_to_remote "<img src='/images/icons/buttons/button_red_delete.png' height=15 width=15 border=0>", :url => {:action => 'delete_task', :task_id => @task.id},:confirm=>"Are you sure you want to delete this action?" %></a></li>
+<% end %>
+</ul>

@@ -367,7 +367,6 @@ end
 
   end
   
-
   
   
   # make a HL7 PID segment for this patient

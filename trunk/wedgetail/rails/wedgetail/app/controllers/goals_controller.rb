@@ -1,6 +1,45 @@
 class GoalsController < ApplicationController
   before_filter :redirect_to_ssl, :authenticate
   layout :get_layout
+
+
+  
+  def set_task_title
+        # this is to overide the usual in_place_edit
+        task_id=params[:editorId].delete("task_title_")
+        @task=Task.find(task_id)
+        @patient=User.find_by_wedgetail(@task.patient,:order =>"created_at DESC")
+        authorize_only(:leader){@patient.firewall(@user)}
+        authorize_only(:user){@patient.firewall(@user)}
+        authorize :admin
+        @task.update_attribute("title",params[:value])
+        render :text=>params[:value]
+  end
+  
+  def set_task_description
+        # this is to overide the usual in_place_edit
+        task_id=params[:editorId].delete("task_description_")
+        @task=Task.find(task_id)
+        @patient=User.find_by_wedgetail(@task.patient,:order =>"created_at DESC")
+        authorize_only(:leader){@patient.firewall(@user)}
+        authorize_only(:user){@patient.firewall(@user)}
+        authorize :admin
+        @task.update_attribute("description",params[:value])
+        render :text=>params[:value]
+  end
+  
+  def delete_task
+      @task=Task.find(params[:task_id])
+      @patient=User.find_by_wedgetail(@task.patient,:order =>"created_at DESC")
+      authorize_only(:leader){@patient.firewall(@user)}
+      authorize_only(:user){@patient.firewall(@user)}
+      authorize :admin
+      @goal=Goal.find(@task.goal_id)
+      @task.destroy
+      render :update do |page|
+         page.replace_html("patient_tasks_"+@goal.id.to_s, :partial => "goals/patient_tasks",:object=>@goal)
+      end
+  end
   
   def get_layout
     if params[:patient_id] 
@@ -25,10 +64,10 @@ class GoalsController < ApplicationController
     authorize_only(:leader){@patient.firewall(@user)}
     authorize_only(:user){@patient.firewall(@user)}
     authorize :admin
- 
-    value_date=Date.new(params[:date][:year].to_i,params[:date][:month].to_i,params[:date][:day].to_i)
+    date_string="measure_"+params[:measure];
+    value_date=Date.new(params[date_string][:year].to_i,params[date_string][:month].to_i,params[date_string][:day].to_i)
     #value_date=value_date.strftime("%Y-%m-%d")
-    @goal=Goal.find(:first,:conditions => ["measure_id=?",params[:measure]])
+    @goal=Goal.find(params[:goal_id])
     @new_measurevalue=Measurevalue.create(:value_date=>value_date,:measure_id=>params[:measure],:patient=>@patient.wedgetail,:value=>params[:measurevalue][:value],:created_by=>@user.wedgetail)
     
     #@measurevalues=Measurevalue.find(:all,:conditions => ["patient=? and measure_id=?",@patient.wedgetail,params[:measure]],:order =>"value_date DESC") 
@@ -36,6 +75,7 @@ class GoalsController < ApplicationController
     render :update do |page|
        page['add_measure_'+params[:measure]].hide
        page.replace_html("measurevalues_"+params[:measure], :partial => "goals/measurevalues", :object => @measurevalues)
+       page.replace_html('goal_'+@goal.id.to_s+'_value',@goal.measure.latest(@patient.wedgetail))
     end
  
   end
@@ -59,10 +99,17 @@ class GoalsController < ApplicationController
          @goals<<[goal.title,goal.id] unless Goal.find(:first,:conditions=>["patient=? and active=1 and parent=?",@patient.wedgetail,goal.id])
        end
        @goals<<["Create a new goal...",0]
+       
+       
              
        
     else
-       @goals = Goal.find(:all,:conditions => ["parent=0"])
+       @goals = Goal.find(:all)
+     # if params[:all]
+      #  @goals = Goal.find(:all)
+      #else
+      # @goals = Goal.find(:all,:conditions => ["parent=0"])
+      #end
     end
     @condition_id=0
     respond_to do |format|

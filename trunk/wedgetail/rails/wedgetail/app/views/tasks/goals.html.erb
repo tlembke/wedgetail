@@ -1,0 +1,12 @@
+<% @patient_goals.each do |@goal| %>
+	<% if @goal.active_tasks.count>0 %>
+		<span class='subsectionhead'><%= h @goal.title%></span>
+		<div id='actions_section'>
+			<div id='patient_tasks_<%=@goal.id%>'>
+			<%= render :partial=>"patient_tasks",:object=>@goal%>
+
+			</div>
+	</div>
+	<% end %>
+	
+<% end %>

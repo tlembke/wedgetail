@@ -107,6 +107,17 @@ span.sectionhead {
   font:  150% sans-serif;
   color: #226;
 }
+span.subsectionhead {
+  font:  125% sans-serif;
+  color: #226;
+}
+div.actions_section{
+  padding-left: 40px;
+	
+}
+span.task:hover {
+	background-color: yellow;
+}
 .expand a {
   font:  75% sans-serif;
   color: #226;

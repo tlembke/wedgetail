@@ -1,9 +1,5 @@
-<div class="toolbar">
-  <h1 id="pageTitle"></h1>
-  <a id="backButton" class="button" href="#"></a>
-</div>
-<form id="Login" title="Wedgetail" class="panel" selected="true" method="post" redirect="true">
-  <center><%= image_tag("/images/wedgetail_logo.png") %> </center>
+<form id="Login" title="Wedgetail" class="panel" selected="true" method="post" action="/login/login" redirect="true">
+  <center><%= image_tag("/images/wedgetail_logo.png") %> Logo </center>
   <fieldset>
     <div class="row">
       <label>Name</label>
@@ -15,5 +11,7 @@
       <input type="password" name="password"/>
     </div>
   </fieldset>
-  <a class="whiteButton" type="submit" value='login' href="#" target="#">Login</a>
+  <a class="whiteButton" type="submit" value='login' href="#" target="_self">Login</a>
 </form>
+
+

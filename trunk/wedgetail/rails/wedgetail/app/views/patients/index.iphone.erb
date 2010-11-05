@@ -1,12 +1,8 @@
-
 <% if @patients && @patients.length>0 %>
 
 <%= render(:partial => "patientlist") %> 
 
 <% else %>
-<div class="toolbar">
-  <h1 id="pageTitle"></h1>
-</div>
 
 <form  title="Search" class="panel" selected="true" action="<%= patients_path %>" method="get" redirect="true">
   <center><%= image_tag("/images/wedgetail_logo.png") %> </center>
