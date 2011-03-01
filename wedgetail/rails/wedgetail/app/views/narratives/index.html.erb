@@ -1,4 +1,5 @@
 <h1><%= @title %></h1>
+<% if @narratives.count > 0 %>
 <% type=@narratives[0].narrative_type_id%>
 <% if type==2%>
 <% @medication=@narratives[0]%>
@@ -8,6 +9,7 @@
 <% end %>
 <div class="wedgetail-form">
 <% count=0%>
+
 <% for @narrative in @narratives %>
 <% count=count+1%>
 <% unless @narrative.narrative_type_id ==2 and count==1 %>
@@ -23,6 +25,10 @@
 	</fieldset>
 <% end %>
 <% end %>
+<% else %>
+None available<p>
+<% end %>
+
 </div>
 
 
