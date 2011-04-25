@@ -44,7 +44,7 @@ class ActionsController < ApplicationController
         format.html {
           }# show.html.erb
       
-        format.xml  { render :xml => @action }
+        format.xml  { render :xml => @actions }
         format.iphone {
             render :layout=> 'layouts/application.iphone.erb'
         }# show.iphone.erb
