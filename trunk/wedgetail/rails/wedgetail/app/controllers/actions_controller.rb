@@ -23,6 +23,7 @@ class ActionsController < ApplicationController
   # GET /actions/1
   # GET /actions/1.xml
   def show
+
     @ticket=params[:id]
 
     @result=ResultTicket.find_by_ticket(params[:id])
@@ -44,7 +45,10 @@ class ActionsController < ApplicationController
         format.html {
           }# show.html.erb
       
-        format.xml  { render :xml => @actions }
+        format.xml  { 
+         render :xml => @actions, :template => 'actions/actions.xml.builder' 
+
+        }
         format.iphone {
             render :layout=> 'layouts/application.iphone.erb'
         }# show.iphone.erb

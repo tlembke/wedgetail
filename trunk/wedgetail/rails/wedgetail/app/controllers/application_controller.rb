@@ -16,14 +16,16 @@ class ApplicationController < ActionController::Base
     @chosen_theme=Pref.theme
   end
   
-  
   def adjust_format_for_iphone 
     # iPhone sub-domain request 
     # request.format = :iphone if iphone_subdomain? 
-    # Detect from iPhone user-agent 
-    if iphone_user_agent? 
-      request.format = :iphone
-    end
+    # Detect from iPhone user-agent
+    unless request.format.xml?
+   	    if iphone_user_agent? 
+     		  request.format = :iphone
+  		  end
+  	end
+
     # could do the same for iPad but want that to use normal views currently
     #maybe one day
   end 
