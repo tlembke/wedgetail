@@ -138,7 +138,7 @@ class ActionsController < ApplicationController
       end
     end
     respond_to do |format|
-        format.xml { render :xml => @errors, :template => 'actions/actions.xml.builder' }
+        format.xml { render :xml => @errors, :template => 'actions/errors.xml.builder' }
     end
  
 
