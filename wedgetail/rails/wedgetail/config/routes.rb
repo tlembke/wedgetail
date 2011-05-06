@@ -29,7 +29,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :stats
 
-  map.resources :patients, :key => :wedgetail, :has_many => [:narratives,:conditions,:goals,:tasks], :member => { :results => :get,:team=>:get,:careplan=>:get}
+  map.resources :patients, :key => :wedgetail, :has_many => [:narratives,:conditions,:goals,:tasks,:measurevalues], :member => { :results => :get,:team=>:get,:careplan=>:get}
   
 
   

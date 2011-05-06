@@ -2,8 +2,15 @@ class MeasurevaluesController < ApplicationController
   # GET /measurevalues
   # GET /measurevalues.xml
   def index
-    @measurevalues = Measurevalue.all
-
+    if params[:patient_id]
+      if params[:measure]
+        @measurevalues = Measurevalue.find(:all,:order => "created_at DESC",:conditions => ["patient=? and measure_id=?",params[:patient_id],params[:measure]])
+     else
+        @measurevalues = Measurevalue.find(:all,:order => "created_at DESC",:conditions => ["patient=?",params[:patient_id]])
+      end
+    else
+      @measurevalues = Measurevalue.all
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @measurevalues }
@@ -28,7 +35,9 @@ class MeasurevaluesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @measurevalue }
+      format.xml  { 
+        render :xml => @measurevalue 
+      }
     end
   end
 
