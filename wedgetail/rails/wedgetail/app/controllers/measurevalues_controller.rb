@@ -50,7 +50,9 @@ class MeasurevaluesController < ApplicationController
   # POST /measurevalues.xml
   def create
     @measurevalue = Measurevalue.new(params[:measurevalue])
-
+    if @measurevalue.patient == nil and params[:patient_id]!= nil
+        @measurevalue.patient=params[:patient_id]
+    end
     respond_to do |format|
       if @measurevalue.save
         flash[:notice] = 'Measurevalue was successfully created.'
