@@ -80,10 +80,6 @@ render_tabnav :patient,
   end
 
   add_tab do |t|
-    t.named 'Print'
-    t.links_to hash_for_careplan_patient_path(:id=>@patient.wedgetail,:format=>"pdf")
-  end
-  add_tab do |t|
     t.named 'ACD'
     t.links_to hash_for_patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>15)
   end
