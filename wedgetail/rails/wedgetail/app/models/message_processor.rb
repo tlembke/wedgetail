@@ -286,7 +286,7 @@ class MessageProcessor
   end
   
   def self.make_html_from_rtf(file)
-    abiwordise('doc.rtf',file,false)
+    file=self.abiwordise('doc.rtf',file,false)
     file=file.gsub("background:#000000","background:#FFFFFF")
     file=file.gsub("color:#ffffff","color:#000000")
   end
