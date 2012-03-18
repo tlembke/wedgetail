@@ -57,8 +57,14 @@ class Narrative < ActiveRecord::Base
     case content_type
       when 'text/html'
         content
+      when 'text/rtf'
+        MessageProcessor.make_html_from_rtf(content)
       when 'text/plain'
-        MessageProcessor.make_html_from_text(content)
+        if content.starts_with?("{\\rtf")
+          MessageProcessor.make_html_from_rtf(content)
+        else
+          MessageProcessor.make_html_from_text(content)
+        end
       when 'application/x-pit'
         c = content.scan(/^301 (.*)$/).join("\n")
         if c.starts_with? "{\\rtf"
@@ -104,7 +110,7 @@ class Narrative < ActiveRecord::Base
           partial = "yaml_form"
         elsif narrative_type_id == 11
           partial = "yaml_script"
-	elsif narrative_type_id == 12
+	      elsif narrative_type_id == 12
           partial = "diagnoseslist"
         elsif narrative_type_id == 2
           partial = "medslist"
@@ -116,6 +122,7 @@ class Narrative < ActiveRecord::Base
       else
         message = to_html
         partial = 'pit'
+        
       end
     rescue HL7::Error
       # this should hardly happen as the message will have been parsed successfully
