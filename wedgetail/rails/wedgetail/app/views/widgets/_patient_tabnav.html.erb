@@ -40,7 +40,8 @@ render_tabnav :patient,
   end
   add_tab do |t|
     t.named 'Results'
-    t.links_to hash_for_results_patient_path(:id=>@patient.wedgetail)
+    #t.links_to hash_for_results_patient_path(:id=>@patient.wedgetail)
+		t.links_to hash_for_patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>7)
   end
 
   add_tab do |t|
