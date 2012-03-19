@@ -38,35 +38,45 @@ render_tabnav :patient,
     t.named 'Dashboard'
     t.links_to hash_for_patient_path(:id=>@patient.wedgetail)
   end
-  add_tab do |t|
-    t.named 'Summary'
-    t.links_to hash_for_patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>1)
+	if Narrative.count(:all,:conditions=>["wedgetail='#{@patient.wedgetail}' and narrative_type_id='1'"]) >0
+  	add_tab do |t|
+    	t.named 'Summary'
+    	t.links_to hash_for_patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>1)
+  	end
+	end
+	
+	if Narrative.count(:all,:conditions=>["wedgetail='#{@patient.wedgetail}' and narrative_type_id='7'"]) >0
+  	add_tab do |t|
+    	t.named 'Results'
+    	#t.links_to hash_for_results_patient_path(:id=>@patient.wedgetail)
+			t.links_to hash_for_patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>7)
+  	end
+	end
+	if Narrative.count(:all,:conditions=>["wedgetail='#{@patient.wedgetail}' and narrative_type_id='2'"]) >0
+  	add_tab do |t|
+    	t.named 'Meds'
+    	t.links_to hash_for_patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>2)
+  	end
+	end
+	care_plan=1 if @patient.conditions.count>0
+	if care_plan
+  	add_tab do |t|
+    	t.named 'Goals'
+    	t.links_to hash_for_patient_goals_path(:patient_id=>@patient.wedgetail)
+  	end
   end
-  add_tab do |t|
-    t.named 'Results'
-    #t.links_to hash_for_results_patient_path(:id=>@patient.wedgetail)
-		t.links_to hash_for_patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>7)
+	if care_plan
+  	add_tab do |t|
+    	t.named 'Conditions'
+			t.highlights_on :controller => "conditions"
+    	t.links_to hash_for_patient_conditions_path(:patient_id=>@patient.wedgetail)
+  	end
   end
-
-  add_tab do |t|
-    t.named 'Meds'
-    t.links_to hash_for_patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>2)
-  end
-
-  add_tab do |t|
-    t.named 'Goals'
-    t.links_to hash_for_patient_goals_path(:patient_id=>@patient.wedgetail)
-  end
-
-  add_tab do |t|
-    t.named 'Conditions'
-		t.highlights_on :controller => "conditions"
-    t.links_to hash_for_patient_conditions_path(:patient_id=>@patient.wedgetail)
-  end
-
-  add_tab do |t|
-    t.named 'Team'
-    t.links_to hash_for_team_patient_path(:id=>@patient.wedgetail)
+	if care_plan
+  	add_tab do |t|
+    	t.named 'Team'
+    	t.links_to hash_for_team_patient_path(:id=>@patient.wedgetail)
+  	end
   end
 
   add_tab do |t|
@@ -74,15 +84,27 @@ render_tabnav :patient,
     t.links_to hash_for_patient_tasks_path(:patient_id=>@patient.wedgetail)
   end
 
-  add_tab do |t|
-    t.named 'Care Plan'
-    t.links_to hash_for_careplan_patient_path(:id=>@patient.wedgetail)
+	if care_plan
+  	add_tab do |t|
+    	t.named 'Care Plan'
+    	t.links_to hash_for_careplan_patient_path(:id=>@patient.wedgetail)
+  	end
   end
 
-  add_tab do |t|
-    t.named 'ACD'
-    t.links_to hash_for_patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>15)
+	if Narrative.count(:all,:conditions=>["wedgetail='#{@patient.wedgetail}' and narrative_type_id='15'"]) >0
+  	add_tab do |t|
+    	t.named 'ACD'
+    	t.links_to hash_for_patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>15)
+  	end
   end
+
+	if Narrative.count(:all,:conditions=>["wedgetail='#{@patient.wedgetail}' and narrative_type_id='19'"]) >0
+  	add_tab do |t|
+    	t.named 'CMA'
+    	t.links_to hash_for_patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>19)
+  	end
+  end 
+
   #
   #add_tab do |t|
   #  t.named 'Home'
