@@ -1,0 +1,10 @@
+	<h1>Progress Wall</h1>
+	<div id="progress_wall">
+	 <% form_remote_tag :url => { :action => 'add_post', :id=>@patient.wedgetail,:condition_id=>0 } do %>
+	 <%= text_area_tag :post,"",:cols=>60,:rows=>3 %></p>
+		<%= submit_tag "Add Post" %>
+	<% end %>
+	<hr>
+	<div id='built_wall'>
+<%= render(:partial => "wall",:object=> @wall_info) %>
+</div>

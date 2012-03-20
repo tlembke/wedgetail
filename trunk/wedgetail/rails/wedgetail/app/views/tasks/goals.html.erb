@@ -1,12 +1,41 @@
+	<script>
+function checkifnewtask(goal){
+
+   returnvalue=true;
+	 el=$('task_'+goal+'_id');
+
+	 if(el.options[el.options.selectedIndex].text=="Create a new action..."){
+		 returnvalue=false;
+		 document.getElementById('add_task_'+goal).style.display="none";
+		 document.getElementById('new_task_'+goal).style.display="inline"; 
+	}
+	return returnvalue;
+}
+</script>
+
+
+	<span style="font-weight: bold;font-size: 125%;">General</span>
+	<div id='actions_section'>
+		<%= render(:partial => "goals/add_task") %>
+		<div id='patient_tasks_0'>
+			<% @goal_id=0 %>
+		<%= render :partial=>"patient_tasks",:object=>@goal_id%>
+
+		</div>
+</div>
+
 <% @patient_goals.each do |@goal| %>
-	<% if @goal.active_tasks.count>0 %>
-		<span class='subsectionhead'><%= h @goal.title%></span>
+
+		<span style="font-weight: bold;font-size: 125%;"><%= '['+@goal.condition.name+'] ' if @goal.condition_id!=0%><%= h @goal.title%></span>
 		<div id='actions_section'>
+			<%= render(:partial => "goals/add_task") %>
 			<div id='patient_tasks_<%=@goal.id%>'>
-			<%= render :partial=>"patient_tasks",:object=>@goal%>
+			<% @goal_id=@goal.id %>
+			<%= render :partial=>"patient_tasks",:object=>@goal_id%>
 
 			</div>
 	</div>
-	<% end %>
+
 	
 <% end %>
+

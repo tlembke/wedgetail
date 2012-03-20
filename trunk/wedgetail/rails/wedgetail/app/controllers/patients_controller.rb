@@ -641,6 +641,12 @@ end
       }
     end
   end
+  
+  def wall
+    params[:wedgetail]=params[:id]
+    @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
+    @wall_info=get_wall(@patient.wedgetail)
+  end
 
   def gen_pdf(wedgetail)
     patient=User.find_by_wedgetail(wedgetail,:order =>"created_at DESC")
