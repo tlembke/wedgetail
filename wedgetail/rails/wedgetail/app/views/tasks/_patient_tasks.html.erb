@@ -1,5 +1,6 @@
+	
 		<ul>
-			<% @goal.active_tasks.each do |@task| %>
+			<% Goal.active_tasks(@goal_id,@patient.wedgetail).each do |@task| %>
 			<li><input type='checkbox' unchecked id='cb_<%=@task.id.to_s%>' onClick="<%= remote_function(:url => {:action => 'check_task', :controller=>'tasks',:task_id => @task.id}) %>"><span id='task_inline_<%=@task.id.to_s%>'class='task' onclick="Element.show('task_form_<%=@task.id.to_s%>');Element.hide('task_inline_<%=@task.id.to_s%>');<%= remote_function(:url => {:action => 'edit_task', :controller=>'tasks',:task_id => @task.id}) %>"><span id='task_<%=@task.id.to_s%>'><b><span id='tasktext_<%=@task.id.to_s%>'><%=h @task.title %><span></b> <%= h @task.description %></span></span><span id='task_form_<%=@task.id.to_s%>'></span></li>
 			<% end %>
 			</ul>

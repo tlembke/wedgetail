@@ -44,7 +44,8 @@ function checkifnewtask(goal){
 		<div class='actions_section'>
 		<%= render(:partial => "goals/add_task") %>
 		<div id='patient_tasks_<%=@goal.id%>'>
-		<%= render(:partial => "tasks/patient_tasks",:object=>@goal) %>
+		<% @goal_id=@goal.id %>
+		<%= render(:partial => "tasks/patient_tasks",:object=>@goal_id) %>
 		</div>
 		</div>
 		</div>

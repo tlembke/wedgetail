@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   before_filter :redirect_to_ssl, :authenticate
   layout :get_layout
 
+# although the model is called 'tasks' for historical reasons, they are known as 'actions' on the website.
   
   def get_layout
     if params[:patient_id] 
@@ -19,14 +20,19 @@ class TasksController < ApplicationController
        @conditions=Condition.find(:all)
        @patient=User.find_by_wedgetail(params[:patient_id],:order =>"created_at DESC") 
        @patient_goals = Goal.find(:all,:conditions => ["patient=? and active=1",@patient.wedgetail],:order =>"condition_id ASC") 
-
-       
-       
-             
-       
     else
        @tasks = Task.all
     end
+
+     @all_tasks=Task.find(:all,:conditions=>["active=1 and (goal_id=0) and patient='' and (team='' or team=0 or team=?)",@patient.team])
+     @options=[]
+     @all_tasks.each do |task|
+       @options<<[task.title,task.id] unless Task.find(:first,:conditions=>["patient=? and active=1 and parent=?",@patient.wedgetail,task.id])
+     end
+     @options<<["Create a new action...",0]
+     
+    
+    
     
     
     
@@ -180,12 +186,12 @@ class TasksController < ApplicationController
         @goal=Goal.find(params[:newtask][:goal_id])
       end
       @task.goal_id=0 if params[:newtask][:goal_id]==""
-   
+      @goal_id=@newtask.goal_id
       if params[:newtask][:universal].to_i==0  # not only for this patient
         @newtask.team=@user.team_wedgetail
         @newtask.parent=0
         @newtask.active=1
-        if params[:newtask][:goal]!=""
+        if params[:newtask][:goal]!="" and @goal
           @newtask.goal_id=@goal.parent
         else  
           @newtask.goal_id=0
@@ -198,9 +204,8 @@ class TasksController < ApplicationController
 
       @conditions=Condition.find(:all)
       params[:controller]='goals'
-      
      render :update do |page|
-       page.replace_html("patient_tasks_"+params[:newtask][:goal_id], :partial => "tasks/patient_tasks",:object=>@goal)
+       page.replace_html("patient_tasks_"+params[:newtask][:goal_id], :partial => "tasks/patient_tasks",:object=>@goal_id)
        page.toggle 'add_task_'+params[:newtask][:goal_id],'new_task_'+params[:newtask][:goal_id]
      end
     end
@@ -217,9 +222,13 @@ class TasksController < ApplicationController
       authorize_only(:leader){@patient.firewall(@user)}
       authorize_only(:user){@patient.firewall(@user)}
       authorize :admin
-    
-      @goal=Goal.find(params[:goal_id])
-      goal_id=@goal.id.to_s
+      
+      if params[:goal_id]==0
+        goal_id=0
+      else
+        @goal=Goal.find(params[:goal_id])
+        goal_id=@goal.id.to_s
+      end
       @task=Task.find(params['task_'+goal_id][:id])
       @new_task=Task.create(:title=>@task.title,:description=>@task.description,:patient=>@patient.wedgetail,:team=>@user.team_wedgetail,:goal_id=>goal_id,:active=>1,:parent=>@task.id)
       

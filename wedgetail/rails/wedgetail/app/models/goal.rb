@@ -22,9 +22,16 @@ class Goal < ActiveRecord::Base
    @options<<["Create a new action...",0]
   end
   
-  def active_tasks
-    @active_tasks=Task.find(:all,:conditions=>["goal_id=? and active=1",self.id])
+  #def self.active_tasks(goal_id)
+  #  @active_tasks=Task.find(:all,:conditions=>["goal_id=? and active=1",goal_id])
+  #end
+  def self.active_tasks(goal_id,patient)
+    @active_tasks=Task.find(:all,:conditions=>["goal_id=? and active=1 and patient=?",goal_id,patient])
   end
+  
+  #def self.general_active_tasks(patient)
+  #  @active_tasks=Task.find(:all,:conditions=>["goal_id=0 and active=1 and patient=?",patient])
+  #end
 
   
 end

@@ -1,35 +1,40 @@
-
+<% if @goal %>
+	<% goal_id=@goal.id %>
+	<% task_options=@goal.task_options(@user.team_wedgetail,@patient.wedgetail)%>
+<% else %>
+	<% goal_id=0%>
+	<% task_options=@options%>
+	
+<% end %>
 <table border=0>
 	<tr>
 		<td><span class='subsectionhead'>Actions</span></td>
 		<td>
-	<span id='add_task_<%=@goal.id%>_show'><a href='#' onclick="$('add_task_<%=@goal.id%>').show();$('add_task_<%=@goal.id%>_show').hide();return false;" style="text-decoration: none;"><%= image_tag("/images/icons/buttons/button_blue_add.png", :size => "15x15",:border=>0) %></span></td>
+	<span id='add_task_<%=goal_id%>_show'><a href='#' onclick="$('add_task_<%=goal_id%>').show();$('add_task_<%=goal_id%>_show').hide();return false;" style="text-decoration: none;"><%= image_tag("/images/icons/buttons/button_blue_add.png", :size => "15x15",:border=>0) %></span></td>
 		</tr>
 </table>
 		
-<div id='add_task_<%=@goal.id%>' style="display: none">
-	<% form_remote_tag :url => { :controller=>:tasks,:action => 'add_task_to_goal', :id=>@patient.wedgetail,:goal_id=>@goal.id },:before =>"if(checkifnewtask("+@goal.id.to_s+")==false){return false;}else{Element.show('add_task_"+@goal.id.to_s+"_spinner');Element.hide('add_task_"+@goal.id.to_s+"_button')};",:complete=>"Element.hide('add_task_"+@goal.id.to_s+"_spinner');Element.show('add_task_"+@goal.id.to_s+"_button')" do %>
-	<%= select("task_"+@goal.id.to_s,:id, @goal.task_options(@user.team_wedgetail,@patient.wedgetail)) %>
-	<%= submit_tag "Cancel",:onclick=>"$('add_task_"+@goal.id.to_s+"').hide();$('add_task_"+@goal.id.to_s+"_show').show();return false;" %>
-	<%= submit_tag "Add",:id=>"add_task_"+@goal.id.to_s+"_button" %>
-	<%= image_tag 'loading_star.gif', :id=>"add_task_"+@goal.id.to_s+"_spinner", :style=>"display:none;" %>
+<div id='add_task_<%=goal_id%>' style="display: none">
+	<% form_remote_tag :url => { :controller=>:tasks,:action => 'add_task_to_goal', :id=>@patient.wedgetail,:goal_id=>goal_id },:before =>"if(checkifnewtask("+goal_id.to_s+")==false){return false;}else{Element.show('add_task_"+goal_id.to_s+"_spinner');Element.hide('add_task_"+goal_id.to_s+"_button')};",:complete=>"Element.hide('add_task_"+goal_id.to_s+"_spinner');Element.show('add_task_"+goal_id.to_s+"_button')" do %>
+	<%= select("task_"+goal_id.to_s,:id, task_options) %>
+	<%= submit_tag "Cancel",:onclick=>"$('add_task_"+goal_id.to_s+"').hide();$('add_task_"+goal_id.to_s+"_show').show();return false;" %>
+	<%= submit_tag "Add",:id=>"add_task_"+goal_id.to_s+"_button" %>
+	<%= image_tag 'loading_star.gif', :id=>"add_task_"+goal_id.to_s+"_spinner", :style=>"display:none;" %>
 	<% end %>
 </div>
 
-<div id='new_task_<%=@goal.id%>' style="display: none">
+<div id='new_task_<%=goal_id%>' style="display: none">
 	<b>Add new task...</b><p>
-	<% form_remote_tag :url => { :controller=>:tasks,:action => 'add_new_task_to_goal', :id=>@patient.wedgetail,:condition_id=>@condition_id},:before =>"Element.show('add_new_task_spinner_"+@goal.id.to_s+"');Element.hide('add_new_task_button_"+@goal.id.to_s+"');",:complete=>"Element.hide('add_new_task_spinner_"+@goal.id.to_s+"');Element.show('add_new_task_button_"+@goal.id.to_s+"');"  do %>
+	<% form_remote_tag :url => { :controller=>:tasks,:action => 'add_new_task_to_goal', :id=>@patient.wedgetail,:condition_id=>@condition_id},:before =>"Element.show('add_new_task_spinner_"+goal_id.to_s+"');Element.hide('add_new_task_button_"+goal_id.to_s+"');",:complete=>"Element.hide('add_new_task_spinner_"+goal_id.to_s+"');Element.show('add_new_task_button_"+goal_id.to_s+"');"  do %>
 	<table border=0>
 	<tr><td>Task Title</td><td><%= text_field("newtask",:title)%></td></tr>
 	<tr><td>Task Description</td><td><%= text_area("newtask",:description,{:rows=>5,:cols=>30})%></td></tr>
-	<% if params[:controller]=="tasks"%>
-	 <tr><td>Condition</td><td><%=collection_select("newtask",:condition_id,@conditions,:id,:name, { :include_blank => true } )%></td></tr>
-	<% else %>
-	<input id="newtask_goal_id" name="newtask[goal_id]" type="hidden" value="<%=@goal.id%>"/>
-	<% end %>
+
+	<input id="newtask_goal_id" name="newtask[goal_id]" type="hidden" value="<%=goal_id%>"/>
+	
 	<tr><td>Only for this patient <%= radio_button("newtask",:universal,1,:select=>true) %></td><td>Add to Task Menu <%= radio_button("task",:universal,0) %></td></tr>
 	</table>
-	<%= submit_tag "Cancel",:onclick=>"$('new_task_"+@goal.id.to_s+"').hide();$('add_task_"+@goal.id.to_s+"').show();return false;" %>
-	<%= submit_tag "Add",:id=>"add_new_task_button_"+@goal.id.to_s %><%= image_tag 'loading_star.gif', :id=>'add_new_task_spinner_'+@goal.id.to_s, :style=>"display:none;" %>
+	<%= submit_tag "Cancel",:onclick=>"$('new_task_"+goal_id.to_s+"').hide();$('add_task_"+goal_id.to_s+"').show();return false;" %>
+	<%= submit_tag "Add",:id=>"add_new_task_button_"+goal_id.to_s %><%= image_tag 'loading_star.gif', :id=>'add_new_task_spinner_'+goal_id.to_s, :style=>"display:none;" %>
 	<% end %>
 </div>
