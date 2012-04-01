@@ -29,7 +29,13 @@
 	<%= render(:partial => "medications") %>
 </div>
 <p>
-	<hr>
+<hr>
+<%= expandable_section("Allergies","show")%>
+<div id='allergies'>
+<%= render(:partial => "allergies") %>
+</div>
+<p>
+<hr>
 
 	<%= expandable_section("Progress Wall","hide")%>
 
