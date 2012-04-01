@@ -64,6 +64,11 @@ class PatientsController < ApplicationController
           @medication=Narrative.create(:wedgetail=>@patient.wedgetail,:content=>"",:narrative_type_id=>2,:created_by=>@user.wedgetail,:content_type=>"text/plain")
           
         end
+        
+        @allergy=Narrative.find(:first, :conditions=>["wedgetail=? and narrative_type_id=5",params[:wedgetail]], :order=>"created_at DESC")
+        unless @allergy
+          @allergy=Narrative.create(:wedgetail=>@patient.wedgetail,:content=>"",:narrative_type_id=>5,:created_by=>@user.wedgetail,:content_type=>"text/plain")
+        end
         # get patients conditions
         @conditions=@patient.conditions
       end
@@ -293,7 +298,7 @@ class PatientsController < ApplicationController
       @text=@item.content.to_s
       @text=simple_format(@text)
       @text="-----------" if @text.blank?
-      if @item.narrative_type_id!=2
+      if @item.narrative_type_id!=2 and @item.narrative_type_id!=5 
         render :text=>@text
       else
         render :update do |page|

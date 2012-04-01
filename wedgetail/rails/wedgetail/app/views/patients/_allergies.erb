@@ -1,0 +1,4 @@
+	<% @summary=@allergy%>
+	<% @summary.content="Click to add allergies list" if @summary.content.blank?%>
+	<%= in_place_editor_field :summary, :content, 	{}, {:url=>"/patients/set_summary_content",:rows=>8, :cols=>50,:type=>'simple',:script=>true,:options => "{method:'post'}"} %>
+<span id='author'><%= render(:partial => "patients/author") %></span>

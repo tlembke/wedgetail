@@ -12,7 +12,12 @@ class NarrativesController < ApplicationController
     else
       raise WedgieError,'not correct parameters'
     end
-
+    if params[:type]=="2"
+      @allergy=Narrative.find(:first, :conditions=>["wedgetail=? and narrative_type_id=5",@patient.wedgetail], :order=>"created_at DESC")
+        unless @allergy
+            @allergy=Narrative.create(:wedgetail=>@patient.wedgetail,:content=>"",:narrative_type_id=>5,:created_by=>@user.wedgetail,:content_type=>"text/plain")
+        end
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @narratives }

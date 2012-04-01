@@ -4,8 +4,8 @@ class Pref < ActiveRecord::Base
 #  Unhatched Access = 3 => access by team of user who created patient
 #  Unhatched Access = 4 => access by patient only
 #  Hatched Access = 1=> all providers
-# Hatched Access = 3=> creaters team
-#  Hatched Access = 4=> only patient
+# Hatched Access = 2=> keep unhatched access
+
 
   def self.list
     {
