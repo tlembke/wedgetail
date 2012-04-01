@@ -108,6 +108,10 @@ render_tabnav :patient,
     	t.links_to hash_for_patient_narratives_path(:patient_id=>@patient.wedgetail,:type=>19)
   	end
   end 
+	add_tab do |t|
+  	t.named 'New'
+  	t.links_to :controller=>"entry",:action=>"new",:id=>@patient.wedgetail
+	end
 
   #
   #add_tab do |t|
