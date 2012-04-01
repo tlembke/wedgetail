@@ -39,7 +39,7 @@ class PatientsController < ApplicationController
       
       if !@patient or @patient.role!=5
         flash[:notice]='Patient not found'
-      elsif !@patient.hatched 
+      elsif !@patient.hatched and Pref.unhatched_access==1
         flash[:notice]='Patient not yet registered'
       else
         authorize_only(:patient) {@patient.wedgetail == @user.wedgetail}
@@ -73,7 +73,7 @@ class PatientsController < ApplicationController
       format.html{
         if !@patient or @patient.role!=5
           redirect_to :action=>:index
-        elsif ! @patient.hatched
+        elsif ! @patient.hatched and Pref.unhatched_access==1
           render :action=>:unconfirmed
         end
       }
@@ -447,6 +447,23 @@ class PatientsController < ApplicationController
         @patient.hatched=false
         @patient.hatched=true if request.host.starts_with?("de")
         @patient.created_by=@user.wedgetail
+        @patient.access=1
+        if Pref.unhatched_access ==2
+          @patient.access=3
+          @patient.addToWhiteList(@user.wedgetail)
+        end
+        if Pref.unhatched_access == 3
+          @patient.access=3
+          if @user.team
+            @patient.addToWhiteList(@user.team)
+          else
+            @patient.addToWhiteList(@user.wedgetail)
+          end
+        end
+        if Pref.unhatched_access ==4
+          @patient.access=4
+        end      
+        
       end
 
       respond_to do |format|
@@ -485,6 +502,7 @@ class PatientsController < ApplicationController
       end # respond_to
   end # def
 
+  
   # PUT /patients/1
   # PUT /patients/1.xml
   
@@ -646,6 +664,11 @@ end
     params[:wedgetail]=params[:id]
     @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
     @wall_info=get_wall(@patient.wedgetail)
+  end
+  
+  def unconfirmed
+    params[:wedgetail]=params[:id]
+    @patient=User.find_by_wedgetail(params[:wedgetail],:order =>"created_at DESC")
   end
 
   def gen_pdf(wedgetail)

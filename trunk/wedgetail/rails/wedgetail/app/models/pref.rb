@@ -1,5 +1,12 @@
 class Pref < ActiveRecord::Base
-  
+#  Unhatched Access = NULL or 1 => No access by anyone
+#  Unhatched Access = 2 => access by user who created patient
+#  Unhatched Access = 3 => access by team of user who created patient
+#  Unhatched Access = 4 => access by patient only
+#  Hatched Access = 1=> all providers
+# Hatched Access = 3=> creaters team
+#  Hatched Access = 4=> only patient
+
   def self.list
     {
       :server=>{:name=>'Server Wedgetail code',:default=>'0000'},
@@ -12,6 +19,8 @@ class Pref < ActiveRecord::Base
       :host_url=>{:name=>"Host URL",:default=>"wedgetail.org.au"},
       :theme=>{:name=>"Theme",:default=>"wedgetail"},
       :toolbar=>{:name=>"Toolbar",:default=>true},
+      :unhatched_access=>{:name=>"Unhatched Access",:default=>3},
+      :hatched_access=>{:name=>"Hatched Defauly Access",:default=>1}
     }
   end
 
