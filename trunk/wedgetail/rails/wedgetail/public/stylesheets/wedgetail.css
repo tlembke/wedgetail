@@ -26,6 +26,13 @@ div#medications {
   line-height: 25px;
   width:450px;
 }
+div#allergies {
+  color: #226;
+  border: 2px solid black;
+  padding: 5px;
+  line-height: 25px;
+  width:450px;
+}
 /* columns is block below banner and consists of side, main and toolbar */
 #columns {
   background: #000000;
