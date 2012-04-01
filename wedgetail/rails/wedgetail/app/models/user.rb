@@ -267,6 +267,10 @@ end
     return @conditions
   end
   
+  def addToWhiteList(user_wedgetail)
+    Firewall.create(:patient_wedgetail => self.wedgetail, :user_wedgetail => user_wedgetail)
+  end
+  
   def find_authorised_patients(family_name="",given_names="",dob="")
     # returns array of patients that user is authorised to find
     @ok_patients=[]
@@ -429,6 +433,5 @@ eol
   def create_new_salt 
     self.salt = self.object_id.to_s + rand.to_s 
   end  
-  
 
 end

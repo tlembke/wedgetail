@@ -1,10 +1,20 @@
 <p>
+	
+	<% if !@patient.hatched %>
+	<%= expandable_section("Consent","show")%>
+	<div id="consent">
+	<%= render(:partial => "consent.erb") %>
+	</div>
+	<% end %>
+	
+<p>
 <%= expandable_section("Conditions","show")%>
 <div id="conditions">
 	<table border=0><tr><td>
 
 	<div id='conditions_list'>
 <%= render(:partial => "conditions") %>
+
 </div>
  <% form_remote_tag :url => { :action => 'add_condition', :id=>@patient.wedgetail } do %>
  <%= text_field_with_auto_complete :condition, :name %>
