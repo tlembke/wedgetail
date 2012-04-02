@@ -320,4 +320,6 @@ class ApplicationController < ActionController::Base
   def render_text_error(error)
     render :content_type=>'text/plain',:status=>:unprocessable_entity,:text=>error
   end
+
+  
 end

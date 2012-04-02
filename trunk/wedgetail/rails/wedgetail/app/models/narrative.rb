@@ -56,14 +56,14 @@ class Narrative < ActiveRecord::Base
   def to_html
     case content_type
       when 'text/html'
-        content
+        c=help.sanitize(content)
       when 'text/rtf'
         MessageProcessor.make_html_from_rtf(content)
       when 'text/plain'
         if content.starts_with?("{\\rtf")
           MessageProcessor.make_html_from_rtf(content)
         else
-          MessageProcessor.make_html_from_text(content)
+          MessageProcessor.make_html_from_text(help.sanitize(content))
         end
       when 'application/x-pit'
         c = content.scan(/^301 (.*)$/).join("\n")
@@ -317,5 +317,15 @@ class Narrative < ActiveRecord::Base
     @narrative = Narrative.new(:wedgetail=>patient,:created_by=>user,:content=>content,:narrative_type_id=>17,:condition_id=>condition)
     @narrative.narrative_date=Date.today.to_s
     @narrative.save
+  end
+  
+  
+  def help
+    Helper.instance
+  end
+  
+  class Helper
+    include Singleton
+    include ActionView::Helpers
   end
 end
