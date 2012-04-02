@@ -56,14 +56,14 @@ class Narrative < ActiveRecord::Base
   def to_html
     case content_type
       when 'text/html'
-        c=help.sanitize(content)
+        content
       when 'text/rtf'
         MessageProcessor.make_html_from_rtf(content)
       when 'text/plain'
         if content.starts_with?("{\\rtf")
           MessageProcessor.make_html_from_rtf(content)
         else
-          MessageProcessor.make_html_from_text(help.sanitize(content))
+          MessageProcessor.make_html_from_text(content)
         end
       when 'application/x-pit'
         c = content.scan(/^301 (.*)$/).join("\n")
