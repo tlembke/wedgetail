@@ -4,6 +4,9 @@ class StatsController < ApplicationController
   # :big_wedgie=>1,:admin=>2,:leader=>3,:user=>4,:patient=>5
   def index
       @stats={:patients=>User.count(:conditions =>"role=5"),
+              :summaries=>Narrative.find(:all,:group => :wedgetail,:conditions => "narrative_type_id=1").count,
+              :medications=>Narrative.find(:all,:group => :wedgetail,:conditions => "narrative_type_id=2").count,
+              :narratives=>Narrative.count,
               :users=>User.count(:conditions =>"role<5"),
               :audits=>Audit.count,
               :audits_week=>Audit.count(:conditions => ['created_at > ?', 1.week.ago]),
