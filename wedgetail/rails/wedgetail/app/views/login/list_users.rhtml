@@ -1,6 +1,17 @@
  <h2>Edit Users</h2>
 <table border=1>
+	<tr>
+		<td>Username</td>
+		<td>Real Name</td>
+		<td>Role</td>
+		<td>Last access</td>
+		<td>Summaries</td>
+		<td></td>
+		<td></td>
+		
+	</tr>
 	<% for user in @all_users %> 
+
 	<tr>
 		<td><%=user.username%></td>
 		<td><%=user.family_name_given_names%></td>
