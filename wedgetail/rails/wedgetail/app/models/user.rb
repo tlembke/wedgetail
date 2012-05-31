@@ -422,6 +422,11 @@ eol
     codes.delete_if { |k,v| v.mood == "N" }
     codes.values
   end
+  
+  
+  def summaries
+     summaries=Narrative.find(:all,:group => :wedgetail,:conditions => "narrative_type_id=1 and created_by='#{self.wedgetail}'").count
+  end
 
   private
   
