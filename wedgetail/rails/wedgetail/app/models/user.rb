@@ -360,11 +360,13 @@ end
   end
   
   def find_fuzzier
+    family_name=self.family_name.gsub!(%q('),%q(\\\'))
+    given_name=self.given_names.gsub!(%q('),%q(\\\'))
     clause=Array.new()
-    clause << "(dob= '#{self.dob}' and given_names like '#{self.given_names}%%')"
-    clause << "(dob= '#{self.dob}' and family_name like '#{self.family_name}')"
-    clause << "(family_name like '#{self.family_name}' and given_names like '#{self.given_names}%%')"
-    clause << "(family_name like '#{self.given_names}%%' and given_names like '#{self.family_name}')"
+    clause << "(dob= '#{self.dob}' and given_names like '#{given_names}')"
+    clause << "(dob= '#{self.dob}' and family_name like '#{family_name}')"
+    clause << "(family_name like '#{family_name}' and given_names like '#{given_names}%%')"
+    clause << "(family_name like '#{given_names}%%' and given_names like '#{family_name}')"
     conditions=clause.join(' or ')
     
     matches = User.find(:all,:select => "distinct wedgetail,dob,family_name,given_names ", :conditions => ["wedgetail != '#{self.wedgetail}' and ("+conditions+")"])
