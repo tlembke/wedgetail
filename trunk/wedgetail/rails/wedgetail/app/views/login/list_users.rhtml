@@ -6,6 +6,7 @@
 		<td><%=user.family_name_given_names%></td>
 		<td><%=@role[user.role]%></td>
 		<td><%= user.last_access%></td>
+		<td><%= user.summaries%></td>
 		<td><%= link_to "Edit",:action => 'edit',:wedgetail=>user.wedgetail %></td>
 		<td><%= link_to "Inactivate",{:action => 'inactivate',:wedgetail=>user.wedgetail},{:confirm => "Are you sure (no undo)?"} if user.role !=10 %></td>
  	</tr>
