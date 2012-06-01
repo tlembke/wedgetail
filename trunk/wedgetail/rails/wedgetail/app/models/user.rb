@@ -236,6 +236,11 @@ class User < ActiveRecord::Base
    team_wedgetail=team.wedgetail if team
    return team_wedgetail
 end
+
+def created_by_name
+   creator=User.find_by_wedgetail(self.created_by,:order =>"created_at DESC")
+   created_by=creator.full_name
+end
  
  def birthdate
    return self.dob.day.to_s + "/" + self.dob.month.to_s + "/" + self.dob.year.to_s
@@ -429,6 +434,8 @@ eol
   def summaries
      summaries=Narrative.find(:all,:group => :wedgetail,:conditions => "narrative_type_id=1 and created_by='#{self.wedgetail}'").count
   end
+  
+
 
   private
   
