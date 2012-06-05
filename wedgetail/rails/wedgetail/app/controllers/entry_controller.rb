@@ -97,7 +97,7 @@ class EntryController < ApplicationController
                 extracts+=" Allergies list created."
                 @allergies=@narrative.clone
                 @allergies.narrative_type_id=5
-                @allergies.content=meds[1].strip
+                @allergies.content=allergies[1].strip
                 @allergies.content=@allergies.content.sub("Allergies", "")
                 @allergies.content.strip
                 @allergies.save
