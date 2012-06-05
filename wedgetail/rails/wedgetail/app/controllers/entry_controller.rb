@@ -66,16 +66,16 @@ class EntryController < ApplicationController
   
   def create
     authorize :user
- 
+          extracts=""
       @narrative = Narrative.new(params[:narrative])
       @narrative.created_by=@user.wedgetail
       # this is a narrative entered via the webform
       # is a file was uploaded, it will be taken care of by uploaded_narrative
       # the text is in @narrative.content
-      if @narrative.content.index('wedgetail')
+      if @narrative.content.index('wedgetail') or @narrative.content.index('Wedgetail')
             # wedgetemplate format and may contain a number of narratives
             #extract medications
-            extracts=""
+        
             meds=get_node(@narrative.content,"medications")
             
             if meds 
@@ -107,7 +107,7 @@ class EntryController < ApplicationController
             end
       end
       #narrative is now a cleaned up health summary
-      p = @narrative.can_print?
+       p = @narrative.can_print?
        begin
        if @narrative.save
          flash[:background_print_narrative] = @narrative.id if p
