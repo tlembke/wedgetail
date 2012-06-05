@@ -39,26 +39,93 @@ class EntryController < ApplicationController
     render :layout=>"standard"
   end
 
-  def create
-    authorize :user
-    begin
-      @narrative = Narrative.new(params[:narrative])
-      @narrative.created_by=@user.wedgetail
-      p = @narrative.can_print?
-      if @narrative.save
-        flash[:background_print_narrative] = @narrative.id if p
-        @narrative.sendout
+  def save_narrative(narrative)
+      p = narrative.can_print?
+      begin
+      if narrative.save
+        flash[:background_print_narrative] = narrative.id if p
+        narrative.sendout
         flash[:notice] = 'Narrative was successfully created.'
-        redirect_to patient_url(@narrative.wedgetail)
+        redirect_to patient_url(narrative.wedgetail)
       else
         @completions = true
-        redirect_to :action => 'new',:wedgetail=> @narrative.wedgetail
+        redirect_to :action => 'new',:wedgetail=> narrative.wedgetail
       end
-    rescue WedgieError
-      flash[:notice] = $!.to_s
-      @completions = true
-      redirect_to :action => 'new',:wedgetail=> params[:narrative][:wedgetail]
-    end
+    
+      rescue WedgieError
+        flash[:notice] = $!.to_s
+        @completions = true
+        redirect_to :action => 'new',:wedgetail=> params[:narrative][:wedgetail]
+      end
+  end
+
+  def get_node(text,title)
+     regex="<"+title+">((.|\n)*)<\/"+title+">"
+     return text.match(/#{regex}/m)
+  end
+  
+  def create
+    authorize :user
+ 
+      @narrative = Narrative.new(params[:narrative])
+      @narrative.created_by=@user.wedgetail
+      # this is a narrative entered via the webform
+      # is a file was uploaded, it will be taken care of by uploaded_narrative
+      # the text is in @narrative.content
+      if @narrative.content.index('wedgetail')
+            # wedgetemplate format and may contain a number of narratives
+            #extract medications
+            extracts=""
+            meds=get_node(@narrative.content,"medications")
+            
+            if meds 
+               extracts=" Medication chart created."
+                @medications=@narrative.clone
+                @medications.narrative_type_id=2
+                @medications.content=meds[1].strip
+                @medications.content=@medications.content.sub("Medications", "")
+                @medications.content.strip
+                @medications.save
+                @medications.sendout
+                @narrative.content=@narrative.content.sub("<medications>", "Medications")
+                @narrative.content=@narrative.content.sub("<\/medications>", "")
+            end
+            
+            allergies=get_node(@narrative.content,"allergies")
+            
+            if allergies
+                extracts+=" Allergies list created."
+                @allergies=@narrative.clone
+                @allergies.narrative_type_id=5
+                @allergies.content=meds[1].strip
+                @allergies.content=@allergies.content.sub("Allergies", "")
+                @allergies.content.strip
+                @allergies.save
+                @allergies.sendout
+                @narrative.content=@narrative.content.sub("<allergies>", "Allergies")
+                @narrative.content=@narrative.content.sub("<\/allergies>", "")
+            end
+      end
+      #narrative is now a cleaned up health summary
+      p = @narrative.can_print?
+       begin
+       if @narrative.save
+         flash[:background_print_narrative] = @narrative.id if p
+         @narrative.sendout
+         flash[:notice] = 'Narrative was successfully created.'+extracts
+         redirect_to patient_url(@narrative.wedgetail)
+       else
+         @completions = true
+         redirect_to :action => 'new',:wedgetail=> @narrative.wedgetail
+       end
+
+       rescue WedgieError
+         flash[:notice] = $!.to_s
+         @completions = true
+         redirect_to :action => 'new',:wedgetail=> params[:narrative][:wedgetail]
+       end
+
+    
   end
 
   
