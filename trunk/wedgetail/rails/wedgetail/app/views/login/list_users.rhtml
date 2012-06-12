@@ -6,6 +6,7 @@
 		<td>Role</td>
 		<td>Last access</td>
 		<td>Summaries</td>
+		<td>eCollab?</td>
 		<td></td>
 		<td></td>
 		
@@ -18,6 +19,16 @@
 		<td><%=@role[user.role]%></td>
 		<td><%= user.last_access%></td>
 		<td><%= user.summaries%></td>
+		<td> 
+			<% hatched = 0 %>
+			<% hatched = 1 if user.hatched and user.hatched!=0 %>
+			<% checked=false%>
+			<% checked=true if hatched==1%>
+			<% form_remote_tag :url => { :controller=>:login,:action => 'ecollab', :wedgetail=>user.wedgetail} do %>
+
+			<%= check_box_tag("hatched",1,checked,{ :onclick =>"this.form.submit();", :disabled => false }) %>
+			<% end %>
+		</td>
 		<td><%= link_to "Edit",:action => 'edit',:wedgetail=>user.wedgetail %></td>
 		<td><%= link_to "Inactivate",{:action => 'inactivate',:wedgetail=>user.wedgetail},{:confirm => "Are you sure (no undo)?"} if user.role !=10 %></td>
  	</tr>

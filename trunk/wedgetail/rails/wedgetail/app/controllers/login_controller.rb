@@ -188,6 +188,23 @@ class LoginController < ApplicationController
     authorize :admin #apart from admin
   end
  
+  def ecollab
+    # @useredit is the User being edited and @user is the current user
+    @useredit=User.find_current(params[:wedgetail])
+    authorize_only (:user) {@useredit.wedgetail == @user.wedgetail} # users can edit themselves
+    authorize_only (:leader) { @useredit.team == @user.team  || @useredit.wedgetail == @user.team }
+    authorize :admin # admins can do whatever they like
+    # team leaders can edit patients, themselves, users of their team and the team itself
+    authorize :admin # admins can do whatever they like
+    if @useredit.update_attribute(:hatched,params[:hatched])
+      flash[:notice] = 'User was successfully added to eCollabs.'
+    else
+      flash[:notice] = 'Error when modifying user.'
+    end
+    redirect_to :action => 'list_users'
+      
+  end
+  
   
   def toggle_list
     render :update do |page|
