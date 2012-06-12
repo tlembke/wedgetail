@@ -63,7 +63,8 @@ class Narrative < ActiveRecord::Base
         if content.starts_with?("{\\rtf")
           MessageProcessor.make_html_from_rtf(content)
         else
-          MessageProcessor.make_html_from_text(content)
+          #MessageProcessor.make_html_from_text(content)
+          content
         end
       when 'application/x-pit'
         c = content.scan(/^301 (.*)$/).join("\n")
@@ -139,6 +140,10 @@ class Narrative < ActiveRecord::Base
     logger.warn("DEBUG: getting user for %p" % self.wedgetail)
     User.find_by_wedgetail(self.wedgetail,:order=>"created_at desc")
   end 
+  
+  def self.ecollabsummaries
+       ecollabsummaries=Narrative.find_by_sql("select narratives.wedgetail from narratives,users where narratives.narrative_type_id=1 and narratives.created_by=users.wedgetail and users.hatched=1 GROUP BY narratives.wedgetail ").count
+  end
   
   def author
     author_name=""

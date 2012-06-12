@@ -1,0 +1,2 @@
+module EcollabsHelper
+end

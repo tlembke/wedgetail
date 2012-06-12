@@ -435,8 +435,14 @@ eol
      summaries=Narrative.find(:all,:group => :wedgetail,:conditions => "narrative_type_id=1 and created_by='#{self.wedgetail}'").count
   end
   
-
-
+  def self.ecollabpatients
+      ecollabpatients=User.find_by_sql("select patient.wedgetail from users patient, users provider where provider.wedgetail=patient.created_by and provider.hatched=1 GROUP BY patient.wedgetail ").count
+      
+  end 
+ 
+  def self.ecollabusers
+      ecollabusers=User.find(:all,:group => :wedgetail,:conditions=> "role<5 and hatched=1").count
+  end
   private
   
   def self.encrypted_password(password, salt) 

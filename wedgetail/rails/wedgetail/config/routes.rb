@@ -28,6 +28,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, :collection=>{:search=> :get}
   
   map.resources :stats
+  
+  map.resources :ecollabs
 
   map.resources :patients, :key => :wedgetail, :has_many => [:narratives,:conditions,:goals,:tasks,:measurevalues], :member => { :results => :get,:team=>:get,:unconfirmed=>:get,:wall=>:get,:careplan=>:get}
   
