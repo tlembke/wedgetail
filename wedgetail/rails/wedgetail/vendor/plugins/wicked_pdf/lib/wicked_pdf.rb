@@ -11,7 +11,7 @@ class WickedPdf
     @exe_path ||= WICKED_PDF[:exe_path] unless WICKED_PDF.empty?
     @exe_path ||= `which wkhtmltopdf`.chomp
     raise "Location of wkhtmltopdf unknown" if @exe_path.empty?
-    raise "Bad wkhtmltopdf's path" unless File.exists?(@exe_path)
+    raise "Bad wkhtmltopdf's path"+@exe_path unless File.exists?(@exe_path)
     raise "Wkhtmltopdf is not executable" unless File.executable?(@exe_path)
   end
 
