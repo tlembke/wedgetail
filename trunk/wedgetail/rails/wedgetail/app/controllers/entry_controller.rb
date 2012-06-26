@@ -86,7 +86,7 @@ class EntryController < ApplicationController
                 @medications.content=@medications.content.sub("Medications", "")
                 @medications.content.strip
                 @medications.save
-                @medications.sendout
+                # @medications.sendout  disable for now
                 @narrative.content=@narrative.content.sub("<medications>", "Medications")
                 @narrative.content=@narrative.content.sub("<\/medications>", "")
             end
@@ -101,7 +101,7 @@ class EntryController < ApplicationController
                 @allergies.content=@allergies.content.sub("Allergies", "")
                 @allergies.content.strip
                 @allergies.save
-                @allergies.sendout
+                # @allergies.sendout disable for now
                 @narrative.content=@narrative.content.sub("<allergies>", "Allergies")
                 @narrative.content=@narrative.content.sub("<\/allergies>", "")
             end
