@@ -241,6 +241,25 @@ class ApplicationController < ActionController::Base
        end
     end
   end
+  
+  
+  def standard_authorize(patient,user)
+    #standard authorize
+    if !patient or patient.role!=5
+      flash[:notice]='Patient not found'
+      @authorized=false
+    elsif !patient.hatched 
+      flash[:notice]='Patient not yet registered'
+      @authorized=false
+    else
+      authorize_only(:patient) {patient.wedgetail == user.wedgetail}
+      authorize_only(:temp) { patient.wedgetail == user.wedgetail.from(6)}
+      authorize_only(:leader){patient.firewall(user)}
+      authorize_only(:user){patient.firewall(user)}
+      authorize :admin
+    end
+  
+  end
 
   def render_text_data(data,fields)
   # render a list of objects as traditional UNIX-style tab-separated fields, one recrd per line

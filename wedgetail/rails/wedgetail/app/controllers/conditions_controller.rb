@@ -37,22 +37,19 @@ class ConditionsController < ApplicationController
   # GET /conditions
   # GET /conditions.xml
   def index
-    if @patient and @patient.role!=5
-      flash[:notice]='Patient not found'
-    elsif @patient and !@patient.hatched 
-      flash[:notice]='Patient not yet registered'
-    else
-      authorize :admin
-    end
+      @authorized=standard_authorize(@patient,@user)
+
       respond_to do |format|
         format.html{
-          if @patient and  @patient.role!=5
-            render :controller=>:patients, :action=>:index
-          elsif @patient and ! @patient.hatched
-            redirect_to :controller=>:patients, :action=>:unconfirmed
-          elsif @patient
-            @conditions = @patient.conditions
-            render "patients/conditions.html.erb"
+          if @patient
+            if ! @patient.hatched and Pref.unhatched_access==1
+              redirect_to :controller=>:patients, :action=>:unconfirmed
+            elsif @patient.role!=5
+              redirect_to :controller=>:patients, :action=>:index
+            else
+              @conditions = @patient.conditions
+              render "patients/conditions.html.erb"
+            end
           else
             @conditions = Condition.all
           end
@@ -67,17 +64,8 @@ class ConditionsController < ApplicationController
   # GET /conditions/1.xml
   def show
     # before filter = getPatient
-    if !@patient or @patient.role!=5
-      flash[:notice]='Patient not found'
-    elsif !@patient.hatched 
-      flash[:notice]='Patient not yet registered'
-    else
-      authorize_only(:patient) {@patient.wedgetail == @user.wedgetail}
-      authorize_only(:temp) { @patient.wedgetail == @user.wedgetail.from(6)}
-      authorize_only(:leader){@patient.firewall(@user)}
-      authorize_only(:user){@patient.firewall(@user)}
-      authorize :admin
-    end
+     @authorized=standard_authorize(@patient,@user)
+
     @condition = Condition.find(params[:id])
     @condition_id=@condition.id
     
