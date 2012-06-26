@@ -72,7 +72,7 @@ class EntryController < ApplicationController
       # this is a narrative entered via the webform
       # is a file was uploaded, it will be taken care of by uploaded_narrative
       # the text is in @narrative.content
-      if @narrative.content.index('wedgetail') or @narrative.content.index('Wedgetail')
+
             # wedgetemplate format and may contain a number of narratives
             #extract medications
         
@@ -105,13 +105,13 @@ class EntryController < ApplicationController
                 @narrative.content=@narrative.content.sub("<allergies>", "Allergies")
                 @narrative.content=@narrative.content.sub("<\/allergies>", "")
             end
-      end
+
       #narrative is now a cleaned up health summary
        p = @narrative.can_print?
        begin
        if @narrative.save
          flash[:background_print_narrative] = @narrative.id if p
-         @narrative.sendout
+         # @narrative.sendout disable for now
          flash[:notice] = 'Narrative was successfully created.'+extracts
          redirect_to patient_url(@narrative.wedgetail)
        else
