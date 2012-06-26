@@ -189,7 +189,7 @@ def show_as_html
     @narrative.convert_docs
     respond_to do |format|
       if failflag=="" and @narrative.save
-        @narrative.sendout 
+        # @narrative.sendout  disabled currently
         flash[:notice] = 'Narrative was successfully created.'
         @message="Narrative created"
          @narratives=[@narrative]
