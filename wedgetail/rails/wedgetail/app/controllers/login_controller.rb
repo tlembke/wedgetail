@@ -386,7 +386,7 @@ class LoginController < ApplicationController
       @thisteam=@user.team
       @all_users=User.find(:all, :conditions => ["(role = 4 or role =3) and team = '#{@thisteam}'"])     
     else
-      @all_users = User.find(:all,:conditions => ["role<5 or role=10"], :order => "role") 
+      @all_users = User.find(:all,:conditions => ["role<5 or role=10"], :order => "family_name") 
     end
     @role = ["","big_wedgie","admin","team leader","provider","patient","team","guest","","","inactive"]
   end
