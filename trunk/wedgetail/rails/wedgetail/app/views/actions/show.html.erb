@@ -1,4 +1,5 @@
 <h1>Messages for ticket <%= @ticket %> </h1>
+
 <% if @actions.length==0%>
 There are currently no results back for that ticket request<p>
 Please check back tomorrow<p>
@@ -57,7 +58,7 @@ There is more than one result associated with this ticket<p>
 		<h4><%= action.name %></h4>
 		<% end %>
 		<% if action.comment!=""%>	
-		<%= displayComment(action.comment) %>
+		<%# displayComment(action.comment) %>
 		<% end %>
 		</td>
 	</tr>
