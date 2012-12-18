@@ -6,10 +6,14 @@ class ActionsController < ApplicationController
   # GET /actions
   # GET /actions.xml
   def index
+    @referrer=""
+    @format=request.format
     @ticket=params[:ticket]
-    
- 
-        if (@ticket)
+    if request.env["HTTP_REFERER"]
+      @referrer=URI(request.env["HTTP_REFERER"]).host
+    end
+    @host= URI("http://"+Pref.host_url).host
+        if (@ticket) and @referrer==@host
           redirect_to :action => "show", :id => @ticket
         else
 
@@ -23,36 +27,45 @@ class ActionsController < ApplicationController
   # GET /actions/1
   # GET /actions/1.xml
   def show
-
+    if request.env["HTTP_REFERER"]
+      @referrer=URI(request.env["HTTP_REFERER"]).host
+    end
+    @format=request.format
+    @host= URI("http://"+Pref.host_url).host
     @ticket=params[:id]
+    if (@ticket) and (@referrer==@host or @format=="text/xml")
 
-    @result=ResultTicket.find_by_ticket(params[:id])
     
-    if @result
-      @actions=Action.find(:all,:conditions=>["request_set=?",@result.request_set])
-    end
-    @code=["No further action required for this result","Please call to discuss these results","Please make an urgent appointment to discuss results"]
-    unless @result
-      flash[:notice] = 'That ticket number is not known.'
- 
-      redirect_to actions_path
-    end
-    if @result
-      for @action in @actions
-        @action.update_attribute(:viewed, 1)
+      @result=ResultTicket.find_by_ticket(params[:id])
+    
+      if @result
+        @actions=Action.find(:all,:conditions=>["request_set=?",@result.request_set])
       end
-      respond_to do |format|
-        format.html {
+      @code=["No further action required for this result","Please call to discuss these results","Please make an urgent appointment to discuss results"]
+      unless @result
+        flash[:notice] = 'That ticket number is not known.'
+ 
+        redirect_to actions_path
+      end
+      if @result
+        for @action in @actions
+          @action.update_attribute(:viewed, 1)
+        end
+        respond_to do |format|
+          format.html {
           }# show.html.erb
       
-        format.xml  { 
-         render :xml => @actions, :template => 'actions/actions.xml.builder' 
+          format.xml  { 
+            render :xml => @actions, :template => 'actions/actions.xml.builder' 
 
-        }
-        format.iphone {
-            render :layout=> 'layouts/application.iphone.erb'
-        }# show.iphone.erb
+          }
+          format.iphone {
+              render :layout=> 'layouts/application.iphone.erb'
+          }# show.iphone.erb
+        end
       end
+    else #not valid referral - from outside (eg google) or typed in directly
+      redirect_to actions_path
     end
   end
 
