@@ -13,7 +13,7 @@ class ActionsController < ApplicationController
       @referrer=URI(request.env["HTTP_REFERER"]).host
     end
     @host= URI("http://"+Pref.host_url).host
-        if (@ticket) and @referrer==@host
+        if (@ticket) and (@referrer==@host or @referrer=="www."+@host or @format=="text/xml")
           redirect_to :action => "show", :id => @ticket
         else
 
