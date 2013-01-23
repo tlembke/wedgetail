@@ -33,7 +33,7 @@ class ActionsController < ApplicationController
     @format=request.format
     @host= URI("http://"+Pref.host_url).host
     @ticket=params[:id]
-    if (@ticket) and (@referrer==@host or @referrer=="www"+@host or @format=="text/xml")
+    if (@ticket) and (@referrer==@host or @referrer=="www."+@host or @format=="text/xml")
 
     
       @result=ResultTicket.find_by_ticket(params[:id])
